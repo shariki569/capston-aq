@@ -1,0 +1,419 @@
+@font-face {
+  font-family: "Libre Franklin";
+  src: url("./fonts/LibreFranklin-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Libre Franklin";
+  src: url("./fonts/LibreFranklin-Semibold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Libre Baskerville";
+  src: url("./fonts/LibreBaskerville-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+}
+.app .container {
+  width: 100%;
+}
+.app .container .home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.app .container .link {
+  font-family: "Libre Franklin";
+  text-decoration: none;
+  color: inherit;
+}
+.app .container .auth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  background-color: #b9e7e7;
+}
+.app .container .auth h1 {
+  font-size: 20px;
+  color: teal;
+  margin-bottom: 20px;
+  font-family: "Libre Franklin";
+  font-size: 1.5rem;
+}
+.app .container .auth form {
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+  background-color: white;
+  width: 200;
+  gap: 20px;
+}
+.app .container .auth form input {
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid gray;
+  font-family: "Libre Baskerville";
+  font-size: 1rem;
+}
+.app .container .auth form button {
+  padding: 10px;
+  border: none;
+  background-color: teal;
+  color: white;
+  cursor: pointer;
+  font-family: "Libre Baskerville";
+  font-size: 1rem;
+}
+.app .container .auth form p {
+  font-size: 0.8rem;
+  color: red;
+  text-align: center;
+  font-family: "Libre Franklin";
+}
+.app .container .auth form span {
+  font-size: 12px;
+  text-align: center;
+  font-family: "Libre Baskerville";
+}
+.app .container .navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 50px;
+}
+.app .container .navbar .container {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.app .container .navbar .container .logo img {
+  width: 120px;
+}
+.app .container .navbar .container .links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.app .container .navbar .container .links h6 {
+  font-size: 1rem;
+  font-weight: 300;
+  font-family: "Libre Franklin";
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #333;
+}
+.app .container .navbar .container .links span {
+  cursor: pointer;
+  font-family: "Libre Baskerville";
+}
+.app .container .navbar .container .links .write {
+  background-color: #b9e7e7;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 300;
+  border: 1px solid white;
+  transition: 0.2s ease-in;
+}
+.app .container .navbar .container .links .write:hover {
+  color: teal;
+  background-color: white;
+  border: 1px solid teal;
+}
+.app .container footer {
+  margin-top: 5rem;
+  padding: 30px 50px;
+  background-color: #b9e7e7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+}
+.app .container footer img {
+  height: 50px;
+}
+.app .container footer span {
+  font-family: "Libre Baskerville";
+}
+.app .container .home .posts {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 150px;
+}
+.app .container .home .post {
+  display: flex;
+  gap: 100px;
+}
+.app .container .home .post:nth-child(2n+1) {
+  flex-direction: row-reverse;
+}
+.app .container .home .post .img {
+  flex: 1;
+  position: relative;
+}
+.app .container .home .post .img::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: #b9e7e7;
+  position: absolute;
+  top: 20px;
+  left: -20px;
+  z-index: -1;
+}
+.app .container .home .post .img img {
+  width: 100%;
+  max-height: 400px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.app .container .home .post .content {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.app .container .home .post .content a {
+  text-decoration: none;
+}
+.app .container .home .post .content h1 {
+  font-family: "Libre Franklin";
+  font-size: 2rem;
+  color: black;
+}
+.app .container .home .post .content p {
+  font-size: 1rem;
+  font-family: "Libre Baskerville";
+}
+.app .container .home .post .content button {
+  width: -moz-max-content;
+  width: max-content;
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  background-color: white;
+  border: 1px solid teal;
+  color: teal;
+  font-family: "Libre Baskerville";
+  transition: 0.1s ease-in-out;
+}
+.app .container .home .post .content button:hover {
+  border: 1px solid white;
+  background-color: #b9e7e7;
+  color: black;
+}
+.app .container .single {
+  display: flex;
+  gap: 50px;
+}
+.app .container .single .content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  flex: 5;
+}
+.app .container .single .content img {
+  width: 100%;
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.app .container .single .content .user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  font-family: "Libre Baskerville";
+}
+.app .container .single .content .user img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.app .container .single .content .user span {
+  font-weight: bold;
+  font-family: "Libre Franklin";
+  font-weight: 600;
+  font-size: 1rem;
+}
+.app .container .single .content .user p {
+  font-family: "Libre Baskerville";
+  font-size: 0.8rem;
+  color: grey;
+}
+.app .container .single .content .edit {
+  display: flex;
+  gap: 5px;
+}
+.app .container .single .content .edit button {
+  border-radius: 50%;
+  border: none;
+}
+.app .container .single .content .edit .icon {
+  background-color: teal;
+  padding: 8px;
+  border-radius: 50%;
+  color: white;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  transition: 0.1s ease-in-out;
+}
+.app .container .single .content .edit .icon-delete:hover {
+  background-color: rgb(245, 18, 18);
+}
+.app .container .single .content .edit .icon-edit:hover {
+  background-color: rgb(12, 71, 199);
+}
+.app .container .single .content h1 {
+  font-size: 2rem;
+  font-family: "Libre Franklin";
+  color: #333;
+}
+.app .container .single .content p {
+  font-family: "Libre Baskerville";
+  text-align: justify;
+  line-height: 30px;
+}
+.app .container .single .menu {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.app .container .single .menu h1 {
+  font-size: 1.5rem;
+  color: #555;
+  font-family: "Libre Franklin";
+}
+.app .container .single .menu .post {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.app .container .single .menu .post img {
+  width: 100%;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.app .container .single .menu .post h2 {
+  color: #555;
+  font-family: "Libre Franklin";
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+.app .container .single .menu .post button {
+  width: -moz-max-content;
+  width: max-content;
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  background-color: white;
+  border: 1px solid teal;
+  color: teal;
+  font-family: "Libre Baskerville";
+  transition: 0.1s ease-in-out;
+}
+.app .container .single .menu .post button:hover {
+  border: 1px solid white;
+  background-color: #b9e7e7;
+  color: black;
+}
+.app .container .add {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+}
+.app .container .add .content {
+  flex: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.app .container .add .content input {
+  padding: 10px;
+  border: 1px solid lightgray;
+}
+.app .container .add .content .editorContainer {
+  height: 300px;
+  overflow: scroll;
+  border: 1px solid lightgray;
+}
+.app .container .add .content .editorContainer .editor {
+  height: 100%;
+  border: none;
+}
+.app .container .add .menu {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.app .container .add .menu .item {
+  border: 1px solid lightgray;
+  padding: 10px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  font-family: "Libre Franklin";
+  color: #555;
+}
+.app .container .add .menu .item h1 {
+  font-size: 2rem;
+  font-family: "Libre Franklin";
+}
+.app .container .add .menu .item span {
+  margin: 3px 0;
+}
+.app .container .add .menu .item .file {
+  margin: 5px 0;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.app .container .add .menu .item .file:hover {
+  color: rgb(240, 29, 29);
+}
+.app .container .add .menu .item .buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.app .container .add .menu .item .buttons :first-child {
+  cursor: pointer;
+  color: teal;
+  background-color: white;
+  border: 1px solid teal;
+  padding: 3px 5px;
+}
+.app .container .add .menu .item .buttons :last-child {
+  cursor: pointer;
+  color: white;
+  background-color: teal;
+  border: 1px solid teal;
+  padding: 3px 5px;
+}/*# sourceMappingURL=style.css.map */

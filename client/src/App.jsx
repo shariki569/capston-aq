@@ -5,8 +5,9 @@ import {
   Outlet
 } from "react-router-dom";
 import { Footer, Nav } from "./Components";
-import { Home, Login, Register, Single, Write } from "./pages";
+import { Home, Login, Register, Single, Write,About } from "./pages";
 import './style.scss'
+
 
 
 const Layout = () => {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path:"/",
         element:<Home/>
+      },
+      {
+        path: "/about-us",
+        element:<About/>
       },
       {
         path:"/post/:id",

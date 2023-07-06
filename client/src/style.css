@@ -92,25 +92,15 @@ body {
   font-family: "Libre Baskerville";
 }
 .app .container .navbar {
-  display: flex;
-  justify-content: space-between;
   padding: 30px 50px;
 }
 .app .container .navbar .container {
   padding: 10px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
-.app .container .navbar .container .logo img {
-  width: 120px;
-}
-.app .container .navbar .container .links {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.app .container .navbar .container .links h6 {
+.app .container .navbar .container h6 {
   font-size: 1rem;
   font-weight: 300;
   font-family: "Libre Franklin";
@@ -118,11 +108,60 @@ body {
   text-transform: uppercase;
   color: #333;
 }
-.app .container .navbar .container .links span {
+.app .container .navbar .container .logo img {
+  width: 120px;
+}
+.app .container .navbar .container .main-link {
+  width: 200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.app .container .navbar .container .main-link .dropdown {
+  position: relative;
+}
+.app .container .navbar .container .main-link .dropdown-toggle.open::after {
+  content: "";
+  position: absolute;
+  top: 45%;
+  left: 70px;
+  transform: translateY(-50%);
+  border: solid #333;
+  border-width: 0 1px 1px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(45deg);
+}
+.app .container .navbar .container .main-link .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 60%;
+  left: 0;
+  z-index: 9999;
+  display: none;
+  min-width: 200px;
+  padding: 10px 20px;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  text-decoration: none;
+  list-style: none;
+}
+.app .container .navbar .container .main-link .dropdown-toggle.open + .dropdown-menu {
+  display: block;
+}
+.app .container .navbar .container .user-link {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+  width: 200px;
+}
+.app .container .navbar .container .user-link span {
   cursor: pointer;
   font-family: "Libre Baskerville";
 }
-.app .container .navbar .container .links .write {
+.app .container .navbar .container .user-link .write {
   background-color: #b9e7e7;
   width: 50px;
   height: 50px;
@@ -134,7 +173,7 @@ body {
   border: 1px solid white;
   transition: 0.2s ease-in;
 }
-.app .container .navbar .container .links .write:hover {
+.app .container .navbar .container .user-link .write:hover {
   color: teal;
   background-color: white;
   border: 1px solid teal;
@@ -145,7 +184,7 @@ body {
   background-color: #b9e7e7;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   font-size: 12px;
 }
 .app .container footer img {

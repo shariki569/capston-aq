@@ -41,5 +41,5 @@ app.use("/api/posts", postRoutes)
 
 
 app.listen(8800, ()=>{
-    console.log("Connected!")
+    console.log("Connected oy amaw!")
 })

@@ -53,33 +53,33 @@ const Single = () => {
   return (
     <div className='single'>
       <div className="content">
-        <img src={`../upload/${post?.img}`} alt="" />
-      <div className="user">
-        {post.userImage && <img 
-        src={post.userImage} 
-        alt="" 
-        />}
-        <div className="info">
-          <span>{post.username}</span>
-          <p>Posted {moment(post.date).fromNow()}</p>
+          <img src={`../upload/${post?.img}`} alt="" />
+          <div className="user">
+            {
+              post.userImage && <img 
+              src={post.userImage} 
+              alt="" 
+              />
+            }
+            <div className="info">
+              <span>{post.username}</span>
+              <p>Posted {moment(post.date).fromNow()}</p>
+            </div>
+            {currentUser?.username === post?.username && (<div className="edit">
+              <Link to={`/write?edit=2`} state={post}>
+                  <AiFillEdit className='icon icon-edit'/>
+              </Link>
+              <Link>
+                  <button onClick={handleDelete}>
+                    <AiFillDelete className='icon icon-delete'/>
+                  </button>
+              </Link>
+            </div>)}
         </div>
-        {currentUser?.username === post?.username && (<div className="edit">
-          <Link to={`/write?edit=2`} state={post}> 
-            
-              <AiFillEdit className='icon icon-edit'/>
-          
-          </Link>
-          <Link>
-              <button onClick={handleDelete}>
-                <AiFillDelete className='icon icon-delete'/>
-              </button>
-          </Link>
-        </div>)}
-      </div>
-        <h1>{post.title}</h1>
-        <p 
-          dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(post.desc)}}>
-        </p>
+          <h1>{post.title}</h1>
+          <p 
+            dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(post.desc)}}>
+          </p>
       </div>
       <Menu cat={post.cat}/>
     </div>

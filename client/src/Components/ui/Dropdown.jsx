@@ -29,7 +29,7 @@ const Dropdown = ({label, children}) => {
   return (
     <div className='dropdown' ref={dropdownRef}>
         <span className={`dropdown-toggle ${isOpen ? 'open' : ''}`} onClick={handleToggle}> 
-            <Link className="link"><h6>{label}</h6></Link>
+            <div className="link"><h6>{label}</h6></div>
         </span>
         {isOpen && <div className='dropdown-menu'> {children} </div>}
     </div>

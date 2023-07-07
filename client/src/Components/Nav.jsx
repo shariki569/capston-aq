@@ -2,15 +2,16 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import {Link} from 'react-router-dom'
 import logo from "../img/sepalon-icon.svg"
 import { AuthContext } from '../context/authContext';
-import Dropdown from './DropDown';
+import Dropdown from './ui/Dropdown';
+import { FaPenNib } from "react-icons/fa6";
+
 
 const Nav = () => {
 
   const {currentUser, logout } = useContext(AuthContext);
 
 
-  
-  
+
   return (
     <div className='navbar'>
       <div className="container">
@@ -62,13 +63,14 @@ const Nav = () => {
             Login
           </Link>
           )}
-          <span className='write'>
+
+          { currentUser && (<span className='write'>
             <Link 
               className="link" 
               to="/write">
-              Write
+                <FaPenNib size={20}/>
             </Link>
-          </span>
+          </span>)}
         </div>
       </div>
     </div>

@@ -39,6 +39,7 @@ body {
   font-family: "Libre Franklin";
   text-decoration: none;
   color: inherit;
+  cursor: pointer;
 }
 .app .container .auth {
   display: flex;
@@ -455,4 +456,37 @@ body {
   background-color: teal;
   border: 1px solid teal;
   padding: 3px 5px;
+}
+.app .container .about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.app .container .header {
+  position: relative;
+  min-height: 70vh;
+  width: 100%;
+  overflow: hidden;
+  font-family: "Libre Franklin";
+}
+.app .container .header .header-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.app .container .header .header-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 99;
+}
+.app .container .header .header-title h1 {
+  color: #b9e7e7;
+  font-size: 4rem;
 }/*# sourceMappingURL=style.css.map */

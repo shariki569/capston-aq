@@ -1,6 +1,8 @@
 import axios from 'axios'
+import DOMPurify from 'dompurify'
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+
 
 const Home = () => {
 
@@ -37,7 +39,7 @@ const  getText = (html) => {
               <Link to={`/post/${post.id}`}>
               <h1>{post.title}</h1>
               </Link>
-              <p>{getText(post.desc)}</p>
+              <p dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(post.desc)}}></p>
               <button>Read More</button>
             </div>
           </div>

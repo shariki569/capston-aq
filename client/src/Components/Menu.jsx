@@ -17,38 +17,6 @@ const Menu = ({cat}) => {
     fetchData();
   }, [cat]);
 
-    // const posts = [
-    //     {
-    //       id: 1,
-    //       title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    //       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat in ante metus dictum at tempor. Eleifend quam adipiscing vitae proin sagittis nisl.",
-    //       img: "https://images.pexels.com/photos/266004/pexels-photo-266004.jpeg?auto=compress&cs=tinysrgb&w=600"
-    //     },
-    //     {
-    //       id: 2,
-    //       title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    //       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat in ante metus dictum at tempor. Eleifend quam adipiscing vitae proin sagittis nisl.",
-    //       img: "https://images.pexels.com/photos/57686/pexels-photo-57686.jpeg?auto=compress&cs=tinysrgb&w=600"
-    //     },
-    //     {
-    //       id: 3,
-    //       title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    //       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat in ante metus dictum at tempor. Eleifend quam adipiscing vitae proin sagittis nisl.",
-    //       img: "https://images.pexels.com/photos/6373309/pexels-photo-6373309.jpeg?auto=compress&cs=tinysrgb&w=600"
-    //     },
-    //     {
-    //       id: 4,
-    //       title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    //       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat in ante metus dictum at tempor. Eleifend quam adipiscing vitae proin sagittis nisl.",
-    //       img: "https://images.pexels.com/photos/3933240/pexels-photo-3933240.jpeg?auto=compress&cs=tinysrgb&w=600"
-    //     },
-    //     {
-    //       id: 5,
-    //       title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    //       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat in ante metus dictum at tempor. Eleifend quam adipiscing vitae proin sagittis nisl.",
-    //       img: "https://images.pexels.com/photos/358904/pexels-photo-358904.jpeg?auto=compress&cs=tinysrgb&w=600"
-    //     },
-    // ]
 
   return (
     <div className='menu'>

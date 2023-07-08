@@ -2,23 +2,22 @@ import {
   createBrowserRouter,
   RouterProvider,
   Route,
-  Outlet
+  Outlet,
+  useNavigate
 } from "react-router-dom";
 import { Footer, Nav } from "./Components";
 import { Home, Login, Register, Single, Write,About } from "./pages";
 import './style.scss'
+import Dashboard from "./Components/admin/Dashboard";
+import DashboardLayout from "./Components/layouts/DashboardLayout";
+import Layout from "./Components/layouts/Layout";
+import Pages from "./Components/admin/Pages";
 
 
 
-const Layout = () => {
-  return (
-    <>
-    <Nav/>
-    <Outlet/>
-    <Footer/>
-    </>
-  );
-};
+
+
+
 
 
 const router = createBrowserRouter([
@@ -45,6 +44,24 @@ const router = createBrowserRouter([
     ]
   },
   {
+    path: "/",
+    element: <DashboardLayout/>,
+    children: [
+      {
+        path: "/dashboard",
+        element: <Dashboard/>
+      },
+      {
+        path: "/add-posts",
+        element: <Write/>
+      },
+      {
+        path: "/edit-pages",
+        element: <Pages/>
+      },
+    ]
+  },
+  {
     path: "/register",
     element: <Register/>,
   },
@@ -52,21 +69,25 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Login/>,
   },
+  
   {
     path: "/create-blog",
     element: <Write/>,
   },
+ 
 ]);
 
 
 function App() {
 
   return (
-    <div className="app">
-      <div className="container">
-        <RouterProvider router={router}/>
+   
+      <div className="app">
+        <div className="container">
+          <RouterProvider router={router}/>
+        </div>
       </div>
-    </div>
+  
   )
 }
 

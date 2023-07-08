@@ -11,7 +11,7 @@ const Header = ({imageUrl, title}) => {
         </picture>
         <div className='header-title'>
             <h1>{title}</h1>
-            {/* <EditableText initialContent={}/> */}
+            
         </div>
     </div>
   )

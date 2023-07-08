@@ -1,16 +1,40 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import {Link} from 'react-router-dom'
-import logo from "../img/sepalon-icon.svg"
-import { AuthContext } from '../context/authContext';
-import Dropdown from './ui/Dropdown';
+import logo from "../../img/sepalon-icon.svg"
+import { AuthContext } from '../../context/authContext';
+import Dropdown from '../ui/Dropdown';
 import { FaPenNib } from "react-icons/fa6";
 
 
 const Nav = () => {
 
   const {currentUser, logout } = useContext(AuthContext);
-
-
+  const catLinks = [
+    {
+      name: "Art",
+      path: "/?cat=art"
+    },
+    {
+      name: "Science",
+      path: "/?cat=science"
+    },
+    {
+      name: "Technology",
+      path: "/?cat=technology"
+    },
+    {
+      name: "Cinema",
+      path: "/?cat=cinema"
+    },
+    {
+      name: "Design",
+      path: "/?cat=design"
+    },
+    {
+      name: "Foods",
+      path: "/?cat=foods"
+    },
+  ]
 
   return (
     <div className='navbar'>
@@ -26,33 +50,23 @@ const Nav = () => {
           <Link className="link"to="/about-us">
             <h6>About Us</h6>
           </Link>
+
           <Dropdown  label="Posts">
-            <Link className='link' to="/?cat=art">
-              <h6>Art</h6>
-            </Link>
-            <Link className='link' to="/?cat=science">
-              <h6>Science</h6>
-            </Link>
-            <Link className='link' to="/?cat=technology">
-              <h6>Technology</h6>
-            </Link>
-            <Link className='link' to="/?cat=cinema">
-              <h6>Cinema</h6>
-            </Link>
-            <Link className='link' to="/?cat=design">
-              <h6>Design</h6>
-            </Link>
-            <Link className='link' to="/?cat=food">
-              <h6>Food</h6>
-            </Link>
+            {catLinks.map((link, index) => (
+              <Link className='link' key={index} to={link.path}>
+                  <h6>{link.name}</h6>
+              </Link>
+            ))}
           </Dropdown>
           
         </div>
-            {/* main links */}
+  
         <div className='user-link'>
-          <span>
-            {currentUser?.username}
-          </span>
+          <Link className='link' to="/dashboard">
+            <span>
+              {currentUser?.username}
+            </span>
+          </Link>
 
           {currentUser ? (
             <span onClick={logout}>
@@ -64,13 +78,13 @@ const Nav = () => {
           </Link>
           )}
 
-          { currentUser && (<span className='write'>
+          {/* { currentUser && (<span className='write'>
             <Link 
               className="link" 
               to="/write">
                 <FaPenNib size={20}/>
             </Link>
-          </span>)}
+          </span>)} */}
         </div>
       </div>
     </div>

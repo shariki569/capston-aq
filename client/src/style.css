@@ -31,6 +31,7 @@ body {
   width: 100%;
 }
 .app .container .home {
+  padding: 10px 20% 10px 20%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -96,7 +97,6 @@ body {
   padding: 30px 50px;
 }
 .app .container .navbar .container {
-  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -265,6 +265,7 @@ body {
 .app .container .single {
   display: flex;
   gap: 50px;
+  padding: 10px 20% 10px 20%;
 }
 .app .container .single .content {
   display: flex;
@@ -383,9 +384,14 @@ body {
   color: black;
 }
 .app .container .add {
+  width: 100%;
+  height: 100vh;
   margin-top: 20px;
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 20px;
+  align-items: start;
 }
 .app .container .add .content {
   flex: 5;
@@ -489,4 +495,81 @@ body {
 .app .container .header .header-title h1 {
   color: #b9e7e7;
   font-size: 4rem;
+}
+.app .container .dashboard-layout {
+  display: flex;
+  height: 100vh;
+}
+.app .container .dashboard-layout .content-container {
+  flex: 1;
+  padding-left: 220px;
+  overflow-y: auto;
+}
+.app .container .dashboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.app .container .sidebar {
+  z-index: 9999;
+  height: 100vh;
+  background-color: #333;
+  width: 200px;
+  position: fixed;
+}
+.app .container .sidebar .container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+}
+.app .container .sidebar .container .top-section {
+  padding: 30px;
+}
+.app .container .sidebar .container .top-section span {
+  font-size: 1.5rem;
+  font-family: "Libre Franklin";
+  color: #b9e7e7;
+}
+.app .container .sidebar .container .mid-section {
+  width: 100%;
+}
+.app .container .sidebar .container .mid-section .side-links {
+  align-self: flex-end;
+  font-family: "Libre Franklin";
+  padding: 20px;
+  text-decoration: none;
+  color: #b9e7e7;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: center;
+}
+.app .container .sidebar .container .mid-section .side-links:hover {
+  background-color: #1b1b1b;
+}
+.app .container .sidebar .container .bottom-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: flex-end;
+}
+.app .container .sidebar .container .bottom-section .side-links {
+  width: 100;
+  display: 20px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-family: "Libre Franklin";
+  padding: 20px;
+}
+.app .container .sidebar .container .bottom-section span {
+  width: 100%;
+  cursor: pointer;
+  color: #b9e7e7;
+  background-color: rgb(245, 18, 18);
 }/*# sourceMappingURL=style.css.map */

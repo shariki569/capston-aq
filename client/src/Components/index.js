@@ -1,3 +1,3 @@
-export { default as Footer } from "./Footer";
-export { default as Nav } from "./Nav";
+export { default as Footer } from "./common/Footer";
+export { default as Nav } from "./common/Nav";
 export { default as Menu } from "./Menu";

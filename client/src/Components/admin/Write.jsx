@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import axios from 'axios'
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import moment from 'moment';
 
 const Write = () => {
@@ -85,8 +85,8 @@ const Write = () => {
           <input style={{display:"none"}} type="file" id='file' onChange={e=>setFile(e.target.files[0])}/>
           <label className="file" htmlFor="file" encType="mutipart/form-data">Upload Image</label>
           <div className="buttons">
-            <button>Save as a Draft</button>
             <button onClick={handleClick}>Publish</button>
+            <button>Save as a Draft</button>
           </div>
         </div>
         <div className="item">

@@ -3,19 +3,23 @@ import {
   RouterProvider,
   Route,
   Outlet,
-  useNavigate
+  useNavigate,
+  Navigate
 } from "react-router-dom";
-import { Footer, Nav } from "./Components";
 import { Home, Login, Register, Single, Write,About } from "./pages";
 import './style.scss'
 import Dashboard from "./Components/admin/Dashboard";
 import DashboardLayout from "./Components/layouts/DashboardLayout";
 import Layout from "./Components/layouts/Layout";
 import Pages from "./Components/admin/Pages";
+import { useContext } from "react";
+import { AuthContext } from "./context/authContext";
 
 
-
-
+const PrivateRoute = ({ element, path}) => {
+  const {currentUser} = useContext(AuthContext);
+  return currentUser ? element : <Navigate to = "/login"/>; 
+}
 
 
 
@@ -37,10 +41,6 @@ const router = createBrowserRouter([
         path:"/post/:id",
         element:<Single/>
       },
-      {
-        path:"/write",
-        element:<Write/>
-      },
     ]
   },
   {
@@ -49,15 +49,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
-        element: <Dashboard/>
+        element: <PrivateRoute element={< Dashboard/>} path="/dashboard"/>
       },
       {
-        path: "/add-posts",
-        element: <Write/>
+        path: "/write",
+        element: <PrivateRoute element={< Write/>} path="/add-posts"/>
       },
       {
-        path: "/edit-pages",
-        element: <Pages/>
+        path: "/pages",
+        element: <PrivateRoute element={< Pages/>} path="/edit-pages"/>
       },
     ]
   },
@@ -79,17 +79,15 @@ const router = createBrowserRouter([
 
 
 function App() {
-
   return (
-   
-      <div className="app">
-        <div className="container">
-          <RouterProvider router={router}/>
-        </div>
+    <div className="app">
+      <div className="container">
+        <RouterProvider router={router} />
       </div>
-  
-  )
+    </div>
+  );
 }
+
 
 
 export default App

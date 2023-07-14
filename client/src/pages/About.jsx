@@ -29,13 +29,13 @@ const About = () => {
         <>
           <Header
             imageUrl = {headerImage}
-            title = {pageData.title}
-            pageSlug = {pageData.slug}
+            title = {pageData.PageTitle}
+            pageSlug = {pageData.Slug}
             state = {pageData}
           />
           <TwoSections 
-          title = {pageData.heading}
-          content={pageData.content}
+          title = {pageData.SectionHeading}
+          content={pageData.SectionContent}
           img= {dummyImage}
           />
         </>

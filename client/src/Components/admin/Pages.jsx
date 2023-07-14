@@ -10,9 +10,9 @@ const Pages = () => {
 
   const navigate= useNavigate();
   const state = useLocation().state
-  const [title, setTitle] = useState(state?.title || "")
-  const [heading, setHeading] = useState(state?.heading || "")
-  const [value, setValue] = useState(state?.content || "")
+  const [title, setTitle] = useState(state?.PageTitle || "")
+  const [heading, setHeading] = useState(state?.SectionHeading || "")
+  const [value, setValue] = useState(state?.SectionContent || "")
 
   //Diri ta nihunong
   const handleClick = async e =>{

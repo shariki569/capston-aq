@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 
 export const getPages = (req, res) => {
   const q = req.query.title
-    ? "SELECT * FROM pages WHERE title=?"
+    ? "SELECT * FROM pages WHERE PageTitle=?"
     : "SELECT * FROM pages";
 
   db.query(q, [req.query.title], (err, data) => {
@@ -16,10 +16,10 @@ export const getPages = (req, res) => {
 
 export const getPage = (req, res) => {
   const q =
-    "SELECT p.id, `title`, `heading`, `slug` , `content`, `updated_at` FROM pages p JOIN sections s ON p.id = s.page_id WHERE p.slug = ?";
+    "SELECT PageId,`Slug`, `PageTitle`, `SectionHeading`, `SectionContent` FROM pages p JOIN sections s ON p.PageId = s.Page_Id WHERE Slug = ?";
 
   db.query(q, [req.params.slug], (err, data) => {
-    if (err) return res.status(500).json;
+    if (err) return res.status(500).json();
     return res.status(200).json(data[0]);
   });
 };

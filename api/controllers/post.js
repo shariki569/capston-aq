@@ -5,7 +5,7 @@ import  jwt  from "jsonwebtoken";
 
 export const getPosts = (req, res) => {
     const q = req.query.cat 
-    ? "SELECT * FROM posts WHERE cat=?" 
+    ? "SELECT * FROM posts WHERE PostCat=?" 
     : "SELECT * FROM posts";
 
     db.query(q, [req.query.cat], (err,data)=>{
@@ -17,7 +17,7 @@ export const getPosts = (req, res) => {
 
 
 export const getPost = (req, res) => {
-   const q = "SELECT p.id, `username`, `title`, `desc`, p.img, u.img AS userImage, `cat`, `date` FROM users u JOIN posts p ON u.id = p.post_uid WHERE p.id = ?"
+   const q = "SELECT PostId, `username`, `PostTitle`, `PostDesc`, `PostImg`, u.img AS userImage, `PostCat`, `date` FROM users u JOIN posts p ON u.id = p.Post_Uid WHERE PostId = ?"
 
    db.query(q,[req.params.id], (err,data)=>{
     if(err) return res.status(500).json
@@ -34,7 +34,7 @@ export const addPost = (req, res) => {
     jwt.verify(token,"jwtkey", (err, userInfo)=> {
         if(err) return res.status(403).json("Token is not valid");
 
-        const q = "INSERT INTO posts(`title`, `desc`, `img`, `cat`, `date`, `post_uid` ) VALUES (?)"
+        const q = "INSERT INTO posts(`PostTitle`, `PostDesc`, `PostImg`, `PostCat`, `date`, `Post_Uid` ) VALUES (?)"
 
         const values = [
             req.body.title,
@@ -61,7 +61,7 @@ export const deletePost = (req, res) => {
         if(err) return res.status(403).json("Token is not valid")
 
         const postId = req.params.id
-        const q = "DELETE FROM posts WHERE `id` = ? AND `post_uid` = ?"
+        const q = "DELETE FROM posts WHERE `PostId` = ? AND `Post_Uid` = ?"
 
         db.query(q, [postId,userInfo.id], (err, data)=> {
             if(err) return res.status(403).json("You can only delete your post!")

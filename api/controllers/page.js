@@ -16,12 +16,33 @@ export const getPages = (req, res) => {
 
 export const getPage = (req, res) => {
   const q =
-    "SELECT PageId,`Slug`, `PageTitle`, `SectionHeading`, `SectionContent` FROM pages p JOIN sections s ON p.PageId = s.Page_Id WHERE Slug = ?";
+    "SELECT PageId,`Slug`, `PageTitle`, `SectionId`, `SectionHeading`, `SectionContent` FROM pages p LEFT JOIN sections s ON p.PageId = s.Page_Id WHERE p.Slug = ?";
 
   db.query(q, [req.params.slug], (err, data) => {
     if (err) return res.status(500).json();
-    return res.status(200).json(data[0]);
-  });
+    const page = {
+      PageId: data[0].PageId,
+      Slug: data[0].Slug,
+      PageTitle: data[0].PageTitle,
+      sections: [],
+    };
+
+    const sections = {}
+    data.forEach(row => {
+      const sectionId = row.SectionId
+      if (!sections[sectionId]) {
+        sections[sectionId] = {
+          SectionId: sectionId,
+          SectionHeading: row.SectionHeading,
+          SectionContent:  row.SectionContent
+        };
+      };
+    });
+
+    page.sections = Object.values(sections);
+
+    return res.status(200).json(page);
+});
 };
 
 export const updatePage = (req, res) => {
@@ -30,6 +51,7 @@ export const updatePage = (req, res) => {
 
   jwt.verify(token, "jwtkey", (err, userInfo) => {
     if (err) return res.status(403).json("Token is not valid");
+
 
     const qPages =
       "UPDATE pages SET `title` = ? WHERE `slug`=? AND `pages_uid`= ?";

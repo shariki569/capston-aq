@@ -33,11 +33,14 @@ const About = () => {
             pageSlug = {pageData.Slug}
             state = {pageData}
           />
-          <TwoSections 
-          title = {pageData.SectionHeading}
-          content={pageData.SectionContent}
-          img= {dummyImage}
-          />
+          {pageData.sections.map((section) =>  (
+              <TwoSections 
+              key={section.SectionId}
+              title = {section.SectionHeading}
+              content={section.SectionContent}
+              img= {dummyImage}
+              />
+          ))}
         </>
       )}
 

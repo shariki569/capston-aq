@@ -9,7 +9,6 @@ import axios from 'axios'
 const About = () => {
 
   const [pageData, setPageData] = useState(null)
-
   
   useEffect(() => {
     const fetchData = async () => {
@@ -26,7 +25,7 @@ const About = () => {
   return (
     <div className='about'>
       {pageData && (
-        <>
+        <div>
           <Header
             imageUrl = {headerImage}
             title = {pageData.PageTitle}
@@ -41,7 +40,7 @@ const About = () => {
               img= {dummyImage}
               />
           ))}
-        </>
+        </div>
       )}
 
       

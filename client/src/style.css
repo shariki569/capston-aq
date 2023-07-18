@@ -577,7 +577,7 @@ body {
 }
 .app .container .dashboard-layout .content-container {
   flex: 1;
-  padding-left: 220px;
+  padding: 40px 20px;
   overflow-y: auto;
 }
 .app .container .dashboard {
@@ -587,11 +587,10 @@ body {
   width: 100%;
 }
 .app .container .sidebar {
-  z-index: 9999;
-  height: 100vh;
+  height: 100%;
   background-color: #333;
   width: 200px;
-  position: fixed;
+  flex-shrink: 0;
 }
 .app .container .sidebar .container {
   position: relative;
@@ -612,19 +611,48 @@ body {
 .app .container .sidebar .container .mid-section {
   width: 100%;
 }
-.app .container .sidebar .container .mid-section .side-links {
-  align-self: flex-end;
-  font-family: "Libre Franklin";
-  padding: 20px;
-  text-decoration: none;
+.app .container .sidebar .container .mid-section .sidebar-item {
   color: #b9e7e7;
-  display: flex;
-  flex-direction: row;
-  align-items: start;
-  justify-content: center;
+  font-family: "Libre Franklin";
+  display: block;
+  padding: 1em;
+  align-items: center;
 }
-.app .container .sidebar .container .mid-section .side-links:hover {
-  background-color: #1b1b1b;
+.app .container .sidebar .container .mid-section .sidebar-item:hover {
+  background-color: rgba(185, 231, 231, 0.1725490196);
+}
+.app .container .sidebar .container .mid-section .sidebar-title {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2em;
+  cursor: pointer;
+  color: #b9e7e7;
+}
+.app .container .sidebar .container .mid-section .sidebar-title .sidebar-icon {
+  padding-right: 5px;
+  display: inline-block;
+}
+.app .container .sidebar .container .mid-section .sidebar-title .toggle-btn {
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.app .container .sidebar .container .mid-section .sidebar-item.open .sidebar-title .toggle-btn {
+  transform: rotate(180deg);
+}
+.app .container .sidebar .container .mid-section .sidebar-item.open .sidebar-content {
+  height: 0;
+  overflow: hidden;
+  transition: transform 1s ease-out;
+  width: 100%;
+}
+.app .container .sidebar .container .mid-section .sidebar-item.open .sidebar-content.open {
+  height: auto;
+}
+.app .container .sidebar .container .mid-section .sidebar-item .plain {
+  text-decoration: none;
+  display: inline-block;
+  color: #b9e7e7;
+  font-family: "Libre Franklin";
 }
 .app .container .sidebar .container .bottom-section {
   width: 100%;

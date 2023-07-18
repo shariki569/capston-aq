@@ -57,6 +57,9 @@ export const login = (req, res) => {
         .json(other)
     })
 }
+
+
+ 
 export const logout = (req, res) => {
     res.clearCookie("access_token", {
         sameSite: "none",

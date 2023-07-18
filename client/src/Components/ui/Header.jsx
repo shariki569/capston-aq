@@ -7,7 +7,6 @@ import { AiFillEdit } from 'react-icons/ai';
 const Header = ({imageUrl, title, pageSlug, state}) => {
     const {currentUser} = useContext(AuthContext)
 
-    
  return (
     <div className='header'>
         

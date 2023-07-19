@@ -6,7 +6,7 @@ import {
   useNavigate,
   Navigate
 } from "react-router-dom";
-import { Home, Login, Register, Single, Write,About } from "./pages";
+import { Home, Login, Register, Single, Write,About, Posts } from "./pages";
 import './style.scss'
 import Dashboard from "./Components/admin/Dashboard";
 import DashboardLayout from "./Components/layouts/DashboardLayout";
@@ -14,6 +14,7 @@ import Layout from "./Components/layouts/Layout";
 import Pages from "./Components/admin/Pages";
 import { useContext } from "react";
 import { AuthContext } from "./context/authContext";
+
 
 
 const PrivateRoute = ({ element, path}) => {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path:"/post/:id",
         element:<Single/>
+      },
+      {
+        path:"/posts",
+        element:<Posts/>
       },
     ]
   },

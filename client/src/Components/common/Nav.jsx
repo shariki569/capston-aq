@@ -12,27 +12,27 @@ const Nav = () => {
   const catLinks = [
     {
       name: "Art",
-      path: "/?cat=art"
+      path: "posts/?cat=art"
     },
     {
       name: "Science",
-      path: "/?cat=science"
+      path: "posts/?cat=science"
     },
     {
       name: "Technology",
-      path: "/?cat=technology"
+      path: "posts/?cat=technology"
     },
     {
       name: "Cinema",
-      path: "/?cat=cinema"
+      path: "posts/?cat=cinema"
     },
     {
       name: "Design",
-      path: "/?cat=design"
+      path: "posts/?cat=design"
     },
     {
       name: "Foods",
-      path: "/?cat=foods"
+      path: "posts/?cat=foods"
     },
   ]
 

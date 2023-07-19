@@ -3,6 +3,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import logo from "../../img/sepalon-icon.svg"
 import { AuthContext } from '../../context/authContext'
 import Dropdown from '../ui/Dropdown'
+import Submenu from '../ui/Submenu'
+import SidebarItem from '../ui/SidebarItem'
+import { HiUserCircle } from 'react-icons/hi'
 const Sidebar = () => {
 
     const {currentUser, logout } = useContext(AuthContext)
@@ -12,20 +15,29 @@ const Sidebar = () => {
         logout();
         navigate('/login')
     }
+
     const sidebarLinks = [
         {
             title: "User",
-            path: "/dashboard",
+            path: `/dashboard`,
+            icon: "",
         },
         {
             title: "Posts",
-            path: "/add-posts",
+            path: "/write",
         },
         {
             title: "Pages",
-            path: "/edit-pages",
+            path: "/pages",
+            submenu: [
+                {
+                    title: "About Us",
+                    path: "pages?edit=about-us",
+                }
+            ],
         },
     ]
+    
 
 
   return (
@@ -38,11 +50,9 @@ const Sidebar = () => {
                 <span>{currentUser?.username}</span>
             </div>
             <div className="mid-section">
-                {sidebarLinks.map((links, index) => (
-                    <Link className='side-links' key={index} to={links.path}>
-                        {links.title}
-                    </Link>
-                ))}
+                {sidebarLinks.map((item, index) => <SidebarItem key={index} item={item}/>
+                
+                )}
             </div>
             <div className="bottom-section">
                 <span className='side-links' onClick={handleLogout}>Logout</span>

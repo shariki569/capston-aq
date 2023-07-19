@@ -67,7 +67,6 @@ const Nav = () => {
               {currentUser?.username}
             </span>
           </Link>
-
           {currentUser ? (
             <span onClick={logout}>
             Logout
@@ -77,7 +76,6 @@ const Nav = () => {
             Login
           </Link>
           )}
-
           {/* { currentUser && (<span className='write'>
             <Link 
               className="link" 

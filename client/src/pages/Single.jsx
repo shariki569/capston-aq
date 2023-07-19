@@ -53,7 +53,7 @@ const Single = () => {
   return (
     <div className='single'>
       <div className="content">
-          <img src={`../upload/${post?.img}`} alt="" />
+          <img src={`../upload/${post?.PostImg}`} alt="" />
           <div className="user">
             {
               post.userImage && <img 
@@ -66,7 +66,7 @@ const Single = () => {
               <p>Posted {moment(post.date).fromNow()}</p>
             </div>
             {currentUser?.username === post?.username && (<div className="edit">
-              <Link to={`/write?edit=2`} state={post}>
+              <Link to={`/write?edit=${postId}`} state={post}>
                   <AiFillEdit className='icon icon-edit'/>
               </Link>
               <Link>
@@ -76,12 +76,12 @@ const Single = () => {
               </Link>
             </div>)}
         </div>
-          <h1>{post.title}</h1>
+          <h1>{post.PostTitle}</h1>
           <p 
-            dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(post.desc)}}>
+            dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(post.PostDesc)}}>
           </p>
       </div>
-      <Menu cat={post.cat}/>
+      <Menu cat={post.PostCat}/>
     </div>
   )
 }

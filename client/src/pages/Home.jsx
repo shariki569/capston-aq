@@ -31,15 +31,15 @@ const  getText = (html) => {
     <div className='home'>
       <div className="posts">
         {posts.map((post) => (
-          <div className="post" key={post.id}>
+          <div className="post" key={post.PostId}>
             <div className="img">
-              <img src={`../upload/${post.img}`} alt="" />
+              <img src={`../upload/${post.PostImg}`} alt="" />
             </div>
             <div className="content">
-              <Link to={`/post/${post.id}`}>
-              <h1>{post.title}</h1>
+              <Link to={`/post/${post.PostId}`}>
+              <h1>{post.PostTitle}</h1>
               </Link>
-              <p dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(post.desc)}}></p>
+              <p dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(post.PostDesc)}}></p>
               <button>Read More</button>
             </div>
           </div>

@@ -2,16 +2,16 @@ import React, { useState } from 'react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import axios from 'axios'
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import moment from 'moment';
 
 const Write = () => {
 
   const state = useLocation().state
-  const [title, setTitle] = useState(state?.title || "")
-  const [value, setValue] = useState(state?.desc || "")
+  const [title, setTitle] = useState(state?.PostTitle || "")
+  const [value, setValue] = useState(state?.PostDesc || "")
   const [file, setFile] = useState(null)
-  const [cat, setCat] = useState(state?.cat || "")
+  const [cat, setCat] = useState(state?.PostCat || "")
 
   const navigate = useNavigate();
 
@@ -33,7 +33,7 @@ const Write = () => {
 
     try {
       state 
-      ? await axios.put(`api/posts/${state.id}`, {
+      ? await axios.put(`api/posts/${state.PostId}`, {
         title,
         desc:value, 
         cat, 
@@ -85,8 +85,8 @@ const Write = () => {
           <input style={{display:"none"}} type="file" id='file' onChange={e=>setFile(e.target.files[0])}/>
           <label className="file" htmlFor="file" encType="mutipart/form-data">Upload Image</label>
           <div className="buttons">
-            <button>Save as a Draft</button>
             <button onClick={handleClick}>Publish</button>
+            <button>Save as a Draft</button>
           </div>
         </div>
         <div className="item">
@@ -119,7 +119,7 @@ const Write = () => {
             <label htmlFor="design">Design</label>
           </div>
           <div className='cat'>
-            <input type="radio" checked={cat === "food"} name='cat' value="food" id='food' onChange={e => setCat(e.target.value)}/>
+            <input type="radio" checked={cat === "foods"} name='cat' value="food" id='food' onChange={e => setCat(e.target.value)}/>
             <label htmlFor="food">Food</label>
           </div>
         </div>

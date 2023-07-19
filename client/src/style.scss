@@ -1,3 +1,5 @@
+@use './sass/components/Pages.scss';
+@use './sass/components/twoSections.scss';
 @import './fonts/fonts.scss';
 
 $lightGreen: #b9e7e7;
@@ -485,6 +487,11 @@ body{
                 display: flex;
                 flex-direction: column;
                 gap: 20px;
+                color: #555;
+                h2{
+                    font-size: $heading;
+                    font-family: $font-libre-franklin;
+                }
 
                 input{
                     padding: 10px;
@@ -509,6 +516,8 @@ body{
                 display: flex;
                 flex-direction: column;
                 gap: 20px;
+                
+               
 
                 .item{
                     border: 1px solid  lightgray;
@@ -543,21 +552,24 @@ body{
 
                     .buttons{
                         display: flex;
-                        justify-content: space-between;
+                        justify-content: flex-start;
+                        gap: 10px;
                         margin-top: 20px;
 
                         :first-child{
                             cursor: pointer;
-                            color: teal;
-                            background-color: white;
+                            color: white;
+                            background-color: teal;
                             border: 1px solid teal;
                             padding: 3px 5px;
+
+                            
                         }
                         
                         :last-child{
                             cursor: pointer;
-                            color: white;
-                            background-color: teal;
+                            color: teal;
+                            background-color: white;
                             border: 1px solid teal;
                             padding: 3px 5px;
                         }
@@ -575,6 +587,7 @@ body{
 
         .about{
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             
@@ -621,7 +634,7 @@ body{
 
             .content-container{
                 flex: 1;
-                padding-left: 220px;
+                padding: 40px 20px;
                 overflow-y: auto;
             }
         }
@@ -633,11 +646,12 @@ body{
         }
 
         .sidebar{
-           z-index: 9999;
-            height: 100vh;
+          
+            height: 100%;
             background-color: #333;
             width: 200px;
-            position: fixed;
+            flex-shrink: 0;
+            
             
            
             .container{
@@ -662,24 +676,68 @@ body{
                 }
 
                 .mid-section{
+
                     width: 100%;
-                    .side-links{
-                        align-self: flex-end;
-                        font-family: $font-libre-franklin;
-                        padding: 20px;
-                        
-                        text-decoration: none;
+
+
+                    .sidebar-item{
                         color: $lightGreen;
-                        
-                        
+                        font-family: $font-libre-franklin;
+                        display: block;
+                        padding: 1em;
+                        align-items: center;
+
+
+                        &:hover{
+                            background-color: #b9e7e72c;
+                        }
+                    }
+
+
+                    .sidebar-title{
                         display: flex;
-                        flex-direction: row;
-                        align-items: start;
-                        justify-content: center;
-                       &:hover{
-                        background-color: #1b1b1b;
+                        justify-content: space-between;
+                        font-size: $large;
+                        cursor: pointer;
+                        color: $lightGreen;
+
+                        .sidebar-icon{
+                            padding-right: 5px;
+                            display: inline-block; 
+                        }
                         
-                       }
+                        .toggle-btn{
+                            cursor: pointer;
+                            transition: transform 0.3s;
+                        }
+                    }
+
+                    .sidebar-item.open{
+                        .sidebar-title .toggle-btn{
+                            transform: rotate(180deg);
+                            
+                        }
+
+                        .sidebar-content{
+                            height: 0;
+                            overflow: hidden;
+                            transition: transform 1s ease-out;
+                            width: 100%;
+
+                            &.open{
+                                
+                                height: auto;
+                                
+                            }
+                        }
+                    }
+                    .sidebar-item{
+                        .plain{
+                            text-decoration: none;
+                            display: inline-block;
+                            color: $lightGreen;
+                            font-family: $font-libre-franklin;
+                        }
                     }
                 }
 

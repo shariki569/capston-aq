@@ -21,16 +21,14 @@ const Pages = () => {
     });
   };
 
-  // const state = useLocation().state
-  // const [title, setTitle] = useState(state?.PageTitle || "")
-  // const [heading, setHeading] = useState(state?.SectionHeading || "")
-  // const [value, setValue] = useState(state?.SectionContent || "")
 
-  //Diri ta nihunong
   const handleUpdate = async e =>{
     e.preventDefault()
     try {
-      await axios.put(`api/pages/${state.Slug}`, {
+      console.log("Updated Page Title:", pageTitle);
+      console.log("Updated Sections:", pageSections);
+
+      await axios.patch(`api/pages/${state.Slug}`, {
         PageTitle: pageTitle,
         sections: pageSections,
       });

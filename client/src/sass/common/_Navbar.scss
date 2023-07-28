@@ -1,0 +1,127 @@
+@use './../Utilities/' as *;
+
+$standard-padding: 10px 20% 10px 20%;
+$nav-footer: 10px 50px;
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999999999;
+    padding: $nav-footer;
+    background-color: transparent;
+
+    &.scrolled{
+        transition: $base-transition;
+        background-color: $primaryColor;
+    }
+
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        h6 {
+            font-size: $content;
+            font-weight: 300;
+            font-family: $font-libre-franklin;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: $honeyDew;
+        }
+
+        .logo {
+            img {
+                width: 80px;
+            }
+        }
+
+        .submenu {
+            text-decoration: none;
+
+            h2 {
+                padding: $small-padding ;
+                color: $greyColor;
+                font-family: $font-libre-franklin;
+                font-size: $content;
+                font-weight: $w-mediun;
+                text-transform: uppercase;
+            }
+        }
+
+        // display: flex;
+        // align-items: center;
+        // // gap: 20px;
+        // justify-content: space-around;
+        // flex-direction: row;
+
+        .main-link {
+            gap: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            list-style: none;
+
+            .dropdown {
+                position: relative;
+
+
+                &.clicked{
+                    display: none;
+                }
+            }
+
+            // .dropdown-toggle.open::after {
+            //     content: "";
+            //     position: absolute;
+            //     top: 10%;
+            //     left: 50px;
+            //     transform: translateY(-50%);
+            //     border: solid $honeyDew;
+            //     border-width: 0 2px 2px 0;
+            //     display: inline-block;
+            //     padding: 3px;
+            //     transform: rotate(45deg);
+            // }
+
+            .dropdown-menu {
+                display: none;
+                position: absolute;
+                top: 20px;
+                left: 0;
+                z-index: 9999;
+                display: none;
+                min-width: 200px;
+                background-color: $lightColor;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                border-radius: 4px;
+                text-decoration: none;
+                list-style: none;
+                transition: 0.3s ease-in-out;
+
+                
+            }
+
+            // .dropdown-toggle.open + .dropdown-menu {
+            //     display: block;
+            // }
+        }
+
+        .user-link {
+            display: flex;
+            justify-content: space-around;
+            flex-direction: row;
+            align-items: center;
+            width: 200px;
+
+            span {
+                color: $honeyDew;
+                cursor: pointer;
+                font-family: $font-libre-franklin;
+            }
+
+        }
+    }
+}
+

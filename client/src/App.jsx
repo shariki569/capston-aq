@@ -4,10 +4,19 @@ import {
   Route,
   Outlet,
   useNavigate,
-  Navigate
+  Navigate,
 } from "react-router-dom";
-import { Home, Login, Register, Single, Write,About, Posts } from "./pages";
-import './style.scss'
+import {
+  Home,
+  Login,
+  Register,
+  Single,
+  Write,
+  About,
+  Posts,
+  Contact,
+} from "./pages";
+import "./style.scss";
 import Dashboard from "./Components/admin/Dashboard";
 import DashboardLayout from "./Components/layouts/DashboardLayout";
 import Layout from "./Components/layouts/Layout";
@@ -15,73 +24,72 @@ import Pages from "./Components/admin/Pages";
 import { useContext } from "react";
 import { AuthContext } from "./context/authContext";
 
-
-
-const PrivateRoute = ({ element, path}) => {
-  const {currentUser} = useContext(AuthContext);
-  return currentUser ? element : <Navigate to = "/login"/>; 
-}
-
+const PrivateRoute = ({ element, path }) => {
+  const { currentUser } = useContext(AuthContext);
+  return currentUser ? element : <Navigate to="/login" />;
+};
 
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout/>,
+    element: <Layout />,
     children: [
       {
-        path:"/",
-        element:<Home/>
+        path: "/",
+        element: <Home />,
       },
       {
         path: "/about-us",
-        element:<About/>
+        element: <About />,
       },
       {
-        path:"/post/:id",
-        element:<Single/>
+        path: "/post/:id",
+        element: <Single />,
       },
       {
-        path:"/posts",
-        element:<Posts/>
+        path: "/posts",
+        element: <Posts />,
       },
-    ]
+      {
+        path: "/contact-us",
+        element: <Contact />,
+      },
+    ],
   },
   {
     path: "/",
-    element: <DashboardLayout/>,
+    element: <DashboardLayout />,
     children: [
       {
         path: "/dashboard",
-        element: <PrivateRoute element={< Dashboard/>} path="/dashboard"/>
+        element: <PrivateRoute element={<Dashboard />} path="/dashboard" />,
       },
       {
         path: "/write",
-        element: <PrivateRoute element={< Write/>} path="/add-posts"/>
+        element: <PrivateRoute element={<Write />} path="/add-posts" />,
       },
       {
         path: "/pages",
-        element: <PrivateRoute element={< Pages/>} path="/edit-pages"/>
+        element: <PrivateRoute element={<Pages />} path="/edit-pages" />,
       },
-    ]
+    ],
   },
   {
     path: "/register",
-    element: <Register/>,
+    element: <Register />,
   },
   {
     path: "/login",
-    element: <Login/>,
+    element: <Login />,
   },
-  
+
   {
     path: "/create-blog",
-    element: <Write/>,
+    element: <Write />,
   },
- 
 ]);
-
 
 function App() {
   return (
@@ -93,6 +101,4 @@ function App() {
   );
 }
 
-
-
-export default App
+export default App;

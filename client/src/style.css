@@ -1,44 +1,112 @@
 @font-face {
   font-family: "Libre Franklin";
-  src: url("./fonts/LibreFranklin-Bold.ttf") format("truetype");
+  src: url("../../fonts/LibreFranklin-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
 @font-face {
   font-family: "Libre Franklin";
-  src: url("./fonts/LibreFranklin-Semibold.ttf") format("truetype");
+  src: url("../../fonts/LibreFranklin-Semibold.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
 }
 @font-face {
-  font-family: "Libre Baskerville";
-  src: url("./fonts/LibreBaskerville-Regular.ttf") format("truetype");
-  font-weight: normal;
+  font-family: "Libre Franklin";
+  src: url("../../fonts/LibreFranklin-Thin.ttf") format("truetype");
+  font-weight: 100;
   font-style: normal;
 }
 @font-face {
   font-family: "Libre Franklin";
-  src: url("./fonts/LibreFranklin-Bold.ttf") format("truetype");
+  src: url("../../fonts/LibreFranklin-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Libre Franklin";
+  src: url("../../fonts/LibreFranklin-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Libre Franklin";
+  src: url("../../fonts/LibreFranklin-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Libre Baskerville";
+  src: url("../../fonts/LibreBaskerville-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  background-color: #f5f6f2;
+  padding: 1.75rem 0;
+}
+.form-wrapper .form-title {
+  font-family: "Libre Baskerville";
+  font-size: 1.5rem;
   font-weight: 700;
-  font-style: normal;
+  color: #218380;
+  margin: 1.25rem 0;
 }
-@font-face {
+.form-wrapper .form {
+  color: #218380;
+  display: flex;
+  flex-wrap: wrap;
+}
+.form-wrapper .form form {
+  background: #ffffff;
+  padding: 1rem;
+  box-shadow: 0px 10px 20px -18px rgba(29, 53, 87, 0.11);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  position: relative;
+  min-height: 70vh;
+  width: 100%;
+  overflow: hidden;
   font-family: "Libre Franklin";
-  src: url("./fonts/LibreFranklin-Semibold.ttf") format("truetype");
-  font-weight: 600;
-  font-style: normal;
 }
-@font-face {
-  font-family: "Libre Baskerville";
-  src: url("./fonts/LibreBaskerville-Regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
+.header .header-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
+.header .header-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 99;
+}
+.header .header-title h1 {
+  color: #F2FCEE;
+  font-size: 3.5rem;
+}
+
 .two-sections-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+  flex-wrap: wrap;
+  height: auto;
   width: 100%;
   gap: 10%;
   padding: 50px;
@@ -52,43 +120,363 @@
   border-radius: 30px;
   width: 100%;
   height: 100%;
+}
+.two-sections-container .content-wrapper {
+  width: 40%;
+}
+.two-sections-container .content-wrapper h1 {
+  color: #218380;
+  font-family: "Libre Franklin";
+  margin: 1.25rem 0;
+}
+.two-sections-container .content-wrapper p {
+  color: #232422;
+  font-family: "Libre Baskerville";
+  font-size: 1rem;
+}
+
+.btn {
+  display: inline-block;
+  position: relative;
+  background-color: transparent;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #218380;
+  border: 2px solid #218380;
+  z-index: 999;
+  color: #218380;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.btn::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #218380;
+  transform: translateX(-100%);
+  transition: all 0.3s;
+  z-index: -1111;
+}
+.btn:hover {
+  color: #F2FCEE;
+}
+.btn:hover::before {
+  transform: translateX(0);
+}
+
+.text-input {
+  font-family: "Libre Franklin";
+  margin: 0.75rem;
+  font-size: 0.75rem;
+  color: #232422;
+  width: 500px;
+}
+.text-input .label {
+  margin: 1.25rem 0;
+}
+.text-input .input {
+  margin: 0.75rem 0;
+  width: 100%;
+  padding: 0.5rem;
+  min-height: 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  line-height: 1.25rem;
+  background-color: #F2FCEE;
+}
+.text-input .input:focus {
+  border-bottom: 2px solid #218380;
+  border-radius: 4px 4px 2px 2px;
+}
+.text-input .input:hover {
+  outline: 0.75px solid #b4b9ae;
+}
+
+.text-area {
+  font-family: "Libre Franklin";
+  margin: 0.75rem;
+  width: 500px;
+  font-size: 0.75rem;
+}
+.text-area label {
+  margin: 1.25rem 0;
+}
+.text-area .text-area-input {
+  margin: 0.75rem 0;
+  width: 100%;
+  resize: none;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  line-height: 1.25rem;
+  background-color: #F2FCEE;
+}
+.text-area .text-area-input:focus {
+  border-bottom: 2px solid #218380;
+  border-radius: 4px 4px 2px 2px;
+}
+.text-area .text-area-input:hover {
+  outline: 0.75px solid #b4b9ae;
+}
+
+.home {
+  z-index: -999999999;
+}
+.home .home-header-wrapper {
+  position: relative;
+}
+.home .home-header-wrapper .home-header {
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 100vh;
+  width: 100vw;
+  filter: brightness(0.5);
+}
+.home .home-header-wrapper .home-title-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.home .home-header-wrapper .home-title-wrapper .home-title {
+  padding: 0px;
+  margin: 0px;
+  color: white;
+}
+.home .home-header-wrapper .home-title-wrapper .home-title h1 {
+  font-family: "Libre Franklin";
+  font-size: 3.5rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 2px;
+}
+.home .home-header-wrapper .home-title-wrapper .home-title p {
+  font-family: "Libre Baskerville";
+  font-size: 1.5rem;
+  font-weight: 200;
+}
+.home .home-header-wrapper .home-title-wrapper .home-cta {
+  margin-top: 2rem;
+  background-color: #D81159;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+.home .home-header-wrapper .home-title-wrapper .home-cta .cta {
+  color: aliceblue;
+  text-decoration: none;
+  font-family: "Libre Baskerville";
+  font-weight: normal;
+  font-size: 0.75rem;
+}
+
+.about .header {
+  position: relative;
+  min-height: 70vh;
+  width: 100%;
+  overflow: hidden;
+  font-family: "Libre Franklin";
+}
+.about .header .header-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.two-sections-container .content-wrapper {
-  max-width: 40%;
+.about .header .header-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 99;
 }
-.two-sections-container .content-wrapper h1 {
-  font-family: "Libre Franklin";
-}
-.two-sections-container .content-wrapper p {
-  font-family: "Libre Baskerville";
-  line-height: 2rem;
+.about .header .header-title h1 {
+  color: #F2FCEE;
+  font-size: 3.5rem;
 }
 
-@font-face {
-  font-family: "Libre Franklin";
-  src: url("./fonts/LibreFranklin-Bold.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
+.auth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background-color: #73D2DE;
 }
-@font-face {
+.auth h1 {
+  font-size: 20px;
+  color: #F2FCEE;
+  margin-bottom: 20px;
   font-family: "Libre Franklin";
-  src: url("./fonts/LibreFranklin-Semibold.ttf") format("truetype");
-  font-weight: 600;
-  font-style: normal;
+  font-size: 1.5rem;
 }
-@font-face {
+.auth form {
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+  background-color: #f5f6f2;
+  width: 200;
+  gap: 20px;
+  border-radius: 15px;
+}
+.auth form input {
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid gray;
   font-family: "Libre Baskerville";
-  src: url("./fonts/LibreBaskerville-Regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
+  font-size: 0.75rem;
 }
-body {
+.auth form button {
+  padding: 10px;
+  border: none;
+  background-color: #D81159;
+  color: white;
+  cursor: pointer;
+  font-family: "Libre Baskerville";
+  font-size: 0.75rem;
+}
+.auth form p {
+  font-size: 0.8rem;
+  color: red;
+  text-align: center;
+  font-family: "Libre Franklin";
+}
+.auth form span {
+  font-size: 12px;
+  text-align: center;
+  font-family: "Libre Baskerville";
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999999999;
+  padding: 10px 50px;
+  background-color: transparent;
+}
+.navbar.scrolled {
+  transition: all 0.3s;
+  background-color: #218380;
+}
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navbar .container h6 {
+  font-size: 0.75rem;
+  font-weight: 300;
+  font-family: "Libre Franklin";
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #F2FCEE;
+}
+.navbar .container .logo img {
+  width: 80px;
+}
+.navbar .container .submenu {
+  text-decoration: none;
+}
+.navbar .container .submenu h2 {
+  padding: 0.5rem;
+  color: #232422;
+  font-family: "Libre Franklin";
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.navbar .container .main-link {
+  gap: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  list-style: none;
+}
+.navbar .container .main-link .dropdown {
+  position: relative;
+}
+.navbar .container .main-link .dropdown.clicked {
+  display: none;
+}
+.navbar .container .main-link .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 20px;
+  left: 0;
+  z-index: 9999;
+  display: none;
+  min-width: 200px;
+  background-color: #f5f6f2;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  text-decoration: none;
+  list-style: none;
+  transition: 0.3s ease-in-out;
+}
+.navbar .container .user-link {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+  width: 200px;
+}
+.navbar .container .user-link span {
+  color: #F2FCEE;
+  cursor: pointer;
+  font-family: "Libre Franklin";
+}
+
+footer {
+  margin-top: 5rem;
+  padding: 10px 50px;
+  background-color: #F2FCEE;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 12px;
+}
+footer img {
+  height: 50px;
+}
+footer span {
+  font-family: "Libre Baskerville";
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
   margin: 0;
   padding: 0;
-  height: 100vh;
+}
+
+input, textarea {
+  font: inherit;
+}
+
+body {
+  min-height: 100vh;
   overflow-x: hidden;
+  background-color: #f5f6f2;
 }
 
 .app {
@@ -98,169 +486,11 @@ body {
 .app .container {
   width: 100%;
 }
-.app .container .home {
-  padding: 10px 20% 10px 20%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 .app .container .link {
   font-family: "Libre Franklin";
   text-decoration: none;
-  color: inherit;
+  color: #F2FCEE;
   cursor: pointer;
-}
-.app .container .auth {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  height: 100vh;
-  width: 100%;
-  background-color: #b9e7e7;
-}
-.app .container .auth h1 {
-  font-size: 20px;
-  color: teal;
-  margin-bottom: 20px;
-  font-family: "Libre Franklin";
-  font-size: 1.5rem;
-}
-.app .container .auth form {
-  display: flex;
-  flex-direction: column;
-  padding: 50px;
-  background-color: white;
-  width: 200;
-  gap: 20px;
-}
-.app .container .auth form input {
-  padding: 10px;
-  border: none;
-  border-bottom: 1px solid gray;
-  font-family: "Libre Baskerville";
-  font-size: 1rem;
-}
-.app .container .auth form button {
-  padding: 10px;
-  border: none;
-  background-color: teal;
-  color: white;
-  cursor: pointer;
-  font-family: "Libre Baskerville";
-  font-size: 1rem;
-}
-.app .container .auth form p {
-  font-size: 0.8rem;
-  color: red;
-  text-align: center;
-  font-family: "Libre Franklin";
-}
-.app .container .auth form span {
-  font-size: 12px;
-  text-align: center;
-  font-family: "Libre Baskerville";
-}
-.app .container .navbar {
-  padding: 30px 50px;
-}
-.app .container .navbar .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-}
-.app .container .navbar .container h6 {
-  font-size: 1rem;
-  font-weight: 300;
-  font-family: "Libre Franklin";
-  text-decoration: none;
-  text-transform: uppercase;
-  color: #333;
-}
-.app .container .navbar .container .logo img {
-  width: 120px;
-}
-.app .container .navbar .container .main-link {
-  width: 200px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-.app .container .navbar .container .main-link .dropdown {
-  position: relative;
-}
-.app .container .navbar .container .main-link .dropdown-toggle.open::after {
-  content: "";
-  position: absolute;
-  top: 45%;
-  left: 70px;
-  transform: translateY(-50%);
-  border: solid #333;
-  border-width: 0 1px 1px 0;
-  display: inline-block;
-  padding: 3px;
-  transform: rotate(45deg);
-}
-.app .container .navbar .container .main-link .dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 60%;
-  left: 0;
-  z-index: 9999;
-  display: none;
-  min-width: 200px;
-  padding: 10px 20px;
-  background-color: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  text-decoration: none;
-  list-style: none;
-}
-.app .container .navbar .container .main-link .dropdown-toggle.open + .dropdown-menu {
-  display: block;
-}
-.app .container .navbar .container .user-link {
-  display: flex;
-  justify-content: space-around;
-  flex-direction: row;
-  align-items: center;
-  width: 200px;
-}
-.app .container .navbar .container .user-link span {
-  cursor: pointer;
-  font-family: "Libre Baskerville";
-}
-.app .container .navbar .container .user-link .write {
-  background-color: #b9e7e7;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 300;
-  border: 1px solid white;
-  transition: 0.2s ease-in;
-}
-.app .container .navbar .container .user-link .write:hover {
-  color: teal;
-  background-color: white;
-  border: 1px solid teal;
-}
-.app .container footer {
-  margin-top: 5rem;
-  padding: 30px 50px;
-  background-color: #b9e7e7;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  font-size: 12px;
-}
-.app .container footer img {
-  height: 50px;
-}
-.app .container footer span {
-  font-family: "Libre Baskerville";
 }
 .app .container .posts .post-items {
   margin-top: 50px;
@@ -311,7 +541,7 @@ body {
   color: black;
 }
 .app .container .posts .post .content p {
-  font-size: 1rem;
+  font-size: 0.75rem;
   font-family: "Libre Baskerville";
 }
 .app .container .posts .post .content button {
@@ -352,7 +582,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 1rem;
+  font-size: 0.75rem;
   font-family: "Libre Baskerville";
 }
 .app .container .single .content .user img {
@@ -364,9 +594,9 @@ body {
 }
 .app .container .single .content .user span {
   font-weight: bold;
-  font-family: "Libre Franklin";
+  font-family: font-libre-franklin;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.75rem;
 }
 .app .container .single .content .user p {
   font-family: "Libre Baskerville";
@@ -460,7 +690,7 @@ body {
   justify-content: center;
   align-items: center;
   gap: 20px;
-  align-items: start;
+  align-items: flex-start;
 }
 .app .container .add .content {
   flex: 5;
@@ -538,34 +768,6 @@ body {
   border: 1px solid teal;
   padding: 3px 5px;
 }
-.app .container .about .header {
-  position: relative;
-  min-height: 70vh;
-  width: 100%;
-  overflow: hidden;
-  font-family: "Libre Franklin";
-}
-.app .container .about .header .header-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-.app .container .about .header .header-title {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  z-index: 99;
-}
-.app .container .about .header .header-title h1 {
-  color: #b9e7e7;
-  font-size: 4rem;
-}
 .app .container .dashboard-layout {
   display: flex;
   height: 100vh;
@@ -619,7 +821,7 @@ body {
 .app .container .sidebar .container .mid-section .sidebar-title {
   display: flex;
   justify-content: space-between;
-  font-size: 1.2em;
+  font-size: 1rem;
   cursor: pointer;
   color: #b9e7e7;
 }

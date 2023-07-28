@@ -1,40 +1,39 @@
-@import '../../fonts/fonts.scss';
+@use '../../sass/Utilities/' as *;
 
-.two-sections-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80vh;
+.two-sections-container {
+    @include centerFlexboxRow;
+    flex-wrap: wrap;
+    height: auto;
     width: 100%;
     gap: 10%;
     padding: 50px;
-    
-    .image-wrapper{
+
+    .image-wrapper {
         width: 30%;
         height: 80%;
         max-width: 40%;
-        
     }
 
-    img{
+    img {
         border-radius: 30px;
         width: 100%;
         height: 100%;
-        object-fit: cover;
-    }   
-
-    .content-wrapper{
-        max-width: 40%;
-
-
-        h1{
-            font-family: $font-libre-franklin;
-        }
-
-        p{
-            font-family: $font-libre-baskerville;
-            line-height: 2rem;
-        }
+        // object-fit:;
     }
 
+    .content-wrapper {
+        width: 40%;
+
+        h1 {
+            color: $primaryColor;
+            font-family: $font-libre-franklin;
+            margin: $base-margin-x;
+        }
+
+        p {
+            color: $greyColor;
+            font-family: $font-libre-baskerville;
+            font-size: $large;
+        }
+    }
 }

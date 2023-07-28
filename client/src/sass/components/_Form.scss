@@ -1,0 +1,35 @@
+@use "../Utilities/" as *;
+
+.form-wrapper {
+    @include centerFlexboxColumn;
+    min-height: 50vh;
+    background-color: $lightColor;
+    padding: $large-padding-x;
+ 
+  
+
+    .form-title {
+        font-family: $font-libre-baskerville;
+        font-size: $subheading;
+        font-weight: $w-bold;
+        color: $primaryColor;
+        margin: $base-margin-x;
+    }
+
+    .form {
+        color: $primaryColor;
+        display: flex;
+        flex-wrap: wrap;
+       
+
+        form {
+             background: #ffffff;
+            padding: $base-padding;
+            box-shadow: $base-box-shadow;
+            border-radius: $base-border-radius;
+            @include centerFlexboxColumn;
+        }
+
+      
+    }
+}

@@ -1,0 +1,65 @@
+@use "../Utilities/" as *;
+
+.text-input {
+    font-family: $font-libre-franklin;
+    margin: $base-margin;
+    font-size: $content;
+    color: $greyColor;
+    width: 500px;
+    .label {
+        margin: $base-margin-x;
+    }
+
+    .input {
+        margin: $small-margin-x;
+        width: 100%;
+        padding: $small-padding;
+        min-height: 10px;
+        border-radius: $small-border-radius;
+        border: none;
+        outline: none;
+        line-height: $base-line-height;
+        background-color: $honeyDew;
+        
+        &:focus {
+            border-bottom: $base-border-thickness $primaryColor;
+            border-radius: $input-border-radius;
+        }
+
+        &:hover {
+            outline: $small-border-thickness $lightGreyColor;
+        }
+    }
+}
+
+.text-area {
+    font-family: $font-libre-franklin;
+    margin: $base-margin;
+    width: 500px;
+    font-size: $content;
+
+    label {
+        margin: $base-margin-x;
+    }
+
+    .text-area-input {
+        margin: $small-margin-x;
+        width: 100%;
+        resize: none;
+        padding: $small-padding;
+        border-radius: $small-border-radius;
+        border: none;
+        outline: none;
+        line-height: $base-line-height;
+        background-color: $honeyDew;
+
+        &:focus {
+            border-bottom: $base-border-thickness $primaryColor;
+            border-radius: $input-border-radius;
+        }
+
+        &:hover {
+            outline: $small-border-thickness $lightGreyColor;
+        }
+    }
+}

@@ -1,0 +1,36 @@
+@use "./../Utilities/" as *;
+
+.btn {
+    display: inline-block;
+    position: relative;
+    background-color: transparent;
+    padding: $base-button-size;
+    border-radius: $base-border-radius;
+    cursor: pointer;
+    color: $primaryColor;
+    border: $base-border-thickness $primaryColor;
+    z-index: 999;
+    color: $primaryColor;
+    overflow: hidden;
+    transition: all 0.3s;
+
+    &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        @include fullSize;
+        background-color: $primaryColor;
+        transform: translateX(-100%);
+        transition: all 0.3s;
+        z-index: -1111;
+
+    }
+    &:hover{
+        color: $honeyDew;
+    }
+    &:hover::before {
+        transform: translateX(0);
+        
+    }
+}

@@ -1,0 +1,19 @@
+
+
+@mixin fullSize {
+    height: 100%;
+    width: 100%;
+}
+
+@mixin centerFlexboxColumn{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin centerFlexboxRow{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

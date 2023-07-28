@@ -1,0 +1,61 @@
+@use '../Utilities/' as *;
+
+.home {
+
+   
+    z-index: -999999999;
+    .home-header-wrapper {
+        position: relative;
+
+        .home-header {
+            object-fit: cover;
+            height: 100vh;
+            width: 100vw;
+            filter: brightness(0.5);
+        }
+
+        .home-title-wrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            @include centerFlexboxColumn;
+            text-align: center;
+
+            .home-title {
+                padding: 0px;
+                margin: 0px;
+                color: white;
+                h1 {
+                    font-family: $font-libre-franklin;
+                    font-size: $pageHeading;
+                    margin-bottom: 0.5rem;
+                    letter-spacing: 2px;
+
+                }
+                p {
+                    font-family: $font-libre-baskerville;
+                    font-size: $subheading;
+                    font-weight: 200;
+                }
+              
+            }
+
+            .home-cta {
+                margin-top: 2rem;
+                background-color: $accentColor;
+                width: fit-content;
+                padding: 10px 20px;
+                border-radius: 10px;
+
+                .cta {
+                    color: aliceblue;
+                    text-decoration: none;
+                    font-family: $font-libre-baskerville;
+                    font-weight: $w-normal;
+                    font-size: $content;
+                }
+            }
+        }
+    }
+}

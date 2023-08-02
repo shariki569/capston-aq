@@ -7,11 +7,11 @@
     color: $greyColor;
     width: 500px;
     .label {
-        margin: $base-margin-x;
+        margin: $base-margin-y;
     }
 
     .input {
-        margin: $small-margin-x;
+        margin: $small-margin-y ;
         width: 100%;
         padding: $small-padding;
         min-height: 10px;
@@ -39,11 +39,11 @@
     font-size: $content;
 
     label {
-        margin: $base-margin-x;
+        margin: $base-margin-y;
     }
 
     .text-area-input {
-        margin: $small-margin-x;
+        margin: $small-margin-y;
         width: 100%;
         resize: none;
         padding: $small-padding;

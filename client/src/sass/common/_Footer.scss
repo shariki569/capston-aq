@@ -1,5 +1,4 @@
-@use "./../Utilities/Fonts.scss" as fonts;
-@use "./../Utilities/ColorPallet.scss" as colors;
+@use "./../Utilities/" as *;
 
 $standard-padding: 10px 20% 10px 20%;
 $nav-footer: 10px 50px;
@@ -8,7 +7,7 @@ $nav-footer: 10px 50px;
 footer {
     margin-top: 5rem;
     padding: $nav-footer;
-    background-color: colors.$honeyDew;
+    background-color: $honeyDew;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -19,6 +18,6 @@ footer {
     }
 
     span {
-        font-family: fonts.$font-libre-baskerville;
+        font-family: $font-libre-baskerville;
     }
 }

@@ -9,8 +9,8 @@ $pageHeading: 3.5rem;
 $heading: 2rem;
 $subheading: 1.5rem;
 $large: 1rem;
-$content: 0.75rem;
-$mini: 0.8rem;
+$content: 0.85rem;
+$mini: 0.75rem;
 
 
 //Defining font weight and 
@@ -28,57 +28,52 @@ $style-normal: normal;
 $base-line-height: 1.25rem;
 $large-line-height: 1.75rem;
 
-
-
-// @font-face {
-//     font-family: $font-libre-franklin;
-//     src: url('./fonts/LibreFranklin-Bold.ttf') format('truetype');
-//     font-weight: $w-bold;
-//     font-style: $style-normal;
-// }
 @font-face {
     font-family: $font-libre-franklin;
-    src: url('../../fonts/LibreFranklin-Bold.ttf') format('truetype');
+    src: url('../fonts/LibreFranklin-Bold.ttf') format('truetype');
     font-weight: $w-bold;
     font-style: $style-normal;
 }
 
 @font-face {
     font-family: $font-libre-franklin;
-    src: url('../../fonts/LibreFranklin-Semibold.ttf') format('truetype');
+    src: url('../fonts/LibreFranklin-Semibold.ttf') format('truetype');
     font-weight: $w-semi-bold;
     font-style: $style-normal;
 }
 
 @font-face {
     font-family: $font-libre-franklin;
-    src: url('../../fonts/LibreFranklin-Thin.ttf') format('truetype');
+    src: url('../fonts/LibreFranklin-Thin.ttf') format('truetype');
     font-weight: $w-thin;
     font-style: $style-normal;
 }
 
 @font-face {
     font-family: $font-libre-franklin;
-    src: url('../../fonts/LibreFranklin-ExtraLight.ttf') format('truetype');
+    src: url('../fonts/LibreFranklin-ExtraLight.ttf') format('truetype');
     font-weight: $w-extra-light;
     font-style: $style-normal;
 }
 @font-face {
     font-family: $font-libre-franklin;
-    src: url('../../fonts/LibreFranklin-Light.ttf') format('truetype');
+    src: url('../fonts/LibreFranklin-Light.ttf') format('truetype');
     font-weight: $w-light;
     font-style: $style-normal;
 }
 @font-face {
     font-family: $font-libre-franklin;
-    src: url('../../fonts/LibreFranklin-Medium.ttf') format('truetype');
+    src: url('../fonts/LibreFranklin-Medium.ttf') format('truetype');
     font-weight: $w-mediun;
     font-style: $style-normal;
 }
     
-@font-face {
-    font-family: $font-libre-baskerville;
-    src: url('../../fonts/LibreBaskerville-Regular.ttf') format('truetype');
-    font-weight: $w-normal;
-    font-style: $style-normal;
-}
+// @font-face {
+//     font-family: $font-libre-baskerville;
+//     src: url('../fonts/Libre_Baskerville/librebaskerville-regular-webfont.woff2') format('woff2'),
+//          url('../fonts/Libre_Baskerville/librebaskerville-regular-webfont.woff') format('woff');
+//     font-weight: $w-normal;
+//     font-style: $style-normal;
+// }
+
+

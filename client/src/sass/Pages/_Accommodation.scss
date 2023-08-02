@@ -1,0 +1,119 @@
+@use "./../Utilities/" as *;
+
+.container-accomodation{
+    width: 100vw;
+    .wrapper {
+        margin-top: 40px;
+        
+        .title{
+            font-size: $subheading;
+            font-family: $font-libre-baskerville;
+            color: $primaryColor;
+            padding: $large-padding-y;
+        }
+     
+        .card {
+
+            display: flex;
+            width: 70%;
+            height: 100%;
+            display: flex;
+            margin-top: 30px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: $base-box-shadow;
+            background-color: #ffffff;
+            border-radius: $base-border-radius;
+
+            &:nth-child(2n + 1) .content{
+                flex-direction: row-reverse;
+                
+                .img{
+                    border-radius: 0 10px  10px  0  ;
+                }
+            }
+            
+
+            .content {
+                display: flex;
+               
+                
+                
+                .img {
+                 
+
+                    border-radius: 10px 0 0 10px  ;
+                    object-fit: cover;
+                    aspect-ratio: 1/1;
+                    max-height: 400px;
+                    width: 400px;
+                }
+
+
+                .description{
+                    display: flex;
+                    flex-direction: column;
+                    padding: $base-padding-x;
+                    
+
+                    .price{
+                        color: $tertiaryColor;
+                        font-size: $heading;
+                        font-family: $font-libre-baskerville;
+
+                        &::after{
+                            content: "";
+                            width: 70px;
+                            height: 2px;
+                            background-color: $tertiaryColor;
+                            display: block;
+                            margin: $base-margin-y;
+                        }
+                    }
+
+                    .desc{
+                        color: $greyColor;  
+                        font-family: $font-libre-franklin;
+                        margin-bottom: auto;
+                        font-size: $content;
+                        line-height: $base-line-height;
+
+       
+                    }
+
+                    .accomodation-details{
+                        display: flex;
+                        margin-bottom: auto ;
+                        .accomodation-detail{
+                            display: flex;
+                            align-items: center;
+                            .icon{
+                                color: $primaryColor;
+                                margin-right: $base-margin;
+                            }
+                            label{
+                                font-family: $font-libre-franklin;
+                                font-weight: $w-semi-bold;
+                                color: $lightGreyColor;
+                                margin-right: $base-margin;
+                                
+                                span{
+                                    font-family: $font-libre-franklin;
+                                    font-weight: $w-mediun;
+                                    color: $greyColor;
+                                    
+                                }
+                            }
+                            
+                        }
+                    }
+                   
+                }
+
+           
+               
+            }
+        }
+
+    }
+}

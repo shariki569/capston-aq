@@ -15,12 +15,14 @@ import {
   About,
   Posts,
   Contact,
+  Accommodation,
 } from "./pages";
 import "./style.scss";
 import Dashboard from "./Components/admin/Dashboard";
 import DashboardLayout from "./Components/layouts/DashboardLayout";
 import Layout from "./Components/layouts/Layout";
 import Pages from "./Components/admin/Pages";
+import Accommodate from "./Components/admin/Accommodate";
 import { useContext } from "react";
 import { AuthContext } from "./context/authContext";
 
@@ -53,6 +55,10 @@ const router = createBrowserRouter([
         element: <Posts />,
       },
       {
+        path: "/accommodation",
+        element: <Accommodation />,
+      },
+      {
         path: "/contact-us",
         element: <Contact />,
       },
@@ -73,6 +79,10 @@ const router = createBrowserRouter([
       {
         path: "/pages",
         element: <PrivateRoute element={<Pages />} path="/edit-pages" />,
+      },
+      {
+        path: "/accommodate",
+        element: <PrivateRoute element={<Accommodate />} path="/edit-accommodation" />,
       },
     ],
   },

@@ -6,7 +6,7 @@
     height: auto;
     width: 100%;
     gap: 10%;
-    padding: 50px;
+    padding: $base-padding;
 
     .image-wrapper {
         width: 30%;
@@ -26,14 +26,15 @@
 
         h1 {
             color: $primaryColor;
-            font-family: $font-libre-franklin;
-            margin: $base-margin-x;
+            font-family: $font-libre-baskerville;
+            margin: $base-margin-y;
         }
 
         p {
             color: $greyColor;
-            font-family: $font-libre-baskerville;
+            font-family: $font-libre-franklin;
             font-size: $large;
+            line-height: 1.5;
         }
     }
 }

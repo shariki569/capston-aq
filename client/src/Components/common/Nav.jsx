@@ -9,15 +9,10 @@ import { FaPenNib, FaS } from "react-icons/fa6";
 const Nav = () => {
   const [scrolled, setScrolled] = useState(false);
   const { currentUser, logout } = useContext(AuthContext);
+  const [showDropdown, setShowDropdown] = useState(false);
 
-  const [dropdownVisible, setisVisible] = useState(false);
-
-  const onMouseEnter = () => {
-    setisVisible(true);
-  };
-
-  const onMouseLeave = () => {
-    setisVisible(false);
+  const toggleDropdown = () => {
+    setShowDropdown(!showDropdown);
   };
   // const catLinks = [
   //   {
@@ -63,57 +58,46 @@ const Nav = () => {
     <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
       <div className="container">
         <div className="logo">
-          <Link to="/">
+          <Link className="link" to="/">
             <img src={logo} alt="" />
           </Link>
         </div>
         <ul className="main-link">
-          <li>
+          <li className="link-item">
             <Link className="link" to="/about-us">
               <h6>About Us</h6>
             </Link>
           </li>
 
-          <li 
-          onMouseEnter={onMouseEnter} 
-          onMouseLeave={onMouseLeave}
-          >
+          <li className="link-item">
             <Link className="link" to="/posts">
               <h6>Posts</h6>
             </Link>
-            {dropdownVisible && (
-              <Dropdown>
-                {catLinks.map((link, index) => (
-                  <Link to={link.path} key={index} className="submenu">
-                    <h2>{link.name}</h2>
+            <Dropdown>
+              {catLinks.map((items) => (
+                <li key={items.id}>
+                  <Link className="sub-link" to={items.path}>
+                    {items.name}
                   </Link>
-                ))}
-              </Dropdown>
-            )}
+                </li>
+              ))}
+            </Dropdown>
           </li>
 
-          {/* <Dropdown
-            label={
-              <Link className="link" to="/posts">
-                Posts
-              </Link>
-            }
-          >
-            {catLinks.map((link, index) => (
-              <Link className="submenu" key={index} to={link.path}>
-                <h2>{link.name}</h2>
-              </Link>
-            ))}
-          </Dropdown> */}
-          <li>
+          <li className="link-item">
             <Link className="link" to="/contact-us">
               <h6>Contact Us</h6>
+            </Link>
+          </li>
+          <li className="link-item">
+            <Link className="link" to="/accommodation">
+              <h6>Accommodation</h6>
             </Link>
           </li>
         </ul>
 
         <div className="user-link">
-          <Link className="link" to="/dashboard">
+          <Link className="main-link-item " to="/dashboard">
             <span>{currentUser?.username}</span>
           </Link>
           {currentUser ? (

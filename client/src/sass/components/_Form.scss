@@ -4,7 +4,7 @@
     @include centerFlexboxColumn;
     min-height: 50vh;
     background-color: $lightColor;
-    padding: $large-padding-x;
+    padding: $large-padding-y;
  
   
 
@@ -13,7 +13,7 @@
         font-size: $subheading;
         font-weight: $w-bold;
         color: $primaryColor;
-        margin: $base-margin-x;
+        margin: $base-margin-y;
     }
 
     .form {
@@ -23,7 +23,7 @@
        
 
         form {
-             background: #ffffff;
+            background: #ffffff;
             padding: $base-padding;
             box-shadow: $base-box-shadow;
             border-radius: $base-border-radius;

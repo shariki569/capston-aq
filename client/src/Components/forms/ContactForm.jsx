@@ -30,9 +30,10 @@ const ContactForm = () => {
 
   return (
     <div className="form-wrapper">
-      <h3 className="form-title">Please reach out to us!</h3>
       <div className="form">
         <form onSubmit={handleSubmit}>
+           <h3 className="form-title">Please reach out to us!</h3>
+           
           <TextInput
             label="Name:"
             type="text"

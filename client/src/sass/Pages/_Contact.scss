@@ -1,0 +1,62 @@
+@use '../Utilities/' as *;
+
+.contact{
+    min-height: 100vh;
+    align-items: flex-start;
+
+    .contact-info{
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+
+
+
+        .contact-title{
+            padding: $large-padding-y;
+            h1{
+                font-family: $font-libre-baskerville;
+                font-size: $subheading;
+                color: $primaryColor;
+
+            }
+    
+            p{
+                padding: $base-padding-y;
+                font-family: $font-libre-franklin;
+                font-size: $content;
+                color:$lightGreyColor;
+            }
+
+        }
+
+        .contact-details{
+            min-height: 50%;
+            font-family: $font-libre-franklin;
+            flex-wrap: wrap;
+
+            .contact-items{
+                list-style: none;
+                color: $greyColor;
+
+                .contact-item{
+
+                    .icon{
+                        color: $accentColor;
+                    }
+
+
+
+                    font-size: $large;
+                    padding: $small-padding-y;
+
+                    span{
+                        margin-left: $base-margin;
+                    }
+                }
+            }
+        }
+
+        
+    }
+
+}

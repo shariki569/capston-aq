@@ -14,6 +14,9 @@
 @use "./sass/Pages/_Homepage.scss";
 @use "./sass/Pages/_About.scss";
 @use "./sass/Pages/Authentication.scss";
+@use "./sass/Pages/Contact.scss";
+@use "./sass/Pages/Accommodation.scss";
+
 
 //Commmon Components
 @use "./sass/common/Navbar.scss";
@@ -24,6 +27,59 @@ $lightGreen: #b9e7e7;
 
 $nav-footer: 10px 50px;
 $standard-padding: 10px 20% 10px 20%;
+
+
+@font-face {
+    font-family: $font-libre-baskerville;
+    src: url('./sass/Utilities/fonts/Libre_Baskerville/librebaskerville-regular-webfont.woff2') format('woff2'),
+         url('./sass/Utilities/fonts/Libre_Baskerville/librebaskerville-regular-webfont.woff') format('woff');
+    font-weight: $w-normal;
+    font-style: $style-normal;
+}
+
+
+@font-face {
+    font-family: $font-libre-franklin;
+    src: url('./sass/Utilities//fonts/LibreFranklin-Bold.ttf') format('truetype');
+    font-weight: $w-bold;
+    font-style: $style-normal;
+}
+
+@font-face {
+    font-family: $font-libre-franklin;
+    src: url('./sass/Utilities//fonts/LibreFranklin-Semibold.ttf') format('truetype');
+    font-weight: $w-semi-bold;
+    font-style: $style-normal;
+}
+
+@font-face {
+    font-family: $font-libre-franklin;
+    src: url('./sass/Utilities//fonts/LibreFranklin-Thin.ttf') format('truetype');
+    font-weight: $w-thin;
+    font-style: $style-normal;
+}
+
+@font-face {
+    font-family: $font-libre-franklin;
+    src: url('./sass/Utilities//fonts/LibreFranklin-ExtraLight.ttf') format('truetype');
+    font-weight: $w-extra-light;
+    font-style: $style-normal;
+}
+@font-face {
+    font-family: $font-libre-franklin;
+    src: url('./sass/Utilities//fonts/LibreFranklin-Light.ttf') format('truetype');
+    font-weight: $w-light;
+    font-style: $style-normal;
+}
+@font-face {
+    font-family: $font-libre-franklin;
+    src: url('./sass/Utilities//fonts/LibreFranklin-Medium.ttf') format('truetype');
+    font-weight: $w-mediun;
+    font-style: $style-normal;
+}
+    
+
+
 
 *, *::before, *::after {
     box-sizing: border-box;
@@ -43,6 +99,21 @@ body {
     overflow-x: hidden;
     background-color: $lightColor;
 }
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number]{
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+
+
 
 .app {
     display: flex;

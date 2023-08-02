@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import logo from "../../img/sepalon-icon.svg"
-import { AuthContext } from '../../context/authContext'
-import Dropdown from '../ui/Dropdown'
-import Submenu from '../ui/Submenu'
-import SidebarItem from '../ui/SidebarItem'
+import logo from "../../../img/sepalon-icon.svg"
+import { AuthContext } from '../../../context/authContext'
+import Dropdown from '../../ui/Dropdown'
+import Submenu from '../../ui/Submenu'
+import SidebarItem from './SidebarItem'
 import { HiUserCircle } from 'react-icons/hi'
 const Sidebar = () => {
 
@@ -15,6 +15,8 @@ const Sidebar = () => {
         logout();
         navigate('/login')
     }
+
+    
 
     const sidebarLinks = [
         {
@@ -32,7 +34,7 @@ const Sidebar = () => {
             submenu: [
                 {
                     title: "About Us",
-                    path: "pages?edit=about-us",
+                    path: "/pages?edit=about-us",
                 }
             ],
         },

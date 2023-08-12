@@ -9,6 +9,7 @@
 @use "./sass/components/Card.scss";
 @use "./sass/components/Buttons.scss";
 @use "./sass/components/Inputs.scss";
+@use "./sass/components/Table.scss";
 
 //Pages
 @use "./sass/Pages/_Homepage.scss";
@@ -17,10 +18,10 @@
 @use "./sass/Pages/Contact.scss";
 @use "./sass/Pages/Accommodation.scss";
 
-
 //Commmon Components
 @use "./sass/common/Navbar.scss";
 @use "./sass/common/Footer.scss";
+@use "./sass/common/Sidebar.scss";
 
 //colors
 $lightGreen: #b9e7e7;
@@ -28,69 +29,73 @@ $lightGreen: #b9e7e7;
 $nav-footer: 10px 50px;
 $standard-padding: 10px 20% 10px 20%;
 
-
 @font-face {
     font-family: $font-libre-baskerville;
-    src: url('./sass/Utilities/fonts/Libre_Baskerville/librebaskerville-regular-webfont.woff2') format('woff2'),
-         url('./sass/Utilities/fonts/Libre_Baskerville/librebaskerville-regular-webfont.woff') format('woff');
+    src: url("./sass/Utilities/fonts/Libre_Baskerville/librebaskerville-regular-webfont.woff2") format("woff2"),
+        url("./sass/Utilities/fonts/Libre_Baskerville/librebaskerville-regular-webfont.woff") format("woff");
     font-weight: $w-normal;
     font-style: $style-normal;
 }
 
-
 @font-face {
     font-family: $font-libre-franklin;
-    src: url('./sass/Utilities//fonts/LibreFranklin-Bold.ttf') format('truetype');
+    src: url("./sass/Utilities//fonts/LibreFranklin-Bold.ttf") format("truetype");
     font-weight: $w-bold;
     font-style: $style-normal;
 }
 
 @font-face {
     font-family: $font-libre-franklin;
-    src: url('./sass/Utilities//fonts/LibreFranklin-Semibold.ttf') format('truetype');
+    src: url("./sass/Utilities//fonts/LibreFranklin-Semibold.ttf") format("truetype");
     font-weight: $w-semi-bold;
     font-style: $style-normal;
 }
 
 @font-face {
     font-family: $font-libre-franklin;
-    src: url('./sass/Utilities//fonts/LibreFranklin-Thin.ttf') format('truetype');
+    src: url("./sass/Utilities//fonts/LibreFranklin-Thin.ttf") format("truetype");
     font-weight: $w-thin;
     font-style: $style-normal;
 }
 
 @font-face {
     font-family: $font-libre-franklin;
-    src: url('./sass/Utilities//fonts/LibreFranklin-ExtraLight.ttf') format('truetype');
+    src: url("./sass/Utilities//fonts/LibreFranklin-ExtraLight.ttf") format("truetype");
     font-weight: $w-extra-light;
     font-style: $style-normal;
 }
 @font-face {
     font-family: $font-libre-franklin;
-    src: url('./sass/Utilities//fonts/LibreFranklin-Light.ttf') format('truetype');
+    src: url("./sass/Utilities//fonts/LibreFranklin-Light.ttf") format("truetype");
     font-weight: $w-light;
     font-style: $style-normal;
 }
 @font-face {
     font-family: $font-libre-franklin;
-    src: url('./sass/Utilities//fonts/LibreFranklin-Medium.ttf') format('truetype');
+    src: url("./sass/Utilities//fonts/LibreFranklin-Medium.ttf") format("truetype");
     font-weight: $w-mediun;
     font-style: $style-normal;
 }
-    
 
-
-
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
-*{
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+}
+
+* {
     margin: 0;
     padding: 0;
 }
 
-input, textarea {
+input,
+textarea {
     font: inherit;
 }
 
@@ -98,8 +103,8 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
     background-color: $lightColor;
+    font-family: $font-libre-franklin;
 }
-
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -107,17 +112,21 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
-input[type=number]{
+input[type="number"] {
     -moz-appearance: textfield;
     appearance: textfield;
 }
 
 
-
+.fixed-container{
+    position: fixed;
+    offset: 30px;
+}
 
 .app {
     display: flex;
     justify-content: center;
+    height: 100%;
 
     .container {
         //Login
@@ -130,8 +139,6 @@ input[type=number]{
             color: $honeyDew;
             cursor: pointer;
         }
-
-    
 
         //This is for the posts
         .posts {
@@ -307,7 +314,7 @@ input[type=number]{
                 gap: 25px;
 
                 h1 {
-                    font-size: $subheading;
+                    font-size: $content;
                     color: #555;
                     font-family: $font-libre-franklin;
                 }
@@ -354,13 +361,51 @@ input[type=number]{
         //WRITING PAGE
         .add {
             width: 100%;
-            height: 100vh;
+            height: 100%;
             margin-top: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 20px;
             align-items: flex-start;
+
+            .img-preview {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: $base-margin;
+                
+                .thumbnail {
+                    margin-left: auto;
+                    margin-right: auto;
+                    position: relative;
+
+                    img{
+                        max-width: 250px;
+                        height: 250px;
+                        object-fit: cover;
+                        aspect-ratio: 1/1;
+
+                    }
+                    button{
+                        border: none;
+                        background-color: transparent;
+                        top: 5px;
+                        right: 5px;
+                        position: absolute;
+                        cursor: pointer;
+                        color: $honeyDew;
+
+                        &:hover{
+                            color: red;
+                        }
+                    }
+
+                    
+                    
+
+                    height: 100%;
+                }
+            }
 
             .content {
                 flex: 5;
@@ -373,10 +418,27 @@ input[type=number]{
                     font-family: $font-libre-franklin;
                 }
 
-                input {
-                    padding: 10px;
-                    border: 1px solid lightgray;
+                .add-button{
+                    display: inline;
+                    align-items: center;
+
+                    a {
+                        display: flex;
+                        color: green;
+                        text-decoration: none;
+                        gap: 5px;
+                        &:hover{
+                            text-decoration: underline;
+                        }
+                    }
+                 
                 }
+
+                // input {
+                //     padding: 10px;
+                //     border: 1px solid lightgray;
+                //     width: 100%;
+                // }
 
                 .editorContainer {
                     height: 300px;
@@ -397,6 +459,60 @@ input[type=number]{
                 gap: 20px;
 
                 .item {
+                    .item-container {
+                        display: flex;
+                        flex-direction: column;
+                        margin: $small-margin-y;
+                        gap: 0.7rem;
+                        .top-row {
+                            display: flex;
+                            justify-content: space-between;
+                            gap: 10px;
+                        }
+
+                        .item-input {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+
+                            span {
+                                padding: $small-padding-x;
+                            }
+
+                            .dropdown-input {
+                                position: relative;
+                                width: 100%;
+
+                                .select-box {
+                                    font-family: $font-libre-franklin;
+                                    width: 100%;
+
+                                    padding: $small-padding;
+                                    border: 1px solid lightgray;
+                                    color: $greyColor;
+
+                                    &:focus {
+                                        border-bottom: $base-border-thickness $primaryColor;
+                                        border-radius: $input-border-radius;
+                                    }
+                                }
+                                .select-box option[disabled][selected] {
+                                    color: $lightGreyColor;
+                                    opacity: 0.5;
+                                }
+                                .custom-arrow {
+                                    position: absolute;
+                                    display: block;
+                                    top: 0;
+                                    right: 0;
+                                    height: 100%;
+                                    width: 2rem;
+                                    background: $lightGreyColor;
+                                }
+                            }
+                        }
+                    }
+
                     border: 1px solid lightgray;
                     padding: 10px;
                     flex: 1;
@@ -408,7 +524,7 @@ input[type=number]{
                     color: #555;
 
                     h1 {
-                        font-size: $heading;
+                        font-size: $subheading;
                         font-family: $font-libre-franklin;
                     }
 
@@ -458,6 +574,7 @@ input[type=number]{
             height: 100vh;
 
             .content-container {
+                background-color: rgb(255, 255, 255);
                 flex: 1;
                 padding: 40px 20px;
                 overflow-y: auto;
@@ -471,112 +588,5 @@ input[type=number]{
             width: 100%;
         }
 
-        .sidebar {
-            height: 100%;
-            background-color: #333;
-            width: 200px;
-            flex-shrink: 0;
-
-            .container {
-                position: relative;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                align-items: center;
-                height: 100vh;
-
-                .top-section {
-                    padding: 30px;
-                    span {
-                        font-size: $subheading;
-                        font-family: $font-libre-franklin;
-                        color: $lightGreen;
-                    }
-                }
-
-                .mid-section {
-                    width: 100%;
-
-                    .sidebar-item {
-                        color: $lightGreen;
-                        font-family: $font-libre-franklin;
-                        display: block;
-                        padding: 1em;
-                        align-items: center;
-
-                        &:hover {
-                            background-color: #b9e7e72c;
-                        }
-                    }
-
-                    .sidebar-title {
-                        display: flex;
-                        justify-content: space-between;
-                        font-size: $large;
-                        cursor: pointer;
-                        color: $lightGreen;
-
-                        .sidebar-icon {
-                            padding-right: 5px;
-                            display: inline-block;
-                        }
-
-                        .toggle-btn {
-                            cursor: pointer;
-                            transition: transform 0.3s;
-                        }
-                    }
-
-                    .sidebar-item.open {
-                        .sidebar-title .toggle-btn {
-                            transform: rotate(180deg);
-                        }
-
-                        .sidebar-content {
-                            height: 0;
-                            overflow: hidden;
-                            transition: transform 1s ease-out;
-                            width: 100%;
-
-                            &.open {
-                                height: auto;
-                            }
-                        }
-                    }
-                    .sidebar-item {
-                        .plain {
-                            text-decoration: none;
-                            display: inline-block;
-                            color: $lightGreen;
-                            font-family: $font-libre-franklin;
-                        }
-                    }
-                }
-
-                .bottom-section {
-                    width: 100%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    align-self: flex-end;
-
-                    .side-links {
-                        width: 100;
-                        display: 20px;
-                        align-items: center;
-                        justify-content: center;
-                        display: flex;
-                        font-family: $font-libre-franklin;
-                        padding: 20px;
-                    }
-                    span {
-                        width: 100%;
-                        cursor: pointer;
-                        color: $lightGreen;
-                        background-color: rgb(245, 18, 18);
-                    }
-                }
-            }
-        }
     }
 }

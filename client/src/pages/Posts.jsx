@@ -2,6 +2,7 @@ import axios from "axios";
 import DOMPurify from "dompurify";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import Header from "../Components/ui/Header";
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
@@ -22,6 +23,7 @@ const Posts = () => {
 
   return (
     <div className="posts">
+      <Header/>
       <div className="post-items">
         {posts.map((post) => (
           <div className="post" key={post.PostId}>

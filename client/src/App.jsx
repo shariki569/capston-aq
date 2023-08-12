@@ -22,9 +22,12 @@ import Dashboard from "./Components/admin/Dashboard";
 import DashboardLayout from "./Components/layouts/DashboardLayout";
 import Layout from "./Components/layouts/Layout";
 import Pages from "./Components/admin/Pages";
-import Accommodate from "./Components/admin/Accommodate";
+import { Accommodation_Menu, Add_Accommodate } from "./Components/admin/Accommodate";
 import { useContext } from "react";
 import { AuthContext } from "./context/authContext";
+import AccommodationMenuLayout from "./Components/layouts/AccommodationLayout";
+import Accommodation_Items from "./pages/Accommodation/Accommodation_Items";
+import Contact_Info from "./Components/admin/Contact_Info";
 
 const PrivateRoute = ({ element, path }) => {
   const { currentUser } = useContext(AuthContext);
@@ -65,25 +68,41 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/",
+    path: "dashboard",
     element: <DashboardLayout />,
     children: [
       {
-        path: "/dashboard",
-        element: <PrivateRoute element={<Dashboard />} path="/dashboard" />,
+        path: "admin",
+        element: <PrivateRoute element={<Dashboard />} />,
       },
       {
-        path: "/write",
-        element: <PrivateRoute element={<Write />} path="/add-posts" />,
+        path: "write",
+        element: <PrivateRoute element={<Write />} />,
       },
       {
-        path: "/pages",
-        element: <PrivateRoute element={<Pages />} path="/edit-pages" />,
+        path: "pages",
+        element: <PrivateRoute element={<Pages />} />,
       },
       {
-        path: "/accommodate",
-        element: <PrivateRoute element={<Accommodate />} path="/edit-accommodation" />,
+        path: "accommodation-menu",
+        element: <PrivateRoute element={<AccommodationMenuLayout />} />,
+        children: [
+          {
+            path: "",
+            element: <PrivateRoute element={<Accommodation_Menu />} />,
+          },
+          {
+            path: "write",
+            element: <PrivateRoute element={<Add_Accommodate />} />,
+          }
+        ]
       },
+      {
+        path: "contact-details",
+        element: <PrivateRoute element={<Contact_Info />} />,
+      }
+
+
     ],
   },
   {

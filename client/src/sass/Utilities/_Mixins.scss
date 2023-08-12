@@ -1,3 +1,6 @@
+@use "../Utilities/Variables" as *;
+@use "../Utilities/ColorPallet" as *;
+
 @mixin fullSize {
     height: 100%;
     width: 100%;
@@ -14,4 +17,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+
+@mixin cardBase {
+    box-shadow: $base-box-shadow;
+    background-color: #ffffff;
+    border-radius: $base-border-radius;
+
 }

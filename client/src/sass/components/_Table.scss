@@ -1,0 +1,72 @@
+@use "../../sass/Utilities/" as *;
+
+table {
+    border-collapse: collapse;
+    font-family: $font-libre-franklin;
+    font-size: $content;
+    tr {
+        height: 50px;
+        
+        &:nth-child(even){
+            background-color: #fffffff1;
+        }
+
+        th {
+            border: 1px solid $primaryColor;
+            color: $honeyDew;
+            font-weight: $w-bold;
+            // border: 2px solid $honeyDew;
+            background-color: $primaryColor;
+        }
+
+        td {
+            border: 1px solid $darkerGreyColor;
+            padding: $small-padding-x;
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: center;
+            white-space: nowrap;
+            
+            img{
+                object-fit: cover;
+                height: 30%;
+                width: 30%;
+                aspect-ratio: 1/1;
+                
+            }
+
+            .crud-btn{
+                display: flex;
+                flex-wrap: wrap;
+                gap: 5px;
+                justify-content: center;
+
+                
+
+                button{
+                    border: none;
+                    background-color: transparent;
+                    cursor: pointer;
+                    color: $honeyDew;
+                    background-color: $secondaryColor;
+                    padding: $small-padding;
+                    border-radius: 10px;
+                    a{
+
+                        text-decoration: none;
+                        color: $honeyDew;
+                    }
+                    &:nth-child(3){
+                        background-color: red;
+                        padding: $small-padding;
+                        border-radius: 10px;
+                        color: $honeyDew
+                        
+                    }
+                 
+                }
+            }
+        }
+    }
+}

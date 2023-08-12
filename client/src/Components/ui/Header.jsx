@@ -19,7 +19,7 @@ const Header = ({imageUrl, title, pageSlug, state}) => {
             <h1>{title}</h1>
             {currentUser && (
                 <div className="edit">
-                    <Link to={`/pages?edit=${pageSlug}`} state={state}>
+                    <Link to={`/dashboard/pages?edit=${pageSlug}`} state={state}>
                         <AiFillEdit className='icon icon-edit'/>
                     </Link>
                 </div>

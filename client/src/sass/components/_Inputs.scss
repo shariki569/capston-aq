@@ -2,10 +2,10 @@
 
 .text-input {
     font-family: $font-libre-franklin;
-    margin: $base-margin;
+    // margin: $base-margin;
     font-size: $content;
     color: $greyColor;
-    width: 500px;
+    width: 100%;
     .label {
         margin: $base-margin-y;
     }
@@ -16,10 +16,10 @@
         padding: $small-padding;
         min-height: 10px;
         border-radius: $small-border-radius;
-        border: none;
+        border: 1px solid $lightGreyColor;
         outline: none;
         line-height: $base-line-height;
-        background-color: $honeyDew;
+        background-color: $ligherGreyColor;
         
         &:focus {
             border-bottom: $base-border-thickness $primaryColor;
@@ -34,7 +34,7 @@
 
 .text-area {
     font-family: $font-libre-franklin;
-    margin: $base-margin;
+ 
     width: 500px;
     font-size: $content;
 
@@ -48,10 +48,10 @@
         resize: none;
         padding: $small-padding;
         border-radius: $small-border-radius;
-        border: none;
+        border: 1px solid $lightGreyColor;
         outline: none;
         line-height: $base-line-height;
-        background-color: $honeyDew;
+        background-color: $ligherGreyColor;
 
         &:focus {
             border-bottom: $base-border-thickness $primaryColor;

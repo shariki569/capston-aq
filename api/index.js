@@ -3,6 +3,7 @@ import postRoutes from "./routes/posts.js";
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
 import pageRoutes from "./routes/pages.js";
+import accommRoutes from "./routes/accommodations.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import multer from "multer";
@@ -23,6 +24,9 @@ const storage = multer.diskStorage({
   },
 });
 
+
+
+
 const upload = multer({ storage });
 
 app.post("/api/upload", upload.single("file"), function (req, res) {
@@ -34,6 +38,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/pages", pageRoutes);
+app.use("/api/accommodations", accommRoutes);
 
 app.listen(8800, () => {
   console.log("Connected oy amaw!");

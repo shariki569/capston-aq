@@ -6,6 +6,7 @@ import Dropdown from '../../ui/Dropdown'
 import Submenu from '../../ui/Submenu'
 import SidebarItem from './SidebarItem'
 import { HiUserCircle } from 'react-icons/hi'
+import { sidebarLinks } from '../MenuItems'
 const Sidebar = () => {
 
     const {currentUser, logout } = useContext(AuthContext)
@@ -15,31 +16,6 @@ const Sidebar = () => {
         logout();
         navigate('/login')
     }
-
-    
-
-    const sidebarLinks = [
-        {
-            title: "User",
-            path: `/dashboard`,
-            icon: "",
-        },
-        {
-            title: "Posts",
-            path: "/write",
-        },
-        {
-            title: "Pages",
-            path: "/pages",
-            submenu: [
-                {
-                    title: "About Us",
-                    path: "/pages?edit=about-us",
-                }
-            ],
-        },
-    ]
-    
 
 
   return (

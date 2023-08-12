@@ -47,7 +47,7 @@ const Pages = () => {
               placeholder='Page Title'
             /> */}
 
-          <input
+          <TextInput
             type="text"
             value={pageTitle}
             onChange={(e) => setPageTitle(e.target.value)}

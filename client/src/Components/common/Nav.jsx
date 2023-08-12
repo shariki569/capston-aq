@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../img/sepalon-icon.svg";
 import { AuthContext } from "../../context/authContext";
-import { catLinks } from "../common/MenuItems";
+import { accommType, catLinks } from "../common/MenuItems";
 import Dropdown from "../ui/Dropdown";
 import { FaPenNib, FaS } from "react-icons/fa6";
 
@@ -11,35 +11,9 @@ const Nav = () => {
   const { currentUser, logout } = useContext(AuthContext);
   const [showDropdown, setShowDropdown] = useState(false);
 
-  const toggleDropdown = () => {
-    setShowDropdown(!showDropdown);
-  };
-  // const catLinks = [
-  //   {
-  //     name: "Art",
-  //     path: "posts/?cat=art",
-  //   },
-  //   {
-  //     name: "Science",
-  //     path: "posts/?cat=science",
-  //   },
-  //   {
-  //     name: "Technology",
-  //     path: "posts/?cat=technology",
-  //   },
-  //   {
-  //     name: "Cinema",
-  //     path: "posts/?cat=cinema",
-  //   },
-  //   {
-  //     name: "Design",
-  //     path: "posts/?cat=design",
-  //   },
-  //   {
-  //     name: "Foods",
-  //     path: "posts/?cat=foods",
-  //   },
-  // ];
+  // const toggleDropdown = () => {
+  //   setShowDropdown(!showDropdown);
+  // };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -75,11 +49,11 @@ const Nav = () => {
             </Link>
             <Dropdown>
               {catLinks.map((items) => (
-                <li key={items.id}>
-                  <Link className="sub-link" to={items.path}>
+                <Link key={items.id} className="sub-link" to={items.path}>
+                  <li >
                     {items.name}
-                  </Link>
-                </li>
+                  </li>
+                </Link>
               ))}
             </Dropdown>
           </li>
@@ -93,6 +67,16 @@ const Nav = () => {
             <Link className="link" to="/accommodation">
               <h6>Accommodation</h6>
             </Link>
+            <Dropdown>
+              {accommType.map((items) => (
+
+                <Link key={items.id} className="sub-link" to={items.path}>
+                  <li >
+                    {items.name}
+                  </li>
+                </Link>
+              ))}
+            </Dropdown>
           </li>
         </ul>
 

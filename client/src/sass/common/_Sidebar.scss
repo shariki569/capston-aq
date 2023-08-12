@@ -1,0 +1,110 @@
+@use "./../Utilities/" as *;
+
+.sidebar {
+    height: 100%;
+    background-color: #333;
+    width: 200px;
+    flex-shrink: 0;
+    font-size: $content;
+    
+    .container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+
+        .top-section {
+            padding: 30px;
+            span {
+                font-size: $subheading;
+                font-family: $font-libre-franklin;
+                color: $lightGreen;
+            }
+        }
+
+        .mid-section {
+            width: 100%;
+            margin: auto;
+
+            .sidebar-item {
+                color: $lightGreen;
+                font-family: $font-libre-franklin;
+                display: block;
+                padding: 1em;
+                align-items: center;
+
+                &:hover {
+                    background-color: #b9e7e72c;
+                }
+            }
+
+            .sidebar-title {
+                display: flex;
+                justify-content: space-between;
+                
+                cursor: pointer;
+                color: $lightGreen;
+
+                .sidebar-icon {
+                    padding-right: 5px;
+                    display: inline-block;
+                }
+
+                .toggle-btn {
+                    cursor: pointer;
+                    transition: transform 0.3s;
+                }
+            }
+
+            .sidebar-item.open {
+                .sidebar-title .toggle-btn {
+                    transform: rotate(180deg);
+                }
+
+                .sidebar-content {
+                    height: 0;
+                    overflow: hidden;
+                    transition: transform 1s ease-out;
+                    width: 100%;
+
+                    &.open {
+                        height: auto;
+                    }
+                }
+            }
+            .sidebar-item {
+                .plain {
+                    text-decoration: none;
+                    display: inline-block;
+                    color: $lightGreen;
+                    font-family: $font-libre-franklin;
+                }
+            }
+        }
+
+        .bottom-section {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: auto;
+
+            .side-links {
+                width: 100;
+                display: 20px;
+                align-items: center;
+                justify-content: center;
+                display: flex;
+                font-family: $font-libre-franklin;
+                padding: 20px;
+            }
+            span {
+                width: 100%;
+                cursor: pointer;
+                color: $lightGreen;
+                background-color: rgb(245, 18, 18);
+            }
+        }
+    }
+}

@@ -61,7 +61,7 @@ $nav-footer: 10px 50px;
             .link-item {
                 display: flex;
                 cursor: pointer;
-                height: 10vh;
+                height: 100%;
                 align-items: center;
                 transition: ease-in-out 0.9s;
 
@@ -82,13 +82,9 @@ $nav-footer: 10px 50px;
             border-radius: 5px;
             display: none;
 
-            .dropdown-click{
-                display: block;
-            }
-
             .dropdown-items {
                 list-style: none;
-
+                box-shadow: $base-box-shadow;
                 li {
                     cursor: pointer;
                     padding: $small-padding-y;
@@ -97,12 +93,9 @@ $nav-footer: 10px 50px;
 
                     &:hover {
                         background-color: $primaryColor;
-                        .sub-link{
-                            color: $lightColor;
-                        }
+                        color: $lightColor;
+                        border-radius: 3px;
                     }
-
-                  
                 }
 
                 .sub-link {
@@ -110,8 +103,6 @@ $nav-footer: 10px 50px;
                     color: $greyColor;
                     font-size: $content;
                     font-family: $font-libre-franklin;
-
-                   
                 }
             }
         }

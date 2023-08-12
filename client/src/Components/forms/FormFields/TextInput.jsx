@@ -8,7 +8,7 @@ const TextInput = ({ label, type, value, onChange, placeholder, min, max }) => {
         className="input"
         type={type}
         value={value}
-        onChange={(e)=> onChange(e.target.value)}
+        onChange={onChange}
         placeholder={placeholder}
         min={min}
         maxLength={max}

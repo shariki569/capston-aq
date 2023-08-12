@@ -1,67 +1,93 @@
 @use "./../Utilities/" as *;
 
-.container-accomodation{
+.container-accomodation {
     width: 100vw;
+
+    .accommodation-title {
+        position: relative;
+        font-size: $pageHeading;
+        font-family: $font-libre-franklin;
+        @include centerFlexboxColumn;
+        margin: $xlarge-margin-y;
+        color: $primaryColor;
+        margin-bottom: auto;
+        
+        &::after {
+            position: absolute;
+            top: 0;
+            left: 42%;
+            z-index: -1;
+            content: "";
+            width: 8px;
+            height: 45px;
+            background-color: $tertiaryColor;
+            display: block;
+        }
+    }
     .wrapper {
         margin-top: 40px;
-        
-        .title{
-            font-size: $subheading;
+
+        .title {
+            font-size: $large;
             font-family: $font-libre-baskerville;
             color: $primaryColor;
             padding: $large-padding-y;
         }
-     
-        .card {
 
-            display: flex;
+        .card {
             width: 70%;
             height: 100%;
             display: flex;
             margin-top: 30px;
             margin-left: auto;
             margin-right: auto;
-            box-shadow: $base-box-shadow;
-            background-color: #ffffff;
-            border-radius: $base-border-radius;
+            @include cardBase;
 
-            &:nth-child(2n + 1) .content{
+            &:nth-child(2n + 1) .content {
                 flex-direction: row-reverse;
-                
-                .img{
-                    border-radius: 0 10px  10px  0  ;
-                }
+                display: flex;
+                width: 100%;
+              
+                // .image-container{
+
+                    .img {
+                        margin-left: auto;
+                        border-radius: 0 10px 10px 0;
+                 
+                    }
+                // }
+
             }
-            
 
             .content {
                 display: flex;
+                width: 100%;
+                justify-content: space-between;
                
-                
-                
-                .img {
-                 
+                // .image-container{
+                //     margin: 0px;
+                    .img {
+                        border-radius: 10px 0 0 10px;
+                        object-fit: cover;
+                        aspect-ratio: 1/1;
+                        max-height: 400px;
+                        // margin-right: auto;
+                        width: 400px;
+                    }
+                // }
 
-                    border-radius: 10px 0 0 10px  ;
-                    object-fit: cover;
-                    aspect-ratio: 1/1;
-                    max-height: 400px;
-                    width: 400px;
-                }
-
-
-                .description{
+                .description {
                     display: flex;
                     flex-direction: column;
                     padding: $base-padding-x;
-                    
-
-                    .price{
+                    width: 100%;
+                
+                    .price {
                         color: $tertiaryColor;
-                        font-size: $heading;
+                        font-size: $subheading;
                         font-family: $font-libre-baskerville;
 
-                        &::after{
+                        &::after {
                             content: "";
                             width: 70px;
                             height: 2px;
@@ -71,49 +97,43 @@
                         }
                     }
 
-                    .desc{
-                        color: $greyColor;  
+                    .desc {
+                        color: $greyColor;
                         font-family: $font-libre-franklin;
                         margin-bottom: auto;
                         font-size: $content;
                         line-height: $base-line-height;
-
-       
+                        min-height: 80px;
                     }
 
-                    .accomodation-details{
+                    .accomodation-details {
                         display: flex;
-                        margin-bottom: auto ;
-                        .accomodation-detail{
+                        margin-bottom: auto;
+                        .accomodation-detail {
                             display: flex;
                             align-items: center;
-                            .icon{
+                            .icon {
                                 color: $primaryColor;
                                 margin-right: $base-margin;
                             }
-                            label{
+                            label {
                                 font-family: $font-libre-franklin;
                                 font-weight: $w-semi-bold;
                                 color: $lightGreyColor;
                                 margin-right: $base-margin;
-                                
-                                span{
+                                font-size: $content;
+
+                                span {
                                     font-family: $font-libre-franklin;
                                     font-weight: $w-mediun;
                                     color: $greyColor;
-                                    
+                                    margin-left: $small-margin;
                                 }
                             }
-                            
                         }
                     }
-                   
                 }
-
-           
-               
             }
         }
-
     }
 }

@@ -2,6 +2,12 @@
 
 .container-accomodation {
     width: 100vw;
+    overflow-x: none;
+    
+    .wrapper:not(.with-title) .accommodation-title::after {
+        content: none;
+      }
+      
 
     .accommodation-title {
         position: relative;

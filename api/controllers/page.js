@@ -16,7 +16,7 @@ export const getPages = (req, res) => {
 
 export const getPage = (req, res) => {
   const q =
-    "SELECT PageId,`Slug`, `PageTitle`, `SectionId`, `SectionHeading`, `SectionContent` FROM pages p LEFT JOIN sections s ON p.PageId = s.Page_Id WHERE p.Slug = ?";
+    "SELECT PageId,`Slug`, `PageTitle`, `SectionId`, `SectionHeading`, `SectionContent`, `SectionImage` FROM pages p LEFT JOIN sections s ON p.PageId = s.Page_Id WHERE p.Slug = ?";
 
   db.query(q, [req.params.slug], (err, data) => {
     if (err) return res.status(500).json();
@@ -35,6 +35,7 @@ export const getPage = (req, res) => {
           SectionId: sectionId,
           SectionHeading: row.SectionHeading,
           SectionContent: row.SectionContent,
+          SectionImage: row.SectionImage,
         };
       }
     });
@@ -72,15 +73,15 @@ export const updatePage = (req, res) => {
       if (err) return res.status(500).json("Error updating page");
 
       // Update page sections
-      const qUpdateSections =
-        "UPDATE sections SET `SectionHeading` =? , `SectionContent` = ? WHERE `SectionId`=? AND `Page_Id`=?";
+      const qUpdateSections = "UPDATE sections SET `SectionHeading` =? , `SectionContent` =?, `SectionImage`=? WHERE `SectionId`=? AND `Page_Id`=?";
       const qUpdateSectionsPromises = sections.map((section) => {
-        const { SectionId, SectionHeading, SectionContent } = section;
+        const { SectionId, SectionHeading, SectionContent, SectionImage } =
+          section;
 
         return new Promise((resolve, reject) => {
           db.query(
             qUpdateSections,
-            [SectionHeading, SectionContent, SectionId, PageId],
+            [SectionHeading, SectionContent, SectionId, PageId, SectionImage],
             (err) => {
               if (err) reject(err);
               else resolve();
@@ -94,8 +95,69 @@ export const updatePage = (req, res) => {
           res.json({ message: "Page and Sections have been updated!" });
         })
         .catch(() => {
-          res.status(500).json("Error updating sections");
+          res.status(500).json("Error updating sections ");
         });
     });
   });
 };
+
+
+
+// export const updatePage1 = (req, res) => {
+//   const { slug } = req.params;
+//   const { PageTitle, sections } = req.body; // Update the destructuring here
+
+//   // Check if the PageTitle exists in the request body
+//   if (!PageTitle) {
+//     return res.status(400).json("Page title is required for updating");
+//   }
+
+//   // Get the `PageId` based on the `Slug`
+//   const qGetPageId = "SELECT PageId FROM pages WHERE Slug = ?";
+//   db.query(qGetPageId, [slug], (err, result) => {
+//     if (err) return res.status(500).json("Error fetching page");
+
+//     // Check if a page with the provided Slug exists
+//     if (result.length === 0) {
+//       return res.status(404).json("Page not found");
+//     }
+
+//     const PageId = result[0].PageId;
+
+//     // Update page Title
+//     const qUpdatePage = "UPDATE pages SET `PageTitle`=? WHERE `PageId`=?";
+//     db.query(qUpdatePage, [PageTitle, PageId], (err, data) => {
+//       if (err) return res.status(500).json("Error updating page");
+
+//       // Update page sections
+//       const qUpdateSections = "UPDATE sections SET `SectionHeading` =? , `SectionContent` =?, `SectionImage`=? WHERE `SectionId`=? AND `Page_Id`=?";
+//       const qUpdateSectionsPromises = sections.map((section) => {
+//         const sectionId = section.SectionId
+//         const sectionValues = [
+//           section.SectionHeading,
+//           section.SectionContent,
+//           section.SectionImage,
+//         ]
+
+//         return new Promise((resolve, reject) => {
+//           db.query(
+//             qUpdateSections,
+//             [...sectionValues, PageId, sectionId],
+//             (err) => {
+//               if (err) reject(err);
+//               else resolve();
+//             }
+//           );
+//         });
+//       });
+
+//       Promise.all(qUpdateSectionsPromises)
+//         .then(() => {
+//           res.json({ message: "Page and Sections have been updated!" });
+//         })
+//         .catch(() => {
+//           res.status(500).json("Error updating sections");
+//         });
+//     });
+//   });
+// };

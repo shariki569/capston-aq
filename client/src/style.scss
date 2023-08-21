@@ -123,6 +123,10 @@ input[type="number"] {
     offset: 30px;
 }
 
+.flex-column-left{
+    @include leftFlexboxColumn;
+}
+
 .app {
     display: flex;
     justify-content: center;
@@ -369,6 +373,10 @@ input[type="number"] {
             gap: 20px;
             align-items: flex-start;
 
+            .dashboard-header{
+                line-height: 80px;
+            }
+
             .img-preview {
                 display: flex;
                 flex-direction: column;
@@ -380,8 +388,8 @@ input[type="number"] {
                     position: relative;
 
                     img{
-                        max-width: 250px;
-                        height: 250px;
+                        max-width: 100%;
+                        height: 100%;
                         object-fit: cover;
                         aspect-ratio: 1/1;
 
@@ -411,7 +419,7 @@ input[type="number"] {
                 flex: 5;
                 display: flex;
                 flex-direction: column;
-                gap: 20px;
+                gap: 5px;
                 color: #555;
                 h2 {
                     font-size: $heading;
@@ -434,6 +442,10 @@ input[type="number"] {
                  
                 }
 
+                .container{
+                    margin: $base-margin-y
+                }
+
                 // input {
                 //     padding: 10px;
                 //     border: 1px solid lightgray;
@@ -452,6 +464,43 @@ input[type="number"] {
                 }
             }
 
+
+            .page-sections{
+                margin: $base-margin-y;
+                .page-sections-wrapper{
+                    display: flex;
+                    gap: 20px;
+
+                    .image-wrapper{
+                       
+                        img{
+
+                            height:  100%;
+                            max-width:  300px;
+                            aspect-ratio: 1/1;
+                            object-fit: cover;
+                        }
+                    }
+
+                    .description-wrapper{
+                        display: flex;
+                        flex-direction: column;
+                       
+                        margin: inherit;
+                        gap: 3px;
+                        h3{
+                            margin: $base-margin-y;
+                        }
+        
+        
+                        .editorContainer{
+                            margin: auto 0;
+                            height: 200px;
+                        }
+    
+                    }
+                }
+            }
             .menu {
                 flex: 2;
                 display: flex;
@@ -515,7 +564,7 @@ input[type="number"] {
 
                     border: 1px solid lightgray;
                     padding: 10px;
-                    flex: 1;
+                    // flex: 1;
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;

@@ -114,9 +114,10 @@ const Add_Accommodate = () => {
     <div className='add'>
       <div className="content">
         <span><Link to='/dashboard/accommodation-menu/'>Back</Link></span>
-        
+
         <TextInput
           type="text"
+          width={100}
           value={accommTitle}
           placeholder='Title'
           onChange={(e) => setAccommTitle(e.target.value)}
@@ -165,10 +166,11 @@ const Add_Accommodate = () => {
                 </div>
               )
             )}
-           
+
             <div>
               <input style={{ display: "none" }} type="file" id='file' onChange={handleImageChange} />
-              <label htmlFor="file" className='file' encType="multipart/form-data">Upload Image</label>
+
+              <label htmlFor="file" className='file' encType="multipart/form-data">{existingImage ? "Change Image" : "Upload"}</label>
             </div>
 
           </div>
@@ -190,17 +192,33 @@ const Add_Accommodate = () => {
               <div className="top-row">
                 <div className="item-input">
                   <span><FiCreditCard size={20} /></span>
-                  <TextInput type="number" placeholder='Price' value={accommPrice} onChange={(e) => setAccommPrice(e.target.value)} />
+                  <TextInput
+                    type="number"
+                    placeholder='Price'
+                    value={accommPrice}
+                    onChange={(e) => setAccommPrice(e.target.value)}
+                    width={100}
+                  />
                 </div>
                 <div className="item-input">
                   <span><FiHash size={20} /></span>
-                  <TextInput type="number" placeholder='No. of Units' value={accommUnit} onChange={(e) => setAccommUnit(e.target.value)} />
+                  <TextInput
+                    type="number"
+                    placeholder='No. of Units'
+                    value={accommUnit} onChange={(e) => setAccommUnit(e.target.value)}
+                    width={100}
+                  />
                 </div>
               </div>
               <div className="full-row">
                 <div className="item-input">
                   <span><FiUser size={20} /></span>
-                  <TextInput type="number" placeholder='Capacity' value={accommCap} onChange={(e) => setAccommCap(e.target.value)} />
+                  <TextInput
+                    type="number"
+                    placeholder='Capacity'
+                    value={accommCap} onChange={(e) => setAccommCap(e.target.value)}
+                    width={100}
+                  />
                 </div>
               </div>
               <div className="buttons">

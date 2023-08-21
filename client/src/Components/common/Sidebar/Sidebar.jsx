@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import logo from "../../../img/sepalon-icon.svg"
 import { AuthContext } from '../../../context/authContext'
@@ -7,16 +7,29 @@ import Submenu from '../../ui/Submenu'
 import SidebarItem from './SidebarItem'
 import { HiUserCircle } from 'react-icons/hi'
 import { sidebarLinks } from '../MenuItems'
+import axios from 'axios'
 const Sidebar = () => {
 
     const {currentUser, logout } = useContext(AuthContext)
     const navigate = useNavigate(); 
-
+    const [pageData, setPageData] = useState(null)
     const handleLogout = () => {
         logout();
         navigate('/login')
     }
 
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const res = await axios.get('/api/pages/about-us')
+            setPageData(res.data);
+          } catch (err) {
+            console.log(err);
+          }
+        };
+        fetchData();
+      }, [])
 
   return (
     <div className='sidebar'>
@@ -28,8 +41,8 @@ const Sidebar = () => {
                 <span>{currentUser?.username}</span>
             </div>
             <div className="mid-section">
-                {sidebarLinks.map((item, index) => <SidebarItem key={index} item={item}/>
-                
+                {sidebarLinks.map((item, index) => 
+                    <SidebarItem key={index} item={item}/>
                 )}
             </div>
             <div className="bottom-section">

@@ -6,9 +6,7 @@ import DOMPurify from 'dompurify';
 import { FiPlusCircle } from 'react-icons/fi';
 
 const AccommodationMenu = () => {
-
-
-
+  
   const [accomms, SetAccomms] = useState([]);
 
   useEffect(() => {

@@ -1,17 +1,34 @@
 @use "../Utilities/" as *;
 
+
+.input-flex {
+    display: flex;
+    flex-direction: row;
+
+    .label {
+        min-width: 200px;
+    }
+    
+}
+
+// .start {
+//     float: left;
+// }
+
 .text-input {
+    display:flex;
+    flex-direction: column;
     font-family: $font-libre-franklin;
     // margin: $base-margin;
     font-size: $content;
     color: $greyColor;
     width: 100%;
     .label {
-        margin: $base-margin-y;
+        margin: $small-margin-y;
     }
 
     .input {
-        margin: $small-margin-y ;
+        // margin: $small-margin-y ;
         width: 100%;
         padding: $small-padding;
         min-height: 10px;
@@ -34,6 +51,7 @@
 
 .text-area {
     font-family: $font-libre-franklin;
+    margin: $small-margin-y;
  
     width: 500px;
     font-size: $content;

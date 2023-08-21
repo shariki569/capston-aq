@@ -3,6 +3,7 @@ import postRoutes from "./routes/posts.js";
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
 import pageRoutes from "./routes/pages.js";
+import contactRoutes from "./routes/contact.js"
 import accommRoutes from "./routes/accommodations.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
@@ -39,6 +40,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/pages", pageRoutes);
 app.use("/api/accommodations", accommRoutes);
+app.use("/api/contacts", contactRoutes);
 
 app.listen(8800, () => {
   console.log("Connected oy amaw!");

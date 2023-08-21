@@ -1,9 +1,30 @@
+import axios from "axios";
 import ContactForm from "../Components/forms/ContactForm";
 import Header from "../Components/ui/Header";
 import headerImage from "../img/Contact-head.webp";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FiMapPin, FiPhone, FiMail } from "react-icons/fi";
 const Contact = () => {
+
+  const [contactInfo, SetContactInfo] = useState(null);
+
+  useEffect (() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`/api/contacts`);
+        SetContactInfo(res.data[0]);
+      } catch (err) {
+        console.log(err)
+      }
+    };
+
+    fetchData()
+  }, []);
+
+
+
+
+
   return (
     <div className="contact">
       <Header
@@ -21,21 +42,22 @@ const Contact = () => {
           <div className="contact-details">
             <ul className="contact-items">
               <li className="contact-item">
-                <FiMapPin className="icon" />
+                <div className="icon-wrapper">
+                  <FiMapPin className="icon" size={25}/>
+                </div>
                 <span>
-                  Sitio Cainta, Barangay Pooc, City of Talisay, Cebu City,
-                  Philippines
+                  {contactInfo?.con_address}
                 </span>
               </li>
               <li className="contact-item">
-                <FiPhone className="icon" />
-                <span>(032) 266 0914 </span>
+                <FiPhone className="icon" size={25}/>
+                <span>{contactInfo?.con_telphone}</span>
                 <span>/</span>
-                <span>0919 503 6715</span>
+                <span>{contactInfo?.con_cellphone}</span>
               </li>
               <li className="contact-item">
-                <FiMail className="icon" />
-                <span>aqua.cainta.resort@gmail.com</span>
+                <FiMail className="icon" size={25}/>
+                <span>{contactInfo?.con_email}</span>
               </li>
             </ul>
           </div>

@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import DOMPurify from 'dompurify'
 
 const TwoSections = ({ img, content, title}) => {
+
+  // console.log("Image URL:", img)
   return (
     <div className='two-sections-container'>
         <div className="image-wrapper">

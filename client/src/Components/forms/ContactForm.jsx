@@ -41,6 +41,8 @@ const ContactForm = () => {
             onChange={(value) => handleInputChange("name", value)}
             placeholder="Your Name"
           />
+
+          
           <TextInput
             label="Contact No.:"
             type="number"

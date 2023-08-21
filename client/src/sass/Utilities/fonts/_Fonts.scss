@@ -29,5 +29,17 @@ $base-line-height: 1.25rem;
 $large-line-height: 1.75rem;
 
 
+.main-bold{
+    font-weight: $w-mediun;
+}
 
+.sm-font{
+    font-size: $mini;
+}
 
+.m-font{
+    font-size: $content;
+}
+.l-font{
+    font-size: $large;
+}

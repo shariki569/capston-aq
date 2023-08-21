@@ -5,7 +5,7 @@ import { Link, Outlet } from 'react-router-dom'
 const AccommodationMenuLayout = () => {
   return (
     <div>
-      <h2>Accommodation Menu</h2>
+      <h2 className='dashboard-header'>Accommodation Menu</h2>
       <Outlet />
     </div>
   )

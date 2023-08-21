@@ -63,6 +63,7 @@ const Write = () => {
           type="text"
           value={title}
           placeholder='Tile'
+          width={100}
           onChange={(e) => setTitle(e.target.value)}
         />
         {/* <input

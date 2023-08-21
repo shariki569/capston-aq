@@ -1,3 +1,31 @@
+.main-bold {
+  font-weight: 500;
+}
+
+.sm-font {
+  font-size: 0.75rem;
+}
+
+.m-font {
+  font-size: 0.85rem;
+}
+
+.l-font {
+  font-size: 1rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.s-margin-y {
+  margin: 0.7rem 0;
+}
+
+.m-margin-y {
+  margin: 1.25rem 0;
+}
+
 .form-wrapper {
   display: flex;
   flex-direction: column;
@@ -129,17 +157,26 @@
   transform: translateX(0);
 }
 
+.input-flex {
+  display: flex;
+  flex-direction: row;
+}
+.input-flex .label {
+  min-width: 200px;
+}
+
 .text-input {
+  display: flex;
+  flex-direction: column;
   font-family: "Libre Franklin";
   font-size: 0.85rem;
   color: #232422;
   width: 100%;
 }
 .text-input .label {
-  margin: 1.25rem 0;
+  margin: 0.7rem 0;
 }
 .text-input .input {
-  margin: 0.7rem 0;
   width: 100%;
   padding: 0.5rem;
   min-height: 10px;
@@ -159,6 +196,7 @@
 
 .text-area {
   font-family: "Libre Franklin";
+  margin: 0.7rem 0;
   width: 500px;
   font-size: 0.85rem;
 }
@@ -389,43 +427,56 @@ table tr td .crud-btn button:nth-child(3) {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  max-width: 42%;
 }
-.contact .contact-info .contact-title {
+
+.contact-title {
   padding: 1.75rem 0;
 }
-.contact .contact-info .contact-title h1 {
+.contact-title h1 {
   font-family: "Libre Baskerville";
   font-size: 1.5rem;
   color: #218380;
 }
-.contact .contact-info .contact-title p {
+.contact-title p {
   padding: 1rem 0;
   font-family: "Libre Franklin";
   font-size: 0.85rem;
   color: #b4b9ae;
 }
-.contact .contact-info .contact-details {
+
+.contact-details {
   min-height: 50%;
   font-family: "Libre Franklin";
   flex-wrap: wrap;
 }
-.contact .contact-info .contact-details .contact-items {
+.contact-details .contact-items {
   list-style: none;
   color: #232422;
 }
-.contact .contact-info .contact-details .contact-items .contact-item {
+.contact-details .contact-items .contact-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   font-size: 1rem;
   padding: 0.5rem 0;
 }
-.contact .contact-info .contact-details .contact-items .contact-item .icon {
+.contact-details .contact-items .contact-item .icon-wrapper {
+  height: 30px;
+}
+.contact-details .contact-items .contact-item .icon {
   color: #d81159;
 }
-.contact .contact-info .contact-details .contact-items .contact-item span {
+.contact-details .contact-items .contact-item span {
   margin-left: 0.75rem;
 }
 
 .container-accomodation {
   width: 100vw;
+  overflow-x: none;
+}
+.container-accomodation .wrapper:not(.with-title) .accommodation-title::after {
+  content: none;
 }
 .container-accomodation .accommodation-title {
   position: relative;
@@ -842,6 +893,13 @@ input[type=number] {
   offset: 30px;
 }
 
+.flex-column-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
+}
+
 .app {
   display: flex;
   justify-content: center;
@@ -1056,6 +1114,9 @@ input[type=number] {
   gap: 20px;
   align-items: flex-start;
 }
+.app .container .add .dashboard-header {
+  line-height: 80px;
+}
 .app .container .add .img-preview {
   display: flex;
   flex-direction: column;
@@ -1068,8 +1129,8 @@ input[type=number] {
   height: 100%;
 }
 .app .container .add .img-preview .thumbnail img {
-  max-width: 250px;
-  height: 250px;
+  max-width: 100%;
+  height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
   aspect-ratio: 1/1;
@@ -1090,7 +1151,7 @@ input[type=number] {
   flex: 5;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 5px;
   color: #555;
 }
 .app .container .add .content h2 {
@@ -1110,6 +1171,9 @@ input[type=number] {
 .app .container .add .content .add-button a:hover {
   text-decoration: underline;
 }
+.app .container .add .content .container {
+  margin: 1.25rem 0;
+}
 .app .container .add .content .editorContainer {
   height: 300px;
   overflow: scroll;
@@ -1118,6 +1182,33 @@ input[type=number] {
 .app .container .add .content .editorContainer .editor {
   height: 100%;
   border: none;
+}
+.app .container .add .page-sections {
+  margin: 1.25rem 0;
+}
+.app .container .add .page-sections .page-sections-wrapper {
+  display: flex;
+  gap: 20px;
+}
+.app .container .add .page-sections .page-sections-wrapper .image-wrapper img {
+  height: 100%;
+  max-width: 300px;
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.app .container .add .page-sections .page-sections-wrapper .description-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: inherit;
+  gap: 3px;
+}
+.app .container .add .page-sections .page-sections-wrapper .description-wrapper h3 {
+  margin: 1.25rem 0;
+}
+.app .container .add .page-sections .page-sections-wrapper .description-wrapper .editorContainer {
+  margin: auto 0;
+  height: 200px;
 }
 .app .container .add .menu {
   flex: 2;
@@ -1128,7 +1219,6 @@ input[type=number] {
 .app .container .add .menu .item {
   border: 1px solid lightgray;
   padding: 10px;
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

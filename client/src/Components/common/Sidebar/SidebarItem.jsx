@@ -6,6 +6,8 @@ const SidebarItem = ({item}) => {
 
     const [open, setOpen] = useState(true);
 
+    
+
     if(item.submenu){
     return (
         <div className={open ? "sidebar-item open" : "sidebar-item"}>

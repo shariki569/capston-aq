@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react'
 import Header from '../Components/ui/Header'
 import headerImage from '../img/header1.jpg'
 import TwoSections from '../Components/ui/TwoSections'
-import dummyImage from  '../img/dummy-image1.svg'
+import dummyImage from '../img/dummy-image1.svg'
 import axios from 'axios'
 
 
 const About = () => {
 
   const [pageData, setPageData] = useState(null)
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -27,23 +27,25 @@ const About = () => {
       {pageData && (
         <div>
           <Header
-            imageUrl = {headerImage}
-            title = {pageData.PageTitle}
-            pageSlug = {pageData.Slug}
-            state = {pageData}
+            imageUrl={headerImage}
+            title={pageData.PageTitle}
+            pageSlug={pageData.Slug}
+            state={pageData}
           />
-          {pageData.sections.map((section) =>  (
-              <TwoSections 
+          {pageData.sections.map((section) => (
+            <TwoSections
+              
               key={section.SectionId}
-              title = {section.SectionHeading}
+              title={section.SectionHeading}
               content={section.SectionContent}
-              img= {dummyImage}
-              />
+              img={section.SectionImage}
+            />
           ))}
+          
         </div>
       )}
 
-      
+
     </div>
   )
 }

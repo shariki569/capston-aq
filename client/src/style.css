@@ -26,13 +26,21 @@
   margin: 1.25rem 0;
 }
 
+.d-flex {
+  display: flex;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
 .form-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 50vh;
-  background-color: #f5f6f2;
+  background-color: #f8f9fa;
   padding: 1.75rem 1rem;
 }
 .form-wrapper .form-title {
@@ -58,10 +66,27 @@
   align-items: center;
 }
 
+.header.small {
+  min-height: 50vh;
+}
+.header.small h1 {
+  font-size: 2.5rem;
+}
+
+.text-normal {
+  color: #ffffff;
+  font-size: 3.5rem;
+}
+
+.text-small {
+  color: #ffffff;
+  font-size: 2.5rem;
+}
+
 .header {
   position: relative;
   min-height: 70vh;
-  width: 100%;
+  min-width: 100%;
   overflow: hidden;
   font-family: "Libre Franklin";
 }
@@ -84,44 +109,67 @@
   text-align: center;
   z-index: 99;
 }
-.header .header-title h1 {
-  color: #f2fcee;
-  font-size: 3.5rem;
-}
 
 .two-sections-container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  height: auto;
+  min-height: 100vh;
   width: 100%;
-  gap: 10%;
-  padding: 1rem;
+  padding: 1.75rem;
 }
-.two-sections-container .image-wrapper {
-  width: 30%;
+.two-sections-container .image-container {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.two-sections-container .image-container .image-wrapper {
   height: 80%;
-  max-width: 40%;
+  max-width: 80%;
+  aspect-ratio: 1/1;
 }
 .two-sections-container img {
   border-radius: 30px;
   width: 100%;
   height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .two-sections-container .content-wrapper {
-  width: 40%;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
-.two-sections-container .content-wrapper h1 {
+.two-sections-container .content-wrapper .content {
+  width: 100%;
+  min-height: 60%;
+  display: flex;
+  flex-direction: column;
+}
+.two-sections-container .content-wrapper .content h1 {
   color: #218380;
   font-family: "Libre Baskerville";
   margin: 1.25rem 0;
 }
-.two-sections-container .content-wrapper p {
+.two-sections-container .content-wrapper .content p {
   color: #232422;
   font-family: "Libre Franklin";
   font-size: 1rem;
   line-height: 1.5;
+}
+.two-sections-container .content-wrapper .content .cta-wrapper {
+  margin: auto 0;
+}
+
+.card {
+  box-shadow: 0px 10px 20px -18px rgba(29, 53, 87, 0.11);
+  background-color: #ffffff;
+  border-radius: 10px;
 }
 
 .btn {
@@ -151,7 +199,7 @@
   z-index: -1111;
 }
 .btn:hover {
-  color: #f2fcee;
+  color: #e1ebdd;
 }
 .btn:hover::before {
   transform: translateX(0);
@@ -184,7 +232,7 @@
   border: 1px solid #b4b9ae;
   outline: none;
   line-height: 1.25rem;
-  background-color: #fcf9f9;
+  background-color: #faf7f7;
 }
 .text-input .input:focus {
   border-bottom: 2px solid #218380;
@@ -212,7 +260,7 @@
   border: 1px solid #b4b9ae;
   outline: none;
   line-height: 1.25rem;
-  background-color: #fcf9f9;
+  background-color: #faf7f7;
 }
 .text-area .text-area-input:focus {
   border-bottom: 2px solid #218380;
@@ -231,33 +279,41 @@ table tr {
   height: 50px;
 }
 table tr:nth-child(even) {
-  background-color: rgba(255, 255, 255, 0.9450980392);
+  background-color: #ffffff;
 }
 table tr th {
   border: 1px solid #218380;
-  color: #f2fcee;
+  color: #e1ebdd;
   font-weight: 700;
   background-color: #218380;
 }
-table tr td {
-  border: 1px solid #5c5b5b;
-  padding: 0 0.25rem;
-  max-width: 200px;
+table tr td.center {
+  text-align: center;
+}
+table tr .nowrap {
+  white-space: nowrap;
+}
+table tr td.description {
+  max-width: 250px;
   overflow: hidden;
   text-overflow: ellipsis;
-  text-align: center;
   white-space: nowrap;
+  padding: 0.5rem;
+}
+table tr td {
+  border: 1px solid #ECEFF1;
+  padding-inline: 0.5rem;
+  min-width: 5rem;
 }
 table tr td img {
   -o-object-fit: cover;
      object-fit: cover;
-  height: 30%;
-  width: 30%;
+  width: 80%;
   aspect-ratio: 1/1;
 }
 table tr td .crud-btn {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 5px;
   justify-content: center;
 }
@@ -265,20 +321,74 @@ table tr td .crud-btn button {
   border: none;
   background-color: transparent;
   cursor: pointer;
-  color: #f2fcee;
-  background-color: #73d2de;
+  color: #ffffff;
+  background-color: #218380;
   padding: 0.5rem;
   border-radius: 10px;
+  text-decoration: none;
 }
 table tr td .crud-btn button a {
   text-decoration: none;
-  color: #f2fcee;
+  color: #ffffff;
 }
 table tr td .crud-btn button:nth-child(3) {
-  background-color: red;
+  background-color: #ff0000;
   padding: 0.5rem;
   border-radius: 10px;
-  color: #f2fcee;
+  color: #ffffff;
+}
+
+.img-preview {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+.img-preview .thumbnail {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  height: 100%;
+}
+.img-preview .thumbnail img {
+  max-width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  aspect-ratio: 1/1;
+}
+.img-preview .thumbnail button {
+  border: none;
+  background-color: transparent;
+  top: 5px;
+  right: 5px;
+  position: absolute;
+  cursor: pointer;
+  color: #e1ebdd;
+}
+.img-preview .thumbnail button:hover {
+  color: red;
+}
+.img-preview .img-button {
+  position: absolute;
+  top: 50%;
+  text-decoration: none;
+}
+.img-preview .img-button .file {
+  cursor: pointer;
+  color: white;
+  border: 2px solid white;
+  padding: 3px 5px;
+  height: 100%;
+  width: 100%;
+  font-weight: 600;
+  padding: 0.5rem;
+}
+.img-preview .img-button .file:hover {
+  color: wheat;
+  border: 1px solid wheat;
 }
 
 .home {
@@ -362,7 +472,7 @@ table tr td .crud-btn button:nth-child(3) {
   z-index: 99;
 }
 .about .header .header-title h1 {
-  color: #f2fcee;
+  color: #e1ebdd;
   font-size: 3.5rem;
 }
 
@@ -377,7 +487,7 @@ table tr td .crud-btn button:nth-child(3) {
 }
 .auth h1 {
   font-size: 20px;
-  color: #f2fcee;
+  color: #e1ebdd;
   margin-bottom: 20px;
   font-family: "Libre Franklin";
   font-size: 1.5rem;
@@ -386,7 +496,7 @@ table tr td .crud-btn button:nth-child(3) {
   display: flex;
   flex-direction: column;
   padding: 50px;
-  background-color: #f5f6f2;
+  background-color: #f8f9fa;
   width: 200;
   gap: 20px;
   border-radius: 15px;
@@ -478,6 +588,11 @@ table tr td .crud-btn button:nth-child(3) {
 .container-accomodation .wrapper:not(.with-title) .accommodation-title::after {
   content: none;
 }
+.container-accomodation .container {
+  margin-inline: auto;
+  max-width: 100rem;
+  padding-inline: 5rem;
+}
 .container-accomodation .accommodation-title {
   position: relative;
   font-size: 3.5rem;
@@ -486,7 +601,7 @@ table tr td .crud-btn button:nth-child(3) {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 2.25rem 0;
+  margin: 1.75rem 0;
   color: #218380;
   margin-bottom: auto;
 }
@@ -508,92 +623,209 @@ table tr td .crud-btn button:nth-child(3) {
   font-size: 1rem;
   font-family: "Libre Baskerville";
   color: #218380;
-  padding: 1.75rem 0;
+  padding: 0.5rem 0 1.75rem 0;
 }
 .container-accomodation .wrapper .card {
-  width: 70%;
-  height: 100%;
-  display: flex;
-  margin-top: 30px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 1.75rem 0;
+  aspect-ratio: 0.5/0.7;
   box-shadow: 0px 10px 20px -18px rgba(29, 53, 87, 0.11);
   background-color: #ffffff;
   border-radius: 10px;
 }
-.container-accomodation .wrapper .card:nth-child(2n+1) .content {
-  flex-direction: row-reverse;
-  display: flex;
-  width: 100%;
-}
-.container-accomodation .wrapper .card:nth-child(2n+1) .content .img {
-  margin-left: auto;
-  border-radius: 0 10px 10px 0;
-}
 .container-accomodation .wrapper .card .content {
-  display: flex;
   width: 100%;
-  justify-content: space-between;
 }
 .container-accomodation .wrapper .card .content .img {
-  border-radius: 10px 0 0 10px;
+  border-radius: 10px 10px 0 0;
   -o-object-fit: cover;
      object-fit: cover;
-  aspect-ratio: 1/1;
-  max-height: 400px;
-  width: 400px;
-}
-.container-accomodation .wrapper .card .content .description {
-  display: flex;
-  flex-direction: column;
-  padding: 0 1rem;
+  aspect-ratio: 1.5/1;
   width: 100%;
 }
-.container-accomodation .wrapper .card .content .description .price {
-  color: #ffbc42;
-  font-size: 1.5rem;
+.container-accomodation .wrapper .card .description {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  width: 100%;
+  margin-top: auto;
+}
+.container-accomodation .wrapper .card .description .price {
+  color: #F4A460;
+  font-size: 2.5rem;
   font-family: "Libre Baskerville";
 }
-.container-accomodation .wrapper .card .content .description .price::after {
+.container-accomodation .wrapper .card .description .price::after {
   content: "";
   width: 70px;
   height: 2px;
-  background-color: #ffbc42;
+  background-color: #F4A460;
   display: block;
-  margin: 1.25rem 0;
+  margin: 0.7rem 0;
 }
-.container-accomodation .wrapper .card .content .description .desc {
-  color: #232422;
+.container-accomodation .wrapper .card .description .caption {
+  display: flex;
+  color: #333333;
   font-family: "Libre Franklin";
-  margin-bottom: auto;
-  font-size: 0.85rem;
+  font-size: 1rem;
   line-height: 1.25rem;
-  min-height: 80px;
+  min-height: 10rem;
 }
-.container-accomodation .wrapper .card .content .description .accomodation-details {
+.container-accomodation .wrapper .card .description .caption p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0.25rem 0 auto 0;
+}
+.container-accomodation .wrapper .card .description .accomodation-details {
   display: flex;
   margin-bottom: auto;
+  padding: 0.5rem 0;
 }
-.container-accomodation .wrapper .card .content .description .accomodation-details .accomodation-detail {
+.container-accomodation .wrapper .card .description .accomodation-details .accomodation-detail {
   display: flex;
   align-items: center;
 }
-.container-accomodation .wrapper .card .content .description .accomodation-details .accomodation-detail .icon {
+.container-accomodation .wrapper .card .description .accomodation-details .accomodation-detail .icon {
   color: #218380;
   margin-right: 0.75rem;
 }
-.container-accomodation .wrapper .card .content .description .accomodation-details .accomodation-detail label {
+.container-accomodation .wrapper .card .description .accomodation-details .accomodation-detail label {
   font-family: "Libre Franklin";
   font-weight: 600;
   color: #b4b9ae;
   margin-right: 0.75rem;
   font-size: 0.85rem;
 }
-.container-accomodation .wrapper .card .content .description .accomodation-details .accomodation-detail label span {
+.container-accomodation .wrapper .card .description .accomodation-details .accomodation-detail label span {
   font-family: "Libre Franklin";
   font-weight: 500;
   color: #232422;
   margin-left: 0.25rem;
+}
+
+.single {
+  display: flex;
+  gap: 50px;
+  margin: 1.75rem 0;
+  margin-inline: auto;
+  padding-inline: 10rem;
+}
+.single .content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  flex: 5;
+}
+.single .content img {
+  width: 100%;
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.single .content .user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  font-family: "Libre Baskerville";
+}
+.single .content .user img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.single .content .user span {
+  font-weight: bold;
+  font-family: font-libre-franklin;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+.single .content .user p {
+  font-family: "Libre Baskerville";
+  font-size: 0.75rem;
+  color: grey;
+}
+.single .content .edit {
+  display: flex;
+  gap: 5px;
+}
+.single .content .edit button {
+  border-radius: 50%;
+  border: none;
+}
+.single .content .edit .icon {
+  background-color: teal;
+  padding: 8px;
+  border-radius: 50%;
+  color: white;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  transition: 0.1s ease-in-out;
+}
+.single .content .edit .icon-delete:hover {
+  background-color: rgb(245, 18, 18);
+}
+.single .content .edit .icon-edit:hover {
+  background-color: rgb(12, 71, 199);
+}
+.single .content h1 {
+  font-size: 2.5rem;
+  font-family: "Libre Franklin";
+  color: #333;
+}
+.single .content p {
+  font-family: "Libre Baskerville";
+  text-align: justify;
+  line-height: 30px;
+}
+.single .menu {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.single .menu h1 {
+  font-size: 0.85rem;
+  color: #555;
+  font-family: "Libre Franklin";
+}
+.single .menu .post {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.single .menu .post img {
+  width: 100%;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.single .menu .post h2 {
+  color: #555;
+  font-family: "Libre Franklin";
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+.single .menu .post button {
+  width: -moz-max-content;
+  width: max-content;
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  background-color: white;
+  border: 1px solid teal;
+  color: teal;
+  font-family: "Libre Baskerville";
+  transition: 0.1s ease-in-out;
+}
+.single .menu .post button:hover {
+  border: 1px solid white;
+  background-color: #b9e7e7;
+  color: black;
 }
 
 .navbar {
@@ -619,7 +851,7 @@ table tr td .crud-btn button:nth-child(3) {
   font-family: "Libre Franklin";
   text-decoration: none;
   text-transform: uppercase;
-  color: #f2fcee;
+  color: #e1ebdd;
 }
 .navbar .container .logo img {
   width: 80px;
@@ -659,7 +891,7 @@ table tr td .crud-btn button:nth-child(3) {
   top: 50px;
   margin-top: 15px;
   min-width: 150px;
-  background-color: #f5f6f2;
+  background-color: #f8f9fa;
   box-shadow: 0px 10px 20px -18px rgba(29, 53, 87, 0.11);
   border-radius: 5px;
   display: none;
@@ -676,7 +908,7 @@ table tr td .crud-btn button:nth-child(3) {
 }
 .navbar .container .dropdown-menu .dropdown-items li:hover {
   background-color: #218380;
-  color: #f5f6f2;
+  color: #f8f9fa;
   border-radius: 3px;
 }
 .navbar .container .dropdown-menu .dropdown-items .sub-link {
@@ -693,7 +925,7 @@ table tr td .crud-btn button:nth-child(3) {
   width: 200px;
 }
 .navbar .user-link span {
-  color: #f2fcee;
+  color: #e1ebdd;
   cursor: pointer;
   font-family: "Libre Franklin";
 }
@@ -701,7 +933,7 @@ table tr td .crud-btn button:nth-child(3) {
 footer {
   margin-top: 5rem;
   padding: 10px 50px;
-  background-color: #f2fcee;
+  background-color: #e1ebdd;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -872,7 +1104,7 @@ textarea {
 body {
   min-height: 100vh;
   overflow-x: hidden;
-  background-color: #f5f6f2;
+  background-color: #faf7f7;
   font-family: "Libre Franklin";
 }
 
@@ -897,7 +1129,22 @@ input[type=number] {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: start;
+  align-items: flex-start;
+}
+
+.container {
+  width: 100%;
+  margin-inline: auto;
+}
+
+.dark {
+  color: #218380;
+}
+
+.grid-view {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 2rem;
 }
 
 .app {
@@ -905,34 +1152,31 @@ input[type=number] {
   justify-content: center;
   height: 100%;
 }
-.app .container {
-  width: 100%;
-}
-.app .container .link {
+.app .link {
   font-family: "Libre Franklin";
   text-decoration: none;
-  color: #f2fcee;
+  color: #e1ebdd;
   cursor: pointer;
 }
-.app .container .posts .post-items {
+.app .posts .post-items {
   margin-top: 50px;
   display: flex;
   flex-direction: column;
   gap: 150px;
   padding: 20px 200px;
 }
-.app .container .posts .post {
+.app .posts .post {
   display: flex;
   gap: 100px;
 }
-.app .container .posts .post:nth-child(2n+1) {
+.app .posts .post:nth-child(2n+1) {
   flex-direction: row-reverse;
 }
-.app .container .posts .post .img {
+.app .posts .post .img {
   flex: 1;
   position: relative;
 }
-.app .container .posts .post .img::after {
+.app .posts .post .img::after {
   content: "";
   width: 100%;
   height: 100%;
@@ -942,31 +1186,31 @@ input[type=number] {
   left: -20px;
   z-index: -1;
 }
-.app .container .posts .post .img img {
+.app .posts .post .img img {
   width: 100%;
   max-height: 400px;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.app .container .posts .post .content {
+.app .posts .post .content {
   flex: 3;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-.app .container .posts .post .content a {
+.app .posts .post .content a {
   text-decoration: none;
 }
-.app .container .posts .post .content h1 {
+.app .posts .post .content h1 {
   font-family: "Libre Franklin";
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: black;
 }
-.app .container .posts .post .content p {
+.app .posts .post .content p {
   font-size: 0.85rem;
   font-family: "Libre Baskerville";
 }
-.app .container .posts .post .content button {
+.app .posts .post .content button {
   width: -moz-max-content;
   width: max-content;
   border: none;
@@ -978,245 +1222,93 @@ input[type=number] {
   font-family: "Libre Baskerville";
   transition: 0.1s ease-in-out;
 }
-.app .container .posts .post .content button:hover {
+.app .posts .post .content button:hover {
   border: 1px solid white;
   background-color: #b9e7e7;
   color: black;
 }
-.app .container .single {
-  display: flex;
-  gap: 50px;
-  padding: 10px 20% 10px 20%;
-}
-.app .container .single .content {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  flex: 5;
-}
-.app .container .single .content img {
-  width: 100%;
-  height: 300px;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-.app .container .single .content .user {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.85rem;
-  font-family: "Libre Baskerville";
-}
-.app .container .single .content .user img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-.app .container .single .content .user span {
-  font-weight: bold;
-  font-family: font-libre-franklin;
-  font-weight: 600;
-  font-size: 0.85rem;
-}
-.app .container .single .content .user p {
-  font-family: "Libre Baskerville";
-  font-size: 0.75rem;
-  color: grey;
-}
-.app .container .single .content .edit {
-  display: flex;
-  gap: 5px;
-}
-.app .container .single .content .edit button {
-  border-radius: 50%;
-  border: none;
-}
-.app .container .single .content .edit .icon {
-  background-color: teal;
-  padding: 8px;
-  border-radius: 50%;
-  color: white;
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-  transition: 0.1s ease-in-out;
-}
-.app .container .single .content .edit .icon-delete:hover {
-  background-color: rgb(245, 18, 18);
-}
-.app .container .single .content .edit .icon-edit:hover {
-  background-color: rgb(12, 71, 199);
-}
-.app .container .single .content h1 {
-  font-size: 2rem;
-  font-family: "Libre Franklin";
-  color: #333;
-}
-.app .container .single .content p {
-  font-family: "Libre Baskerville";
-  text-align: justify;
-  line-height: 30px;
-}
-.app .container .single .menu {
-  flex: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-.app .container .single .menu h1 {
-  font-size: 0.85rem;
-  color: #555;
-  font-family: "Libre Franklin";
-}
-.app .container .single .menu .post {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.app .container .single .menu .post img {
-  width: 100%;
-  height: 200px;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-.app .container .single .menu .post h2 {
-  color: #555;
-  font-family: "Libre Franklin";
-  font-weight: 700;
-  font-size: 1.5rem;
-}
-.app .container .single .menu .post button {
-  width: -moz-max-content;
-  width: max-content;
-  border: none;
-  cursor: pointer;
-  padding: 10px 20px;
-  background-color: white;
-  border: 1px solid teal;
-  color: teal;
-  font-family: "Libre Baskerville";
-  transition: 0.1s ease-in-out;
-}
-.app .container .single .menu .post button:hover {
-  border: 1px solid white;
-  background-color: #b9e7e7;
-  color: black;
-}
-.app .container .add {
+.app .add {
   width: 100%;
   height: 100%;
   margin-top: 20px;
   display: flex;
   justify-content: center;
-  align-items: center;
   gap: 20px;
   align-items: flex-start;
 }
-.app .container .add .dashboard-header {
+.app .add .dashboard-header {
   line-height: 80px;
 }
-.app .container .add .img-preview {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 0.75rem;
-}
-.app .container .add .img-preview .thumbnail {
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  height: 100%;
-}
-.app .container .add .img-preview .thumbnail img {
-  max-width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  aspect-ratio: 1/1;
-}
-.app .container .add .img-preview .thumbnail button {
-  border: none;
-  background-color: transparent;
-  top: 5px;
-  right: 5px;
-  position: absolute;
-  cursor: pointer;
-  color: #f2fcee;
-}
-.app .container .add .img-preview .thumbnail button:hover {
-  color: red;
-}
-.app .container .add .content {
+.app .add .content {
   flex: 5;
   display: flex;
   flex-direction: column;
   gap: 5px;
   color: #555;
 }
-.app .container .add .content h2 {
-  font-size: 2rem;
+.app .add .content h2 {
+  font-size: 2.5rem;
   font-family: "Libre Franklin";
 }
-.app .container .add .content .add-button {
+.app .add .content .add-button {
   display: inline;
   align-items: center;
 }
-.app .container .add .content .add-button a {
+.app .add .content .add-button a {
   display: flex;
   color: green;
   text-decoration: none;
   gap: 5px;
 }
-.app .container .add .content .add-button a:hover {
+.app .add .content .add-button a:hover {
   text-decoration: underline;
 }
-.app .container .add .content .container {
+.app .add .content .container {
   margin: 1.25rem 0;
 }
-.app .container .add .content .editorContainer {
+.app .add .content .editorContainer {
   height: 300px;
   overflow: scroll;
   border: 1px solid lightgray;
 }
-.app .container .add .content .editorContainer .editor {
+.app .add .content .editorContainer .editor {
   height: 100%;
   border: none;
 }
-.app .container .add .page-sections {
+.app .add .page-sections {
   margin: 1.25rem 0;
 }
-.app .container .add .page-sections .page-sections-wrapper {
+.app .add .page-sections .page-sections-wrapper {
   display: flex;
   gap: 20px;
 }
-.app .container .add .page-sections .page-sections-wrapper .image-wrapper img {
+.app .add .page-sections .page-sections-wrapper .image-wrapper img {
   height: 100%;
   max-width: 300px;
   aspect-ratio: 1/1;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.app .container .add .page-sections .page-sections-wrapper .description-wrapper {
+.app .add .page-sections .page-sections-wrapper .description-wrapper {
   display: flex;
   flex-direction: column;
   margin: inherit;
   gap: 3px;
 }
-.app .container .add .page-sections .page-sections-wrapper .description-wrapper h3 {
+.app .add .page-sections .page-sections-wrapper .description-wrapper h3 {
   margin: 1.25rem 0;
 }
-.app .container .add .page-sections .page-sections-wrapper .description-wrapper .editorContainer {
+.app .add .page-sections .page-sections-wrapper .description-wrapper .editorContainer {
   margin: auto 0;
   height: 200px;
 }
-.app .container .add .menu {
+.app .add .menu {
   flex: 2;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-.app .container .add .menu .item {
+.app .add .menu .item {
   border: 1px solid lightgray;
   padding: 10px;
   display: flex;
@@ -1226,45 +1318,45 @@ input[type=number] {
   font-family: "Libre Franklin";
   color: #555;
 }
-.app .container .add .menu .item .item-container {
+.app .add .menu .item .item-container {
   display: flex;
   flex-direction: column;
   margin: 0.7rem 0;
   gap: 0.7rem;
 }
-.app .container .add .menu .item .item-container .top-row {
+.app .add .menu .item .item-container .top-row {
   display: flex;
   justify-content: space-between;
   gap: 10px;
 }
-.app .container .add .menu .item .item-container .item-input {
+.app .add .menu .item .item-container .item-input {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.app .container .add .menu .item .item-container .item-input span {
+.app .add .menu .item .item-container .item-input span {
   padding: 0 0.25rem;
 }
-.app .container .add .menu .item .item-container .item-input .dropdown-input {
+.app .add .menu .item .item-container .item-input .dropdown-input {
   position: relative;
   width: 100%;
 }
-.app .container .add .menu .item .item-container .item-input .dropdown-input .select-box {
+.app .add .menu .item .item-container .item-input .dropdown-input .select-box {
   font-family: "Libre Franklin";
   width: 100%;
   padding: 0.5rem;
   border: 1px solid lightgray;
   color: #232422;
 }
-.app .container .add .menu .item .item-container .item-input .dropdown-input .select-box:focus {
+.app .add .menu .item .item-container .item-input .dropdown-input .select-box:focus {
   border-bottom: 2px solid #218380;
   border-radius: 4px 4px 2px 2px;
 }
-.app .container .add .menu .item .item-container .item-input .dropdown-input .select-box option[disabled][selected] {
+.app .add .menu .item .item-container .item-input .dropdown-input .select-box option[disabled][selected] {
   color: #b4b9ae;
   opacity: 0.5;
 }
-.app .container .add .menu .item .item-container .item-input .dropdown-input .custom-arrow {
+.app .add .menu .item .item-container .item-input .dropdown-input .custom-arrow {
   position: absolute;
   display: block;
   top: 0;
@@ -1273,52 +1365,52 @@ input[type=number] {
   width: 2rem;
   background: #b4b9ae;
 }
-.app .container .add .menu .item h1 {
+.app .add .menu .item h1 {
   font-size: 1.5rem;
   font-family: "Libre Franklin";
 }
-.app .container .add .menu .item span {
+.app .add .menu .item span {
   margin: 3px 0;
 }
-.app .container .add .menu .item .file {
+.app .add .menu .item .file {
   margin: 5px 0;
-  text-decoration: underline;
+  text-decoration: none;
   cursor: pointer;
 }
-.app .container .add .menu .item .file:hover {
-  color: rgb(240, 29, 29);
+.app .add .menu .item .file:hover {
+  color: #b4b9ae;
 }
-.app .container .add .menu .item .buttons {
+.app .add .menu .item .buttons {
   display: flex;
   justify-content: flex-start;
   gap: 10px;
   margin-top: 20px;
 }
-.app .container .add .menu .item .buttons :first-child {
+.app .add .menu .item .buttons :first-child {
   cursor: pointer;
   color: white;
   background-color: teal;
   border: 1px solid teal;
   padding: 3px 5px;
 }
-.app .container .add .menu .item .buttons :last-child {
+.app .add .menu .item .buttons :last-child {
   cursor: pointer;
   color: teal;
   background-color: white;
   border: 1px solid teal;
   padding: 3px 5px;
 }
-.app .container .dashboard-layout {
+.app .dashboard-layout {
   display: flex;
   height: 100vh;
 }
-.app .container .dashboard-layout .content-container {
+.app .dashboard-layout .content-container {
   background-color: rgb(255, 255, 255);
   flex: 1;
   padding: 40px 20px;
   overflow-y: auto;
 }
-.app .container .dashboard {
+.app .dashboard {
   display: flex;
   justify-content: center;
   align-items: center;

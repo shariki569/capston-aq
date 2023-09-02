@@ -73,7 +73,8 @@ export const updatePage = (req, res) => {
       if (err) return res.status(500).json("Error updating page");
 
       // Update page sections
-      const qUpdateSections = "UPDATE sections SET `SectionHeading` =? , `SectionContent` =?, `SectionImage`=? WHERE `SectionId`=? AND `Page_Id`=?";
+      const qUpdateSections =
+        "UPDATE sections SET `SectionHeading` = ?, `SectionContent` = ?, `SectionImage` = ? WHERE `SectionId` = ? AND `Page_Id` = ?";
       const qUpdateSectionsPromises = sections.map((section) => {
         const { SectionId, SectionHeading, SectionContent, SectionImage } =
           section;
@@ -81,7 +82,13 @@ export const updatePage = (req, res) => {
         return new Promise((resolve, reject) => {
           db.query(
             qUpdateSections,
-            [SectionHeading, SectionContent, SectionId, PageId, SectionImage],
+            [
+              SectionHeading, 
+              SectionContent, 
+              SectionImage, 
+              SectionId, 
+              PageId
+            ],
             (err) => {
               if (err) reject(err);
               else resolve();
@@ -94,14 +101,13 @@ export const updatePage = (req, res) => {
         .then(() => {
           res.json({ message: "Page and Sections have been updated!" });
         })
-        .catch(() => {
-          res.status(500).json("Error updating sections ");
+        .catch((err) => {
+          console.log(err);
+          res.status(500).json("Error updating sections: " + err.message);
         });
     });
   });
 };
-
-
 
 // export const updatePage1 = (req, res) => {
 //   const { slug } = req.params;

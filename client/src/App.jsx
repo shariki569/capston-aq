@@ -1,3 +1,5 @@
+// React and React Router imports
+import React, { useContext } from "react";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -6,6 +8,8 @@ import {
   useNavigate,
   Navigate,
 } from "react-router-dom";
+
+// Components imports
 import {
   Home,
   Login,
@@ -17,18 +21,27 @@ import {
   Contact,
   Accommodation,
 } from "./pages";
-import "./style.scss";
 import Dashboard from "./Components/admin/Dashboard";
-import DashboardLayout from "./Components/layouts/DashboardLayout";
 import Layout from "./Components/layouts/Layout";
+import DashboardLayout from "./Components/layouts/DashboardLayout";
 import Pages from "./Components/admin/Pages";
-import { Accommodation_Menu, Add_Accommodate } from "./Components/admin/Accommodate";
-import { useContext } from "react";
-import { AuthContext } from "./context/authContext";
+import {
+  Accommodation_Menu,
+  Add_Accommodate,
+} from "./Components/admin/Accommodate";
 import AccommodationMenuLayout from "./Components/layouts/AccommodationLayout";
 import Accommodation_Items from "./pages/Accommodation/Accommodation_Items";
 import Contact_Info from "./Components/admin/Contact_Info";
+import Media from "./Components/admin/Media";
+import PostsLayout from "./Components/layouts/PostsLayout";
+import Posts_Menu from "./Components/admin/Posts/Posts_Menu";
+import Accommodation_Single from "./pages/Accommodation/Accommodation_Single";
 
+// Context import
+import { AuthContext } from "./context/authContext";
+
+// Styles import
+import "./style.scss";
 const PrivateRoute = ({ element, path }) => {
   const { currentUser } = useContext(AuthContext);
   return currentUser ? element : <Navigate to="/login" />;
@@ -58,8 +71,12 @@ const router = createBrowserRouter([
         element: <Posts />,
       },
       {
-        path: "/accommodation",
+        path: "/accommodations",
         element: <Accommodation />,
+      },
+      {
+        path: "/accommodation/:title/:id",
+        element: <Accommodation_Single />,
       },
       {
         path: "/contact-us",
@@ -69,22 +86,34 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <DashboardLayout />,
+    element: <PrivateRoute element={<DashboardLayout />} />,
     children: [
       {
         path: "admin",
         element: <PrivateRoute element={<Dashboard />} />,
       },
       {
-        path: "write",
-        element: <PrivateRoute element={<Write />} />,
+        path: "posts",
+        element: <PrivateRoute element={<PostsLayout/>} />,
+        children: [
+          {
+            path: "",
+            element: <PrivateRoute element={<Posts_Menu/>} />, 
+          },
+          {
+            path: "write",
+            element: <PrivateRoute element={<Write/>} />, 
+          },
+          
+
+        ]
       },
       {
         path: "pages",
         element: <PrivateRoute element={<Pages />} />,
       },
       {
-        path: "accommodation-menu",
+        path: "accommodations",
         element: <PrivateRoute element={<AccommodationMenuLayout />} />,
         children: [
           {
@@ -100,6 +129,10 @@ const router = createBrowserRouter([
       {
         path: "contact-details",
         element: <PrivateRoute element={<Contact_Info />} />,
+      },
+      {
+        path: "media",
+        element: <PrivateRoute element={<Media />} />,
       }
 
 

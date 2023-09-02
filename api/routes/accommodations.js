@@ -1,6 +1,7 @@
 import express from "express";
 import {
   getAccomms,
+  getAccomm,
   addAccomm,
   deleteAccomm,
   updateAccomm
@@ -9,6 +10,7 @@ import {
 const router = express.Router();
 
 router.get("/", getAccomms);
+router.get("/:id", getAccomm);
 router.post("/", addAccomm);
 router.delete("/:id", deleteAccomm);
 router.patch("/:id", updateAccomm);

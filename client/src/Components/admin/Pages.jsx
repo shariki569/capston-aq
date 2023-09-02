@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import { useLocation, useNavigate } from "react-router-dom";
 import TextInput from "../forms/FormFields/TextInput";
@@ -7,43 +7,112 @@ import placeholder from "../../img/placeholder-image.webp";
 const Pages = () => {
   const state = useLocation().state;
   const [pageTitle, setPageTitle] = useState(state?.PageTitle || "");
-  const [pageSections, setSections] = useState(state?.sections || []);
-  const [file, setFile] = useState(null);
+  const [pageSections, setPageSections] = useState(state?.sections || []);
+  const [previewImages, setPreviewImages] = useState(
+    state?.sections.map(() => null) || []
+  );
   const navigate = useNavigate();
 
-  const upload = async () => {
+  useEffect(() => {
+    // Use a clean-up function to revoke object URLs when unmounting or when sections change.
+    return () => {
+      previewImages.forEach((previewImage) => {
+        if (previewImage) {
+          URL.revokeObjectURL(previewImage);
+        }
+      });
+    };
+  }, [previewImages]);
+
+  const uploadImage = async (file) => {
     try {
       const formData = new FormData();
-      formData.append("file", file)
-      const res = await axios.post("/api/upload", formData)
-      return res.data
-    } catch (err) {
-      console.log(err)
+      formData.append("file", file);
+      const response = await axios.post("/api/upload", formData);
+      return response.data;
+    } catch (error) {
+      console.error("Error Uploading image: ", error);
+      throw new Error("Image upload failed. Please try again later.");
     }
-  }
+  };
 
+  const handleSectionChange = async (sectionIndex, field, value) => {
+    const updatedSections = [...pageSections];
+    if (field === "SectionImage" && value) {
+      try {
+        const imgUrl = await uploadImage(value);
+        updatedSections[sectionIndex][field] = imgUrl;
 
+        // Clean up the previous object URL if it exists
+        if (previewImages[sectionIndex]) {
+          URL.revokeObjectURL(previewImages[sectionIndex]);
+        }
 
-  const handleSectionChange = (sectionIndex, field, value) => {
-    setSections((prevSections) => {
-      const updateSections = [...prevSections];
-      updateSections[sectionIndex][field] = value;
-      return updateSections;
-    });
+        setPreviewImages((prevImages) => {
+          const updatedImages = [...prevImages];
+          updatedImages[sectionIndex] = URL.createObjectURL(value);
+          return updatedImages;
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      updatedSections[sectionIndex][field] = value;
+    }
+    setPageSections(updatedSections);
+  };
+
+  const handleImageSelection = (sectionIndex, e) => {
+    const files = e.target.files;
+    if (files.length > 0) {
+      const selectedFile = files[0];
+      const updatedSections = [...pageSections];
+      updatedSections[sectionIndex].SectionImage = selectedFile;
+      setPageSections(updatedSections);
+
+      if (selectedFile instanceof Blob || selectedFile instanceof File) {
+        // Clean up the previous object URL if it exists
+        if (previewImages[sectionIndex]) {
+          URL.revokeObjectURL(previewImages[sectionIndex]);
+        }
+
+        const updatedImages = [...previewImages];
+        updatedImages[sectionIndex] = URL.createObjectURL(selectedFile);
+        setPreviewImages(updatedImages);
+      } else {
+        console.error("Invalid file selected.");
+        // Handle the error or provide user feedback as needed.
+      }
+    } else {
+      // Handle the case where no file is selected.
+    }
   };
 
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`/api/pages/${state.Slug}`, {
+
+      const updatedPageSections = pageSections.map(async (section) => {
+        if (section.SectionImage instanceof File) {
+          const newImageUrl = await uploadImage(section.SectionImage);
+          return { ...section, SectionImage: newImageUrl };
+        }
+        return section;
+      })
+
+      const updatedSections = await Promise.all(updatedPageSections);
+
+      await axios.put(`/api/pages/${state.Slug}`, {
         PageTitle: pageTitle,
-        sections: pageSections,
+        sections: updatedSections,
       });
       navigate(`/${state.Slug}`);
     } catch (err) {
       console.log(err);
     }
   };
+
+
 
   return (
     <div>
@@ -67,7 +136,26 @@ const Pages = () => {
                 <h3>Section {index + 1}</h3>
                 <div className="page-sections-wrapper">
                   <div className="image-wrapper">
-                    <img src={section.SectionImage} alt="" />
+                    <div className="img-preview">
+                      {previewImages[index] ? (
+                        <div className="thumbnail">
+                          <img src={previewImages[index]} alt="" />
+                        </div>) :
+                        section.SectionImage ? (
+                          <div className="thumbnail">
+                            <img src={`/upload/${section.SectionImage}`} alt="" />
+                          </div>
+                        ) : (
+                          <div className="thumbnail">
+                            <img src={placeholder} alt="placeholder" />
+                          </div>
+                        )}
+
+                      <div className="img-button">
+                        <input style={{ display: "none" }} type="file" id={`file-${index}`} onChange={(e) => handleImageSelection(index, e)} />
+                        <label htmlFor={`file-${index}`} className='file' encType="multipart/form-data">{section.SectionImage ? "Change Image" : "Upload"}</label>
+                      </div>
+                    </div>
                   </div>
 
                   <div className="description-wrapper">

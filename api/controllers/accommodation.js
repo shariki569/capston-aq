@@ -1,5 +1,6 @@
 import { db } from "../db.js";
 import jwt from "jsonwebtoken";
+import { idGenerator } from "../idGenerator/index.js";
 
 export const getAccomms = (req, res) => {
   const q = req.query.type
@@ -13,13 +14,14 @@ export const getAccomms = (req, res) => {
 };
 
 
-// export const getAccomm = (req, res) => {
-//   const q = "SELECT * FROM accommodations";
-//   db.query(q, (err, data) => {
-//     if (err) return res.status(500);
-//     return res.status(200).json(data);
-//   });
-// }
+export const getAccomm = (req, res) => {
+  const q = "SELECT Accommodation_Id, Accommodation_Title, Accommodation_Desc, Accommodation_Cap, Accommodation_Price, Accommodation_Unit, Accommodation_Type, Accommodation_Img FROM accommodations WHERE Accommodation_Id = ?";
+
+  db.query(q, [req.params.id], (err, data) => {
+    if (err) return res.status(500);
+    return res.status(200).json(data[0]);
+  });
+}
 
 export const deleteAccomm = (req, res) => {
 
@@ -33,9 +35,11 @@ export const deleteAccomm = (req, res) => {
 }
 
 export const addAccomm = (req, res) => {
-    const q = "INSERT INTO accommodations( `Accommodation_Title`, `Accommodation_Desc`, `Accommodation_Cap`, `Accommodation_Price`, `Accommodation_Unit`, `Accommodation_Type`, `Accommodation_Img`) VALUES (?)";
+    const q = "INSERT INTO accommodations( `Accommodation_Id`, `Accommodation_Title`, `Accommodation_Desc`, `Accommodation_Cap`, `Accommodation_Price`, `Accommodation_Unit`, `Accommodation_Type`, `Accommodation_Img`, `Accommodation_Date`) VALUES (?)";
+    const Id = idGenerator();
 
     const values = [
+      Id,
       req.body.accommTitle,
       req.body.accommDesc,
       req.body.accommCap,
@@ -43,6 +47,7 @@ export const addAccomm = (req, res) => {
       req.body.accommUnit,
       req.body.accommType,
       req.body.accommImg,
+      req.body.accommDate
     ];
     
     db.query(q, [values], (err, data) => {

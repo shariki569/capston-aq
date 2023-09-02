@@ -1,0 +1,5 @@
+@use "../Utilities/" as *;
+
+.card{
+    @include cardBase;
+}

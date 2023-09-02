@@ -1,26 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../Components/ui/Header'
 import headerImage from '../img/header1.jpg'
-import TwoSections from '../Components/ui/TwoSections'
+
 import dummyImage from '../img/dummy-image1.svg'
 import axios from 'axios'
+import { useAboutPageData } from '../Hooks/fetchPage'
+import TwoSections from '../Components/Sections/TwoSections'
 
 
 const About = () => {
 
-  const [pageData, setPageData] = useState(null)
+  const { pageData, fetchAboutData } = useAboutPageData()
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get('/api/pages/about-us')
-        setPageData(res.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchData();
-  }, [])
+    fetchAboutData();
+  }, []);
 
   return (
     <div className='about'>
@@ -34,14 +28,14 @@ const About = () => {
           />
           {pageData.sections.map((section) => (
             <TwoSections
-              
+
               key={section.SectionId}
               title={section.SectionHeading}
               content={section.SectionContent}
-              img={section.SectionImage}
+              img={`/upload/${section.SectionImage}`}
             />
           ))}
-          
+
         </div>
       )}
 

@@ -10,6 +10,7 @@
 @use "./sass/components/Buttons.scss";
 @use "./sass/components/Inputs.scss";
 @use "./sass/components/Table.scss";
+@use "./sass/components/UploadImageBlock.scss";
 
 //Pages
 @use "./sass/Pages/_Homepage.scss";
@@ -17,6 +18,7 @@
 @use "./sass/Pages/Authentication.scss";
 @use "./sass/Pages/Contact.scss";
 @use "./sass/Pages/Accommodation.scss";
+@use "./sass/Pages/Singlepage.scss";
 
 //Commmon Components
 @use "./sass/common/Navbar.scss";
@@ -102,7 +104,7 @@ textarea {
 body {
     min-height: 100vh;
     overflow-x: hidden;
-    background-color: $lightColor;
+    background-color: $lighterGreyColor;
     font-family: $font-libre-franklin;
 }
 
@@ -117,14 +119,28 @@ input[type="number"] {
     appearance: textfield;
 }
 
-
-.fixed-container{
+.fixed-container {
     position: fixed;
     offset: 30px;
 }
 
-.flex-column-left{
+.flex-column-left {
     @include leftFlexboxColumn;
+}
+
+.container {
+    //Login
+    width: 100%;
+    margin-inline: auto;
+}
+
+.dark{
+    color: $primary;
+}
+.grid-view{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    gap: 2rem
 }
 
 .app {
@@ -132,9 +148,7 @@ input[type="number"] {
     justify-content: center;
     height: 100%;
 
-    .container {
-        //Login
-        width: 100%;
+  
 
         //register
         .link {
@@ -225,143 +239,8 @@ input[type="number"] {
             }
         }
 
-        //SINGLE PAGE
-        .single {
-            display: flex;
-            gap: 50px;
-            padding: $standard-padding;
 
-            .content {
-                display: flex;
-                flex-direction: column;
-                gap: 30px;
-                flex: 5;
-
-                img {
-                    width: 100%;
-                    height: 300px;
-                    object-fit: cover;
-                }
-
-                .user {
-                    display: flex;
-                    align-items: center;
-                    gap: 10px;
-                    font-size: $content;
-                    font-family: $font-libre-baskerville;
-
-                    img {
-                        width: 50px;
-                        height: 50px;
-                        border-radius: 50%;
-                        object-fit: cover;
-                    }
-
-                    span {
-                        font-weight: bold;
-                        font-family: font-libre-franklin;
-                        font-weight: $w-semi-bold;
-                        font-size: $content;
-                    }
-
-                    p {
-                        font-family: $font-libre-baskerville;
-                        font-size: $mini;
-                        color: grey;
-                    }
-                }
-
-                .edit {
-                    display: flex;
-                    gap: 5px;
-
-                    button {
-                        border-radius: 50%;
-                        border: none;
-                    }
-                    .icon {
-                        background-color: teal;
-                        padding: 8px;
-                        border-radius: 50%;
-                        color: white;
-                        width: 20px;
-                        height: 20px;
-                        cursor: pointer;
-                        transition: 0.1s ease-in-out;
-                    }
-
-                    .icon-delete:hover {
-                        background-color: rgb(245, 18, 18);
-                    }
-                    .icon-edit:hover {
-                        background-color: rgb(12, 71, 199);
-                    }
-                }
-
-                h1 {
-                    font-size: $heading;
-                    font-family: $font-libre-franklin;
-                    color: #333;
-                }
-
-                p {
-                    font-family: $font-libre-baskerville;
-                    text-align: justify;
-                    line-height: 30px;
-                }
-            }
-
-            .menu {
-                flex: 2;
-                display: flex;
-                flex-direction: column;
-                gap: 25px;
-
-                h1 {
-                    font-size: $content;
-                    color: #555;
-                    font-family: $font-libre-franklin;
-                }
-
-                .post {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 10px;
-
-                    img {
-                        width: 100%;
-                        height: 200px;
-                        object-fit: cover;
-                    }
-
-                    h2 {
-                        color: #555;
-                        font-family: $font-libre-franklin;
-                        font-weight: $w-bold;
-                        font-size: $subheading;
-                    }
-
-                    button {
-                        width: max-content;
-                        border: none;
-                        cursor: pointer;
-                        padding: 10px 20px;
-                        background-color: white;
-                        border: 1px solid teal;
-                        color: teal;
-                        font-family: $font-libre-baskerville;
-                        transition: 0.1s ease-in-out;
-
-                        &:hover {
-                            border: 1px solid white;
-                            background-color: $lightGreen;
-                            color: black;
-                        }
-                    }
-                }
-            }
-        }
-
+       
         //WRITING PAGE
         .add {
             width: 100%;
@@ -369,50 +248,11 @@ input[type="number"] {
             margin-top: 20px;
             display: flex;
             justify-content: center;
-            align-items: center;
             gap: 20px;
             align-items: flex-start;
 
-            .dashboard-header{
+            .dashboard-header {
                 line-height: 80px;
-            }
-
-            .img-preview {
-                display: flex;
-                flex-direction: column;
-                margin-bottom: $base-margin;
-                
-                .thumbnail {
-                    margin-left: auto;
-                    margin-right: auto;
-                    position: relative;
-
-                    img{
-                        max-width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                        aspect-ratio: 1/1;
-
-                    }
-                    button{
-                        border: none;
-                        background-color: transparent;
-                        top: 5px;
-                        right: 5px;
-                        position: absolute;
-                        cursor: pointer;
-                        color: $honeyDew;
-
-                        &:hover{
-                            color: red;
-                        }
-                    }
-
-                    
-                    
-
-                    height: 100%;
-                }
             }
 
             .content {
@@ -426,7 +266,7 @@ input[type="number"] {
                     font-family: $font-libre-franklin;
                 }
 
-                .add-button{
+                .add-button {
                     display: inline;
                     align-items: center;
 
@@ -435,15 +275,14 @@ input[type="number"] {
                         color: green;
                         text-decoration: none;
                         gap: 5px;
-                        &:hover{
+                        &:hover {
                             text-decoration: underline;
                         }
                     }
-                 
                 }
 
-                .container{
-                    margin: $base-margin-y
+                .container {
+                    margin: $base-margin-y;
                 }
 
                 // input {
@@ -464,40 +303,35 @@ input[type="number"] {
                 }
             }
 
-
-            .page-sections{
+            .page-sections {
                 margin: $base-margin-y;
-                .page-sections-wrapper{
+                .page-sections-wrapper {
                     display: flex;
                     gap: 20px;
 
-                    .image-wrapper{
-                       
-                        img{
-
-                            height:  100%;
-                            max-width:  300px;
+                    .image-wrapper {
+                        img {
+                            height: 100%;
+                            max-width: 300px;
                             aspect-ratio: 1/1;
                             object-fit: cover;
                         }
                     }
 
-                    .description-wrapper{
+                    .description-wrapper {
                         display: flex;
                         flex-direction: column;
-                       
+
                         margin: inherit;
                         gap: 3px;
-                        h3{
+                        h3 {
                             margin: $base-margin-y;
                         }
-        
-        
-                        .editorContainer{
+
+                        .editorContainer {
                             margin: auto 0;
                             height: 200px;
                         }
-    
                     }
                 }
             }
@@ -583,11 +417,11 @@ input[type="number"] {
 
                     .file {
                         margin: 5px 0;
-                        text-decoration: underline;
+                        text-decoration: none;
                         cursor: pointer;
 
                         &:hover {
-                            color: rgb(240, 29, 29);
+                            color: $lightGreyColor;
                         }
                     }
 
@@ -636,6 +470,5 @@ input[type="number"] {
             align-items: center;
             width: 100%;
         }
-
-    }
+    
 }

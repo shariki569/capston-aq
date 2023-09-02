@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.get("/", getPages);
 router.get("/:slug", getPage);
-router.patch("/:slug", updatePage);
+// router.patch("/:slug", updatePage);
+router.put("/:slug", updatePage);
 
 export default router;

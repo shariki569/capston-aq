@@ -1,34 +1,21 @@
-import React, { useEffect, useState } from 'react'
-import dummyImg from '../../../img/Large-cottage.webp'
+import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import axios from 'axios';
 import DOMPurify from 'dompurify';
-import { FiPlusCircle } from 'react-icons/fi';
+import { FiPlusCircle, FiTrash2 } from 'react-icons/fi';
+import moment from 'moment';
+import { useAccommodations, useDeleteAccomms } from '../../../Hooks/fetchAccommodations';
+// import DataTable from '../../ui/DataTable(OnHold)';
 
 const AccommodationMenu = () => {
-  
-  const [accomms, SetAccomms] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get(`/api/accommodations`);
-        SetAccomms(res.data);
-        console.log(res.data)
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchData();
-  }, [])
+  const { accomms, fetchData } = useAccommodations();
+  const { deleteData } = useDeleteAccomms();
 
   const handleDelete = async (accommId) => {
     try {
-      await axios.delete(`/api/accommodations/${accommId}`)
-      // Update the accommodations list after deletion
-      SetAccomms(accomms.filter((accomm) => accomm.Accommodation_Id !== accommId))
+      await deleteData(accommId, fetchData); // Pass setAccomms function to update the accommodations list
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   }
 
@@ -36,42 +23,54 @@ const AccommodationMenu = () => {
     <div>
       <div className="add">
         <div className="content">
-          <span className='add-button'><Link to='/dashboard/accommodation-menu/write'><FiPlusCircle size={20}/>Add</Link></span>
-          <table>
-            <thead>
-              <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Img</th>
-                <th>Accomm_Type</th>
-                <th>Description</th>
-                <th>Capacity</th>
-                <th>Price</th>
-                <th>Units</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {accomms.map((accomm) => (
-                <tr key={accomm.Accommodation_Id}>
-                  <td>{accomm.Accommodation_Id}</td>
-                  <td>{accomm.Accommodation_Title}</td>
-                  <td><img src={`../../upload/${accomm.Accommodation_Img}`} alt="" /></td>
-                  <td>{accomm.Accommodation_Type}</td>
-                  <td className='description' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(accomm.Accommodation_Desc) }}></td>
-                  <td>{accomm.Accommodation_Cap}</td>
-                  <td>{accomm.Accommodation_Price}</td>
-                  <td>{accomm.Accommodation_Unit}</td>
-                  <td>
-                    <div className='crud-btn'>
-                      <button>View</button>
-                      <Link state={accomm} to={`/dashboard/accommodation-menu/write?edit=${accomm.Accommodation_Id}`}><button>Update</button></Link>
-                      <button onClick={() => handleDelete(accomm.Accommodation_Id)}>Delete</button>
-                    </div>
-                  </td>
-                </tr>))}
-            </tbody>
-          </table>
+          <span className='add-button'><Link to='/dashboard/accommodations/write'><FiPlusCircle size={20} />Add</Link></span>
+          <div className="card d-flex justify-center">
+            <table className='full-width'>
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Date</th>
+                  <th>Title</th>
+                  <th>Img</th>
+                  <th>Type</th>
+                  <th>Description</th>
+                  <th>Capacity</th>
+                  <th>Price</th>
+                  <th>No. of Units</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {accomms.map((accomm) => (
+                  <tr key={accomm.Accommodation_Id}>
+                    <td className='center'>{accomm.Accommodation_Id}</td>
+                    <td className='center nowrap'>{moment(accomm.Accommodation_Date).format("YYYY-MM-DD")}</td>
+                    <td>{accomm.Accommodation_Title}</td>
+                    <td className='center'><img src={`../../upload/${accomm.Accommodation_Img}`} alt="" /></td>
+                    <td className='center'>{accomm.Accommodation_Type}</td>
+                    <td className='description' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(accomm.Accommodation_Desc) }} />
+                    {/* <td className='description'>  {DOMPurify.sanitize(accomm.Accommodation_Desc)}</td> */}
+                    <td className='center'>{accomm.Accommodation_Cap}</td>
+                    <td>{accomm.Accommodation_Price}</td>
+                    <td className='center'>{accomm.Accommodation_Unit}</td>
+                    <td>
+                      <div className='crud-btn'>
+                        <button>View</button>
+                        <Link state={accomm} to={`/dashboard/accommodations/write?edit=${accomm.Accommodation_Id}`}><button>Update</button></Link>
+                        <button onClick={() => handleDelete(accomm.Accommodation_Id)}><FiTrash2 /></button>
+                      </div>
+                    </td>
+                  </tr>))}
+              </tbody>
+            </table>
+            {/* 
+            <DataTable
+              columns={accommodationColumns}
+              data={accomms}
+              actions={accommodationActions}
+            /> */}
+
+          </div>
         </div>
       </div>
     </div>

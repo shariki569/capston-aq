@@ -4,41 +4,54 @@ table {
     border-collapse: collapse;
     font-family: $font-libre-franklin;
     font-size: $content;
+    
     tr {
         height: 50px;
-        
         &:nth-child(even){
-            background-color: #fffffff1;
+            background-color: #ffffff;
         }
 
         th {
-            border: 1px solid $primaryColor;
+            border: 1px solid $primary;
             color: $honeyDew;
             font-weight: $w-bold;
             // border: 2px solid $honeyDew;
             background-color: $primaryColor;
         }
 
-        td {
-            border: 1px solid $darkerGreyColor;
-            padding: $small-padding-x;
-            max-width: 200px;
+        td.center{
+            text-align: center;
+        }
+
+        .nowrap{
+            white-space: nowrap;
+        }
+
+        td.description{
+            max-width: 250px;
             overflow: hidden;
             text-overflow: ellipsis;
-            text-align: center;
             white-space: nowrap;
+            padding: $small-padding;
+        }
+        td {
+            border: 1px solid $borders;
+            padding-inline: $small-padding;
+            min-width: 5rem;
+            
+
             
             img{
                 object-fit: cover;
-                height: 30%;
-                width: 30%;
+            
+                width: 80%;
                 aspect-ratio: 1/1;
                 
             }
 
             .crud-btn{
                 display: flex;
-                flex-wrap: wrap;
+                flex-wrap: nowrap;
                 gap: 5px;
                 justify-content: center;
 
@@ -48,20 +61,21 @@ table {
                     border: none;
                     background-color: transparent;
                     cursor: pointer;
-                    color: $honeyDew;
-                    background-color: $secondaryColor;
+                    color: $background;
+                    background-color: $primary;
                     padding: $small-padding;
                     border-radius: 10px;
+                    text-decoration: none;
                     a{
 
                         text-decoration: none;
-                        color: $honeyDew;
+                        color: $background;
                     }
                     &:nth-child(3){
-                        background-color: red;
+                        background-color: $error;
                         padding: $small-padding;
                         border-radius: 10px;
-                        color: $honeyDew
+                        color: $background
                         
                     }
                  

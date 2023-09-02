@@ -3,11 +3,14 @@ import postRoutes from "./routes/posts.js";
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
 import pageRoutes from "./routes/pages.js";
-import contactRoutes from "./routes/contact.js"
+import contactRoutes from "./routes/contact.js";
 import accommRoutes from "./routes/accommodations.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import multer from "multer";
+import { validateMIMEType } from "validate-image-type";
+import { fileTypeFromFile } from "file-type";
+import upload from "./middleware/multerUpload.js";
 
 const app = express();
 
@@ -15,25 +18,35 @@ app.use(cors());
 
 app.use(express.json());
 app.use(cookieParser());
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "../client/public/upload");
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + file.originalname);
-  },
-});
-
-
-
-
-const upload = multer({ storage });
-
 app.post("/api/upload", upload.single("file"), function (req, res) {
   const file = req.file;
   res.status(200).json(file.filename);
 });
+
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, "../client/public/upload");
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, Date.now() + file.originalname);
+//   },
+// });
+
+
+// app.post("/api/upload", upload.single("file"), function (req, res) {
+//   const file = req.file;
+//   uploadedImagePath.push(file.filename);
+//   res.status(200).json(file.filename);
+// });
+
+
+// const uploadedImagePath = [];
+// app.get("/api/getUpload", (req, res) => {
+//   res.json({ imagePaths: uploadedImagePath });
+// })
+
+
+
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);

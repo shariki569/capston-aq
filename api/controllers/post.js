@@ -3,8 +3,8 @@ import jwt from "jsonwebtoken";
 
 export const getPosts = (req, res) => {
   const q = req.query.cat
-    ? "SELECT * FROM posts WHERE PostCat=?"
-    : "SELECT * FROM posts";
+    ? "SELECT p.*, u.username FROM posts p JOIN users u ON p.Post_Uid = u.id WHERE p.PostCat=?"
+    : "SELECT p.*, u.username FROM posts p JOIN users u ON p.Post_Uid = u.id";
 
   db.query(q, [req.query.cat], (err, data) => {
     if (err) return res.status(500);

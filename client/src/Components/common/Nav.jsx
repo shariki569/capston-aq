@@ -64,7 +64,7 @@ const Nav = () => {
             </Link>
           </li>
           <li className="link-item">
-            <Link className="link" to="/accommodation">
+            <Link className="link" to="/accommodations">
               <h6>Accommodation</h6>
             </Link>
             <Dropdown>

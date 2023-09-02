@@ -36,12 +36,12 @@ export const accommType = [
   {
     id: "7",
     name: "Cottages",
-    path: "accommodation/?type=cottage"
+    path: "accommodations/?type=cottage"
   },
   {
     id: "8",
     name: "Rooms",
-    path: "accommodation/?type=room",
+    path: "accommodations/?type=room",
   }
 ]
 
@@ -54,7 +54,7 @@ export const sidebarLinks = [
   },
   {
       title: "Posts",
-      path: "write",
+      path: "posts",
   },
 
   {
@@ -69,10 +69,14 @@ export const sidebarLinks = [
   },
   {
       title: "Accomodation",
-      path: "accommodation-menu",
+      path: "accommodations",
   },
   {
       title: "Contact Info",
       path: "contact-details",
+  },
+  {
+      title: "Media",
+      path: "media",
   },
 ]

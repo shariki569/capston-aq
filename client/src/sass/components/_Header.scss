@@ -1,15 +1,30 @@
 @use "../../sass/Utilities/" as *;
 
+.header.small{
+    min-height: 50vh;
+    h1{
+        font-size: $heading;
+    }
+}
 
+.text-normal {
+    color: $background;
+    font-size: $pageHeading;
+}
+
+.text-small{
+    color: $background;
+    font-size: $heading;
+}
 
 .header {
     position: relative;
     min-height: 70vh;
-    width: 100%;
+    min-width: 100%;
     overflow: hidden;
     font-family: $font-libre-franklin;
     
-   
+ 
 
     .header-background {
         position: absolute;
@@ -30,9 +45,6 @@
         text-align: center;
         z-index: 99;
 
-        h1 {
-            color: $honeyDew;
-            font-size: $pageHeading;
-        }
+       
     }
 }

@@ -1,0 +1,139 @@
+@use '../Utilities/' as *;
+
+.single {
+    display: flex;
+    gap: 50px;
+    margin: $large-margin-y;
+    margin-inline: auto;
+    padding-inline: 10rem;
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        flex: 5;
+
+        img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: $content;
+            font-family: $font-libre-baskerville;
+
+            img {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+
+            span {
+                font-weight: bold;
+                font-family: font-libre-franklin;
+                font-weight: $w-semi-bold;
+                font-size: $content;
+            }
+
+            p {
+                font-family: $font-libre-baskerville;
+                font-size: $mini;
+                color: grey;
+            }
+        }
+
+        .edit {
+            display: flex;
+            gap: 5px;
+
+            button {
+                border-radius: 50%;
+                border: none;
+            }
+            .icon {
+                background-color: teal;
+                padding: 8px;
+                border-radius: 50%;
+                color: white;
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+                transition: 0.1s ease-in-out;
+            }
+
+            .icon-delete:hover {
+                background-color: rgb(245, 18, 18);
+            }
+            .icon-edit:hover {
+                background-color: rgb(12, 71, 199);
+            }
+        }
+
+        h1 {
+            font-size: $heading;
+            font-family: $font-libre-franklin;
+            color: #333;
+        }
+
+        p {
+            font-family: $font-libre-baskerville;
+            text-align: justify;
+            line-height: 30px;
+        }
+    }
+
+    .menu {
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+
+        h1 {
+            font-size: $content;
+            color: #555;
+            font-family: $font-libre-franklin;
+        }
+
+        .post {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+            }
+
+            h2 {
+                color: #555;
+                font-family: $font-libre-franklin;
+                font-weight: $w-bold;
+                font-size: $subheading;
+            }
+
+            button {
+                width: max-content;
+                border: none;
+                cursor: pointer;
+                padding: 10px 20px;
+                background-color: white;
+                border: 1px solid teal;
+                color: teal;
+                font-family: $font-libre-baskerville;
+                transition: 0.1s ease-in-out;
+
+                &:hover {
+                    border: 1px solid white;
+                    background-color: $lightGreen;
+                    color: black;
+                }
+            }
+        }
+    }
+}

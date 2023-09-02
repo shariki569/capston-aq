@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import axios from 'axios'
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import moment from 'moment';
-import TextInput from '../forms/FormFields/TextInput';
+import TextInput from '../../forms/FormFields/TextInput';
 
 const Write = () => {
 
@@ -59,6 +59,7 @@ const Write = () => {
   return (
     <div className='add'>
       <div className="content">
+      <span><Link to='/dashboard/posts'>Back</Link></span>
         <TextInput
           type="text"
           value={title}

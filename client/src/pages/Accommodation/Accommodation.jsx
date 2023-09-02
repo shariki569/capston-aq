@@ -10,7 +10,7 @@ import Accommodation_Items from "./Accommodation_Items";
 const Accommodation = () => {
 
 
-  
+
   // const type = useLocation().search;
 
 
@@ -30,17 +30,16 @@ const Accommodation = () => {
 
 
   return (
-    <>
+    <div className="container">
       <Header
         imageUrl={headerImage}
         title="Accomodations"
-        pageSlug="accomodation"
         state=""
       />
-  
-          <Accommodation_Items/>
-   
-    </>
+
+      <Accommodation_Items />
+
+    </div>
   );
 };
 

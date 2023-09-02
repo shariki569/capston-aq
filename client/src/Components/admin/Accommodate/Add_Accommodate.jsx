@@ -5,6 +5,7 @@ import { FiChevronDown, FiCreditCard, FiHash, FiHome, FiUser, FiXSquare } from '
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import placeholder from '../../../img/placeholder-image.webp'
 import axios from 'axios'
+import moment from 'moment'
 
 const Add_Accommodate = () => {
 
@@ -38,7 +39,7 @@ const Add_Accommodate = () => {
       const res = await axios.post("/api/upload", formData)
       return res.data
     } catch (err) {
-      console.log(err)
+      console.error("Error Uploading image ", err);
     }
   }
 
@@ -86,9 +87,10 @@ const Add_Accommodate = () => {
           accommUnit,
           accommType: selectedAccommType,
           accommImg: file ?
-            imgUrl : ""
+            imgUrl : "",
+          accommDate: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")
         });
-      navigate("/accommodation")
+      navigate("/accommodations")
     } catch (err) {
       console.log("Cannot post")
     };
@@ -113,7 +115,7 @@ const Add_Accommodate = () => {
   return (
     <div className='add'>
       <div className="content">
-        <span><Link to='/dashboard/accommodation-menu/'>Back</Link></span>
+        <span><Link to='/dashboard/accommodations/'>Back</Link></span>
 
         <TextInput
           type="text"
@@ -167,9 +169,8 @@ const Add_Accommodate = () => {
               )
             )}
 
-            <div>
+            <div className='img-button'>
               <input style={{ display: "none" }} type="file" id='file' onChange={handleImageChange} />
-
               <label htmlFor="file" className='file' encType="multipart/form-data">{existingImage ? "Change Image" : "Upload"}</label>
             </div>
 

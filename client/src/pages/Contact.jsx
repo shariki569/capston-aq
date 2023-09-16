@@ -4,25 +4,11 @@ import Header from "../Components/ui/Header";
 import headerImage from "../img/Contact-head.webp";
 import React, { useEffect, useState } from "react";
 import { FiMapPin, FiPhone, FiMail } from "react-icons/fi";
+import { useContactInfo } from "../Hooks/fetchContact";
 const Contact = () => {
 
-  const [contactInfo, SetContactInfo] = useState(null);
 
-  useEffect (() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get(`/api/contacts`);
-        SetContactInfo(res.data[0]);
-      } catch (err) {
-        console.log(err)
-      }
-    };
-
-    fetchData()
-  }, []);
-
-
-
+  const { contactInfo } = useContactInfo();
 
 
   return (
@@ -43,20 +29,20 @@ const Contact = () => {
             <ul className="contact-items">
               <li className="contact-item">
                 <div className="icon-wrapper">
-                  <FiMapPin className="icon" size={25}/>
+                  <FiMapPin className="icon" size={25} />
                 </div>
                 <span>
                   {contactInfo?.con_address}
                 </span>
               </li>
               <li className="contact-item">
-                <FiPhone className="icon" size={25}/>
+                <FiPhone className="icon" size={25} />
                 <span>{contactInfo?.con_telphone}</span>
                 <span>/</span>
                 <span>{contactInfo?.con_cellphone}</span>
               </li>
               <li className="contact-item">
-                <FiMail className="icon" size={25}/>
+                <FiMail className="icon" size={25} />
                 <span>{contactInfo?.con_email}</span>
               </li>
             </ul>

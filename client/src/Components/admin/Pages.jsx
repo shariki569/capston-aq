@@ -4,6 +4,7 @@ import ReactQuill from "react-quill";
 import { useLocation, useNavigate } from "react-router-dom";
 import TextInput from "../forms/FormFields/TextInput";
 import placeholder from "../../img/placeholder-image.webp";
+import TextArea from "../forms/FormFields/TextArea";
 const Pages = () => {
   const state = useLocation().state;
   const [pageTitle, setPageTitle] = useState(state?.PageTitle || "");
@@ -120,13 +121,15 @@ const Pages = () => {
         <div className="content">
           <div className="container">
             <h2>Edit Page</h2>
-            <TextInput
+
+            <h1>About Us</h1>
+            {/* <TextInput
               width={100}
               type="text"
               value={pageTitle}
               onChange={(e) => setPageTitle(e.target.value)}
               placeholder="Page Title"
-            />
+            /> */}
           </div>
           <div className="container">
             <h2>Sections</h2>
@@ -167,15 +170,25 @@ const Pages = () => {
                       }
                       placeholder="Section Title"
                       width={100}
+
                     />
                     <div className="editorContainer">
-                      <ReactQuill
+                      {/* <ReactQuill
                         className="editor"
                         theme="snow"
                         value={section.SectionContent}
                         onChange={(value) =>
                           handleSectionChange(index, "SectionContent", value)
                         }
+                      /> */}
+
+                      <TextArea
+                      type= 'text'
+                      placeholder= 'Put Description'
+                      value={section.SectionContent}
+                      onChange={(value) => handleSectionChange(index, "SectionContent", value)}
+                      rows={10}
+                      cols={60}
                       />
                     </div>
 

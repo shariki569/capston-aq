@@ -9,7 +9,6 @@ const Dashboard = () => {
 
   return (
     <div className='dashboard'>
-        
         <h1>WELCOMEE!! <span>{currentUser?.username}</span></h1>
     </div>
   )

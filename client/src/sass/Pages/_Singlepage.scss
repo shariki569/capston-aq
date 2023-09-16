@@ -85,8 +85,46 @@
             text-align: justify;
             line-height: 30px;
         }
+
+        .wrapper{
+            .title{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+            
+                .social-media{
+                    width: 20%;
+                    display: flex;
+                    
+                    .icons{
+                        display: flex;
+                        gap: 1rem;
+                        margin-left: auto;
+
+                        &:nth-child(2n+1){
+                            color: blue;
+                        }
+                        &:nth-child(2n){
+                            color: rgb(0, 225, 255);
+                        }
+                    }
+                }
+
+               
+            }
+            .description{
+        
+                p{
+                    ul{
+                        margin-left: 2rem;
+                    }
+                }
+            }
+        }
     }
 
+  
     .menu {
         flex: 2;
         display: flex;

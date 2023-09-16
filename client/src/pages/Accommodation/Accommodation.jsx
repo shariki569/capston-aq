@@ -10,30 +10,11 @@ import Accommodation_Items from "./Accommodation_Items";
 const Accommodation = () => {
 
 
-
-  // const type = useLocation().search;
-
-
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const res = await axios.get(`/api/accommodations/${type}`);
-  //       setAccomms(res.data);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   fetchData();
-  // }, [type]);
-
-
-
   return (
     <div className="container">
       <Header
         imageUrl={headerImage}
-        title="Accomodations"
+        title="Accommodations"
         state=""
       />
 

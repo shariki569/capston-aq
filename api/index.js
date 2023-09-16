@@ -5,8 +5,11 @@ import userRoutes from "./routes/users.js";
 import pageRoutes from "./routes/pages.js";
 import contactRoutes from "./routes/contact.js";
 import accommRoutes from "./routes/accommodations.js";
+import imageRoutes from "./routes/images.js"
+import emailRoutes from "./routes/emailRoute.js"
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import bodyParser from "body-parser";
 import multer from "multer";
 import { validateMIMEType } from "validate-image-type";
 import { fileTypeFromFile } from "file-type";
@@ -23,6 +26,10 @@ app.post("/api/upload", upload.single("file"), function (req, res) {
   res.status(200).json(file.filename);
 });
 
+
+
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 // const storage = multer.diskStorage({
 //   destination: function (req, file, cb) {
 //     cb(null, "../client/public/upload");
@@ -47,13 +54,16 @@ app.post("/api/upload", upload.single("file"), function (req, res) {
 
 
 
-
+// app.use("/api/images", imageRoutes);
+app.use('/api/emailRoute', emailRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/pages", pageRoutes);
 app.use("/api/accommodations", accommRoutes);
 app.use("/api/contacts", contactRoutes);
+app.use("/api/images", imageRoutes);
+
 
 app.listen(8800, () => {
   console.log("Connected oy amaw!");

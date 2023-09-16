@@ -45,7 +45,7 @@ export const updateContact = (req, res) => {
 
   db.query(q, [...values, conId], (err, data) => {
     if (err) {
-      console.log(err)
+      console.log(err);
       return res.status(500).json({ error: err.message });
     }
     return res.json("Contact Updated");

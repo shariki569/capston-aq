@@ -81,7 +81,7 @@ const Nav = () => {
         </ul>
 
         <div className="user-link">
-          <Link className="main-link-item " to="/dashboard">
+          <Link className="main-link-item " to="/dashboard/admin">
             <span>{currentUser?.username}</span>
           </Link>
           {currentUser ? (

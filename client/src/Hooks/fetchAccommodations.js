@@ -56,3 +56,33 @@ export const useDeleteAccomms = () => {
 
   return { deleteData };
 };
+
+
+export const useRandomAccommodation = (type = "", currentAccommodationId = "") => {
+  const [randomAccommodation, setRandomAccommodation] = useState(null);
+
+  const fetchData = async () => {
+    try {
+      const res = await axios.get(`/api/accommodations/?type=${type}`);
+      const accommodations = res.data;
+      const filteredAccommodations = currentAccommodationId
+      ? accommodations.filter(accomm => accomm.Accommodation_Id !== currentAccommodationId)
+      : accommodations;
+
+    // Select a random accommodation from the filtered list
+    const randomIndex = Math.floor(Math.random() * filteredAccommodations.length);
+    const randomAccommodation = filteredAccommodations[randomIndex];
+    setRandomAccommodation(randomAccommodation);
+      
+    } catch (err) {
+      console.log(err);
+    }
+  };
+ 
+
+  useEffect(() => {
+    fetchData();
+  }, [type, currentAccommodationId]);
+
+  return randomAccommodation;
+};

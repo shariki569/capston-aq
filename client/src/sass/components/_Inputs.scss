@@ -1,14 +1,12 @@
 @use "../Utilities/" as *;
 
-
 .input-flex {
     display: flex;
     flex-direction: row;
 
-    .label {
-        min-width: 200px;
-    }
-    
+    // .label {
+    //     min-width: 200px;
+    // }
 }
 
 // .start {
@@ -16,15 +14,21 @@
 // }
 
 .text-input {
-    display:flex;
+    display: flex;
     flex-direction: column;
     font-family: $font-libre-franklin;
     // margin: $base-margin;
     font-size: $content;
     color: $greyColor;
     width: 100%;
+    min-width: 150px;
+    padding-bottom: $small-padding;
+
     .label {
         margin: $small-margin-y;
+        font-size: $large;
+        color: $primary;
+        font-weight: $w-bold;
     }
 
     .input {
@@ -37,7 +41,7 @@
         outline: none;
         line-height: $base-line-height;
         background-color: $lighterGreyColor;
-        
+
         &:focus {
             border-bottom: $base-border-thickness $primaryColor;
             border-radius: $input-border-radius;
@@ -47,21 +51,31 @@
             outline: $small-border-thickness $lightGreyColor;
         }
     }
+
+    .errorInput {
+        border-bottom: $base-border-thickness $error;
+        outline: $small-border-thickness $error;
+    }
 }
 
 .text-area {
+    display: flex;
+    flex-direction: column;
     font-family: $font-libre-franklin;
-    margin: $small-margin-y;
- 
-    width: 500px;
+    padding-bottom: $small-padding;
+    color: $greyColor;
+    width: 100%;
+    min-width: 500px;
     font-size: $content;
 
-    label {
-        margin: $base-margin-y;
+    .label {
+        margin: $small-margin-y;
+        font-size: $large;
+        color: $primary;
+        font-weight: $w-bold;
     }
 
     .text-area-input {
-        margin: $small-margin-y;
         width: 100%;
         resize: none;
         padding: $small-padding;
@@ -79,5 +93,9 @@
         &:hover {
             outline: $small-border-thickness $lightGreyColor;
         }
+    }
+    .errorInput {
+        border-bottom: $base-border-thickness $error;
+        outline: $small-border-thickness $error;
     }
 }

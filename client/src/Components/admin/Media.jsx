@@ -19,13 +19,7 @@ const Media = () => {
   const dummyImagePaths = ['/image1.jpg', '/image2.jpg'];
 
   return (
-    // <div className='gallery'>
-    //   {dummyImagePaths.map((path, index) => (
-    //     <div className="thumbnail" key={index}>
-    //       <img src={path} alt={`Image ${index}`} />
-    //     </div>
-    //   ))}
-    // </div>
+
     <div className='gallery'>
        {imagePaths.map((path, index) => (
          <img key={index} src={`/upload/${path}` }  alt={`Image ${index}`} />

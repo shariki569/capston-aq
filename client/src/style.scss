@@ -11,6 +11,9 @@
 @use "./sass/components/Inputs.scss";
 @use "./sass/components/Table.scss";
 @use "./sass/components/UploadImageBlock.scss";
+@use "./sass/components/SideMenu.scss";
+@use "./sass/components/InlineError.scss";
+
 
 //Pages
 @use "./sass/Pages/_Homepage.scss";
@@ -133,6 +136,8 @@ input[type="number"] {
     width: 100%;
     margin-inline: auto;
 }
+
+
 
 .dark{
     color: $primary;
@@ -261,8 +266,14 @@ input[type="number"] {
                 flex-direction: column;
                 gap: 5px;
                 color: #555;
-                h2 {
+                h1{
+                    margin: $base-margin-y;
                     font-size: $heading;
+                    color: $primary;
+                    text-align: center;
+                }
+                h2 {
+                    font-size: $subheading;
                     font-family: $font-libre-franklin;
                 }
 
@@ -282,7 +293,7 @@ input[type="number"] {
                 }
 
                 .container {
-                    margin: $base-margin-y;
+                    margin: $small-margin-y;
                 }
 
                 // input {

@@ -84,7 +84,7 @@ const Contact_Info = () => {
 
 
   const handleSave = async () => {
-    console.log(contactInfo);
+   
     try {
       // Make the API call to update the contact information
       await axios.put(`/api/contacts/1`, contactInfo);

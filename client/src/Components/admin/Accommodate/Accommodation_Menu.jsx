@@ -45,7 +45,7 @@ const AccommodationMenu = () => {
                   <tr key={accomm.Accommodation_Id}>
                     <td className='center'>{accomm.Accommodation_Id}</td>
                     <td className='center nowrap'>{moment(accomm.Accommodation_Date).format("YYYY-MM-DD")}</td>
-                    <td>{accomm.Accommodation_Title}</td>
+                    <td className='center'>{accomm.Accommodation_Title}</td>
                     <td className='center'><img src={`../../upload/${accomm.Accommodation_Img}`} alt="" /></td>
                     <td className='center'>{accomm.Accommodation_Type}</td>
                     <td className='description' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(accomm.Accommodation_Desc) }} />

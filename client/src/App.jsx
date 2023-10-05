@@ -32,7 +32,7 @@ import {
 import AccommodationMenuLayout from "./Components/layouts/AccommodationLayout";
 import Accommodation_Items from "./pages/Accommodation/Accommodation_Items";
 import Contact_Info from "./Components/admin/Contact_Info";
-import Media from "./Components/admin/Media";
+import Media from "./Components/admin/Media/Media";
 import PostsLayout from "./Components/layouts/PostsLayout";
 import Posts_Menu from "./Components/admin/Posts/Posts_Menu";
 import Accommodation_Single from "./pages/Accommodation/Accommodation_Single";
@@ -42,6 +42,10 @@ import { AuthContext } from "./context/authContext";
 
 // Styles import
 import "./style.scss";
+import {Facilities, Add_Facility} from "./Components/admin/Facilities";
+import FacilityLayout from "./Components/layouts/FacilityLayout";
+import AmenitiesLayout from "./Components/layouts/AmenitiesLayout";
+import Amenities_Menu from "./Components/admin/Amenities/Amenities_Menu";
 const PrivateRoute = ({ element, path }) => {
   const { currentUser } = useContext(AuthContext);
   return currentUser ? element : <Navigate to="/login" />;
@@ -124,6 +128,31 @@ const router = createBrowserRouter([
             path: "write",
             element: <PrivateRoute element={<Add_Accommodate />} />,
           }
+        ]
+      },
+      {
+        path: "facilities",
+        element: <PrivateRoute element={<FacilityLayout />} />,
+        children: [
+          {
+            path: "",
+            element: <PrivateRoute element={<Facilities />} />,
+          },
+          {
+            path: "write",
+            element: <PrivateRoute element={<Add_Facility />} />,
+          },
+        ]
+      },
+      {
+        path: "amenities",
+        element: <PrivateRoute element={<AmenitiesLayout />} />,
+        children: [
+          {
+            path: "",
+            element: <PrivateRoute element={<Amenities_Menu />} />,
+          }
+        
         ]
       },
       {

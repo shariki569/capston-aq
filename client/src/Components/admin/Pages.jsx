@@ -172,25 +172,25 @@ const Pages = () => {
                       width={100}
 
                     />
-                    <div className="editorContainer">
-                      {/* <ReactQuill
+                    {/* <div className="editorContainer">
+                      <ReactQuill
                         className="editor"
                         theme="snow"
                         value={section.SectionContent}
                         onChange={(value) =>
                           handleSectionChange(index, "SectionContent", value)
                         }
-                      /> */}
+                      />
 
-                      <TextArea
+                    </div> */}
+                    <TextArea
                       type= 'text'
                       placeholder= 'Put Description'
                       value={section.SectionContent}
-                      onChange={(value) => handleSectionChange(index, "SectionContent", value)}
+                      onChange={(e) => handleSectionChange(index, "SectionContent", e.target.value)}
                       rows={10}
                       cols={60}
                       />
-                    </div>
 
                   </div>
                 </div>

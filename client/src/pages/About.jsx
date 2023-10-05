@@ -4,7 +4,7 @@ import headerImage from '../img/header1.jpg'
 
 import dummyImage from '../img/dummy-image1.svg'
 import axios from 'axios'
-import { useAboutPageData } from '../Hooks/fetchPage'
+import { useAboutPageData } from '../API/fetchPage'
 import TwoSections from '../Components/Sections/TwoSections'
 
 
@@ -32,7 +32,12 @@ const About = () => {
               key={section.SectionId}
               title={section.SectionHeading}
               content={section.SectionContent}
-              img={`/upload/${section.SectionImage}`}
+              images={
+                [
+                  `/upload/${section.SectionImage}`,
+                  
+                ]
+              }
             />
           ))}
 

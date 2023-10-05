@@ -9,6 +9,8 @@ import TextInput from '../../forms/FormFields/TextInput';
 const Write = () => {
 
   const state = useLocation().state
+  
+
   const [title, setTitle] = useState(state?.PostTitle || "")
   const [value, setValue] = useState(state?.PostDesc || "")
   const [file, setFile] = useState(null)
@@ -63,7 +65,7 @@ const Write = () => {
         <TextInput
           type="text"
           value={title}
-          placeholder='Tile'
+          placeholder='Title'
           width={100}
           onChange={(e) => setTitle(e.target.value)}
         />

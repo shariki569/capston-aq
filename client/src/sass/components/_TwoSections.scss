@@ -8,56 +8,101 @@
     flex-wrap: wrap;
     min-height: 100vh;
     width: 100%;
-    padding: $large-padding;
-
+    margin: $base-margin-y;
     .image-container {
+        // max-width: 30rem;
         width: 50%;
-        height: 100vh;
+        min-height: 100vh;
         display: flex;
         justify-content: center;
-        align-items: flex-start;
+        // align-items: center;
 
-        .image-wrapper {
-            // width: 50%;
-            height: 80%;
-            max-width: 80%;
-            aspect-ratio: 1/1;
+        .image-grid{
+           
+            @include gridView(15rem ,3px);
+            
+            .image-wrapper {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                aspect-ratio: 1/1;
+                height: 100%;
+                
+                &.full-width{
+                    grid-column: span 2;
+                    aspect-ratio: 2/1;
+                }
+            }
+
+            img {
+                display: block;
+                border-radius: 5px;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
         }
+
+
     }
 
-    img {
-        border-radius: 30px;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+
 
     .content-wrapper {
         width: 50%;
-        height: 100vh;
+        height: 100%;
+        min-height: 100vh;
         display: flex;
         justify-content: flex-start;
-        align-items: flex-start;
+        align-items: center;
+      
         .content {
+            padding: $large-padding;
+           
            width: 100%;
-            min-height: 60%;          
+            min-height: 80%;          
             display: flex;  
             flex-direction: column;
-            h1 {
+            gap: 1.5rem;
+            
+            h4 {
                 color: $primaryColor;
-                font-family: $font-libre-baskerville;
-                margin: $base-margin-y;
+                font-family: $primary-font;
+                margin: $small-margin-y;
+              
+                text-align: center;
+             
+
+                &::after{
+                    display: block;
+                    margin: 0 auto;
+                    content: "";
+                    width: 40px;
+                    height: 3px;
+                    background-color: $tertiary;
+                }
+               
             }
-    
+            
+            .two-section-icon{
+                margin: -20px auto 0 auto;
+                color: $tertiary;
+            }
+
             p {
                 color: $greyColor;
-                font-family: $font-libre-franklin;
+                font-family: $secondary-font;
                 font-size: $large;
-                line-height: 1.5;
+                line-height: $large-line-height;
+                padding: $large-padding-x;
+                text-align: justify;
+                text-indent: 2rem;
             }
 
             .cta-wrapper{
+                margin: $base-margin-y;
                 margin: auto 0;
+                text-align: center;
             }
         }
     }

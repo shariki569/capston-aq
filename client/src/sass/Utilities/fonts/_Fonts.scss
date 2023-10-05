@@ -1,13 +1,22 @@
+@use "../../Utilities/Variables" as *;
+
+
 //Defining font variables
 $font-libre-franklin: 'Libre Franklin';
 $font-libre-baskerville: 'Libre Baskerville';
 
+$primary-font: 'Britney-Regular';
+$secondary-font: 'Quicksand-Medium';
+// $primary-font: 'Arima';
+// $secondary-font: 'Karla';
 
 
 //Defining font size
 $pageHeading: 3.5rem;
 $heading: 2.5rem;
 $subheading: 1.5rem;
+
+$xlarge: 1.25rem;
 $large: 1rem;
 $content: 0.85rem;
 $mini: 0.75rem;
@@ -27,6 +36,9 @@ $style-normal: normal;
 //line height
 $base-line-height: 1.25rem;
 $large-line-height: 1.75rem;
+$xlarge-line-height: 3rem;
+$xxlarge-line-height: 4rem;
+
 
 
 .main-bold{
@@ -34,12 +46,37 @@ font-weight: $w-mediun;
 }
 
 .sm-font{
-font-size: $mini;
+font-size: $mini !important;
 }
 
 .m-font{
-    font-size: $content;
+    font-size: $content !important;
 }
+
 .l-font{
-    font-size: $large;
+    font-size: $large !important;
+    padding: $base-padding-y;
+}
+
+
+.xl-font{
+    font-size: $subheading !important;
+}
+
+
+.xxl-font{
+    font-size: $heading !important;
+    
+}
+
+.xxxl-font{
+    font-size: $pageHeading !important;
+}
+
+.base-line-height{
+    line-height: $base-line-height !important;
+}
+
+.large-line-height{
+    line-height: $large-line-height !important;
 }

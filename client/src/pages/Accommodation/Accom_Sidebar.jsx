@@ -1,9 +1,9 @@
 import React from 'react'
-import { useContactInfo } from '../../Hooks/fetchContact'
+import { useContactInfo } from '../../API/fetchContact'
 import { FiChevronRight, FiMessageCircle, FiPhone } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { formatCelNumber } from '../../Components/util/formatCelNumber';
-import { useAccommodations, useRandomAccommodation } from '../../Hooks/fetchAccommodations';
+import { useAccommodations, useRandomAccommodation } from '../../API/fetchAccommodations';
 
 
 const Accom_Sidebar = ({ price, type, currentAccommodationId }) => {
@@ -15,6 +15,7 @@ const Accom_Sidebar = ({ price, type, currentAccommodationId }) => {
     // console.log("accommodations:", accommodations);
     return (
         <>
+            {/* classes are in the _SideMenu.css*/}
             <div className="side_menu">
                 <div className="price_wrapper">
                     <h1 className='price'>₱ {price}<span>/Per Night</span></h1>
@@ -39,14 +40,14 @@ const Accom_Sidebar = ({ price, type, currentAccommodationId }) => {
                             <div className="recommended-title">
                                 <Link className='link l-font' to={`/accommodation/${randomAccommodation.Accommodation_Title}/${randomAccommodation.Accommodation_Id}`}>
                                     <div>{randomAccommodation.Accommodation_Title} </div>
-                                    <FiChevronRight className='link-icon' size={20}/>
+                                    <FiChevronRight className='link-icon' size={20} />
                                 </Link>
                             </div>
                         </div>
                     ) : (
                         <></>
                     )}
-                    <img src='' alt="" />
+                   
                 </div>
             </div>
         </>

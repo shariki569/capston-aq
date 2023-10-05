@@ -4,7 +4,7 @@ import Header from "../Components/ui/Header";
 import headerImage from "../img/Contact-head.webp";
 import React, { useEffect, useState } from "react";
 import { FiMapPin, FiPhone, FiMail } from "react-icons/fi";
-import { useContactInfo } from "../Hooks/fetchContact";
+import { useContactInfo } from "../API/fetchContact";
 const Contact = () => {
 
 

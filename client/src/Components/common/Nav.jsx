@@ -38,6 +38,11 @@ const Nav = () => {
         </div>
         <ul className="main-link">
           <li className="link-item">
+            <Link className="link" to="/">
+              <h6>Home</h6>
+            </Link>
+          </li>
+          <li className="link-item">
             <Link className="link" to="/about-us">
               <h6>About Us</h6>
             </Link>
@@ -47,6 +52,8 @@ const Nav = () => {
             <Link className="link" to="/posts">
               <h6>Posts</h6>
             </Link>
+
+
             <Dropdown>
               {catLinks.map((items) => (
                 <Link key={items.id} className="sub-link" to={items.path}>
@@ -69,7 +76,6 @@ const Nav = () => {
             </Link>
             <Dropdown>
               {accommType.map((items) => (
-
                 <Link key={items.id} className="sub-link" to={items.path}>
                   <li >
                     {items.name}
@@ -79,6 +85,8 @@ const Nav = () => {
             </Dropdown>
           </li>
         </ul>
+
+        
 
         <div className="user-link">
           <Link className="main-link-item " to="/dashboard/admin">

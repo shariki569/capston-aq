@@ -1,0 +1,32 @@
+import React, { useState } from 'react'
+import { useAmenities } from '../../API/fetchAmenities';
+
+const Amenities_Single = () => {
+
+    const { amenities } = useAmenities();
+
+
+    return (
+        <>
+            <div className="amenity-accomm">
+                <h1 className='xl-font '>Amenities</h1>
+                <div className='accomm-amenity-items'>
+                    {amenities.map((amenity) => (
+                        <div className="accomm-amenity-item" key={amenity.Amenity_Id}>
+                            <div className='accomm-amenity-image-wrap'>
+                                <img src={`../../upload/${amenity.Amenity_Img}`} alt="" />
+                            </div>
+                            <div className="accomm-amenity-title-wrap">
+                                <p>
+                                    {amenity.Amenity_Title}
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </>
+    )
+}
+
+export default Amenities_Single

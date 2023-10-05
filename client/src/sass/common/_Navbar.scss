@@ -24,7 +24,7 @@ $nav-footer: 10px 50px;
         h6 {
             font-size: $content;
             font-weight: 300;
-            font-family: $font-libre-franklin;
+            font-family: $secondary-font;
             text-decoration: none;
             text-transform: uppercase;
             color: $honeyDew;
@@ -38,11 +38,12 @@ $nav-footer: 10px 50px;
 
         .submenu {
             text-decoration: none;
+           
 
             h2 {
                 padding: $small-padding;
                 color: $greyColor;
-                font-family: $font-libre-franklin;
+                font-family: $secondary-font;
                 font-size: $content;
                 font-weight: $w-mediun;
                 text-transform: uppercase;
@@ -81,7 +82,7 @@ $nav-footer: 10px 50px;
             box-shadow: $base-box-shadow;
             border-radius: 5px;
             display: none;
-
+            overflow: hidden;
             .dropdown-items {
                 list-style: none;
                 box-shadow: $base-box-shadow;
@@ -94,7 +95,7 @@ $nav-footer: 10px 50px;
                     &:hover {
                         background-color: $primaryColor;
                         color: $lightColor;
-                        border-radius: 3px;
+                        // border-radius: 3px;
                     }
                 }
 
@@ -102,52 +103,11 @@ $nav-footer: 10px 50px;
                     text-decoration: none;
                     color: $greyColor;
                     font-size: $content;
-                    font-family: $font-libre-franklin;
+                    font-family: $secondary-font;
                 }
             }
         }
 
-        // .dropdown {
-        //     position: relative;
-
-        //     &.clicked{
-        //         display: none;
-        //     }
-        // }
-
-        // .dropdown-toggle.open::after {
-        //     content: "";
-        //     position: absolute;
-        //     top: 10%;
-        //     left: 50px;
-        //     transform: translateY(-50%);
-        //     border: solid $honeyDew;
-        //     border-width: 0 2px 2px 0;
-        //     display: inline-block;
-        //     padding: 3px;
-        //     transform: rotate(45deg);
-        // }
-
-        // .dropdown-menu {
-        //     display: none;
-        //     position: absolute;
-        //     top: 20px;
-        //     left: 0;
-        //     z-index: 9999;
-        //     display: none;
-        //     min-width: 200px;
-        //     background-color: $lightColor;
-        //     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        //     border-radius: 4px;
-        //     text-decoration: none;
-        //     list-style: none;
-        //     transition: 0.3s ease-in-out;
-
-        // }
-
-        // .dropdown-toggle.open + .dropdown-menu {
-        //     display: block;
-        // }
     }
 
     .user-link {

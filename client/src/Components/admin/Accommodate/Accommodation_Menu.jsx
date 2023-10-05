@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom'
 import DOMPurify from 'dompurify';
 import { FiPlusCircle, FiTrash2 } from 'react-icons/fi';
 import moment from 'moment';
-import { useAccommodations, useDeleteAccomms } from '../../../Hooks/fetchAccommodations';
+import { useAccommodations, useDeleteAccomms } from '../../../API/fetchAccommodations';
 // import DataTable from '../../ui/DataTable(OnHold)';
 
 const AccommodationMenu = () => {
@@ -20,7 +20,7 @@ const AccommodationMenu = () => {
   }
 
   return (
-    <div>
+    <>
       <div className="add">
         <div className="content">
           <span className='add-button'><Link to='/dashboard/accommodations/write'><FiPlusCircle size={20} />Add</Link></span>
@@ -73,7 +73,7 @@ const AccommodationMenu = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

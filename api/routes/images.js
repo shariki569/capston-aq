@@ -1,9 +1,10 @@
 import express from "express"
-import { uploadedImages } from "../controllers/image.js"
+import { deleteImages, getUploadedImages } from "../controllers/image.js"
 
 
 const router = express.Router();
 
-router.get('/', uploadedImages);
+router.get('/', getUploadedImages);
+router.delete('/:fileNames', deleteImages);
 
 export default router;

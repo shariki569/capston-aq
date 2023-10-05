@@ -13,6 +13,8 @@
 @use "./sass/components/UploadImageBlock.scss";
 @use "./sass/components/SideMenu.scss";
 @use "./sass/components/InlineError.scss";
+@use "./sass/components/Gallery.scss";
+@use "./sass/components/Amenities.scss";
 
 
 //Pages
@@ -22,6 +24,7 @@
 @use "./sass/Pages/Contact.scss";
 @use "./sass/Pages/Accommodation.scss";
 @use "./sass/Pages/Singlepage.scss";
+@use "./sass/Pages/MediaGallery.scss";
 
 //Commmon Components
 @use "./sass/common/Navbar.scss";
@@ -34,6 +37,16 @@ $lightGreen: #b9e7e7;
 $nav-footer: 10px 50px;
 $standard-padding: 10px 20% 10px 20%;
 
+@font-face{
+    font-family: $primary-font;
+    src: url('./sass/Utilities/fonts/Arima-Regular.woff') format('woff'),
+}
+
+@font-face{
+    font-family: $secondary-font;
+    src: url('./sass/Utilities/fonts/Karla-Regular.woff') format('woff');
+}
+
 @font-face {
     font-family: $font-libre-baskerville;
     src: url("./sass/Utilities/fonts/Libre_Baskerville/librebaskerville-regular-webfont.woff2") format("woff2"),
@@ -41,6 +54,30 @@ $standard-padding: 10px 20% 10px 20%;
     font-weight: $w-normal;
     font-style: $style-normal;
 }
+
+// @font-face {
+//     font-family: $primary-font;
+//     src: url('./sass/Utilities/fonts/Arima-Light.woff') format('woff');
+// }
+@font-face {
+    font-family: 'Quicksand-Medium';
+    src: url('./sass/Utilities/fonts/Quicksand-Medium.woff2') format('woff2'),
+         url('./sass/Utilities/fonts/Quicksand-Medium.woff') format('woff');
+         font-weight: 500;
+         font-display: swap;
+         font-style: normal;
+  }
+  
+
+
+@font-face {
+    font-family: 'Britney-Regular';
+    src: url('./sass/Utilities/fonts/Britney-Regular.woff2') format('woff2'),
+         url('./sass/Utilities/fonts/Britney-Regular.woff') format('woff');
+         font-weight: 400;
+         font-display: swap;
+         font-style: normal;
+  }
 
 @font-face {
     font-family: $font-libre-franklin;
@@ -104,11 +141,15 @@ textarea {
     font: inherit;
 }
 
+a{
+    text-decoration: none;
+}
+
 body {
     min-height: 100vh;
     overflow-x: hidden;
     background-color: $lighterGreyColor;
-    font-family: $font-libre-franklin;
+    font-family: $secondary-font;
 }
 
 input::-webkit-outer-spin-button,
@@ -138,22 +179,91 @@ input[type="number"] {
 }
 
 
+.wrapper {
+    width: 100% !important;
+    max-width: 1300px !important;
+    margin-inline: auto !important;
+}
+
+.section-full{
+   @include centerFlexboxColumn;
+   padding: $large-padding;
+}
+
+.sub-heading{
+    font-size: $heading;
+    font-family: $primary-font;
+    color: $primary;
+    line-height: $xxlarge-line-height;
+}
+
+
+.centered-heading{
+    @include centeredHeading;
+    
+    h2{
+        font-size: $subheading;
+        color: $tertiary;
+    }
+    h4{
+        margin-bottom: $base-margin;
+        font-size: $heading;
+        
+        &::after{
+            display: block;
+            margin: 0 auto;
+            content: "";
+            width: 40px;
+            height: 3px;
+            background-color: $tertiary;
+        }
+    }
+    p{
+        padding-inline: $xxlarge-padding; 
+        color: $greyColor;
+        font-family: $secondary-font;
+       
+       
+    }
+}
 
 .dark{
     color: $primary;
 }
+
 .grid-view{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-    gap: 2rem
+    @include gridView(20rem, 2rem);
 }
+
+
 
 .app {
     display: flex;
     justify-content: center;
     height: 100%;
 
-  
+    .buttons {
+        display: flex;
+        justify-content: flex-start;
+        gap: 10px;
+        margin-top: 20px;
+
+        :first-child {
+            cursor: pointer;
+            color: white;
+            background-color: teal;
+            border: 1px solid teal;
+            padding: 3px 5px;
+        }
+
+        :last-child {
+            cursor: pointer;
+            color: teal;
+            background-color: white;
+            border: 1px solid teal;
+            padding: 3px 5px;
+        }
+    }
 
         //register
         .link {
@@ -255,6 +365,7 @@ input[type="number"] {
             justify-content: center;
             gap: 20px;
             align-items: flex-start;
+            background-color: $lighterGreyColor;
 
             .dashboard-header {
                 line-height: 80px;
@@ -436,28 +547,7 @@ input[type="number"] {
                         }
                     }
 
-                    .buttons {
-                        display: flex;
-                        justify-content: flex-start;
-                        gap: 10px;
-                        margin-top: 20px;
-
-                        :first-child {
-                            cursor: pointer;
-                            color: white;
-                            background-color: teal;
-                            border: 1px solid teal;
-                            padding: 3px 5px;
-                        }
-
-                        :last-child {
-                            cursor: pointer;
-                            color: teal;
-                            background-color: white;
-                            border: 1px solid teal;
-                            padding: 3px 5px;
-                        }
-                    }
+                   
                 }
             }
         }
@@ -468,7 +558,7 @@ input[type="number"] {
             height: 100vh;
 
             .content-container {
-                background-color: rgb(255, 255, 255);
+                background-color: $lighterGreyColor;
                 flex: 1;
                 padding: 40px 20px;
                 overflow-y: auto;

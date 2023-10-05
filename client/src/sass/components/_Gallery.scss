@@ -1,0 +1,58 @@
+@use "../Utilities/" as *;
+
+
+
+.media-grid-container{
+    max-height: 100vh;
+    overflow-y: auto;
+    @include solidBorder($medium-border-thickness, $base-border-radius, $lightGreyColor);
+    background-color: white;
+
+    .media-grid{
+        @include gridView(8rem, 0.5rem);   
+        padding: $base-padding;
+        .gallery-wrapper{
+            width: 100%;
+           cursor: pointer;
+
+            .gallery-image{
+                height: 100%;
+                width: 100%;
+                aspect-ratio: 1/1;
+                object-fit: cover;
+                border-radius: $small-border-radius;
+            }
+        }
+
+        .selected{
+            @include solidBorder($medium-border-thickness, $base-border-radius, $lightGreyColor);
+            position: relative;
+            transition: ease-in-out 0.01s;
+            &::after{
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: $lightGreyColor;
+                z-index: 3;
+                opacity: 0.5;
+
+                
+            }
+
+            &::before{
+                content: "";
+                position: absolute;
+                border-radius: 50%;
+                right: 5%;
+                top: 5%;
+                z-index: 4;
+                background-color: white;
+                height: 20px;
+                width: 20px;
+            }
+        }
+    }
+}

@@ -72,6 +72,14 @@ export const sidebarLinks = [
       path: "accommodations",
   },
   {
+      title: "Facilites",
+      path: "facilities",
+  },
+  {
+      title: "Amenities",
+      path: "amenities",
+  },
+  {
       title: "Contact Info",
       path: "contact-details",
   },

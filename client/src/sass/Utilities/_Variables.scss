@@ -14,6 +14,12 @@ $base-padding-y: 1rem 0;
 $large-padding: 1.75rem;
 $large-padding-x:  0 1.75rem;
 $large-padding-y: 1.75rem 0;
+$xlarge-padding: 5rem;
+$xlarge-padding-x: 0 5rem;
+$xlarge-padding-y: 5rem 0;
+$xxlarge-padding: 10rem;
+$xxlarge-padding-x: 0 10rem;
+$xxlarge-padding-y: 10rem 0;
 
 $small-margin: 0.25rem;
 $base-margin: 0.75rem;
@@ -31,6 +37,7 @@ $small-margin-y: 0.7rem 0;
 //borders
 $small-border-thickness: 0.75px solid;
 $base-border-thickness: 2px solid;
+$medium-border-thickness: 3px solid;
 
 //border-radius
 $small-border-radius: 5px;
@@ -45,7 +52,12 @@ $base-box-shadow: 0px 10px 20px -18px rgba(29, 53, 87, 0.11);
 //transitions
 $base-transition: all 0.3s;
 
-
+.padding-inline-x{
+    padding-inline: $small-padding;
+}
+.large-padding-inline-x{
+    padding-inline: $large-padding !important;
+}
 
 //width
 .full-width{
@@ -67,3 +79,4 @@ $base-transition: all 0.3s;
 .justify-center{
     justify-content: center;
 }
+

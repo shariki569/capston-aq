@@ -3,7 +3,7 @@ import DOMPurify from 'dompurify';
 import React, { useEffect, useState } from 'react'
 import { FiHome, FiUser } from 'react-icons/fi';
 import { Link, useLocation } from 'react-router-dom';
-import { useAccommodations } from '../../Hooks/fetchAccommodations';
+import { useAccommodations } from '../../API/fetchAccommodations';
 
 const Accommodation_Items = () => {
   const type = useLocation().search;
@@ -38,7 +38,7 @@ const Accommodation_Items = () => {
                     <img className="img" src={`../upload/${accomm.Accommodation_Img}`} alt={`${accomm.Accommodation_Title}`} />
                     <div className="description">
                       <div className="title">
-                        <h2>{accomm.Accommodation_Title}</h2>
+                        <Link to={`/accommodation/${accomm.Accommodation_Title}/${accomm.Accommodation_Id}`}><h2>{accomm.Accommodation_Title}</h2></Link>
                       </div>
                       <p className="price">₱ {accomm.Accommodation_Price}</p>
                       <div className="accomodation-details">

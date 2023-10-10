@@ -7,7 +7,7 @@ import axios from 'axios';
 const Facilities = () => {
   const { facilities, fetchFacilities } = useFacilities();
   const { deleteData } = deleteFacility();
-
+ 
   const handleDelete = async (facId) => {
     try {
       await deleteData(facId, fetchFacilities);
@@ -37,7 +37,7 @@ const Facilities = () => {
                   <tr key={facility.Fac_Id}>
                     <td className='center'>{facility.Fac_Id}</td>
                     <td className='center'>{facility.Fac_Title}</td>
-                    <td className='center'><img src={facility.Fac_Img ? `/upload/${facility.Fac_Img}` : facility.Fac_Img} alt="" /></td>
+                    <td className='center'><img src={facility.Featured_Image ? `/upload/${facility.Featured_Image}` : facility.Featured_Image} alt="" /></td>
                     <td className='description'>{facility.Fac_Desc}</td>
                     <td className='center'>
                       <div className='crud-btn'>

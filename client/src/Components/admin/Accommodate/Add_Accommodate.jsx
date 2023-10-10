@@ -50,7 +50,6 @@ const Add_Accommodate = () => {
     } else if (existingImage) {
       setPreviewImage(null)
     }
-
   }
 
 

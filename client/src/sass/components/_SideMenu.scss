@@ -10,7 +10,7 @@
 
     .price_wrapper{
         padding: $base-padding;
-        @include cardBase;
+        @include cardBase($small-border-radius);
         .price{
             font-family: $font-libre-baskerville;
             font-size: $heading;
@@ -28,7 +28,7 @@
         padding: $base-padding;
         min-height: 10rem;
         @include centerFlexboxColumn;
-        @include cardBase;
+        @include cardBase($base-border-radius);
         background-color: $background;
         color: $description;
         text-align: center;

@@ -3,6 +3,7 @@ import DOMPurify from "dompurify";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Header from "../Components/ui/Header";
+import Skeleton from "react-loading-skeleton";
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
@@ -32,7 +33,7 @@ const Posts = () => {
             </div>
             <div className="content">
               <Link to={`/post/${post.PostId}`}>
-                <h1>{post.PostTitle}</h1>
+                <h1>{post.PostTitle || <Skeleton/>}</h1>
               </Link>
               <p
                 dangerouslySetInnerHTML={{

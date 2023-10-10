@@ -7,7 +7,7 @@ import { FaRegLifeRing } from "react-icons/fa";
 import dummyImage from '../img/dummy-image1.svg'
 import TwoSections from '../Components/Sections/TwoSections'
 import HomeSection1 from '../Components/Sections/HomeSection1'
-import Facilities from '../Components/Sections/Facilities'
+import Facility_Section from '../Components/Sections/Facility_Section'
 import Amenities from '../Components/Sections/Amenities'
 
 
@@ -55,7 +55,7 @@ const Home = () => {
 
         </div>
         <HomeSection1/>
-        <Facilities/>
+        <Facility_Section/>
         <Amenities/>
         <TwoSections
           title='Safety First'

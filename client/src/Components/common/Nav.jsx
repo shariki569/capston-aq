@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "../../img/sepalon-icon.svg";
+import logo from "../../img/Cainta Logo.png";
 import { AuthContext } from "../../context/authContext";
 import { accommType, catLinks } from "../common/MenuItems";
 import Dropdown from "../ui/Dropdown";
@@ -68,6 +68,11 @@ const Nav = () => {
           <li className="link-item">
             <Link className="link" to="/contact-us">
               <h6>Contact Us</h6>
+            </Link>
+          </li>
+          <li className="link-item">
+            <Link className="link" to="/facilities">
+              <h6>Facilities</h6>
             </Link>
           </li>
           <li className="link-item">

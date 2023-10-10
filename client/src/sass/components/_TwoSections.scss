@@ -1,37 +1,28 @@
-@use '../../sass/Utilities/' as *;
-
-
-
+@use "../../sass/Utilities/" as *;
 
 .two-sections-container {
     @include centerFlexboxRow;
+    box-sizing: border-box;
     flex-wrap: wrap;
-    min-height: 100vh;
+    height: 100vh;
+    max-height: 600px;
+    // max-height: 1300px;
     width: 100%;
     margin: $base-margin-y;
     .image-container {
-        // max-width: 30rem;
         width: 50%;
-        min-height: 100vh;
         display: flex;
         justify-content: center;
-        // align-items: center;
+        .image-wrapper {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            aspect-ratio: 8/3;
+            height: 100%;
 
-        .image-grid{
-           
-            @include gridView(15rem ,3px);
-            
-            .image-wrapper {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                aspect-ratio: 1/1;
-                height: 100%;
-                
-                &.full-width{
-                    grid-column: span 2;
-                    aspect-ratio: 2/1;
-                }
+            &.full-width {
+                grid-column: span 2;
+                aspect-ratio: 5/1;
             }
 
             img {
@@ -40,40 +31,76 @@
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
+                z-index: 1;
             }
         }
+        .image-grid {
+            @include gridView(15rem, 3px);
+            overflow: hidden;
+            z-index: 2;
+            position: relative;
+            &::before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                height: 95%;
+                width: 95%;
+                transform: translate(-50%, -50%);
+                border: 2px solid $tertiary;
+                z-index: 1;
+            }
+            
 
+            
+            // .image-wrapper:nth-child(2) {
+            //     transform: rotate(-5deg) translateX(20px);
+            // }
+            // .image-wrapper:nth-child(3) {
+            //     transform: rotate(-5deg) translateX(20px);
+            // }
+            // .image-wrapper:nth-child(2) {
+            //     grid-column: 1 / span 2;
+            //     grid-row: 1 / span 3;
+            //     z-index: 4;
 
+            // }
+            // .image-wrapper:nth-child(3) {
+            //     grid-column: 1 / span 2;
+            //     grid-row: 1 / span 1;
+            // }
+            // .image-wrapper:nth-child(2){
+            //     grid-column: 2/-1;
+            //     grid-row: 1/2;
+            // }
+        }
     }
-
-
 
     .content-wrapper {
         width: 50%;
-        height: 100%;
-        min-height: 100vh;
+        // height: 100%;
+        // min-height: 100vh;
         display: flex;
         justify-content: flex-start;
         align-items: center;
-      
+
         .content {
             padding: $large-padding;
-           
-           width: 100%;
-            min-height: 80%;          
-            display: flex;  
+            margin-block: auto;
+            width: 100%;
+            min-height: 80%;
+            display: flex;
             flex-direction: column;
             gap: 1.5rem;
-            
+
             h4 {
                 color: $primaryColor;
                 font-family: $primary-font;
                 margin: $small-margin-y;
-              
+                margin-top: auto;
                 text-align: center;
-             
 
-                &::after{
+                &::after {
                     display: block;
                     margin: 0 auto;
                     content: "";
@@ -81,10 +108,9 @@
                     height: 3px;
                     background-color: $tertiary;
                 }
-               
             }
-            
-            .two-section-icon{
+
+            .two-section-icon {
                 margin: -20px auto 0 auto;
                 color: $tertiary;
             }
@@ -96,14 +122,19 @@
                 line-height: $large-line-height;
                 padding: $large-padding-x;
                 text-align: justify;
+                letter-spacing: 0.2px;
                 text-indent: 2rem;
+                margin-bottom: auto;
             }
 
-            .cta-wrapper{
+            .cta-wrapper {
                 margin: $base-margin-y;
                 margin: auto 0;
                 text-align: center;
+                margin-bottom: auto;
             }
         }
     }
 }
+
+

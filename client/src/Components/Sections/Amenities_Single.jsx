@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useAmenities } from '../../API/fetchAmenities';
+import Skeleton from 'react-loading-skeleton';
 
 const Amenities_Single = () => {
 
@@ -18,7 +19,7 @@ const Amenities_Single = () => {
                             </div>
                             <div className="accomm-amenity-title-wrap">
                                 <p>
-                                    {amenity.Amenity_Title}
+                                    {amenity.Amenity_Title  || <Skeleton/>}
                                 </p>
                             </div>
                         </div>

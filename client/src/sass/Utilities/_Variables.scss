@@ -39,6 +39,12 @@ $small-border-thickness: 0.75px solid;
 $base-border-thickness: 2px solid;
 $medium-border-thickness: 3px solid;
 
+$small-border-thickness-dotted: 0.75px dotted;
+$base-border-thickness-dotted: 2px dotted;
+$medium-border-thickness-dotted: 3px dotted;
+
+
+
 //border-radius
 $small-border-radius: 5px;
 $base-border-radius: 10px;
@@ -80,3 +86,6 @@ $base-transition: all 0.3s;
     justify-content: center;
 }
 
+.h-60{
+    height: 60dvh !important;
+}

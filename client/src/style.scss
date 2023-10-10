@@ -2,6 +2,7 @@
 @use "./sass/Utilities/" as *;
 
 //Components
+@use "./sass/components/Facilities.scss";
 @use "./sass/components/_Form.scss";
 @use "./sass/components/Header.scss";
 @use "./sass/components/Pages.scss";
@@ -55,10 +56,7 @@ $standard-padding: 10px 20% 10px 20%;
     font-style: $style-normal;
 }
 
-// @font-face {
-//     font-family: $primary-font;
-//     src: url('./sass/Utilities/fonts/Arima-Light.woff') format('woff');
-// }
+
 @font-face {
     font-family: 'Quicksand-Medium';
     src: url('./sass/Utilities/fonts/Quicksand-Medium.woff2') format('woff2'),
@@ -198,6 +196,7 @@ input[type="number"] {
 }
 
 
+
 .centered-heading{
     @include centeredHeading;
     
@@ -222,7 +221,7 @@ input[type="number"] {
         padding-inline: $xxlarge-padding; 
         color: $greyColor;
         font-family: $secondary-font;
-       
+     
        
     }
 }
@@ -267,7 +266,7 @@ input[type="number"] {
 
         //register
         .link {
-            font-family: $font-libre-franklin;
+            font-family: $secondary-font;
             text-decoration: none;
             color: $honeyDew;
             cursor: pointer;
@@ -323,14 +322,14 @@ input[type="number"] {
                         text-decoration: none;
                     }
                     h1 {
-                        font-family: $font-libre-franklin;
+                        font-family: $secondary-font;
                         font-size: $heading;
                         color: black;
                     }
 
                     p {
                         font-size: $content;
-                        font-family: $font-libre-baskerville;
+                        font-family: $secondary-font;
                     }
 
                     button {
@@ -341,7 +340,7 @@ input[type="number"] {
                         background-color: white;
                         border: 1px solid teal;
                         color: teal;
-                        font-family: $font-libre-baskerville;
+                        font-family: $secondary-font;
                         transition: 0.1s ease-in-out;
 
                         &:hover {
@@ -385,7 +384,7 @@ input[type="number"] {
                 }
                 h2 {
                     font-size: $subheading;
-                    font-family: $font-libre-franklin;
+                    font-family: $secondary-font;
                 }
 
                 .add-button {
@@ -489,7 +488,7 @@ input[type="number"] {
                                 width: 100%;
 
                                 .select-box {
-                                    font-family: $font-libre-franklin;
+                                    font-family: $secondary-font;
                                     width: 100%;
 
                                     padding: $small-padding;
@@ -525,12 +524,12 @@ input[type="number"] {
                     flex-direction: column;
                     justify-content: space-between;
                     font-size: $mini;
-                    font-family: $font-libre-franklin;
+                    font-family: $secondary-font;
                     color: #555;
 
                     h1 {
                         font-size: $subheading;
-                        font-family: $font-libre-franklin;
+                        font-family: $secondary-font;
                     }
 
                     span {

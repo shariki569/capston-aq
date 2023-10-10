@@ -17,7 +17,7 @@
             padding: $base-padding;
             display: flex;
             align-items: center;
-            @include cardBase;
+            @include cardBase($base-border-radius);
             gap: 15px;
             
             .accomm-amenity-image-wrap{

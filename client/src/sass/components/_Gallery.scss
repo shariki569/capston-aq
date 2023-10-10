@@ -9,7 +9,7 @@
     background-color: white;
 
     .media-grid{
-        @include gridView(8rem, 0.5rem);   
+        @include gridView(6rem, 0.5rem);   
         padding: $base-padding;
         .gallery-wrapper{
             width: 100%;
@@ -29,6 +29,7 @@
             position: relative;
             transition: ease-in-out 0.01s;
             &::after{
+                overflow: hidden;
                 content: "";
                 position: absolute;
                 left: 0;
@@ -38,21 +39,55 @@
                 background-color: $lightGreyColor;
                 z-index: 3;
                 opacity: 0.5;
-
-                
             }
 
             &::before{
                 content: "";
                 position: absolute;
+                border: 5px solid $lightGreyColor;
                 border-radius: 50%;
                 right: 5%;
                 top: 5%;
                 z-index: 4;
-                background-color: white;
+                background: white;
                 height: 20px;
                 width: 20px;
             }
         }
+    }
+}
+
+
+.media-info-menu{
+    
+    @include centerFlexboxRow;
+    top: 0;
+    position: sticky;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: $base-padding;
+    background-color: $primary;
+    overflow: hidden;
+    z-index: 9;
+    color: $lighterGreyColor;
+
+    .button-wrapper{
+        display: flex;
+        text-align: center;
+        button{
+            background: transparent;
+            border: none;
+            color: $lighterGreyColor;
+            font-family: $secondary-font;
+            font-size: $content;
+            cursor: pointer;
+            margin: $small-margin-x;
+            transition: 0.2s ease;
+            &:hover{
+                color: $error;
+            }
+        }
+
+       
     }
 }

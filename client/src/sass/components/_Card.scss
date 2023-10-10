@@ -1,5 +1,5 @@
 @use "../Utilities/" as *;
 
 .card{
-    @include cardBase;
+    @include cardBase($base-border-radius);
 }

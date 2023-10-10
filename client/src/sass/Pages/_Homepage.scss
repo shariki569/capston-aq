@@ -81,96 +81,7 @@
         }
     }
 
-    .facilities {
-        width: 100%;
-
-        .facility-items {
-            margin: $base-margin-y;
-
-            .facility-item {
-                @include cardBase;
-                position: relative;
-                cursor: pointer;
-                overflow: hidden;
-            
-                &:hover{
-                    img{
-                        transform: scale(1);
-                    }
-
-                    h2{
-                        visibility: hidden;
-                    }
-
-                    .subtitle{
-                        left: 0% ;
-                        transform: translateY(0%); /* Animate the subtitle upwards */
-                        transition: transform 0.3s ease; 
-                    
-                    }
-                }
-              
-                img {
-                
-                    @include imageDefault(100%, 100%, cover);
-                    position: relative;
-                    border-radius: $base-border-radius; 
-                    transition: transform 0.3s ease;
-                    max-width: 100%;
-                    transform: scale(1.2);
-                }
-
-                .title {
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    @include fullSize;
-                    z-index: 2;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    font-family: $primary-font;
-                    color: $lighterGreyColor;
-                    overflow: hidden;
-                    &::before {
-                        border-radius: $base-border-radius; 
-                        content: "";
-                        @include fullSize;
-                        background-color: $primary;
-                        opacity: 0.8;
-                        position: absolute;
-                        bottom: 0%;
-                        z-index: -1;
-                        transition: bottom 0.2s ease-in;
-                    }
-                   
-                    &:hover::before{
-                        bottom: 100%;
-                    }
-                    
-                   
-                }
-
-                .subtitle{
-                 
-                    
-                    background-color: $greyColor;
-                    position: absolute;
-                    left: 100%;
-                    bottom: 0%;
-                    font-family: $secondary-font;
-                    color: $lighterGreyColor;
-                    z-index: 2;
-                    padding: $base-padding;
-                    font-size: $content;
-                    transform: translateY(100%);
-                  
-                    
-                }
-            }
-        }
-    }
+   
 }
 
 h4.subheading:contains('Ammenities'){
@@ -182,7 +93,7 @@ h4.subheading:contains('Ammenities'){
     @include containerStyle(70rem, 1rem);
     .amenity-item{
         padding: $large-padding;
-        @include cardBase;
+        @include cardBase($base-border-radius);
         @include centerFlexboxColumn;
         img{
             @include imageDefault(50%, 50%, contain);

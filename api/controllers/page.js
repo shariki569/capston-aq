@@ -41,7 +41,6 @@ export const getPage = (req, res) => {
     });
 
     page.sections = Object.values(sections);
-
     return res.status(200).json(page);
   });
 };

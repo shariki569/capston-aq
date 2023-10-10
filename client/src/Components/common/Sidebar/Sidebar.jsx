@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import logo from "../../../img/sepalon-icon.svg"
+import logo from "../../../img/Cainta Logo.png"
 import { AuthContext } from '../../../context/authContext'
 import Dropdown from '../../ui/Dropdown'
 import Submenu from '../../ui/Submenu'

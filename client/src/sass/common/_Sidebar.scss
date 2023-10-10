@@ -6,7 +6,7 @@
     width: 200px;
     flex-shrink: 0;
     font-size: $content;
-    
+    color: $lighterGreyColor;
     .container {
         position: relative;
         display: flex;
@@ -15,11 +15,17 @@
         height: 100%;
 
         .top-section {
+            // width: 100%;
+            // height: 100%;
             padding: 30px;
+            @include centerFlexboxColumn;
+            img{
+                @include imageDefault(70px, 70px, cover);
+            }
             span {
                 font-size: $subheading;
-                font-family: $font-libre-franklin;
-                color: $lightGreen;
+                font-family: $secondary-font;
+               
             }
         }
 
@@ -27,9 +33,10 @@
             width: 100%;
             margin: auto;
 
+            color: $lighterGreyColor;
             .sidebar-item {
-                color: $lightGreen;
-                font-family: $font-libre-franklin;
+                color: inherit;
+                font-family: $secondary-font;
                 display: block;
                 padding: 1em;
                 align-items: center;
@@ -44,7 +51,7 @@
                 justify-content: space-between;
                 
                 cursor: pointer;
-                color: $lightGreen;
+                color: inherit;
 
                 .sidebar-icon {
                     padding-right: 5px;
@@ -77,8 +84,8 @@
                 .plain {
                     text-decoration: none;
                     display: inline-block;
-                    color: $lightGreen;
-                    font-family: $font-libre-franklin;
+                    // color: $lighterGreyColor;
+                    font-family: $secondary-font;
                 }
             }
         }
@@ -96,13 +103,14 @@
                 align-items: center;
                 justify-content: center;
                 display: flex;
-                font-family: $font-libre-franklin;
+                font-family: $secondary-font;
+                font-weight: $w-bold;
                 padding: 20px;
             }
             span {
                 width: 100%;
                 cursor: pointer;
-                color: $lightGreen;
+                color: $lighterGreyColor;
                 background-color: rgb(245, 18, 18);
             }
         }

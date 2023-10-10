@@ -23,7 +23,7 @@
 @mixin centerFlexboxRow {
     display: flex;
     justify-content: center;
-    align-items: center;
+    // align-items: center;
 }
 
 @mixin leftFlexboxRow{
@@ -32,10 +32,10 @@
     align-items: flex-start;
 }
 
-@mixin cardBase {
+@mixin cardBase($borderRadius) {
     box-shadow: $base-box-shadow;
     background-color: #ffffff;
-    border-radius: $base-border-radius;
+    border-radius: $borderRadius;
 }
 
 @mixin gridView($minMaxValue, $gapValue) {
@@ -47,6 +47,7 @@
 @mixin solidBorder($borderValue, $borderRadius, $colorValue) {
     border: $borderValue $colorValue;
     border-radius: $borderRadius;
+
 }
 
 @mixin centeredHeading {
@@ -66,4 +67,11 @@
     margin-inline: auto;
     max-width: $maxWidth;
     padding-inline: $paddingInline;
+}
+
+
+@mixin justifyIndent{
+    text-align: justify;
+    text-indent: 1rem;
+  
 }

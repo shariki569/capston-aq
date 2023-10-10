@@ -56,7 +56,7 @@
             // margin-right: auto;
             // max-height: 5rem;
             aspect-ratio: 0.5 / 0.7;
-            @include cardBase;
+            @include cardBase($base-border-radius);
 
             .content {
                 width: 100%;

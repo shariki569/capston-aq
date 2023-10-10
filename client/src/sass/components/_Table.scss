@@ -2,7 +2,7 @@
 
 table {
     border-collapse: collapse;
-    font-family: $font-libre-franklin;
+    font-family: $secondary-font;
     font-size: $content;
     border-collapse: collapse;
     border-radius: $base-border-radius;
@@ -15,7 +15,7 @@ table {
 
         th {
             border: 1px solid $primary;
-            color: $lightGreyColor;
+            color: $lighterGreyColor;
             font-weight: $w-bold;
             // border: 2px solid $honeyDew;
             background-color: $primaryColor;

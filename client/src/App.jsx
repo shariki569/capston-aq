@@ -8,6 +8,9 @@ import {
   useNavigate,
   Navigate,
 } from "react-router-dom";
+import { SkeletonTheme } from "react-loading-skeleton";
+import 'react-loading-skeleton/dist/skeleton.css'
+
 
 // Components imports
 import {
@@ -42,10 +45,11 @@ import { AuthContext } from "./context/authContext";
 
 // Styles import
 import "./style.scss";
-import {Facilities, Add_Facility} from "./Components/admin/Facilities";
+import { Facility_Menu, Add_Facility } from "./Components/admin/Facilities";
 import FacilityLayout from "./Components/layouts/FacilityLayout";
 import AmenitiesLayout from "./Components/layouts/AmenitiesLayout";
 import Amenities_Menu from "./Components/admin/Amenities/Amenities_Menu";
+import Facilities from "./pages/Facility/Facilities";
 const PrivateRoute = ({ element, path }) => {
   const { currentUser } = useContext(AuthContext);
   return currentUser ? element : <Navigate to="/login" />;
@@ -79,6 +83,10 @@ const router = createBrowserRouter([
         element: <Accommodation />,
       },
       {
+        path: "/facilities",
+        element: <Facilities />,
+      },
+      {
         path: "/accommodation/:title/:id",
         element: <Accommodation_Single />,
       },
@@ -98,17 +106,17 @@ const router = createBrowserRouter([
       },
       {
         path: "posts",
-        element: <PrivateRoute element={<PostsLayout/>} />,
+        element: <PrivateRoute element={<PostsLayout />} />,
         children: [
           {
             path: "",
-            element: <PrivateRoute element={<Posts_Menu/>} />, 
+            element: <PrivateRoute element={<Posts_Menu />} />,
           },
           {
             path: "write",
-            element: <PrivateRoute element={<Write/>} />, 
+            element: <PrivateRoute element={<Write />} />,
           },
-          
+
 
         ]
       },
@@ -136,7 +144,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: "",
-            element: <PrivateRoute element={<Facilities />} />,
+            element: <PrivateRoute element={<Facility_Menu />} />,
           },
           {
             path: "write",
@@ -152,7 +160,7 @@ const router = createBrowserRouter([
             path: "",
             element: <PrivateRoute element={<Amenities_Menu />} />,
           }
-        
+
         ]
       },
       {
@@ -184,11 +192,15 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <div className="app">
-      <div className="container">
-        <RouterProvider router={router} />
+    <SkeletonTheme baseColor="#313131" highlightColor="#525252">
+      <div className="app">
+
+        <div className="container">
+          <RouterProvider router={router} />
+        </div>
+
       </div>
-    </div>
+    </SkeletonTheme>
   );
 }
 

@@ -5,13 +5,13 @@ import { useAmenities } from '../../API/fetchAmenities'
 const Amenities = () => {
 
     const { amenities } = useAmenities()
-    const classNamePrimary = true;
+    const classNamePrimary = false;
     //Style is in the _Homepage.scss
     return (
         <section className={`section-full || ${classNamePrimary ? 'bg-primary' : ''} `} >
             <SectionWithHeading
                 main="Amenities"
-                textColor="White"
+             
             />
             <div className="wrapper">
                 <div className="amenity-items || grid-view">

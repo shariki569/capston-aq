@@ -7,35 +7,22 @@ import TextArea from '../../forms/FormFields/TextArea'
 import { upload } from '../../../Hooks/imageHandling'
 import ImageUploader from '../../util/ImageUploader'
 import axios from 'axios'
+import ImageGalleryUploader from '../../util/ImageGalleryUploader'
 
 const Add_Facility = () => {
 
-
   const state = useLocation().state
-
   const [facility, setFacilities] = useState({
     fac_title: state?.Fac_Title || "",
     fac_desc: state?.Fac_Desc || "",
     file: null,
     existingImage: state?.Fac_Img || null,
-    previewImage: null
+    previewImage: null,
+    galleryImages: [],
+    galleryImagePreviews: []
   })
 
-
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   if (state) {
-  //     setFacilities({ 
-  //       ...facility, 
-  //       fac_title: state?.Fac_Title || "",
-  //       fac_desc: state?.Fac_Desc || "",
-  //       existingImage: state?.Fac_Img || null,
-  //     });
-  //   }
-
-  // }, [state, facility]);
-
 
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -43,12 +30,51 @@ const Add_Facility = () => {
       setFacilities({ ...facility, file: selectedFile, previewImage: URL.createObjectURL(selectedFile) })
     }
   }
+  const handleGalleryImageChange = (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const selectedImages = Array.from(e.target.files);
+      const previewUrls = [];
+  
+      // Create a function to read each selected image and generate a preview URL
+      const readAndPreview = (image) => {
+        const reader = new FileReader();
+  
+        reader.onload = (e) => {
+          previewUrls.push(e.target.result);
+  
+          // If the number of preview URLs matches the number of selected images, update the state
+          if (previewUrls.length === selectedImages.length) {
+            const updatedGalleryImages = selectedImages.map((selectedImage, index) => ({
+              file: selectedImage,
+              preview: previewUrls[index],
+            }));
+  
+            setFacilities((prevFacilities) => ({
+              ...prevFacilities,
+              galleryImages: [...prevFacilities.galleryImages, ...updatedGalleryImages],
+            }));
+          }
+        };
+  
+        reader.readAsDataURL(image);
+      };
+  
+      // Read and preview each selected image
+      selectedImages.forEach(readAndPreview);
+    }
+  };
 
-  const removeSelectedImage = () => {
+  
+  const removeSelectedImage = (index) => {
     if (facility.file) {
       setFacilities({ ...facility, file: null, previewImage: null })
     } else if (facility.existingImage) {
       setFacilities({ ...facility, existingImage: null, previewImage: null })
+    } else if (facility.galleryImages.length > 0) {
+      const updatedGalleryImages = [...facility.galleryImages];
+        updatedGalleryImages.splice(index, 1 );
+        setFacilities({ ...facility, galleryImages: updatedGalleryImages })
+      
     }
   }
 
@@ -68,7 +94,8 @@ const Add_Facility = () => {
         : await axios.post(`/api/facilities/`, {
           fac_title: facility.fac_title,
           fac_desc: facility.fac_desc,
-          fac_img: facility.file ? imgUrl : "",
+          featured_img: facility.file ? imgUrl : "",
+          gallery_imgs: facility.galleryImages.map((image) => image.file.name),
 
         })
 
@@ -113,6 +140,14 @@ const Add_Facility = () => {
             removeSelectedImage={removeSelectedImage}
             handleImageChange={handleImageChange}
           />
+
+
+          <ImageGalleryUploader
+            galleryImages={facility.galleryImages}
+            handleGalleryImageChange={handleGalleryImageChange}
+            removeImageItem={removeSelectedImage}
+          />
+
           <div className="buttons">
             <button onClick={handleClick}>Publish</button>
             <button>Save as a Draft</button>

@@ -15,14 +15,14 @@
 .contact-title {
     padding: $large-padding-y;
     h1 {
-        font-family: $font-libre-baskerville;
+        font-family: $primary-font;
         font-size: $subheading;
         color: $primaryColor;
     }
 
     p {
         padding: $base-padding-y;
-        font-family: $font-libre-franklin;
+        font-family: $secondary-font;
         font-size: $content;
         color: $lightGreyColor;
     }
@@ -30,7 +30,7 @@
 
 .contact-details {
     min-height: 50%;
-    font-family: $font-libre-franklin;
+    font-family: $secondary-font;
     flex-wrap: wrap;
 
     .contact-items {

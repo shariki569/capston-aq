@@ -21,9 +21,9 @@ const HomeSection1 = () => {
                 content="Dip yourself in the perfect blend of comfort and affordability with our meticulously crafted rooms designed to cater to your every need. Whether you're looking for an intimate retreat for a romantic escape or a spacious haven for your family, our accommodations offer a haven of relaxation that's both inviting and budget-friendly"
                 images={
                     [
-                        `/upload/1695544795142IMG_5986.webp`,
-                        `/upload/1695552614728IMG_5967.webp`,
-                        `/upload/1696320923569IMG_5979.webp`,
+                        `/src/img/Home/home2.webp`,
+                        `/src/img/Home/home_1.jpg`,
+                        `/src/img/Home/home3.webp`,
 
                     ]
                 }
@@ -35,7 +35,7 @@ const HomeSection1 = () => {
                 images={
                     [
                         `/upload/1691565564092Accomodation-Header.jpeg`,
-                        `/upload/1691649506056Large%20Cottage.webp`,
+                        `src/img/Home/home4.jpg`,
                         `/upload/16955525828161691565231316Small-cottage.webp`,
 
                     ]

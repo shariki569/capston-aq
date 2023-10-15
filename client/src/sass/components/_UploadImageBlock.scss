@@ -61,11 +61,13 @@
 .img-gallery-preview {
     // @include gridView(5rem, 0.5rem);
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: $base-margin;
     @include solidBorder($medium-border-thickness-dotted, $base-border-radius, $lightGreyColor);
     max-height: 200px;
     min-height: 100px;
+    max-width: 400px;
+    min-width: 100px;
     overflow-y: scroll;
     padding: $small-padding;
     

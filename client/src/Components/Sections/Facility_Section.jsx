@@ -78,7 +78,7 @@ const Facilities = () => {
                                 <div className='subtitle'>
                                     <p>{facility.Fac_Desc}</p>
                                 </div>
-                                    <Link className='cta'><span>See More</span></Link>
+                                    <Link to='/facilities'className='cta'><span>See More</span></Link>
                             </div>
                         </div>
                     ))}

@@ -19,7 +19,7 @@ const Contact = () => {
         pageSlug="contact-us"
         state=""
       />
-      <div className="two-sections-container">
+      <div className="flex-container">
         <div className="contact-info">
           <div className="contact-title">
             <h1>Aqua Cainta Beach Resort</h1>

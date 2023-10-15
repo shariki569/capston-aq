@@ -3,6 +3,7 @@ import { deleteFacility, useFacilities } from '../../../API/fetchFacilities'
 import { Link } from 'react-router-dom';
 import { FiPlusCircle, FiTrash2 } from 'react-icons/fi';
 import axios from 'axios';
+import moment from 'moment';
 
 const Facilities = () => {
   const { facilities, fetchFacilities } = useFacilities();
@@ -29,6 +30,7 @@ const Facilities = () => {
                   <th>Title</th>
                   <th>Img</th>
                   <th>Description</th>
+                  <th>Date</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -39,6 +41,7 @@ const Facilities = () => {
                     <td className='center'>{facility.Fac_Title}</td>
                     <td className='center'><img src={facility.Featured_Image ? `/upload/${facility.Featured_Image}` : facility.Featured_Image} alt="" /></td>
                     <td className='description'>{facility.Fac_Desc}</td>
+                    <td>{moment(facility.Fac_Date).format("YYYY-MM-DD")}</td>
                     <td className='center'>
                       <div className='crud-btn'>
                         <button>View</button>

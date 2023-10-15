@@ -2,6 +2,7 @@
 @use "./sass/Utilities/" as *;
 
 //Components
+@use "./sass/components/Modal.scss";
 @use "./sass/components/Facilities.scss";
 @use "./sass/components/_Form.scss";
 @use "./sass/components/Header.scss";
@@ -170,13 +171,19 @@ input[type="number"] {
     @include leftFlexboxColumn;
 }
 
+.flex-container {
+    @include centerFlexboxRow;
+}
+
 .container {
     //Login
     width: 100%;
     margin-inline: auto;
 }
 
-
+.hidden {
+    display: none;
+}
 .wrapper {
     width: 100% !important;
     max-width: 1300px !important;
@@ -288,10 +295,10 @@ input[type="number"] {
 
                 &:nth-child(2n + 1) {
                     flex-direction: row-reverse;
-                }
+        }
 
                 .img {
-                    flex: 1;
+                flex: 1;
                     position: relative;
 
                     &::after {

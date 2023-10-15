@@ -21,31 +21,32 @@ const Add_Accommodate = () => {
   const [accommUnit, setAccommUnit] = useState(state?.Accommodation_Unit || "")
   const [selectedAccommType, setSelectedAccommType] = useState(state?.Accommodation_Type || "")
 
-  const [file, setFile] = useState(null)
-  const [existingImage, setExistingImage] = useState(state?.Accommodation_Img || null)
+  // const [file, setFile] = useState(null)
+  const [accommImg, setAccommImg] = useState(state?.Accommodation_Img || null)
   const [previewImage, setPreviewImage] = useState(null)
 
 
   useEffect(() => {
-    setExistingImage(existingImage);
-  }, [existingImage])
+    setAccommImg(accommImg);
+  }, [accommImg])
 
   const navigate = useNavigate();
 
 
 
+  
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
       const selectedFile = e.target.files[0]
-      setFile(selectedFile);
+      setAccommImg(selectedFile);
       setPreviewImage(URL.createObjectURL(selectedFile));
       
     }
   }
 
   const removeSelectedImage = () => {
-    if (file) {
-      setFile(null)
+    if (accommImg) {
+      setAccommImg(null)
       setPreviewImage(null);
     } else if (existingImage) {
       setPreviewImage(null)
@@ -55,7 +56,7 @@ const Add_Accommodate = () => {
 
   const handleClick = async e => {
     e.preventDefault()
-    const imgUrl = file ? await upload(file) : existingImage;
+    const imgUrl =await upload(accommImg);
 
   try {
       state
@@ -66,8 +67,8 @@ const Add_Accommodate = () => {
           accommPrice,
           accommUnit,
           accommType: selectedAccommType,
-          accommImg: file ?
-            imgUrl : existingImage
+          accommImg: accommImg ?
+            imgUrl : state?.Accommodation_Img,
         })
         : await axios.post(`/api/accommodations/`, {
           accommTitle,
@@ -76,7 +77,7 @@ const Add_Accommodate = () => {
           accommPrice,
           accommUnit,
           accommType: selectedAccommType,
-          accommImg: file ?
+          accommImg: accommImg ?
             imgUrl : "",
           accommDate: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")
         });
@@ -121,11 +122,11 @@ const Add_Accommodate = () => {
             <b>Visibility</b> Public
           </span>
           <ImageUploader
-            file={file}
+            file={accommImg}
             previewImage={previewImage}
             handleImageChange={handleImageChange}
             removeSelectedImage={removeSelectedImage}
-            existingImage={existingImage}
+            existingImage={accommImg}
           />
           <div>
             <h1>Accommodation Info</h1>

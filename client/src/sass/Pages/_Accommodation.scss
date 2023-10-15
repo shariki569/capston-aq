@@ -41,12 +41,17 @@
         display: flex;
         flex-direction: row;
 
-        .title {
+        .title  {
             font-size: $large;
             font-family: $font-libre-baskerville;
-            color: $primaryColor;
+           
             padding: $small-padding 0 $large-padding 0;
             text-decoration: none;
+
+            a{
+                color: $primaryColor;
+            }
+            
         }
 
         .card {

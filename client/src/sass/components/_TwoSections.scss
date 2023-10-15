@@ -4,8 +4,9 @@
     @include centerFlexboxRow;
     box-sizing: border-box;
     flex-wrap: wrap;
-    height: 100vh;
-    max-height: 600px;
+    height: 100dvh;
+    
+    max-height: 700px;
     // max-height: 1300px;
     width: 100%;
     margin: $base-margin-y;

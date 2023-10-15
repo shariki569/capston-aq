@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import placeholder from '../../img/placeholder-image.webp';
 import placeholder2 from '../../img/addGallery.png';
 import { FiXSquare } from 'react-icons/fi';
-const ImageGalleryUploader = ({ galleryImages, handleGalleryImageChange, removeImageItem }) => {
+const ImageGalleryUploader = ({ galleryImages, handleGalleryImageChange, removeImageItem, }) => {
     const galleryImagesArray = Array.isArray(galleryImages) ? galleryImages : [];
     const inputRef = useRef(null);
 
@@ -34,7 +34,7 @@ const ImageGalleryUploader = ({ galleryImages, handleGalleryImageChange, removeI
                     ))
                 ) : (
                     <div className="thumbnail">
-                        <img src={placeholder} alt="placeholder" />
+                      
                     </div>
                 )}
             </div>

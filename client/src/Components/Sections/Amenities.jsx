@@ -11,7 +11,6 @@ const Amenities = () => {
         <section className={`section-full || ${classNamePrimary ? 'bg-primary' : ''} `} >
             <SectionWithHeading
                 main="Amenities"
-             
             />
             <div className="wrapper">
                 <div className="amenity-items || grid-view">

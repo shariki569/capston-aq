@@ -1,0 +1,131 @@
+  const handleImageChange = (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const selectedFile = e.target.files[0]
+      setFacilities({ ...facility, file: selectedFile, previewImage: URL.createObjectURL(selectedFile) })
+    }
+  }
+
+  const removeSelectedImage = () => {
+    if (facility.file) {
+      setFacilities({ ...facility, file: null, previewImage: null })
+    } else if (facility.existingImage) {
+      setFacilities({ ...facility, existingImage: null, previewImage: null })
+    }
+  }
+
+  const handleClick = async (e) => {
+    e.preventDefault()
+    const imgUrl = facility.file ? await upload(facility.file) : facility.existingImage;
+
+
+    try {
+      state
+        ?
+        await axios.patch(`/api/facilities/${state.Fac_Id}`, {
+          fac_title: facility.fac_title,
+          fac_desc: facility.fac_desc,
+          fac_img: facility.file ? imgUrl : facility.existingImage,
+        })
+        : await axios.post(`/api/facilities/`, {
+          fac_title: facility.fac_title,
+          fac_desc: facility.fac_desc,
+          fac_img: facility.file ? imgUrl : "",
+
+        })
+
+      navigate('/dashboard/facilities')
+    } catch (err) {
+      console.log(err, "cannot post")
+    }
+  }
+
+
+
+
+  return (
+    <>
+      <div className='add'>
+        <div className="content">
+          <span><Link to='/dashboard/facilities/'>Back</Link></span>
+          <TextInput
+            type='text'
+            label='Title'
+            value={facility.fac_title}
+            onChange={(e) => setFacilities({ ...facility, fac_title: e.target.value })}
+          />
+
+          <TextArea
+            rows={10}
+            cols={100}
+            value={facility.fac_desc}
+            onChange={(e) => setFacilities({ ...facility, fac_desc: e.target.value })}
+            label="Description"
+          />
+
+        </div>
+        <div className="menu">
+          <div className='item'>
+            <h1>Publish</h1>
+          </div>
+          <ImageUploader
+            multiple={true}
+            file={facility.file}
+            existingImage={facility.existingImage}
+            previewImage={facility.previewImage}
+            removeSelectedImage={removeSelectedImage}
+            handleImageChange={handleImageChange}
+          />
+          <ImageGalleryUploader />
+          <div className="buttons">
+            <button onClick={handleClick}>Publish</button>
+            <button>Save as a Draft</button>
+          </div>
+        </div>
+      </div>
+    </>
+  )
+}
+
+
+
+  // const handleClick = async (e) => {
+  //   e.preventDefault();
+  //   let featuredImgUrl = facility.existingImage || ""; // Initialize featuredImgUrl
+  //   let galleryImgUrls = [];
+  
+  //   try {
+  //     if (facility.file) {
+  //       featuredImgUrl = await upload(facility.file);
+  //     }
+  
+  //     if (facility.galleryImages.length > 0) {
+  //       const uploadPromises = facility.galleryImages.map(async (image) => {
+  //         const imgUrl = await upload(image.file);
+  //         return imgUrl;
+  //       });
+  //       galleryImgUrls = await Promise.all(uploadPromises);
+  //     }
+  
+  //     if (state) {
+  //       await axios.patch(`/api/facilities/${state.Fac_Id}`, {
+  //         fac_title: facility.fac_title,
+  //         fac_desc: facility.fac_desc,
+  //         fac_img: featuredImgUrl,
+  //         gallery_imgs: galleryImgUrls,
+  //       });
+  //     } else {
+  //       await axios.post(`/api/facilities/`, {
+  //         fac_title: facility.fac_title,
+  //         fac_desc: facility.fac_desc,
+  //         fac_date: moment(Date.now()).format('YYYY-MM-DD'),
+  //         fac_img: featuredImgUrl,
+  //         gallery_imgs: galleryImgUrls,
+  //       });
+  //     }
+  
+  //     navigate('/dashboard/facilities');
+  //   } catch (err) {
+  //     console.log(err, "cannot post");
+  //   }
+  // };
+  

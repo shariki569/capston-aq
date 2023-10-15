@@ -1,10 +1,17 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export const upload = async (file) => {
+export const upload = async (files) => {
   try {
     const formData = new FormData();
-    formData.append("file", file);
+
+    if (Array.isArray(files)) {
+      files.forEach((file, index) => {
+        formData.append(`file${index}`, file);
+      });
+    } else {
+      formData.append('file', files);
+    }
     const res = await axios.post("/api/upload", formData);
     return res.data;
   } catch (error) {
@@ -12,6 +19,19 @@ export const upload = async (file) => {
     throw new Error("Image upload failed. Please try again later.");
   }
 };
+
+
+// export const uploadArray = async (file, index) => {
+//   try {
+//     const formData = new FormData();
+//     formData.append(`file${index}`, file);
+//     const res = await axios.post("/api/upload", formData);
+//     return res.data;
+//   } catch (error) {
+//     console.error("Error Uploading image: ", error);
+//     throw new Error("Image upload failed. Please try again later.");
+//   }
+// };
 
 
 

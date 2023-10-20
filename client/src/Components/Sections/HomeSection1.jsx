@@ -4,7 +4,7 @@ import Accommodation_Items from '../../pages/Accommodation/Accommodation_Items'
 import SectionWithHeading from './SectionWithHeading'
 
 const HomeSection1 = () => {
-
+  
 
     return (
         <section className='section-full wrapper'>
@@ -13,9 +13,10 @@ const HomeSection1 = () => {
                 subheading='Welcome to Aqua Cainta Resorts Paradise'
                 desc='At Aqua Cainta Resort, we believe in creating more than just vacations; we craft unforgettable staycation experiences. Our pristine haven offers a symphony of relaxation, adventure, and indulgence, making it the ultimate destination for your next retreat.'
             />
-            <SectionWithHeading 
+            <SectionWithHeading
                 main='Discover Our Oasis'
             />
+            
             <TwoSections
                 title="Rooms"
                 content="Dip yourself in the perfect blend of comfort and affordability with our meticulously crafted rooms designed to cater to your every need. Whether you're looking for an intimate retreat for a romantic escape or a spacious haven for your family, our accommodations offer a haven of relaxation that's both inviting and budget-friendly"
@@ -41,7 +42,7 @@ const HomeSection1 = () => {
                     ]
                 }
             />
-            
+
 
         </section>
     )

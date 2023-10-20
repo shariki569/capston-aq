@@ -23,20 +23,18 @@ const ImageGalleryUploader = ({ galleryImages, handleGalleryImageChange, removeI
                     </label>
                 </div>
 
-                {galleryImagesArray.length > 0 ? (
-                    galleryImagesArray.map((galleryImage, index) => (
-                        <div className='thumbnail' key={index}>
+                {galleryImagesArray.map((galleryImage, index) => (
+                    <div className="thumbnail" key={index}>
+                        {galleryImage.preview ? (
                             <img src={galleryImage.preview} alt="thumb" />
-                            <button onClick={() => removeImageItem(index)}>
-                                <FiXSquare size={20} />
-                            </button>
-                        </div>
-                    ))
-                ) : (
-                    <div className="thumbnail">
-                      
+                        ) : (
+                            <img src={`/upload/${galleryImage}`} alt="thumb" />
+                        )}
+                        <button onClick={() => removeImageItem(index)}>
+                            <FiXSquare size={20} />
+                        </button>
                     </div>
-                )}
+                ))}
             </div>
         </>
     );

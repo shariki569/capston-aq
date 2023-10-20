@@ -71,6 +71,8 @@ const Contact_Info = () => {
     }
   };
 
+ 
+
   const formatAsCellPhoneNumber = (inputValue) => {
     const cleanedInput = inputValue.replace(/[^\d]/g, ''); // Remove non-numeric characters
     const match = cleanedInput.match(/^(\d{0,4})(\d{0,3})(\d{0,4})$/);

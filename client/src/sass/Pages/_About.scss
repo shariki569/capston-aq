@@ -30,5 +30,11 @@
                 font-size: $pageHeading;
             }
         }
+
+        .about-sections > .two-sections-container{
+            &:nth-child(2n+1){
+                flex-direction: row-reverse !important;
+            }
+        }
     }
 }

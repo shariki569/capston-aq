@@ -35,38 +35,42 @@ const Home = () => {
   }
 
   return (
-    <div className='home'>
-      <div className="container">
-        <div className='home-header-wrapper'>
-          <picture>
-            <source />
-            <img className='home-header' src={homeHeader} alt="" />
-          </picture>
-          <div className='home-title-wrapper'>
-            <div className='home-title'>
-              {/* <p>Welcome to </p> */}
-              <h1 className='xxxl-font'>Embrace Relaxation</h1>
-              <p>Surrender to the Allure of Our Resort</p>
+    <>
+      <div className='home'>
+        <div className="container">
+          <div className='home-header-wrapper'>
+            <picture>
+              <source />
+              <img className='home-header' src={homeHeader} alt="" />
+            </picture>
+            <div className='home-title-wrapper'>
+              <div className='home-title'>
+                {/* <p>Welcome to </p> */}
+                <h1 className='xxxl-font'>Embrace Relaxation</h1>
+                <p>Surrender to the Allure of Our Resort</p>
+              </div>
+              <div className='home-cta'>
+                <Link className='cta' to='/'>Learn More</Link>
+              </div>
             </div>
-            <div className='home-cta'>
-              <Link className='cta' to='/'>Learn More</Link>
-            </div>
-          </div>
 
+          </div>
         </div>
-        <HomeSection1/>
-        <Facility_Section/>
-        <Amenities/>
+        </div>
+        <HomeSection1 />
+        <Facility_Section />
+        <Amenities />
         <TwoSections
           title='Safety First'
           content="In our resort, your well-being is our top priority. Our dedicated team of lifeguards and a registered nurse are always on standby to ensure your safety. Rest easy, knowing you're in capable hands"
-          images= {[
+          images={[
             `/upload/lifeguard.webp`
           ]}
-          icon={<FaRegLifeRing size={35}/>}
+          icon={<FaRegLifeRing size={35} />}
         />
-      </div>  
-    </div>
+
+     
+    </>
   )
 }
 

@@ -66,7 +66,7 @@ const Facilities = () => {
                 <p className='m-margin-y l-font'>Our amenities and facilities cater to your every need. Whether you're hosting an event or seeking relaxation, we've got you covered.</p>
             </div> */}
             <div className='facilities'>
-                <div className='facility-items || grid-view'>
+                <div className='facility-items'>
                     {facilities.map((facility) => (
                         <div className="facility-item" key={facility.Fac_Id}>
 

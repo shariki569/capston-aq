@@ -5,13 +5,13 @@ export const upload = async (files) => {
   try {
     const formData = new FormData();
 
-    if (Array.isArray(files)) {
-      files.forEach((file, index) => {
-        formData.append(`file${index}`, file);
-      });
-    } else {
+    // if (Array.isArray(files)) {
+    //   files.forEach((file, index) => {
+    //     formData.append(`file${index}`, file);
+    //   });
+    // } else {
       formData.append('file', files);
-    }
+    // }
     const res = await axios.post("/api/upload", formData);
     return res.data;
   } catch (error) {

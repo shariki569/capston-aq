@@ -12,7 +12,7 @@ import ImageUploader from '../../util/ImageUploader'
 const Add_Accommodate = () => {
 
 
-
+ 
   const state = useLocation().state
   const [accommTitle, setAccommTitle] = useState(state?.Accommodation_Title || "")
   const [accommDesc, setAccommDesc] = useState(state?.Accommodation_Desc || "")
@@ -21,14 +21,14 @@ const Add_Accommodate = () => {
   const [accommUnit, setAccommUnit] = useState(state?.Accommodation_Unit || "")
   const [selectedAccommType, setSelectedAccommType] = useState(state?.Accommodation_Type || "")
 
-  // const [file, setFile] = useState(null)
+  const [file, setFile] = useState(null) // ! Do not remove THIS!!
   const [accommImg, setAccommImg] = useState(state?.Accommodation_Img || null)
   const [previewImage, setPreviewImage] = useState(null)
 
 
-  useEffect(() => {
-    setAccommImg(accommImg);
-  }, [accommImg])
+  // useEffect(() => {
+  //   setAccommImg(accommImg);
+  // }, [accommImg])
 
   const navigate = useNavigate();
 
@@ -38,7 +38,7 @@ const Add_Accommodate = () => {
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
       const selectedFile = e.target.files[0]
-      setAccommImg(selectedFile);
+     setFile(selectedFile);
       setPreviewImage(URL.createObjectURL(selectedFile));
       
     }
@@ -46,9 +46,10 @@ const Add_Accommodate = () => {
 
   const removeSelectedImage = () => {
     if (accommImg) {
-      setAccommImg(null)
+      setFile(null)
       setPreviewImage(null);
-    } else if (existingImage) {
+      setAccommImg(null)
+    } else if (accommImg) {
       setPreviewImage(null)
     }
   }
@@ -56,7 +57,7 @@ const Add_Accommodate = () => {
 
   const handleClick = async e => {
     e.preventDefault()
-    const imgUrl =await upload(accommImg);
+    const imgUrl = file ? await upload(file) : accommImg;
 
   try {
       state
@@ -67,8 +68,8 @@ const Add_Accommodate = () => {
           accommPrice,
           accommUnit,
           accommType: selectedAccommType,
-          accommImg: accommImg ?
-            imgUrl : state?.Accommodation_Img,
+          accommImg: file ?
+            imgUrl : accommImg,
         })
         : await axios.post(`/api/accommodations/`, {
           accommTitle,
@@ -77,7 +78,7 @@ const Add_Accommodate = () => {
           accommPrice,
           accommUnit,
           accommType: selectedAccommType,
-          accommImg: accommImg ?
+          accommImg: file ?
             imgUrl : "",
           accommDate: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")
         });
@@ -122,7 +123,7 @@ const Add_Accommodate = () => {
             <b>Visibility</b> Public
           </span>
           <ImageUploader
-            file={accommImg}
+            file={file}
             previewImage={previewImage}
             handleImageChange={handleImageChange}
             removeSelectedImage={removeSelectedImage}

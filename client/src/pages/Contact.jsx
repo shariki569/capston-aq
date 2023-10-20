@@ -23,7 +23,7 @@ const Contact = () => {
         <div className="contact-info">
           <div className="contact-title">
             <h1>Aqua Cainta Beach Resort</h1>
-            <p>Booking for a stay? Need more information? Kindly fill out the inquiry on the side</p>
+            <p>We're thrilled to connect with you! If you have any inquiries and suggestions or want to know more about Aqua Cainta Resort, here's how you can reach us:</p>
           </div>
           <div className="contact-details">
             <ul className="contact-items">

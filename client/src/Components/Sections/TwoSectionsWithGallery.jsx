@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import headerImage from '/upload/1696964127902387577234_1355996281988666_1495644695872826884_n.jpg'
-import Modal from '../ui/Modal';
+import headerImage from '/upload/169761185963216975858927122220.jpg'
+
+import ModalGallery from '../ui/ModalGallery';
 const TwoSectionsWithGallery = ({ title, desc, galleries, featuredImg, inverse }) => {
     const flexDirection = inverse ? 'row-reverse' : 'row';
-    const allImages = [...galleries, featuredImg];
+    const allImages = [featuredImg, ...galleries ];
     const [isLightBoxOpen, setIsLightBoxOpen] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
     const openLightBox = (index) => {
@@ -43,7 +44,7 @@ const TwoSectionsWithGallery = ({ title, desc, galleries, featuredImg, inverse }
                     </div>
                 </div>
                 {isLightBoxOpen && (
-                    <Modal 
+                    <ModalGallery
                     closeModal={closeLightBox} 
                     images={allImages} 
                     handleForward={handleForward} 

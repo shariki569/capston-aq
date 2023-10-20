@@ -11,8 +11,7 @@ const Accom_Sidebar = ({ price, type, currentAccommodationId }) => {
     const { contactInfo } = useContactInfo();
     const formattedCelNumber = formatCelNumber(contactInfo?.con_cellphone);
     const randomAccommodation = useRandomAccommodation(type, currentAccommodationId);
-    // console.log("type:", type);
-    // console.log("accommodations:", accommodations);
+
     return (
         <>
             {/* classes are in the _SideMenu.css*/}

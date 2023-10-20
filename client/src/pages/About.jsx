@@ -26,6 +26,8 @@ const About = () => {
             pageSlug={pageData.Slug}
             state={pageData}
           />
+          <div className="about-sections">
+
           {pageData.sections.map((section) => (
             <TwoSections
 
@@ -35,11 +37,12 @@ const About = () => {
               images={
                 [
                   `/upload/${section.SectionImage}`,
-                  
+
                 ]
               }
             />
           ))}
+          </div>
 
         </div>
       )}

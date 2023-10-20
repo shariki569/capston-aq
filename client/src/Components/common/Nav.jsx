@@ -47,7 +47,27 @@ const Nav = () => {
               <h6>About Us</h6>
             </Link>
           </li>
+          <li className="link-item">
+            <Link className="link" to="/facilities">
+              <h6>Facilities</h6>
+            </Link>
+          </li>
+          <li className="link-item">
+            <Link className="link" to="/accommodations">
+              <h6>Accommodation</h6>
+            </Link>
 
+            <Dropdown>
+              {accommType.map((items) => (
+                <Link key={items.id} className="sub-link" to={items.path}>
+                  <li >
+                    {items.name}
+                  </li>
+                </Link>
+              ))}
+            </Dropdown>
+          </li>
+                
           <li className="link-item">
             <Link className="link" to="/posts">
               <h6>Posts</h6>
@@ -64,34 +84,16 @@ const Nav = () => {
               ))}
             </Dropdown>
           </li>
-
+          
           <li className="link-item">
             <Link className="link" to="/contact-us">
               <h6>Contact Us</h6>
             </Link>
           </li>
-          <li className="link-item">
-            <Link className="link" to="/facilities">
-              <h6>Facilities</h6>
-            </Link>
-          </li>
-          <li className="link-item">
-            <Link className="link" to="/accommodations">
-              <h6>Accommodation</h6>
-            </Link>
-            <Dropdown>
-              {accommType.map((items) => (
-                <Link key={items.id} className="sub-link" to={items.path}>
-                  <li >
-                    {items.name}
-                  </li>
-                </Link>
-              ))}
-            </Dropdown>
-          </li>
+
         </ul>
 
-        
+
 
         <div className="user-link">
           <Link className="main-link-item " to="/dashboard/admin">

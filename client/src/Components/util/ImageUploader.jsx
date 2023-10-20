@@ -5,7 +5,7 @@ import ImageGalleryUploader from './ImageGalleryUploader';
 
 const ImageUploader = (props) => {
   const {
-   
+   file,
     previewImage,
     handleImageChange,
     removeSelectedImage,
@@ -19,7 +19,7 @@ const ImageUploader = (props) => {
     <>
       <span>{title}</span>
       <div className="img-preview">
-        {previewImage ? (
+        {file ? (
           <div className="thumbnail">
             <img src={previewImage} alt="thumb" />
             <button onClick={removeSelectedImage}><FiXSquare size={20} /></button>

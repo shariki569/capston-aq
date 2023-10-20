@@ -39,6 +39,14 @@ $lightGreen: #b9e7e7;
 $nav-footer: 10px 50px;
 $standard-padding: 10px 20% 10px 20%;
 
+:root {
+
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+  }
+
 @font-face{
     font-family: $primary-font;
     src: url('./sass/Utilities/fonts/Arima-Regular.woff') format('woff'),
@@ -372,9 +380,11 @@ input[type="number"] {
             gap: 20px;
             align-items: flex-start;
             background-color: $lighterGreyColor;
+            
 
             .dashboard-header {
                 line-height: 80px;
+                color: #000;
             }
 
             .content {
@@ -565,6 +575,7 @@ input[type="number"] {
 
             .content-container {
                 background-color: $lighterGreyColor;
+                color: $primary;
                 flex: 1;
                 padding: 40px 20px;
                 overflow-y: auto;

@@ -4,14 +4,7 @@ import { useEffect, useState } from "react";
 export const upload = async (files) => {
   try {
     const formData = new FormData();
-
-    // if (Array.isArray(files)) {
-    //   files.forEach((file, index) => {
-    //     formData.append(`file${index}`, file);
-    //   });
-    // } else {
       formData.append('file', files);
-    // }
     const res = await axios.post("/api/upload", formData);
     return res.data;
   } catch (error) {
@@ -20,6 +13,17 @@ export const upload = async (files) => {
   }
 };
 
+
+export const uploadGalleryFiles = async (files) => {
+  return await Promise.all(
+    files.map(async (image) => {
+      if (image.file) {
+        return await upload(image.file);
+      }
+      return image.url;
+    })
+  );
+}
 
 // export const uploadArray = async (file, index) => {
 //   try {

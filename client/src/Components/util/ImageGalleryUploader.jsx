@@ -2,21 +2,23 @@ import React, { useRef } from 'react'
 import placeholder from '../../img/placeholder-image.webp';
 import placeholder2 from '../../img/addGallery.png';
 import { FiXSquare } from 'react-icons/fi';
-const ImageGalleryUploader = ({ galleryImages, handleGalleryImageChange, removeImageItem, }) => {
+const ImageGalleryUploader = ({ galleryImages, handleGalleryImageChange, removeImageItem, galleryFiles }) => {
     const galleryImagesArray = Array.isArray(galleryImages) ? galleryImages : [];
-    const inputRef = useRef(null);
+    const galleryFilesArray = Array.isArray(galleryFiles) ? galleryFiles : [];
+
+    // const inputRef = useRef(null);
 
     return (
         <>
             <div className="img-gallery-preview">
                 <div className="thumbnail thumbnail-btn">
                     <input
-                        style={{ display: 'none' }}
+                        style={{ display: "none" }}
                         type="file"
                         id="galleryInput"
                         onChange={handleGalleryImageChange}
                         multiple
-                        ref={inputRef}
+                        // ref={inputRef}
                     />
                     <label htmlFor="galleryInput" className="file" encType="multipart/form-data">
                         <img className='thumbnail-img' src={placeholder} alt="" />
@@ -25,16 +27,21 @@ const ImageGalleryUploader = ({ galleryImages, handleGalleryImageChange, removeI
 
                 {galleryImagesArray.map((galleryImage, index) => (
                     <div className="thumbnail" key={index}>
-                        {galleryImage.preview ? (
-                            <img src={galleryImage.preview} alt="thumb" />
-                        ) : (
-                            <img src={`/upload/${galleryImage}`} alt="thumb" />
-                        )}
-                        <button onClick={() => removeImageItem(index)}>
+                        <img src={`/upload/${galleryImage}`} alt="thumb" />
+                        <button onClick={() => removeImageItem(index, "galleryImages")}>
                             <FiXSquare size={20} />
                         </button>
                     </div>
                 ))}
+                {galleryFilesArray.map((galleryFile, index) => (
+                    <div className="thumbnail" key={index}>
+                        <img src={galleryFile.preview} alt="thumb" />
+                        <button onClick={() => removeImageItem(index, "galleryFiles")}>
+                            <FiXSquare size={20} />
+                        </button>
+                    </div>
+                ))}
+
             </div>
         </>
     );

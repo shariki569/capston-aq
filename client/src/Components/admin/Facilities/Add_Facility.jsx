@@ -4,7 +4,7 @@ import TextInput from '../../forms/FormFields/TextInput';
 import ReactQuill from 'react-quill';
 import placeholder from '../../../img/placeholder-image.webp';
 import TextArea from '../../forms/FormFields/TextArea';
-import { upload } from '../../../Hooks/imageHandling';
+import { upload, uploadGalleryFiles } from '../../../Hooks/imageHandling';
 import ImageUploader from '../../util/ImageUploader';
 import axios from 'axios';
 import ImageGalleryUploader from '../../util/ImageGalleryUploader';
@@ -21,7 +21,6 @@ const Add_Facility = () => {
     featuredImg: state?.Featured_Image || null,
     previewFeaturedImage: null,
     galleryImages: state?.Gallery_Images || [],
-    galleryImagePreviews: [],
     galleryFiles: [],
   });
 
@@ -32,27 +31,12 @@ const Add_Facility = () => {
         ...prevFacility,
         file: selectedFile,
         previewFeaturedImage: URL.createObjectURL(selectedFile),
-        
+
       }));
     }
   };
 
-  // const handleGalleryImageChange = (e) => {
-  //   if (e.target.files && e.target.files.length > 0) {
-  //     const selectedImages = Array.from(e.target.files);
-  //     const updatedGalleryImages = selectedImages.map((selectedImage) => ({
-  //       file: selectedImage,
-  //       preview: URL.createObjectURL(selectedImage),
-  //     }));
-  //     // Merge existing and new gallery images
-  //     const allGalleryImages = [...facility.galleryImages, ...updatedGalleryImages];
-  //     setFacility((prevFacility) => ({
-  //       ...prevFacility,
-  //       galleryImages: allGalleryImages,
-  //       galleryImagePreviews: allGalleryImages.map((image) => image.preview),
-  //     }));
-  //   }
-  // };
+
 
   const handleGalleryImageChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -61,18 +45,15 @@ const Add_Facility = () => {
         file: selectedImage,
         preview: URL.createObjectURL(selectedImage),
       }));
-  
-      // Concatenate the new gallery images with the existing ones
-      const updatedGalleryImages = [...facility.galleryImages, ...newGalleryImages];
-      
-      setFacility((prevFacilities) => ({
-        ...prevFacilities,
-        galleryImages: updatedGalleryImages,
+
+      setFacility((prevFacility) => ({
+        ...prevFacility,
+        galleryFiles: [...prevFacility.galleryFiles, ...newGalleryImages], // Keep galleryFiles for temporary preview
       }));
     }
   };
-  
-  
+
+
 
   const removeFeaturedImage = () => {
     setFacility((prevFacility) => ({
@@ -82,61 +63,74 @@ const Add_Facility = () => {
     }));
   };
 
-  const removeGalleryImage = (index) => {
-    if (facility.galleryImages.length > 0) {
+  const removeGalleryImage = (index, gallery) => {
+    if (gallery === 'galleryImages') {
       const updatedGalleryImages = [...facility.galleryImages];
       updatedGalleryImages.splice(index, 1);
+
       setFacility((prevFacility) => ({
         ...prevFacility,
         galleryImages: updatedGalleryImages,
-        galleryImagePreviews: updatedGalleryImages.map((image) => image.preview),
+        removedProp: 'galleryImages',
+      }));
+    } else if (gallery === 'galleryFiles') {
+      const updatedGalleryFiles = [...facility.galleryFiles];
+      updatedGalleryFiles.splice(index, 1);
+
+      setFacility((prevFacility) => ({
+        ...prevFacility,
+        galleryFiles: updatedGalleryFiles,
+        removedProp: 'galleryFiles',
       }));
     }
-  };
+  }
+
+  // const removeGalleryImage = (index) => {
+  //   if (facility.galleryImages.length > 0) {
+  //     const updatedGalleryImages = [...facility.galleryImages];
+  //     const updatedGalleryFiles = [...facility.galleryFiles];
+  //     updatedGalleryImages.splice(index, 1);
+  //     updatedGalleryFiles.splice(index, 1);
+  //     setFacility((prevFacility) => ({
+  //       ...prevFacility,
+  //       galleryImages: updatedGalleryImages,
+  //       galleryFiles: updatedGalleryFiles,
+  //     }));
+  //   }
+  // };
 
   const handleClick = async (e) => {
     e.preventDefault();
-    const hasNewGalleryImages = facility.galleryImages.some((image) => image.file);
 
-    // Filter out any images that have been removed
-    const updatedGalleryImages = facility.galleryImages.filter(
-      (image) => image.file || image.url
-    );
-
-    // Upload the new gallery images if they exist
-    const galleryUrls = hasNewGalleryImages
-      ? await Promise.all(
-          updatedGalleryImages.map(async (image) =>
-            image.file ? await upload(image.file) : image.url
-          )
-        )
-      : updatedGalleryImages.map((image) => image.url);
-  
     try {
-      state
-        ? await axios.patch(`/api/facilities/${state.Fac_Id}`, {
-            fac_title: facility.fac_title,
-            fac_desc: facility.fac_desc,
-            featured_img: facility.file ? await upload(facility.file) : facility.featuredImg,
-            gallery_imgs: hasNewGalleryImages ? galleryUrls : facility.galleryImages,
-          })
-        : await axios.post(`/api/facilities/`, {
-            fac_title: facility.fac_title,
-            fac_desc: facility.fac_desc,
-            fac_date: moment(Date.now()).format('YYYY-MM-DD'),
-            featured_img: facility.file ? await upload(facility.file) : "",
-            gallery_imgs: hasNewGalleryImages ? galleryUrls : facility.galleryImages,
-          });
-          
-  
+      let updatedGalleryImages = [...facility.galleryImages];
+      if (facility.galleryFiles.length > 0) {
+        const uploadedGalleryFiles = await uploadGalleryFiles(facility.galleryFiles);
+        updatedGalleryImages = [...updatedGalleryImages, ...uploadedGalleryFiles];
+      }
+      if (state) {
+        await axios.put(`/api/facilities/${state.Fac_Id}`, {
+          fac_title: facility.fac_title,
+          fac_desc: facility.fac_desc,
+          featured_img: facility.file ? await upload(facility.file) : facility.featuredImg,
+          gallery_imgs: updatedGalleryImages,
+        });
+      } else {
+        await axios.post(`/api/facilities/`, {
+          fac_title: facility.fac_title,
+          fac_desc: facility.fac_desc,
+          fac_date: moment(Date.now()).format('YYYY-MM-DD'),
+          featured_img: facility.file ? await upload(facility.file) : "",
+          gallery_imgs: updatedGalleryImages,
+        });
+      }
       console.log("Existing Gallery Images:", facility.galleryImages);
       navigate('/dashboard/facilities');
     } catch (err) {
       console.log(err, "cannot post");
     }
   };
-  
-
+  console.log("Existing Gallery Images:", facility.galleryImages);
   return (
     <>
       <div className="add">
@@ -170,6 +164,7 @@ const Add_Facility = () => {
             handleImageChange={handleImageChange}
           />
           <ImageGalleryUploader
+            galleryFiles={facility.galleryFiles}
             galleryImages={facility.galleryImages}
             handleGalleryImageChange={handleGalleryImageChange}
             removeImageItem={removeGalleryImage}

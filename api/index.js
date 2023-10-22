@@ -32,27 +32,6 @@ app.post("/api/upload", upload.single("file"), function (req, res) {
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, "../client/public/upload");
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, Date.now() + file.originalname);
-//   },
-// });
-
-
-// app.post("/api/upload", upload.single("file"), function (req, res) {
-//   const file = req.file;
-//   uploadedImagePath.push(file.filename);
-//   res.status(200).json(file.filename);
-// });
-
-
-// const uploadedImagePath = [];
-// app.get("/api/getUpload", (req, res) => {
-//   res.json({ imagePaths: uploadedImagePath });
-// })
 
 
 app.use("/api/amenities", amenityRoutes);

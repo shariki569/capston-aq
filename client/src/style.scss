@@ -17,7 +17,7 @@
 @use "./sass/components/InlineError.scss";
 @use "./sass/components/Gallery.scss";
 @use "./sass/components/Amenities.scss";
-
+@use "./sass/components/Chatbot.scss";
 
 //Pages
 @use "./sass/Pages/_Homepage.scss";
@@ -27,6 +27,7 @@
 @use "./sass/Pages/Accommodation.scss";
 @use "./sass/Pages/Singlepage.scss";
 @use "./sass/Pages/MediaGallery.scss";
+// @use "./sass/Pages/Chatbot.scss";
 
 //Commmon Components
 @use "./sass/common/Navbar.scss";

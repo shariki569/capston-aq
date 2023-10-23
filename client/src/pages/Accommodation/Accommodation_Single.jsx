@@ -6,13 +6,10 @@ import DOMPurify from 'dompurify'
 import { useSingleAccommData } from '../../API/fetchAccommodations'
 import Accom_Sidebar from './Accom_Sidebar'
 import { BiLogoFacebookCircle, BiLogoInstagramAlt, BiLogoTwitter } from 'react-icons/bi'
-import Accommodation_Items from './Accommodation_Items'
-import Amenities from '../../Components/Sections/Amenities'
 import Amenities_Single from '../../Components/Sections/Amenities_Single'
 //styling is in the Single.scss file
 
 const Accommodation_Single = () => {
-
   const location = useLocation();
   const { accomm } = useSingleAccommData();
 

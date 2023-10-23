@@ -1,0 +1,22 @@
+@use "../Utilities/" as *;
+
+.chatbot-container {
+    position: fixed;
+    right: 40px;
+    margin-left: auto;
+    bottom: 40px;
+    z-index: 9999999999;
+    background-color: $primary;
+    height: 62px;
+    width: 62px;
+    border-radius: 50%;
+  @include centerFlexboxColumn; 
+   box-shadow: $large-box-shadow;
+   transition: 0.2s ease-in;
+
+    &:hover{
+        background-color: $secondary;
+        cursor: pointer;
+        color: $lighterGreyColor;
+    }
+}

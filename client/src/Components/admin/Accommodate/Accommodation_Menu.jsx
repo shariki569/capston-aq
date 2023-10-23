@@ -18,6 +18,7 @@ const AccommodationMenu = () => {
       console.log(err);
     }
   }
+  console.log(accomms);
 
   return (
     <>

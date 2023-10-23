@@ -50,6 +50,7 @@ import FacilityLayout from "./Components/layouts/FacilityLayout";
 import AmenitiesLayout from "./Components/layouts/AmenitiesLayout";
 import Amenities_Menu from "./Components/admin/Amenities/Amenities_Menu";
 import Facilities from "./pages/Facility/Facilities";
+import Chatbot from "./pages/Chatbot/Chatbot";
 const PrivateRoute = ({ element, path }) => {
   const { currentUser } = useContext(AuthContext);
   return currentUser ? element : <Navigate to="/login" />;
@@ -85,6 +86,10 @@ const router = createBrowserRouter([
       {
         path: "/facilities",
         element: <Facilities />,
+      },
+      {
+        path: '/chatbot',
+        element: <Chatbot/>
       },
       {
         path: "/accommodation/:title/:id",

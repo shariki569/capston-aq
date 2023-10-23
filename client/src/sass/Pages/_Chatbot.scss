@@ -1,0 +1,13 @@
+@use "./../Utilities/" as *;
+
+
+.chatbot-inbox{
+    margin:$base-margin-y; 
+    @include centerFlexboxColumn;
+    overflow: scroll;
+    max-height: 800px;
+}
+
+.chatbot-input{
+    @include centerFlexboxRow;
+}

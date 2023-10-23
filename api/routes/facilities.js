@@ -3,7 +3,7 @@ import {
     addFacility, 
     deleteFacility, 
     getFacilitiesWithImages, 
-    getFacilities, 
+    // getFacilities, 
     updateFacility 
 } from "../controllers/facilities.js";
 

@@ -20,7 +20,6 @@ export const useSingleAccommData = () => {
 
   return { accomm };
 };
-
 // //Get all the Accommodation data
 export const useAccommodations = (type = "") => {
   const [accomms, setAccomms] = useState([]);

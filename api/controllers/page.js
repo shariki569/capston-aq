@@ -1,34 +1,58 @@
 import { db } from "../db.js";
-import jwt from "jsonwebtoken";
 
-export const getPages = (req, res) => {
-  const q = req.query.title
-    ? "SELECT * FROM pages WHERE PageTitle=?"
-    : "SELECT * FROM pages";
 
-  db.query(q, [req.query.title], (err, data) => {
-    if (err) {
-      return res.status(500).json();
+export const getPages = async (req, res) => {
+  try {
+    const title = req.query.title;
+    const connection = await db.getConnection();
+
+    let query = 'SELECT * FROM pages';
+
+    const values = [];
+
+    if (title) {
+      query = 'SELECT * FROM pages WHERE PageTitle = ?';
+      values.push(title);
     }
-    return res.status(200).json(data);
-  });
+
+    const [rows] = await connection.query(query, values);
+    connection.release();
+
+    return res.status(200).json(rows);
+  } catch (error) {
+    console.error('Database error:', error);
+    return res.status(500).json(error);
+  }
 };
 
-export const getPage = (req, res) => {
-  const q =
-    "SELECT PageId,`Slug`, `PageTitle`, `SectionId`, `SectionHeading`, `SectionContent`, `SectionImage` FROM pages p LEFT JOIN sections s ON p.PageId = s.Page_Id WHERE p.Slug = ?";
+export const getPage = async (req, res) => {
+  try {
+    const slug = req.params.slug;
+    const connection = await db.getConnection();
 
-  db.query(q, [req.params.slug], (err, data) => {
-    if (err) return res.status(500).json();
+    const query = `
+      SELECT p.PageId, p.Slug, p.PageTitle, s.SectionId, s.SectionHeading, s.SectionContent, s.SectionImage
+      FROM pages p
+      LEFT JOIN sections s ON p.PageId = s.Page_Id
+      WHERE p.Slug = ?`;
+
+    const [rows] = await connection.query(query, [slug]);
+    connection.release();
+
+    if (rows.length === 0) {
+      return res.status(404).json("Page not found");
+    }
+
     const page = {
-      PageId: data[0].PageId,
-      Slug: data[0].Slug,
-      PageTitle: data[0].PageTitle,
+      PageId: rows[0].PageId,
+      Slug: rows[0].Slug,
+      PageTitle: rows[0].PageTitle,
       sections: [],
     };
 
     const sections = {};
-    data.forEach((row) => {
+
+    rows.forEach((row) => {
       const sectionId = row.SectionId;
       if (!sections[sectionId]) {
         sections[sectionId] = {
@@ -41,8 +65,12 @@ export const getPage = (req, res) => {
     });
 
     page.sections = Object.values(sections);
+
     return res.status(200).json(page);
-  });
+  } catch (error) {
+    console.error('Database error:', error);
+    return res.status(500).json(error);
+  }
 };
 
 export const updatePage = async (req, res) => {
@@ -54,63 +82,47 @@ export const updatePage = async (req, res) => {
       return res.status(400).json("Page title is required for updating");
     }
 
+    const connection = await db.getConnection();
+
     // Get the `PageId` based on the `Slug`
     const qGetPageId = "SELECT PageId FROM pages WHERE Slug = ?";
-    const result = await new Promise((resolve, reject) => {
-      db.query(qGetPageId, [slug], (err, result) => {
-        if (err) reject(err);
-        else resolve(result);
-      });
-    });
+    const [pageIdRow] = await connection.query(qGetPageId, [slug]);
 
-    if (result.length === 0) {
+    if (!pageIdRow) {
+      connection.release();
       return res.status(404).json("Page not found");
     }
 
-    const PageId = result[0].PageId;
+    const PageId = pageIdRow[0].PageId;
 
     // Update page Title
-    const qUpdatePage = "UPDATE pages SET `PageTitle`=? WHERE `PageId`=?";
-    await new Promise((resolve, reject) => {
-      db.query(qUpdatePage, [PageTitle, PageId], (err) => {
-        if (err) reject(err);
-        else resolve();
-      });
-    });
+    const qUpdatePage = "UPDATE pages SET `PageTitle` = ? WHERE `PageId` = ?";
+    await connection.query(qUpdatePage, [PageTitle, PageId]);
 
     // Update page sections
     const qUpdateSections =
       "UPDATE sections SET `SectionHeading` = ?, `SectionContent` = ?, `SectionImage` = ? WHERE `SectionId` = ? AND `Page_Id` = ?";
 
-    const qUpdateSectionsPromises = sections.map(async (section) => {
-      const { SectionId, SectionHeading, SectionContent, SectionImage } =
-        section;
-
-      await new Promise((resolve, reject) => {
-        db.query(
-          qUpdateSections,
-          [
-            SectionHeading,
-            SectionContent,
-            SectionImage,
-            SectionId,
-            PageId
-          ],
-          (err) => {
-            if (err) reject(err);
-            else resolve();
-          }
-        );
-      });
+    const updateSectionPromises = sections.map(async (section) => {
+      const { SectionId, SectionHeading, SectionContent, SectionImage } = section;
+      await connection.query(qUpdateSections, [SectionHeading, SectionContent, SectionImage, SectionId, PageId]);
     });
 
-    await Promise.all(qUpdateSectionsPromises);
+    await Promise.all(updateSectionPromises);
+
+    connection.release();
     res.json({ message: "Page and Sections have been updated!" });
   } catch (err) {
     console.error(err);
     res.status(500).json("Error updating page and sections: " + err.message);
   }
 };
+
+
+
+
+
+
 
 
 // export const updatePage = (req, res) => {

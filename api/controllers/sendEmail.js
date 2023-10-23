@@ -109,7 +109,6 @@ const sendEmail = async (name, number, email, message) => {
       to: process.env.EMAIL_ADD,
       subject: `New Message From ${name}`,
       html: htmlTemplate,
-      // text: `Name: ${name}\nNumber: ${number}\nEmail: ${email}\nMessage: ${message}`,
     };
 
     const info =  transporter.sendMail(mailOptions);

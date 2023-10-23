@@ -1,15 +1,15 @@
 import { db } from "../db.js";
 import { idGenerator } from "../idGenerator/index.js";
 
-export const getFacilities = (req, res) => {
-  const q = "SELECT * FROM facilities";
-  db.query(q, (err, data) => {
-    if (err) return res.status(500).json(err);
-    return res.status(200).json(data);
-  });
-};
+// export const getFacilities = (req, res) => {
+//   const q = "SELECT * FROM facilities";
+//   db.query(q, (err, data) => {
+//     if (err) return res.status(500).json(err);
+//     return res.status(200).json(data);
+//   });
+// };
 
-export const getFacilitiesWithImages = (req, res) => {
+export const getFacilitiesWithImages = async (req, res) => {
   const q = `SELECT
   f.Fac_Id,
   f.Fac_Title,
@@ -42,11 +42,9 @@ LEFT JOIN (
 ON
   f.Fac_Id = g.Fac_Id`;
 
-  db.query(q, (err, data) => {
-    if (err) {
-      return res.status(500).json(err);
-    }
-
+try {
+    const [data] = await db.query(q);
+    
     const facilitiesWithImages = [];
 
     data.forEach((facility) => {
@@ -81,261 +79,269 @@ ON
     });
 
     return res.status(200).json(facilitiesWithImages);
-  });
+} catch (err) {
+    return res.status(500).json(err);
+}
 };
 
-export const addFacility = (req, res) => {
-  const { fac_title, fac_desc, fac_date, featured_img, gallery_imgs } =
-    req.body;
+export const addFacility = async (req, res) => {
+  const { fac_title, fac_desc, fac_date, featured_img, gallery_imgs } = req.body;
 
-  const qFacility =
-    "INSERT INTO facilities (`Fac_Id`,`Fac_Title`, `Fac_Desc`, `Fac_Date`) VALUES (?)";
-  const Id = idGenerator();
-  const values = [Id, fac_title, fac_desc, fac_date];
+  const connection = await db.getConnection();
 
-  db.query(qFacility, [values], (err, data) => {
-    if (err) {
-      return res.status(500).json("Database error: " + err.message);
+  try {
+    await connection.beginTransaction();
+
+    const Id = idGenerator();
+
+    // Insert facility
+    const insertFacilityQuery =
+      'INSERT INTO facilities (`Fac_Id`,`Fac_Title`, `Fac_Desc`, `Fac_Date`) VALUES (?, ?, ?, ?)';
+    const facilityValues = [Id, fac_title, fac_desc, fac_date];
+
+    await connection.query(insertFacilityQuery, facilityValues);
+
+    // Insert featured image
+    if (featured_img) {
+      const insertFeaturedImgQuery =
+        'INSERT INTO facility_images (`Fac_Id`,`FacImg_Name`,`Is_Featured`) VALUES (?, ?, 1)';
+      await connection.query(insertFeaturedImgQuery, [Id, featured_img]);
     }
+
+    // Insert gallery images
+    if (gallery_imgs && gallery_imgs.length > 0) {
+      const galleryImgValues = gallery_imgs.map((filename) => [Id, filename, 0]);
+
+      const insertGalleryImagesQuery =
+        'INSERT INTO facility_images (`Fac_Id`,`FacImg_Name`,`Is_Featured` ) VALUES ?';
+      await connection.query(insertGalleryImagesQuery, [galleryImgValues]);
+    }
+
+    await connection.commit();
+    return res.json('Facility has been added');
+  } catch (error) {
+    await connection.rollback();
+    console.error('Database error:', error);
+    return res.status(500).json('Database error: ' + error.message);
+  } finally {
+    connection.release();
+  }
+};
+
+
+export const updateFacility = async (req, res) => {
+  try {
+    const facId = req.params.id;
+    const { fac_title, fac_desc, featured_img, gallery_imgs } = req.body;
+
+    // Define the SQL query to update facility title and description
+    const updateFacilityQuery = `
+      UPDATE facilities
+      SET Fac_Title = ?, Fac_Desc = ?
+      WHERE Fac_Id = ?;
+    `;
+
+    // Execute the query to update facility title and description
+    const [updateFacilityResult] = await db.query(updateFacilityQuery, [fac_title, fac_desc, facId]);
+
+    if (updateFacilityResult.affectedRows < 1) {
+      return res.status(404).json('Facility not found or not updated');
+    }
+
+    // Handle gallery images
+    const existingGalleryImagesQuery = `
+      SELECT FacImg_Name
+      FROM facility_images
+      WHERE Fac_Id = ?;
+    `;
+
+    const [existingGalleryImages] = await db.query(existingGalleryImagesQuery, [facId]);
+
+    const existingGalleryImgs = existingGalleryImages.map((img) => img.FacImg_Name);
+
+    const imagesToRemove = existingGalleryImgs.filter((img) => !gallery_imgs.includes(img));
+
+    if (imagesToRemove.length > 0) {
+      const removeImagesQuery = `
+        DELETE FROM facility_images
+        WHERE Fac_Id = ? AND FacImg_Name IN (?);
+      `;
+
+      await db.query(removeImagesQuery, [facId, imagesToRemove]);
+    }
+
+    const imagesToAdd = gallery_imgs.filter((img) => !existingGalleryImgs.includes(img));
+
+    if (imagesToAdd.length > 0) {
+      const insertGalleryImagesQuery = `
+        INSERT INTO facility_images (Fac_Id, FacImg_Name, Is_Featured)
+        VALUES ?;
+      `;
+
+      const insertGalleryValues = imagesToAdd.map((filename) => [facId, filename, 0]);
+
+      await db.query(insertGalleryImagesQuery, [insertGalleryValues]);
+    }
+
+    // Handle featured image
+    const updateFeaturedImgQuery = `
+      UPDATE facility_images
+      SET Is_Featured = 0
+      WHERE Fac_Id = ?;
+    `;
+
+    await db.query(updateFeaturedImgQuery, [facId]);
 
     if (featured_img) {
-      const qFeaturedImg =
-        "INSERT INTO facility_images (`Fac_Id`,`FacImg_Name`,`Is_Featured`) VALUES (?,?,1)";
-      db.query(qFeaturedImg, [Id, featured_img], (err, data) => {
-        if (err) return res.status(500).json("Database err: " + err.message);
-      });
+      const insertFeaturedImgQuery = `
+        INSERT INTO facility_images (Fac_Id, FacImg_Name, Is_Featured)
+        VALUES (?, ?, 1);
+      `;
+
+      const insertFeaturedImgValues = [facId, featured_img];
+
+      await db.query(insertFeaturedImgQuery, insertFeaturedImgValues);
     }
 
-    if (gallery_imgs && gallery_imgs.length > 0) {
-      const qGalleryImgs =
-        "INSERT INTO facility_images (`Fac_Id`,`FacImg_Name`,`Is_Featured` ) VALUES ?";
-      const galleryImgValues = gallery_imgs.map((filename) => [
-        Id,
-        filename,
-        0,
-      ]);
-
-      db.query(qGalleryImgs, [galleryImgValues], (err, data) => {
-        if (err) return res.status(500).json("Database err: " + err.message);
-      });
-    }
-    return res.json("Facility has been added");
-  });
-};
-
-
-export const updateFacility = (req, res) => {
-  const facId = req.params.id;
-  const { fac_title, fac_desc, featured_img, gallery_imgs } = req.body;
-
-  const updateFacilityQuery =
-    "UPDATE facilities SET `Fac_Title` = ?, `Fac_Desc` = ? WHERE `Fac_Id` = ?";
-  const updateFacilityValues = [fac_title, fac_desc, facId];
-  db.query(updateFacilityQuery, updateFacilityValues, (error) => {
-    if (error) {
-      return res.status(500).json("Database error: " + error.message);
-    }
-
-    handleGalleryImages();
-  });
-
-  function handleGalleryImages() {
-    if (gallery_imgs && gallery_imgs.length > 0) {
-      const existingGalleryImagesQuery =
-        "SELECT `FacImg_Name` FROM facility_images WHERE `Fac_Id` = ?";
-      db.query(
-        existingGalleryImagesQuery,
-        [facId],
-        (error, existingGalleryImages) => {
-          if (error) {
-            return res.status(500).json("Database error: " + error.message);
-          }
-
-          const existingGalleryImgs = existingGalleryImages.map(
-            (img) => img.FacImg_Name
-          );
-
-          // Remove images that are not present in the updated gallery_imgs array
-          const imagesToRemove = existingGalleryImgs.filter(
-            (img) => !gallery_imgs.includes(img)
-          );
-          if (imagesToRemove.length > 0) {
-            const removeImagesQuery =
-              "DELETE FROM facility_images WHERE `Fac_Id` = ? AND `FacImg_Name` IN (?)";
-            db.query(removeImagesQuery, [facId, imagesToRemove], (error) => {
-              if (error) {
-                return res.status(500).json("Database error: " + error.message);
-              }
-
-              insertNewGalleryImages();
-            });
-          } else {
-            insertNewGalleryImages();
-          }
-        }
-      );
-    } else {
-      handleFeaturedImage();
-    }
-  }
-
-  function insertNewGalleryImages() {
-    if (gallery_imgs && gallery_imgs.length > 0) {
-      const existingGalleryImagesQuery =
-        "SELECT `FacImg_Name` FROM facility_images WHERE `Fac_Id` = ?";
-      db.query(
-        existingGalleryImagesQuery,
-        [facId],
-        (error, existingGalleryImages) => {
-          if (error) {
-            return res.status(500).json("Database error: " + error.message);
-          }
-
-          const existingGalleryImgs = existingGalleryImages.map(
-            (img) => img.FacImg_Name
-          );
-
-          // Add new images that are not already present in the existing gallery
-          const imagesToAdd = gallery_imgs.filter(
-            (img) => !existingGalleryImgs.includes(img)
-          );
-          if (imagesToAdd.length > 0) {
-            const insertGalleryImagesQuery =
-              "INSERT INTO facility_images (`Fac_Id`, `FacImg_Name`, `Is_Featured`) VALUES ?";
-            const insertGalleryValues = imagesToAdd.map((filename) => [
-              facId,
-              filename,
-              0,
-            ]);
-            db.query(
-              insertGalleryImagesQuery,
-              [insertGalleryValues],
-              (error) => {
-                if (error) {
-                  return res
-                    .status(500)
-                    .json("Database error: " + error.message);
-                }
-
-                handleFeaturedImage();
-              }
-            );
-          } else {
-            handleFeaturedImage();
-          }
-        }
-      );
-    } else {
-      handleFeaturedImage();
-    }
-  }
-
-  function handleFeaturedImage() {
-    if (featured_img) {
-      const updateFeaturedImgQuery =
-        "UPDATE facility_images SET `Is_Featured` = 0 WHERE `Fac_Id` = ?";
-      db.query(updateFeaturedImgQuery, [facId], (error) => {
-        if (error) {
-          return res.status(500).json("Database error: " + error.message);
-        }
-
-        const insertFeaturedImgQuery =
-          "INSERT INTO facility_images (`Fac_Id`, `FacImg_Name`, `Is_Featured`) VALUES (?, ?, 1)";
-        const insertFeaturedImgValues = [facId, featured_img];
-        db.query(insertFeaturedImgQuery, insertFeaturedImgValues, (error) => {
-          if (error) {
-            return res.status(500).json("Database error: " + error.message);
-          }
-
-          return res.json("Facility has been updated");
-        });
-      });
-    } else {
-      return res.json("Facility has been updated");
-    }
+    return res.json('Facility has been updated');
+  } catch (err) {
+    console.error('Error during facility update:', err);
+    return res.status(500).json(err);
   }
 };
-
+// ! do not DELETE THIISS!!!!
 // export const updateFacility = (req, res) => {
 //   const facId = req.params.id;
-//   const { fac_title, fac_desc, featured_img, gallery_img } = req.body;
+//   const { fac_title, fac_desc, featured_img, gallery_imgs } = req.body;
 
-//   // Query to get existing gallery images for the facility
-//   const qGetExistingGalleryImages = "SELECT `FacImg_Name` FROM facility_images WHERE `Fac_Id` = ?";
-//   db.query(qGetExistingGalleryImages, [facId], (err, existingGalleryImages) => {
-//     if (err) {
-//       return res.status(500).json("Database error: " + err.message);
+//   const updateFacilityQuery =
+//     "UPDATE facilities SET `Fac_Title` = ?, `Fac_Desc` = ? WHERE `Fac_Id` = ?";
+//   const updateFacilityValues = [fac_title, fac_desc, facId];
+//   db.query(updateFacilityQuery, updateFacilityValues, (error) => {
+//     if (error) {
+//       return res.status(500).json("Database error: " + error.message);
 //     }
 
-//     const existingGalleryImgs = existingGalleryImages.map((img) => img.FacImg_Name);
+//     handleGalleryImages();
+//   });
 
-//     const qUpdateFacility = "UPDATE facilities SET `Fac_Title` = ?, `Fac_Desc` = ? WHERE `Fac_Id` = ?";
-//     const updateFacilityValues = [fac_title, fac_desc, facId];
-
-//     db.query(qUpdateFacility, updateFacilityValues, (err, data) => {
-//       if (err) {
-//         return res.status(500).json("Database error: " + err.message);
-//       }
-
-//       if (featured_img) {
-//         const qFeaturedImg =
-//           "UPDATE facility_images SET `FacImg_Name` = ?, `Is_Featured` = 1 WHERE `Fac_Id` = ? AND `Is_Featured` = 1";
-//         const featuredValues = [featured_img, facId];
-
-//         db.query(qFeaturedImg, featuredValues, (err, data) => {
-//           if (err) {
-//             return res.status(500).json("Database error: " + err.message);
+//   function handleGalleryImages() {
+//     if (gallery_imgs && gallery_imgs.length > 0) {
+//       const existingGalleryImagesQuery =
+//         "SELECT `FacImg_Name` FROM facility_images WHERE `Fac_Id` = ?";
+//       db.query(
+//         existingGalleryImagesQuery,
+//         [facId],
+//         (error, existingGalleryImages) => {
+//           if (error) {
+//             return res.status(500).json("Database error: " + error.message);
 //           }
-//         });
-//       }
 
-//       if (gallery_img) {
-//         // Delete existing gallery images not included in the updated gallery_img array
-//         const deleteNonMatchingImage =
-//           "DELETE FROM facility_images WHERE `Fac_Id` = ? AND `FacImg_Name` NOT IN (?)";
-//         const deleteNonMatchingImageValues = [facId, gallery_img];
-//         db.query(
-//           deleteNonMatchingImage,
-//           [deleteNonMatchingImageValues],
-//           (err, data) => {
-//             if (err) {
-//               return res.status(500).json("Database error: " + err.message);
-//             }
+//           const existingGalleryImgs = existingGalleryImages.map(
+//             (img) => img.FacImg_Name
+//           );
+
+//           // Remove images that are not present in the updated gallery_imgs array
+//           const imagesToRemove = existingGalleryImgs.filter(
+//             (img) => !gallery_imgs.includes(img)
+//           );
+//           if (imagesToRemove.length > 0) {
+//             const removeImagesQuery =
+//               "DELETE FROM facility_images WHERE `Fac_Id` = ? AND `FacImg_Name` IN (?)";
+//             db.query(removeImagesQuery, [facId, imagesToRemove], (error) => {
+//               if (error) {
+//                 return res.status(500).json("Database error: " + error.message);
+//               }
+
+//               insertNewGalleryImages();
+//             });
+//           } else {
+//             insertNewGalleryImages();
 //           }
-//         );
-
-//         // Insert new gallery images not already in the gallery
-//         const insertNewGalleryImg =
-//           "INSERT INTO facility_images (`Fac_Id`, `FacImg_Name`, `Is_Featured`) VALUES ?";
-//         const insertNewGalleryValues = gallery_img
-//           .filter((filename) => !existingGalleryImgs.includes(filename))
-//           .map((filename) => [facId, filename, 0]);
-
-//         if (insertNewGalleryValues.length > 0) {
-//           db.query(insertNewGalleryImg, [insertNewGalleryValues], (err, data) => {
-//             if (err) {
-//               return res.status(500).json("Database error: " + err.message);
-//             }
-//           });
 //         }
-//       }
+//       );
+//     } else {
+//       handleFeaturedImage();
+//     }
+//   }
 
+//   function insertNewGalleryImages() {
+//     if (gallery_imgs && gallery_imgs.length > 0) {
+//       const existingGalleryImagesQuery =
+//         "SELECT `FacImg_Name` FROM facility_images WHERE `Fac_Id` = ?";
+//       db.query(
+//         existingGalleryImagesQuery,
+//         [facId],
+//         (error, existingGalleryImages) => {
+//           if (error) {
+//             return res.status(500).json("Database error: " + error.message);
+//           }
+
+//           const existingGalleryImgs = existingGalleryImages.map(
+//             (img) => img.FacImg_Name
+//           );
+
+//           // Add new images that are not already present in the existing gallery
+//           const imagesToAdd = gallery_imgs.filter(
+//             (img) => !existingGalleryImgs.includes(img)
+//           );
+//           if (imagesToAdd.length > 0) {
+//             const insertGalleryImagesQuery =
+//               "INSERT INTO facility_images (`Fac_Id`, `FacImg_Name`, `Is_Featured`) VALUES ?";
+//             const insertGalleryValues = imagesToAdd.map((filename) => [
+//               facId,
+//               filename,
+//               0,
+//             ]);
+//             db.query(
+//               insertGalleryImagesQuery,
+//               [insertGalleryValues],
+//               (error) => {
+//                 if (error) {
+//                   return res
+//                     .status(500)
+//                     .json("Database error: " + error.message);
+//                 }
+
+//                 handleFeaturedImage();
+//               }
+//             );
+//           } else {
+//             handleFeaturedImage();
+//           }
+//         }
+//       );
+//     } else {
+//       handleFeaturedImage();
+//     }
+//   }
+
+//   function handleFeaturedImage() {
+//     if (featured_img) {
+//       const updateFeaturedImgQuery =
+//         "UPDATE facility_images SET `Is_Featured` = 0 WHERE `Fac_Id` = ?";
+//       db.query(updateFeaturedImgQuery, [facId], (error) => {
+//         if (error) {
+//           return res.status(500).json("Database error: " + error.message);
+//         }
+
+//         const insertFeaturedImgQuery =
+//           "INSERT INTO facility_images (`Fac_Id`, `FacImg_Name`, `Is_Featured`) VALUES (?, ?, 1)";
+//         const insertFeaturedImgValues = [facId, featured_img];
+//         db.query(insertFeaturedImgQuery, insertFeaturedImgValues, (error) => {
+//           if (error) {
+//             return res.status(500).json("Database error: " + error.message);
+//           }
+
+//           return res.json("Facility has been updated");
+//         });
+//       });
+//     } else {
 //       return res.json("Facility has been updated");
-//     });
-//   });
+//     }
+//   }
 // };
-
-// export const updateFacility = (req, res) => {
-//   const q =
-//     "UPDATE facilities SET `Fac_Title` = ?, `Fac_Desc` = ?, `Fac_Img` = ? WHERE `Fac_Id` = ?";
-//   const facId = req.params.id;
-//   const values = [req.body.fac_title, req.body.fac_desc, req.body.fac_img];
-
-//   db.query(q, [...values, facId], (err, data) => {
-//     if (err) return res.status(500).json("Database error: " + err.message);
-//     return res.json("Facility has been updated");
-//   });
-// };
+//! --------------!!
 
 export const deleteFacility = (req, res) => {
   const facId = req.params.id;

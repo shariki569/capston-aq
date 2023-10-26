@@ -4,19 +4,145 @@
     position: fixed;
     right: 40px;
     margin-left: auto;
+
     bottom: 40px;
     z-index: 9999999999;
-    background-color: $primary;
-    height: 62px;
-    width: 62px;
-    border-radius: 50%;
-  @include centerFlexboxColumn; 
-   box-shadow: $large-box-shadow;
-   transition: 0.2s ease-in;
-
-    &:hover{
-        background-color: $secondary;
+    button {
+        background-color: transparent;
+        border: none;
         cursor: pointer;
-        color: $lighterGreyColor;
+        margin-left: auto;
+    }
+    border-radius: $base-border-radius;
+    .chatbot-inbox {
+        font-family: $secondary-font;
+        font-size: 0.95rem;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        box-shadow: $dark-box-shadow;
+        height: 700px;
+        width: 400px;
+        max-height: 500px;
+        background-color: $lighterGreyColor;
+        border-radius: $base-border-radius;
+
+        .chatbot-header {
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+            padding: $small-padding;
+            background-color: $primary;
+        }
+
+        .chatbot-panel {
+            // @include centerFlexboxColumn;\
+            // display: flex;
+            flex-direction: column;
+            @include fullSize;
+            overflow-y: auto;
+            margin-bottom: auto;
+            flex-wrap: wrap;
+            .message {
+                margin-top: $small-margin;
+                padding: $small-padding;
+                margin-bottom: 10px;
+                max-width: 90%;
+                padding: 5px;
+                border-radius: 5px;
+
+                span {
+                    padding: $base-padding;
+                    border-radius: $small-border-radius;
+                }
+                strong {
+                    font-size: $content;
+                }
+                
+
+                .sender{
+                    background-color: transparent;
+                }
+            }
+
+            .User {
+                flex-direction: row-reverse;
+                display: flex;
+                align-items: center;
+                margin-left: auto;
+
+                span {
+                    background-color: $info;
+                    color: $primary;
+                }
+            }
+
+            .Bot {
+                display: flex;
+                align-self: flex-end;
+                
+                span {
+                    background-color: white;
+                    li {
+                        list-style: none;   
+                    }
+                    
+                }
+            }
+        }
+        .chatbot-input {
+            margin-top: auto;
+            width: 100%;
+            display: flex;
+            position: relative;
+            background-color: white;
+            // input {
+            //     overflow: auto;
+            //     width: 100%;
+            //     padding: $small-padding-y;
+            //     padding-left: $small-padding;
+            //     border: 2px;
+            //     white-space: pre-wrap;
+            //     max-width: 300px;
+            // }
+
+            .text-area {
+                padding: 0;
+
+                .text-area-input {
+                    background-color: white;
+                }
+            }
+
+            .send {
+                // position: absolute;
+                // color: $greyColor;
+                // right: 15px;
+                // bottom: 5px;
+                padding: $base-padding;
+                background-color: $primary;
+                color: $lighterGreyColor;
+
+                &:hover {
+                    color: $lightGreyColor;
+                }
+            }
+        }
+    }
+    .chatbot-button {
+        background-color: $tertiary;
+        height: 62px;
+        width: 62px;
+        border-radius: 50%;
+        @include centerFlexboxColumn;
+        box-shadow: $dark-box-shadow;
+        transition: 0.2s ease-in;
+
+        &:hover {
+            background-color: $secondary;
+            cursor: pointer;
+            color: $lighterGreyColor;
+        }
     }
 }

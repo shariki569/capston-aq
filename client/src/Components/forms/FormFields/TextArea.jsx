@@ -23,7 +23,7 @@ import InlineError from '../FormValidation/InlineError';
 // export default TextArea
 
 
-const TextArea = ({ label, value, onChange, placeholder, rows, cols, error }) => {
+const TextArea = ({ label, value, onChange, placeholder, rows, cols, error, onKeyUp, disabled, onKeyDown, }) => {
 
   const [localValue, setLocalValue] = useState(value);
   const [localError, setLocalError] = useState(error);
@@ -58,7 +58,10 @@ const TextArea = ({ label, value, onChange, placeholder, rows, cols, error }) =>
         placeholder={placeholder}
         rows={rows}
         cols={cols}
-      />
+        onKeyUp={onKeyUp}
+        onKeyDown={onKeyDown}
+        disabled={disabled}
+         />
       {localError && <InlineError error={localError} />}
     </div>
   )

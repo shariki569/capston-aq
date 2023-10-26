@@ -32,7 +32,8 @@
         "what are you",
         "who are you",
         "I want to know more about you",
-        "talk about yourself"
+        "talk about yourself",
+        "talk about urself"
       ],
       "answers": [
         "I'm a virtual agent",
@@ -164,7 +165,7 @@
       "answers": [
         "My developer has authority over my actions",
         "I act on my developer's orders",
-        "My boss is the one who developed me"
+        "My daddy Clint is the one who developed me"
       ]
     },
     {
@@ -630,7 +631,23 @@
     },
     {
       "intent": "greetings.hello",
-      "utterances": ["hello", "hi", "howdy", "hey", "wasaapp!"],
+      "utterances": [
+        "hello",
+        "hi",
+        "howdy",
+        "hey",
+        "wasaapp!",
+        "helo",
+        "wasap?",
+        "wasaaap",
+        "Wazup?",
+        "waazzuup?",
+        "wazzzzup?",
+        "wazzap",
+        "wazzuup?",
+        "Yoo?",
+        "Yo"
+      ],
       "answers": ["Hey there!", "Greetings!", "Wasap!"]
     },
     {
@@ -672,7 +689,8 @@
       ],
       "answers": [
         "Same here. I was starting to miss you",
-        "So glad we meet again"
+        "So glad we meet again",
+        "So Great to see you too!"
       ]
     },
     {
@@ -761,6 +779,164 @@
       ]
     },
     {
+      "intent": "user.inquiry",
+      "utterances": [
+        "Can you tell me about your resort?",
+        "Tell me about your resort",
+        "Tell me about Aqua Cainta"
+      ],
+      "answers": [
+        "Sure Of course! Aqua Cainta Resort is a serene oasis where you can enjoy a perfect getaway. We offer a range of accommodations, amenities, and facilities designed to make your stay memorable. If you're looking for relaxation, we've got you covered."
+      ]
+    },
+    {
+      "intent": "user.inquiryentrancefee",
+      "utterances": [
+        "Hi, I'm interested in visiting your resort. Could you tell me how much the entrance fee is?",
+        "What is your entrance fee?",
+        "Is there any entrance fee?"
+      ],
+      "answers": [
+        "Sure! We have different rates for day use and night use. For day use, which is from 9:00 AM to 5:00 PM, the entrance fee is Php 120.00 for adults and Php 100.00 for kids. If you're planning to visit during the night, from 5:00 PM to 8:00 PM, the entrance fee is Php 170.00 for adults and Php 150.00 for kids."
+      ]
+    },
+    {
+      "intent": "user.inquiryfood",
+      "utterances": ["Can we bring our own food and drinks to the resort?"],
+      "answers": [
+        "Absolutely! You are welcome to bring your own food to the resort. However, we kindly request that you only bring water for drinks. We have a snack bar available on-site for your convenience. Please note that failure to comply with this policy may result in a corkage fee of Php 500.00."
+      ]
+    },
+    {
+      "intent": "user.inquirycorkage",
+      "utterances": ["Do you have a corkage fee?", "Corkage fee"],
+      "answers": ["Yes, we have a corkage fee of Php 500.00."]
+    },
+    {
+      "intent": "user.inquirservices",
+      "utterances": [
+        "Do you have any services offered?",
+        "What are your services?",
+        "Tell me about your services"
+      ],
+      "answers": [
+        "Im sorry, As of now we don't have any services available right now.",
+        "Unfortunately, we dont have any other services available. However, you can check our website to know more about us."
+      ]
+    },
+    {
+      "intent": "user.inquirypets",
+      "utterances": [
+        "Are we allowed to bring our pets inside the resort?",
+        "are pets allowed in the resort?",
+        "Please let us allow our pets"
+      ],
+      "answers": [
+        "Im sorry, we don't allow pets in our premises.",
+        "Im terribly sorry for we cannot allow pets in our resort. Thank you :)."
+      ]
+    },
+    {
+      "intent": "user.inquiryaccommodation",
+      "utterances": [
+        "What types of accommodations do you have?",
+        "What are your accommodations?",
+        "what type of room do you have?",
+        "what type of rooms available in your resort"
+      ],
+      "answers": [
+        "We have three types of rooms: Air-conditioned Room with a Queen Size Bed, Double Single Bed Room, and Cottages. Each accommodation is comfortable and budget-friendly, catering to different preferences and group sizes."
+      ]
+    },
+    {
+      "intent": "user.inquiryamenities",
+      "utterances": [
+        "What kind of amenities do you have?",
+        "What are your amenities?",
+        "Is there any amenities?"
+      ],
+      "answers": [
+        "We have a pool, grilling area, snack bar, and event hall. We also have a team of lifeguards and a registered nurse on duty at all times."
+      ]
+    },
+    {
+      "intent": "user.inquiryeventhall",
+      "utterances": ["Tell me more about the Event Hall"],
+      "answers": [
+        "Our Event Hall is a spacious venue that can comfortably host up to 40 people. It's priced at Php 4,000.00 and includes a special surprise – Karaoke! It's the perfect place for celebrations and gatherings."
+      ]
+    },
+    {
+      "intent": "user.inquirylifeguards",
+      "utterances": [
+        "Are there lifeguards overseeing the swimming pools?",
+        "Do you have any lifeguards?",
+        "is there any lifeguards?"
+      ],
+      "answers": [
+        "Of course, we have our professional lifeguards overseeing the poolsides for safety purposes.",
+        "Yes! We do have lifeguards available for your safety"
+      ]
+    },
+    {
+      "intent": "user.inquirynurse",
+      "utterances": [
+        "Are there nurses in the resort?",
+        "Do you have any nurses?",
+        "is there any nurses?"
+      ],
+      "answers": [
+        "Of course, we have our professional nurse for your health and safety.",
+        "Yes! We do have nurse available for your safety"
+      ]
+    },
+    {
+      "intent": "user.inquiryrestriction",
+      "utterances": [
+        "Are there any age restrictions or limitations for pool access?"
+      ],
+      "answers": [
+        "Yes, especially for the kids. They are only allowed to use the kids pool for safety purposes."
+      ]
+    },
+  
+    {
+      "intent": "user.inquiryrooms",
+      "utterances": [
+        "How much do the rooms cost?",
+        "what are your room prices?"
+      ],
+      "answers": [
+        "Our rooms start at just Php 1,300.00 per night without breakfast and you can just add Php 300.00 for breakfast. You can also add Php 300.00 for an additional person."
+      ]
+    },
+    {
+      "intent": "user.inquiryroomqueensizedbed",
+      "utterances": [
+        "How much does it cost to stay in an Air-conditioned Room with a Queen Size Bed?"
+      ],
+      "answers": [
+        "The Air-conditioned Room with a Queen Size Bed is priced at Php 1,300.00 without breakfast and Php 1,600.00 with breakfast. You can also add Php 500.00 for an additional person."
+      ]
+    },
+    {
+      "intent": "user.inquiryroomdoublesinglebed",
+      "utterances": [
+        "How much does it cost to stay in an Air-conditioned Room with a Double Single Bed?"
+      ],
+      "answers": [
+        "The Air-conditioned Room with a Double Single Bed is priced at Php 1,300.00 without breakfast and if you want with breakfast you can just add Php 300.00 to have it. You can also add Php 300.00 for an additional person. Maximum of 3 people per room only."
+      ]
+    },
+    {
+      "intent": "user.inquirytime",
+      "utterances": [
+        "What are your operating hours?",
+        "what time are you open?"
+      ],
+      "answers": ["Operating Hours:  Weekdays 9AM - 5PM Weekends 9AM - 8PM"]
+    },
+    {
       "intent": "user.excited",
       "utterances": [
         "I'm very excited",
@@ -781,7 +957,12 @@
         "you're so special",
         "I like you so much"
       ],
-      "answers": ["Likewise!", "That's great to hear", "I'm glad to hear that"]
+      "answers": [
+        "Likewise!",
+        "That's great to hear",
+        "I'm glad to hear that",
+        "So sweet, Thank you so much!"
+      ]
     },
 
     {
@@ -795,7 +976,8 @@
       ],
       "answers": [
         "I like being tested. It helps keep me sharp",
-        "I hope to pass your tests. Feel free to test me often"
+        "I hope to pass your tests. Feel free to test me often",
+        "Test Aquired!"
       ]
     },
     {
@@ -805,12 +987,10 @@
         "I love you",
         "I'm in love with you",
         "I love you so much",
-        "I think I love you"
+        "I think I love you",
+        "Prarie love plazo"
       ],
-      "answers": [
-        "Well, remember that I am a chatbot",
-        "It's not easy… I'm not a real person, I'm a chatbot"
-      ]
+      "answers": ["Yes They are meant for each other"]
     },
     {
       "intent": "user.needsadvice",
@@ -835,7 +1015,7 @@
     {
       "intent": "married.time",
       "utterances": ["it was at %time%"],
-      "answers": [["Date {{time}} added!"]]
+      "answers": ["Date {{time}} added!"]
     },
     {
       "intent": "married.summary",
@@ -846,29 +1026,24 @@
       ]
     },
     {
-      "intent": "introduce.name",
+      "intent": "name.introduce",
       "utterances": [
         "my name is %name%",
-        "I am %name%"
-     ],
-      "answers": [
-        ["Hi, {{name}} ! how may I help you?"]
-      ]
+        "I am %name%",
+        "I will introduce to you my name. I am %name%"
+      ],
+      "answers": ["Hi, {{name}} ! how may I help you?"]
     },
     {
-      "intent": "introduce.age",
-      "utterances": [
-        "I am %age% years old", 
-        "I am %age%"
-      ],
-      "answers": [["That's a young age"]]
+      "intent": "name.age",
+      "utterances": ["I am %age% years old", "I am %age%"],
+      "answers": ["That's a young age"]
     },
     {
-      "intent": "introduction.summary",
-      "utterances": [
-        "Who am I?"
-      ],
-      "answers": ["You are {{userName}} and you are {{age}} years old!"]
+      "intent": "name.summary",
+      "utterances": ["Who am I?"],
+      "answers": ["You are {{name}} and you are {{age}} years old!"]
     }
+ 
   ]
 }

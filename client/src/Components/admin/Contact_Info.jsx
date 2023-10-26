@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import TextInput from '../forms/FormFields/TextInput'
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
+import { formatAsCellPhoneNumber, formatAsPhoneNumber } from '../util/formatDetails';
 
 const Contact_Info = () => {
   const [contactInfo, setContactInfo] = useState(null);
@@ -27,23 +28,6 @@ const Contact_Info = () => {
     setEditMode(!editMode);
   };
 
-  // const handleInputChange = (event) => {
-  //   const { name, value } = event.target;
-  //   if (event.target.type === 'number') {
-  //     const numericValue = value.replace(/[^0-9 ()]/g, '');
-  //     setContactInfo((prevInfo) => ({
-  //       ...prevInfo,
-  //       [name]: numericValue
-  //     }));
-  //   } else {
-  //     setContactInfo((prevInfo) => ({
-  //       ...prevInfo,
-  //       [name]: value
-  //     }));
-
-  //   };
-
-  // };
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
@@ -59,34 +43,8 @@ const Contact_Info = () => {
     }));
   };
 
-  // Helper function to format as (XXX) XXX XXXX
-  const formatAsPhoneNumber = (inputValue) => {
-    const cleanedInput = inputValue.replace(/[^\d]/g, ''); // Remove non-numeric characters
-    const match = cleanedInput.match(/^(\d{0,3})(\d{0,3})(\d{0,4})$/);
-
-    if (match.length <= 9) {
-      return `(${match[1]}) ${match[2]} ${match[3]}`.trim();
-    } else {
-      return inputValue; // Return the input as is if it doesn't match the format
-    }
-  };
-
- 
-
-  const formatAsCellPhoneNumber = (inputValue) => {
-    const cleanedInput = inputValue.replace(/[^\d]/g, ''); // Remove non-numeric characters
-    const match = cleanedInput.match(/^(\d{0,4})(\d{0,3})(\d{0,4})$/);
-
-    if (match.length <= 11) {
-      return match[1] + ' ' + match[2] + ' ' + match[3];
-    } else {
-      return cleanedInput.substring(0, 11);
-    }
-  }
-
 
   const handleSave = async () => {
-   
     try {
       // Make the API call to update the contact information
       await axios.put(`/api/contacts/1`, contactInfo);
@@ -146,17 +104,6 @@ const Contact_Info = () => {
                   ) : (
                     <span className='l-font  main-bold'>{item.value}</span>
                   )}
-
-                  {/* {editMode ?
-                    (
-                      <>
-                      <button onClick={handleSave}>Save</button>
-                      <button onClick={toggleEditMode}>Cancel</button>
-                      </>
-                      
-                    ) : (
-                      <button onClick={toggleEditMode}>Edit</button>
-                    )} */}
                 </div>
 
               </li>
@@ -185,7 +132,7 @@ const Contact_Info = () => {
           ) : (
             <div className="buttons">
               <button onClick={toggleEditMode}>Edit</button>
-              
+
             </div>
           )}
         </div>

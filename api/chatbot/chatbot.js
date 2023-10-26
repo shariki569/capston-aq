@@ -1,74 +1,46 @@
 import { NlpManager, ConversationContext } from "node-nlp";
-import fs from "fs";
-import path, { resolve } from "path";
-
+import { generateCorpusEntries } from "../chatbot/corpus-generator/corpusGenerator.js";
 
 const nlp = new NlpManager({
-  languages: ["en"],
+  languages: ["en", "tl"],
   forceNER: true,
   autoSave: false,
   nlu: { useNoneFeature: true, log: true },
+  ner: { threshold: 1 },
 });
 const context = new ConversationContext();
 
-const getJsonFile = (dir) => {
-  return new Promise((resolve, reject) => {
-    fs.readdir(dir, (err, files) => {
-      if (err) {
-        reject(err);
-        return;
-      }
+nlp.addCorpus("./chatbot/corpus-en.json");
+nlp.addCorpus("./chatbot/corpus-tl.json");
 
-      const jsonFile = files.find((file) => file.endsWith(".json"));
+const corpusEntries = await generateCorpusEntries();
 
-      if (!jsonFile) {
-        reject("No json file found");
-        return;
-      }
-      resolve(path.join(dir, jsonFile));
-    });
+// Add each entry to the NLP manager
+corpusEntries.forEach((entry) => {
+  entry.utterances.forEach((utterance) => {
+    nlp.addDocument("en", utterance, entry.intent);
   });
-};
+  entry.answers.forEach((answer) => {
+    nlp.addAnswer("en", entry.intent, answer);
+  });
+});
 
-const loadModel = async () => {
-  try {
-    const filePath = await getJsonFile("./chatbot");
-    const data = fs.readFileSync(filePath);
-    const corpus = JSON.parse(data);
-
-    corpus.data.forEach((entry) => {
-      entry.utterances.forEach((utterance) => {
-        nlp.addDocument("en", utterance, entry.intent);
-      });
-      entry.answers.forEach((answer) => {
-        nlp.addAnswer("en", entry.intent, answer);
-      });
-    });
-
-    console.log("Corpus data loaded successfully.");
-
-    await nlp.train();
-    nlp.save();
-    console.log("Model trained successfully.");
-  } catch (error) {
-    console.error("Error loading corpus data:", error);
-  }
-};
-loadModel();
+await nlp.train();
 
 const processInput = async (input, context) => {
   try {
     const result = await nlp.process("en", input, context);
+
     if (result.answer) {
       context.previousIntent = result.intent;
       context.previousInput = input;
       context.previousAnswer = result.answer;
 
-      if (result.intent === 'introduce.name') {
-        context.name = result.parameters.name;
-      } else if (result.intent === 'introduce.age') {
-        context.age = result.parameters.age;
-      }
+      // if (result.intent === 'introduce.name') {
+      //   context.name = result.parameters.name;
+      // } else if (result.intent === 'introduce.age') {
+      //   context.age = result.parameters.age;
+      // }
       return result.answer;
     } else {
       return "I'm sorry, I didn't understand that.";

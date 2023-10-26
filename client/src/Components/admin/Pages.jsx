@@ -5,9 +5,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 import TextInput from "../forms/FormFields/TextInput";
 import placeholder from "../../img/placeholder-image.webp";
 import TextArea from "../forms/FormFields/TextArea";
+import { upload } from "../../Hooks/imageHandling";
 const Pages = () => {
+  const [editMode, setEditMode] = useState(false);
   const state = useLocation().state;
-  const [pageTitle, setPageTitle] = useState(state?.PageTitle || "");
+ 
   const [pageSections, setPageSections] = useState(state?.sections || []);
   const [previewImages, setPreviewImages] = useState(
     state?.sections.map(() => null) || []
@@ -25,17 +27,17 @@ const Pages = () => {
     };
   }, [previewImages]);
 
-  const uploadImage = async (file) => {
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
-      const response = await axios.post("/api/upload", formData);
-      return response.data;
-    } catch (error) {
-      console.error("Error Uploading image: ", error);
-      throw new Error("Image upload failed. Please try again later.");
-    }
-  };
+  // const uploadImage = async (file) => {
+  //   try {
+  //     const formData = new FormData();
+  //     formData.append("file", file);
+  //     const response = await axios.post("/api/upload", formData);
+  //     return response.data;
+  //   } catch (error) {
+  //     console.error("Error Uploading image: ", error);
+  //     throw new Error("Image upload failed. Please try again later.");
+  //   }
+  // };
 
   const handleSectionChange = async (sectionIndex, field, value) => {
     const updatedSections = [...pageSections];
@@ -95,7 +97,7 @@ const Pages = () => {
 
       const updatedPageSections = pageSections.map(async (section) => {
         if (section.SectionImage instanceof File) {
-          const newImageUrl = await uploadImage(section.SectionImage);
+          const newImageUrl = await upload(section.SectionImage);
           return { ...section, SectionImage: newImageUrl };
         }
         return section;
@@ -104,7 +106,7 @@ const Pages = () => {
       const updatedSections = await Promise.all(updatedPageSections);
 
       await axios.put(`/api/pages/${state.Slug}`, {
-        PageTitle: pageTitle,
+      
         sections: updatedSections,
       });
       navigate(`/${state.Slug}`);

@@ -11,6 +11,8 @@ $nav-footer: 10px 50px;
     z-index: 999999999;
     padding: $nav-footer;
     background-color: transparent;
+    font-family: $secondary-font;
+    font-weight: $w-bold;
 
     &.scrolled {
         transition: $base-transition;
@@ -24,7 +26,7 @@ $nav-footer: 10px 50px;
         h6 {
             font-size: $content;
             font-weight: 300;
-            font-family: $secondary-font;
+            
             text-decoration: none;
             text-transform: uppercase;
             color: $honeyDew;
@@ -91,6 +93,7 @@ $nav-footer: 10px 50px;
                     padding: $small-padding-y;
                     padding-left: $small-padding;
                     padding-right: $large-padding;
+                    list-style: none;
 
                     &:hover {
                         background-color: $primaryColor;

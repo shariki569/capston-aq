@@ -31,9 +31,9 @@ const Accommodation_Single = () => {
                 <h1>{accomm?.Accommodation_Title}</h1>
                 <div className="social-media">
                   <div className="icons">
-                    <BiLogoFacebookCircle size={25} />
-                    <BiLogoTwitter size={25} />
-                    <BiLogoInstagramAlt size={25} />
+                    <BiLogoFacebookCircle size={25} color='blue'/>
+                    <BiLogoTwitter size={25} color="lightblue"/>
+                    <BiLogoInstagramAlt size={25} color="pink"/>
 
                   </div>
                 </div>

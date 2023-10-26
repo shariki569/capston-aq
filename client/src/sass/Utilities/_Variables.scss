@@ -48,13 +48,14 @@ $medium-border-thickness-dotted: 3px dotted;
 //border-radius
 $small-border-radius: 5px;
 $base-border-radius: 10px;
+$medium-border-radius: 20px;
 
 //input border
 $input-border-radius: 4px 4px 2px 2px;
 
 //box-shadow 
 $base-box-shadow: 0px 10px 20px -18px rgba(29, 53, 87, 0.11);
-$large-box-shadow: 1px 2px 11px 3px #44444452;
+$dark-box-shadow: 1px 2px 11px 3px #1a191952;
 
 //transitions
 $base-transition: all 0.3s;

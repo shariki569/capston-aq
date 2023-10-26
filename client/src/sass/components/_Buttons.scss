@@ -35,3 +35,38 @@
         
     }
 }
+
+
+.btn-2 {
+    display: flex;
+    gap: 1rem;
+    position: relative;
+    background-color: transparent;
+    padding: $base-button-size;
+    border-radius: $base-border-radius;
+    cursor: pointer;
+    color: $lightGreyColor;
+    border: $base-border-thickness $lightGreyColor    ;
+    z-index: 999;
+    overflow: hidden;
+    transition: all 0.3s;
+
+    &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        @include fullSize;
+        background-color: $lightGreyColor;
+        transform: translateX(-100%);
+        transition: all 0.5s;
+        z-index: -1111;
+    }
+    &:hover{
+        color: $primary;
+    }
+    &:hover::before {
+        transform: translateX(0);
+        
+    }
+}

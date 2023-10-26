@@ -13,6 +13,7 @@ const Amenities = () => {
                 main="Amenities"
             />
             <div className="wrapper">
+                
                 <div className="amenity-items || grid-view">
                     {amenities.map((amenity) => (
                         <div className="amenity-item" key={amenity.Amenity_Id}>

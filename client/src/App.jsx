@@ -35,7 +35,7 @@ import {
 import AccommodationMenuLayout from "./Components/layouts/AccommodationLayout";
 import Accommodation_Items from "./pages/Accommodation/Accommodation_Items";
 import Contact_Info from "./Components/admin/Contact_Info";
-import Media from "./Components/admin/Media/Media";
+import Media from "./Components/admin/Media/GalleryMedia/Media";
 import PostsLayout from "./Components/layouts/PostsLayout";
 import Posts_Menu from "./Components/admin/Posts/Posts_Menu";
 import Accommodation_Single from "./pages/Accommodation/Accommodation_Single";

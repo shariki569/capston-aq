@@ -47,6 +47,7 @@ app.use("/api/contacts", contactRoutes);
 app.use("/api/images", imageRoutes);
 app.use("/api/facilities", facilityRoutes);
 
+
 app.listen(8800, () => {
   console.log("Connected oy amaw!");
 });

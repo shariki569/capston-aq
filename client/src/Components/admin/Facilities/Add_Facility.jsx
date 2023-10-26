@@ -157,6 +157,7 @@ const Add_Facility = () => {
             <h1>Publish</h1>
           </div>
           <ImageUploader
+            title="Featured Image"
             file={facility.file}
             existingImage={facility.featuredImg}
             previewImage={facility.previewFeaturedImage}
@@ -164,6 +165,7 @@ const Add_Facility = () => {
             handleImageChange={handleImageChange}
           />
           <ImageGalleryUploader
+            title="Gallery Images"
             galleryFiles={facility.galleryFiles}
             galleryImages={facility.galleryImages}
             handleGalleryImageChange={handleGalleryImageChange}

@@ -1,0 +1,100 @@
+{
+  "src/img/Accommodation-Header.webp": {
+    "file": "assets/Accommodation-Header-f597a550.webp",
+    "src": "src/img/Accommodation-Header.webp"
+  },
+  "src/img/Cainta Logo.png": {
+    "file": "assets/Cainta Logo-b6ef1786.png",
+    "src": "src/img/Cainta Logo.png"
+  },
+  "src/img/Contact-head.webp": {
+    "file": "assets/Contact-head-2056e8a2.webp",
+    "src": "src/img/Contact-head.webp"
+  },
+  "src/img/HEADER-HOMEPAGE.jpg": {
+    "file": "assets/HEADER-HOMEPAGE-778b2982.jpg",
+    "src": "src/img/HEADER-HOMEPAGE.jpg"
+  },
+  "src/img/dummy-image1.svg": {
+    "file": "assets/dummy-image1-0ce5ae85.svg",
+    "src": "src/img/dummy-image1.svg"
+  },
+  "src/img/header1.jpg": {
+    "file": "assets/header1-2415303c.jpg",
+    "src": "src/img/header1.jpg"
+  },
+  "src/img/placeholder-image.webp": {
+    "file": "assets/placeholder-image-586326f5.webp",
+    "src": "src/img/placeholder-image.webp"
+  },
+  "src/main.css": {
+    "file": "assets/main-19807923.css",
+    "src": "src/main.css"
+  },
+  "src/main.jsx": {
+    "assets": [
+      "assets/HEADER-HOMEPAGE-778b2982.jpg",
+      "assets/Cainta Logo-b6ef1786.png",
+      "assets/header1-2415303c.jpg",
+      "assets/Contact-head-2056e8a2.webp",
+      "assets/Accommodation-Header-f597a550.webp",
+      "assets/placeholder-image-586326f5.webp",
+      "assets/Arima-Regular-e3d2dcba.woff",
+      "assets/Karla-Regular-f7a1c60e.woff",
+      "assets/librebaskerville-regular-webfont-8bb3f8e5.woff2",
+      "assets/librebaskerville-regular-webfont-b6925db8.woff",
+      "assets/Quicksand-Medium-f9426368.woff2",
+      "assets/Quicksand-Medium-1eb2f7aa.woff",
+      "assets/Britney-Regular-d3c1092f.woff2",
+      "assets/Britney-Regular-b74c6277.woff",
+      "assets/LibreFranklin-Bold-6085a484.ttf",
+      "assets/LibreFranklin-Medium-3e520352.ttf"
+    ],
+    "css": [
+      "assets/main-19807923.css"
+    ],
+    "file": "assets/main-4e287bfa.js",
+    "isEntry": true,
+    "src": "src/main.jsx"
+  },
+  "src/sass/Utilities/fonts/Arima-Regular.woff": {
+    "file": "assets/Arima-Regular-e3d2dcba.woff",
+    "src": "src/sass/Utilities/fonts/Arima-Regular.woff"
+  },
+  "src/sass/Utilities/fonts/Britney-Regular.woff": {
+    "file": "assets/Britney-Regular-b74c6277.woff",
+    "src": "src/sass/Utilities/fonts/Britney-Regular.woff"
+  },
+  "src/sass/Utilities/fonts/Britney-Regular.woff2": {
+    "file": "assets/Britney-Regular-d3c1092f.woff2",
+    "src": "src/sass/Utilities/fonts/Britney-Regular.woff2"
+  },
+  "src/sass/Utilities/fonts/Karla-Regular.woff": {
+    "file": "assets/Karla-Regular-f7a1c60e.woff",
+    "src": "src/sass/Utilities/fonts/Karla-Regular.woff"
+  },
+  "src/sass/Utilities/fonts/LibreFranklin-Bold.ttf": {
+    "file": "assets/LibreFranklin-Bold-6085a484.ttf",
+    "src": "src/sass/Utilities/fonts/LibreFranklin-Bold.ttf"
+  },
+  "src/sass/Utilities/fonts/LibreFranklin-Medium.ttf": {
+    "file": "assets/LibreFranklin-Medium-3e520352.ttf",
+    "src": "src/sass/Utilities/fonts/LibreFranklin-Medium.ttf"
+  },
+  "src/sass/Utilities/fonts/Libre_Baskerville/librebaskerville-regular-webfont.woff": {
+    "file": "assets/librebaskerville-regular-webfont-b6925db8.woff",
+    "src": "src/sass/Utilities/fonts/Libre_Baskerville/librebaskerville-regular-webfont.woff"
+  },
+  "src/sass/Utilities/fonts/Libre_Baskerville/librebaskerville-regular-webfont.woff2": {
+    "file": "assets/librebaskerville-regular-webfont-8bb3f8e5.woff2",
+    "src": "src/sass/Utilities/fonts/Libre_Baskerville/librebaskerville-regular-webfont.woff2"
+  },
+  "src/sass/Utilities/fonts/Quicksand-Medium.woff": {
+    "file": "assets/Quicksand-Medium-1eb2f7aa.woff",
+    "src": "src/sass/Utilities/fonts/Quicksand-Medium.woff"
+  },
+  "src/sass/Utilities/fonts/Quicksand-Medium.woff2": {
+    "file": "assets/Quicksand-Medium-f9426368.woff2",
+    "src": "src/sass/Utilities/fonts/Quicksand-Medium.woff2"
+  }
+}

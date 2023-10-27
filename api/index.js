@@ -19,7 +19,7 @@ import { fileTypeFromFile } from "file-type";
 import upload from "./middleware/multerUpload.js";
 import dotenv from "dotenv";
 
-dotenv.config({ path: "./env/acc.env" });
+dotenv.config({});
 const app = express();
 
 app.use(cors());
@@ -50,7 +50,7 @@ app.use("/api/images", imageRoutes);
 app.use("/api/facilities", facilityRoutes);
 
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.MYSQLPORT, () => {
   console.log("Connected oy amaw!");
 });
 

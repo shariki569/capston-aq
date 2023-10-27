@@ -17,9 +17,7 @@ import multer from "multer";
 import { validateMIMEType } from "validate-image-type";
 import { fileTypeFromFile } from "file-type";
 import upload from "./middleware/multerUpload.js";
-import dotenv from "dotenv";
 
-dotenv.config({});
 const app = express();
 
 app.use(cors());
@@ -50,7 +48,7 @@ app.use("/api/images", imageRoutes);
 app.use("/api/facilities", facilityRoutes);
 
 
-app.listen(process.env.MYSQLPORT, () => {
+app.listen(8800, () => {
   console.log("Connected oy amaw!");
 });
 

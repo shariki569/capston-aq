@@ -52,7 +52,7 @@ const Facilities = () => {
         fetchData();
     }, []);
 
-
+    console.log(facilities);
 
     return (
         <section id='facilities' className='section-full'>

@@ -12,7 +12,7 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      "/api/": "http://localhost:8800",
+      "/api/": process.env.REACT_APP_BACKEND_URL,
     },
   },
   plugins: [react()],

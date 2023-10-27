@@ -17,7 +17,10 @@ import multer from "multer";
 import { validateMIMEType } from "validate-image-type";
 import { fileTypeFromFile } from "file-type";
 import upload from "./middleware/multerUpload.js";
-
+import dotenv from "dotenv";
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config();
+}
 const app = express();
 
 app.use(cors());
@@ -48,8 +51,11 @@ app.use("/api/images", imageRoutes);
 app.use("/api/facilities", facilityRoutes);
 
 
-app.listen(8800, () => {
+// app.listen(8800, () => {
+//   console.log("Connected oy amaw!");
+// });
+const port = process.env.PORT || 3000;
+app.listen(port, "0.0.0.0", function () {
   console.log("Connected oy amaw!");
 });
-
 export default app;

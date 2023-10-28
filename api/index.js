@@ -13,9 +13,6 @@ import amenityRoutes from "./routes/amenities.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
-import multer from "multer";
-import { validateMIMEType } from "validate-image-type";
-import { fileTypeFromFile } from "file-type";
 import upload from "./middleware/multerUpload.js";
 import dotenv from "dotenv";
 if (process.env.NODE_ENV !== 'production') {

@@ -78,8 +78,8 @@ const Footer = () => {
               <h3>DISCOVER AQUA CAINTA RESORT</h3>
             </div>
             <div className="footer-link">
-              {footerLinks.map((footlink) => (
-                <Link className='sub-link' to={footlink.path}>
+              {footerLinks.map((footlink, index) => (
+                <Link key={index} className='sub-link' to={footlink.path}>
                   <span>
                     {footlink.title}
                   </span>

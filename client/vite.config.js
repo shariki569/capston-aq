@@ -20,6 +20,7 @@ export default ({ mode }) => {
     },
     build: {
       rollupOptions: {
+      external: ['react-quill/dist/quill.snow.css'],
         output: {
           manualChunks(id) {
             if (id.includes("node_modules")) {

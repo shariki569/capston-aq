@@ -10,7 +10,7 @@ import accommRoutes from "./routes/accommodations.js";
 import imageRoutes from "./routes/images.js"
 import emailRoutes from "./routes/emailRoute.js"
 import amenityRoutes from "./routes/amenities.js";
-import cors from "cors";
+// import cors from "cors";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import multer from "multer";
@@ -23,7 +23,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 const app = express();
 
-app.use(cors());
+// app.use(cors());
 
 app.use(express.json());
 app.use(cookieParser());

@@ -21,7 +21,7 @@ export default defineConfig({
     //   "/api/": "http://localhost:8800",
     // },
     proxy: {
-      "/api/": import.meta.env.VITE_APP_BACKEND_URL,
+      "/api/": import.meta.env,
     },
     
   },

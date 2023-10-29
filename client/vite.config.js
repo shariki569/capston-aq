@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react";
 import http from "https";
 // https://vitejs.dev/config/
 export default ({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), '');
+  const env = loadEnv(mode, process.cwd(), "");
 
   return defineConfig({
     base: "./",
@@ -14,13 +14,12 @@ export default ({ mode }) => {
           target: env.VITE_APP_BACKEND_URL,
           changeOrigin: true,
           secure: false,
-          agent: new http.Agent()
-        }
+          agent: new http.Agent(),
+        },
       },
     },
     build: {
       rollupOptions: {
-      external: ['react-quill/dist/quill.snow.css'],
         output: {
           manualChunks(id) {
             if (id.includes("node_modules")) {
@@ -52,6 +51,6 @@ export default ({ mode }) => {
 //     proxy: {
 //       "/api/": import.meta.env.VITE_APP_BACKEND_URL,
 //     },
-    
+
 //   },
 //   plugins: [react()],

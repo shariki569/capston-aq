@@ -104,5 +104,3 @@ const ChatbotButton = ({ click }) => {
     </span>
   )
 }
-
-g

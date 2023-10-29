@@ -9,14 +9,9 @@ export default ({ mode }) => {
     base: "./",
     plugins: [react()],
     server: {
-      proxy: {
-        "/api": {
-          target: env.VITE_APP_BACKEND_URL,
-          changeOrigin: true,
-          secure: false,
-          agent: new http.Agent(),
-        },
-      },
+      proxy:{
+        "/api/": "https://capston-aq-backend-production.up.railway.app"
+      }
     },
     build: {
       rollupOptions: {

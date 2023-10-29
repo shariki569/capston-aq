@@ -3,14 +3,6 @@
   publish = "dist"
   command = "npm run build"
 
-[[redirects]]
-  from = "/"
-  to = "https://capston-aq-backend-production.up.railway.app"
-  status = 200
-  force = true
-  headers = {X-From = "Netlify"}
-
-
 
 [[redirects]]
   from = "/*"

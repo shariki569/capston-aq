@@ -83,7 +83,7 @@ const Footer = () => {
               </h3>
             </div>
             <div className="footer-description">
-              <ShareButton title="Aqua Cainta Resort" url="http://localhost:5173" />
+              <ShareButton title="Aqua Cainta Resort" url="https://capstone-cainta.netlify.app/" />
             </div>
           </div>
         </div>

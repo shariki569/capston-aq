@@ -1,10 +1,16 @@
 import React from 'react'
 import TwoSections from './TwoSections'
+//images
+import home2 from '../../img/Home/home2.webp'
+import home1 from '../../img/Home/home_1.jpg'
+import home3 from '../../img/Home/home3.webp'
+import home4 from '../../img/Home/home4.jpg'
+//images
 import Accommodation_Items from '../../pages/Accommodation/Accommodation_Items'
 import SectionWithHeading from './SectionWithHeading'
 
 const HomeSection1 = () => {
-  
+
 
     return (
         <section className='section-full wrapper'>
@@ -16,15 +22,15 @@ const HomeSection1 = () => {
             <SectionWithHeading
                 main='Discover Our Oasis'
             />
-            
+
             <TwoSections
                 title="Rooms"
                 content="Dip yourself in the perfect blend of comfort and affordability with our meticulously crafted rooms designed to cater to your every need. Whether you're looking for an intimate retreat for a romantic escape or a spacious haven for your family, our accommodations offer a haven of relaxation that's both inviting and budget-friendly"
                 images={
                     [
-                        `/src/img/Home/home2.webp`,
-                        `/src/img/Home/home_1.jpg`,
-                        `/src/img/Home/home3.webp`,
+                        home2,
+                        home1,
+                        home3,
 
                     ]
                 }
@@ -36,7 +42,7 @@ const HomeSection1 = () => {
                 images={
                     [
                         `/upload/1691565564092Accomodation-Header.jpeg`,
-                        `src/img/Home/home4.jpg`,
+                        home4,
                         `/upload/16955525828161691565231316Small-cottage.webp`,
 
                     ]

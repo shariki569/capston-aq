@@ -13,26 +13,6 @@ import Amenities from '../Components/Sections/Amenities'
 
 const Home = () => {
 
-  // const [posts, setPosts] = useState([])
-
-  // const cat = useLocation().search;
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const res = await axios.get(`/api/posts/${cat}`)
-  //       setPosts(res.data);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   fetchData();
-  // }, [cat]);
-
-  const getText = (html) => {
-    const doc = new DOMParser().parseFromString(html, "text/html")
-    return doc.body.textContent
-  }
 
   return (
     <>

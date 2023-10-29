@@ -6,6 +6,7 @@
   headers = {X-From = "Netlify"}
 
 [build]
+  base= "client"
   publish = "dist"
   command = "npm run build"
 

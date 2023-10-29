@@ -13,7 +13,7 @@ const Media = () => {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await axios.get('/api/images');
+        const response = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/images`);
         setImagePaths(response.data);
         setTotalImages(response.data.length);
         setIsLoading(false);
@@ -40,7 +40,7 @@ const Media = () => {
   const handleDelete = async (fileNames) => {
     try {
       const promises = fileNames.map(async (fileName) => {
-        await axios.delete(`/api/images/${fileName}`);
+        await axios.delete(`${import.meta.env.VITE_APP_BACKEND_URL}/api/images/${fileName}`);
       });
       await Promise.all(promises);
       window.location.reload();

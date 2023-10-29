@@ -4,7 +4,7 @@ import TwoSections from './TwoSections'
 import home2 from '../../img/Home/home2.webp'
 import home1 from '../../img/Home/home_1.jpg'
 import home3 from '../../img/Home/home3.webp'
-import home4 from '../../img/Home/home4.jpg'
+import home4 from '../../img/Home/home4.webp'
 //images
 import Accommodation_Items from '../../pages/Accommodation/Accommodation_Items'
 import SectionWithHeading from './SectionWithHeading'

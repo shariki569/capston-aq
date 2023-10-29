@@ -12,7 +12,7 @@ const Chatbot = () => {
         setInput('');
 
         try {
-            const response = await axios.post('/api/chatbotRoute', { input });
+            const response = await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/chatbotRoute`, { input });
             const botMessage = { text: response.data.answer, sender: 'bot' };
             setMessages([...messages, userMessage, botMessage]);
             console.log(response.data.answer);

@@ -109,14 +109,14 @@ const Add_Facility = () => {
         updatedGalleryImages = [...updatedGalleryImages, ...uploadedGalleryFiles];
       }
       if (state) {
-        await axios.put(`/api/facilities/${state.Fac_Id}`, {
+        await axios.put(`${import.meta.env.VITE_APP_BACKEND_URL}/api/facilities/${state.Fac_Id}`, {
           fac_title: facility.fac_title,
           fac_desc: facility.fac_desc,
           featured_img: facility.file ? await upload(facility.file) : facility.featuredImg,
           gallery_imgs: updatedGalleryImages,
         });
       } else {
-        await axios.post(`/api/facilities/`, {
+        await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/facilities/`, {
           fac_title: facility.fac_title,
           fac_desc: facility.fac_desc,
           fac_date: moment(Date.now()).format('YYYY-MM-DD'),

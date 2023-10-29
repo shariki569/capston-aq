@@ -5,22 +5,11 @@ import { FiMail, FiMapPin, FiPhone } from 'react-icons/fi';
 import { BiMobileAlt } from "react-icons/bi";
 import { Link } from 'react-router-dom';
 import ShareButton from '../admin/Media/SocialMedia/ShareButton';
+import { useContactInfo } from '../../API/fetchContact';
 
 const Footer = () => {
-  const [contactInfo, setContactInfo] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get('/api/contacts');
-        const contactData = res.data[0];
-        setContactInfo(contactData);
-      } catch (err) {
-        console.log(err)
-      }
-    }
-    fetchData();
-  }, []);
+  const { contactInfo } = useContactInfo();
 
   const footerLinks = [
     { title: "About Us", path: "/about-us" },

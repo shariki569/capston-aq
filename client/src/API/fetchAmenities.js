@@ -6,7 +6,7 @@ export const useAmenities = () => {
     const [amenities, setAmenities] = useState([]);
     const fetchData = async () => {
         try {
-            const res = await axios.get(`/api/amenities`);
+            const res = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/amenities`);
             setAmenities(res.data);
         } catch (error) {
             
@@ -22,7 +22,7 @@ export const useAmenities = () => {
 export const useDeleteAmenity = () => {
     const deleteData = async (amenityId, updateAmenity) => {
         try {
-            await axios.delete(`/api/amenities/${amenityId}`)
+            await axios.delete(`${import.meta.env.VITE_APP_BACKEND_URL}/api/amenities/${amenityId}`)
             updateAmenity((prevAmenity) => prevAmenity.filter((amenity) => amenity.Amenity_Id !== amenityId))
         } catch (error) {
             console.log(error)

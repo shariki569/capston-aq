@@ -8,7 +8,7 @@ export const useFacilities = () => {
     
     const fetchFacilities = async () => {
         try {
-            const res = await axios.get('/api/facilities');
+            const res = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/facilities`);
             setFacilities(res.data);
         } catch (err) {
             console.log(err);
@@ -26,7 +26,7 @@ export const useFacilities = () => {
 export const deleteFacility = () => {
     const deleteData = async (facId, updateFacility) => {
         try {
-            await axios.delete(`/api/facilities/${facId}`);
+            await axios.delete(`${import.meta.env.VITE_APP_BACKEND_URL}/api/facilities/${facId}`);
             updateFacility((prevFacilities) =>
                 prevFacilities.filter((fac) => fac.Fac_Id !== facId)
             );

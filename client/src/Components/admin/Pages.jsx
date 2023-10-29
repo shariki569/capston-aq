@@ -105,7 +105,7 @@ const Pages = () => {
 
       const updatedSections = await Promise.all(updatedPageSections);
 
-      await axios.put(`/api/pages/${state.Slug}`, {
+      await axios.put(`${import.meta.env.VITE_APP_BACKEND_URL}/api/pages/${state.Slug}`, {
       
         sections: updatedSections,
       });

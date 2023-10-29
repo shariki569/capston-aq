@@ -57,7 +57,7 @@ const ContactForm = () => {
         message,
       };
 
-      const response = await axios.post("/api/emailRoute/send-email", formData);
+      const response = await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/emailRoute/send-email`, formData);
       if (response.status === 200) {
         // Email sent successfully
         alert("Email Sent Successfully");

@@ -10,11 +10,9 @@ import TwoSections from '../Components/Sections/TwoSections'
 
 const About = () => {
 
-  const { pageData, fetchAboutData } = useAboutPageData()
+  const { pageData } = useAboutPageData()
 
-  useEffect(() => {
-    fetchAboutData();
-  }, []);
+
 
   return (
     <div className='about'>
@@ -28,20 +26,20 @@ const About = () => {
           />
           <div className="about-sections">
 
-          {pageData.sections.map((section) => (
-            <TwoSections
+            {pageData.sections.map((section) => (
+              <TwoSections
 
-              key={section.SectionId}
-              title={section.SectionHeading}
-              content={section.SectionContent}
-              images={
-                [
-                  `/upload/${section.SectionImage}`,
+                key={section.SectionId}
+                title={section.SectionHeading}
+                content={section.SectionContent}
+                images={
+                  [
+                    `/upload/${section.SectionImage}`,
 
-                ]
-              }
-            />
-          ))}
+                  ]
+                }
+              />
+            ))}
           </div>
 
         </div>

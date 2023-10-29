@@ -6,7 +6,7 @@ export const useAboutPageData = () => {
 
   const fetchAboutData = async () => {
     try {
-      const res = await axios.get("/api/pages/about-us");
+      const res = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/pages/about-us`);
       setPageData(res.data);
     } catch (err) {
       console.log(err);

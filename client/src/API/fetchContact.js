@@ -6,7 +6,7 @@ export const useContactInfo = ( ) => {
 
     const fetchContactData = async () => {
         try {
-            const res = await axios.get(`/api/contacts/`);
+            const res = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/contacts/`);
             setContactInfo(res.data[0]);
         } catch (err) {
             console.log(err);

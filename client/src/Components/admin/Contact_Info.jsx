@@ -11,7 +11,7 @@ const Contact_Info = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get('/api/contacts');
+        const res = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/contacts`);
         const contactData = res.data[0];
         setContactInfo(contactData);
       } catch (err) {

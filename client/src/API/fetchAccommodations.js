@@ -9,7 +9,7 @@ export const useSingleAccommData = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`/api/accommodations/${accommId}`);
+        const res = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/accommodations/${accommId}`);
         setAccomm(res.data);
       } catch (err) {
         console.error(err);
@@ -26,7 +26,7 @@ export const useAccommodations = (type = "") => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(`/api/accommodations/${type}`);
+      const res = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/accommodations/${type}`);
       setAccomms(res.data);
     } catch (err) {
       console.log(err);
@@ -43,7 +43,7 @@ export const useAccommodations = (type = "") => {
 export const useDeleteAccomms = () => {
   const deleteData = async (accommId, updateAccomm) => {
     try {
-      await axios.delete(`/api/accommodations/${accommId}`);
+      await axios.delete(`${import.meta.env.VITE_APP_BACKEND_URL}/api/accommodations/${accommId}`);
       // Update the accommodations list after deletion
       updateAccomm((prevAccomms) =>
         prevAccomms.filter((accomm) => accomm.Accommodation_Id !== accommId)
@@ -62,7 +62,7 @@ export const useRandomAccommodation = (type = "", currentAccommodationId = "") =
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(`/api/accommodations/?type=${type}`);
+      const res = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/accommodations/?type=${type}`);
       const accommodations = res.data;
       const filteredAccommodations = currentAccommodationId
       ? accommodations.filter(accomm => accomm.Accommodation_Id !== currentAccommodationId)

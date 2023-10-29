@@ -61,7 +61,7 @@ const Add_Accommodate = () => {
 
   try {
       state
-        ? await axios.patch(`/api/accommodations/${state.Accommodation_Id}`, {
+        ? await axios.patch(`${import.meta.env.VITE_APP_BACKEND_URL}/api/accommodations/${state.Accommodation_Id}`, {
           accommTitle,
           accommDesc,
           accommCap,
@@ -71,7 +71,7 @@ const Add_Accommodate = () => {
           accommImg: file ?
             imgUrl : accommImg,
         })
-        : await axios.post(`/api/accommodations/`, {
+        : await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/accommodations/`, {
           accommTitle,
           accommDesc,
           accommCap,

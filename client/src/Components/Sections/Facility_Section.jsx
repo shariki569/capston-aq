@@ -42,7 +42,7 @@ const Facilities = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get('/api/facilities');
+                const res = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/facilities`);
                 setFacilities(res.data)
 
             } catch (err) {

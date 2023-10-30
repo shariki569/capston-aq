@@ -12,26 +12,30 @@ const Accommodation = () => {
 
 
   return (
-    <div className="container">
+    <>
       <SEO
-      title="Accommodation | Aqua Cainta Resort"
-      description="Accommodations"
-      name="Aqua Cainta Resort"
-      type="Accommodation"
-      url="https://aquacaintaresort.netlify.app/"
-      hashtag="#AquaCaintaResort"
-      image={headerImage}
-      quote="Accommodations"
+        title="Accommodation | Aqua Cainta Resort"
+        description="Accommodations"
+        name="Aqua Cainta Resort"
+        type="Accommodation"
+        url="https://aquacaintaresort.netlify.app/"
+        hashtag="#AquaCaintaResort"
+        image={headerImage}
+        quote="Accommodations"
       />
-      <Header
-        imageUrl={headerImage}
-        title="Accommodations"
-        small
-      />
+      <div className="container">
 
-      <Accommodation_Items />
+        <Header
+          imageUrl={headerImage}
+          title="Accommodations"
+          small
+        />
 
-    </div>
+        <Accommodation_Items />
+
+      </div>
+    </>
+
   );
 };
 

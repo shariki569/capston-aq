@@ -12,7 +12,7 @@ import SEO from '../Components/SEO/SEO'
 
 
 const Home = () => {
-  const imageUrl = 'https://aquacaintaresort.netlify.app/assets/HEADER-HOMEPAGE-7c86378c.webp'
+
   return (
     <>
       <SEO
@@ -21,8 +21,8 @@ const Home = () => {
         name='Aqua Cainta Resort'
         type='Homepage'
         url='https://aquacaintaresort.netlify.app/'
-        hashtag='#AquaCaintaResort'
-        image={imageUrl}
+        hashtag='#AquaCaintaResortHomepage'
+        image={homeHeader}
         quote="Aqua Cainta - Surrender to the Allure of Our Resort"
       />
       <div className='home'>

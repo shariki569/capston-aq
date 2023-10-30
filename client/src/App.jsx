@@ -51,7 +51,7 @@ import AmenitiesLayout from "./Components/layouts/AmenitiesLayout";
 import Amenities_Menu from "./Components/admin/Amenities/Amenities_Menu";
 import Facilities from "./pages/Facility/Facilities";
 import Chatbot from "./pages/Chatbot/Chatbot";
-import { HelmetProvider } from "react-helmet-async";
+
 const PrivateRoute = ({ element, path }) => {
   const { currentUser } = useContext(AuthContext);
   return currentUser ? element : <Navigate to="/login" />;
@@ -200,7 +200,7 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <HelmetProvider>
+   
       <SkeletonTheme baseColor="#313131" highlightColor="#525252">
         <div className="app">
           <div className="container">
@@ -208,7 +208,7 @@ function App() {
           </div>
         </div>
       </SkeletonTheme>
-    </HelmetProvider>
+  
   );
 }
 

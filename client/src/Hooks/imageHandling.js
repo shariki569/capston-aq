@@ -5,7 +5,7 @@ export const upload = async (files) => {
   try {
     const formData = new FormData();
       formData.append('file', files);
-    const res = await axios.post("/api/upload", formData);
+    const res = await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/upload`, formData);
     return res.data;
   } catch (error) {
     console.error("Error Uploading image: ", error);

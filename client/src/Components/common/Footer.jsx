@@ -13,7 +13,7 @@ import ShareButton from '../SEO/ShareButton';
 const Footer = () => {
 
   const { contactInfo } = useContactInfo();
-  
+  const imageUrl = 'https://aquacaintaresort.netlify.app/assets/HEADER-HOMEPAGE-7c86378c.webp'
   const footerLinks = [
     { title: "About Us", path: "/about-us" },
     { title: "Privacy Policy", path: "/" },
@@ -24,7 +24,14 @@ const Footer = () => {
 
   return (
     <footer>
-      <SEO/>
+      <SEO  title='Homepage | Aqua Cainta Resort'
+        description='Surrender to the Allure of Our Resort'
+        name='Aqua Cainta Resort'
+        type='Homepage'
+        url='https://aquacaintaresort.netlify.app/'
+        hashtag='#AquaCaintaResort'
+        image={imageUrl}
+        quote="Aqua Cainta - Surrender to the Allure of Our Resort"/>
       <div className='footer'>
         <div className='footer-content'>
           <div className="footer-items">

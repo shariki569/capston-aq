@@ -12,7 +12,7 @@ import SEO from '../Components/SEO/SEO'
 
 
 const Home = () => {
-  const imageUrl = 'https://aquacaintaresort.netlify.app/assets/HEADER-HOMEPAGE-778b2982.jpg'
+  const imageUrl = 'https://aquacaintaresort.netlify.app/assets/HEADER-HOMEPAGE-7c86378c.webp'
   return (
     <>
       <SEO

@@ -5,7 +5,7 @@ import { FacebookShareButton, FacebookIcon } from "react-share";
 import SEO from './SEO';
 
 const ShareButton = () => {
-  const imageUrl = 'https://aquacaintaresort.netlify.app/assets/HEADER-HOMEPAGE-778b2982.jpg'
+  const imageUrl = 'https://aquacaintaresort.netlify.app/assets/HEADER-HOMEPAGE-778b2982.webp'
   return (
     <div className='share-buttons'>
 

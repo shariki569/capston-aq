@@ -7,11 +7,22 @@ import { Outlet, useLocation } from "react-router-dom";
 import axios from "axios";
 import DOMPurify from "dompurify";
 import Accommodation_Items from "./Accommodation_Items";
+import SEO from "../../Components/SEO/SEO";
 const Accommodation = () => {
 
 
   return (
     <div className="container">
+      <SEO
+      title="Accommodation | Aqua Cainta Resort"
+      description="Accommodations"
+      name="Aqua Cainta Resort"
+      type="Accommodation"
+      url="https://aquacaintaresort.netlify.app/"
+      hashtag="#AquaCaintaResort"
+      image={headerImage}
+      quote="Accommodations"
+      />
       <Header
         imageUrl={headerImage}
         title="Accommodations"

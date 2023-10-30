@@ -18,7 +18,7 @@ const SEO = ({ title, description, name, type, hashtag, image, quote }) => {
             <meta property="og:type" content={type} />
             <meta property="og:locale" content="en_US" />
             <meta property="og:quote" content={quote} />
-            <meta property="og:url" content={currentUrl} />
+            <meta property="og:url" content={window.location.pathname + window.location.search} />
             <meta property="og:hashtag" content={hashtag} />
             <meta property="og:title" content={title} />
             <meta property="og:image" content={image} />

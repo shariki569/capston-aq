@@ -3,9 +3,9 @@ import Header from '../../Components/ui/Header'
 import headerImage from '/upload/1697021778728IMG_6025.jpg'
 import SectionWithHeading from '../../Components/Sections/SectionWithHeading'
 import TwoSectionsWithGallery from '../../Components/Sections/TwoSectionsWithGallery'
-import axios from 'axios'
 import Amenities from '../../Components/Sections/Amenities'
 import { useFacilities } from '../../API/fetchFacilities'
+import SEO from '../../Components/SEO/SEO'
 
 const Facilities = () => {
 
@@ -13,6 +13,15 @@ const Facilities = () => {
 
   return (
     <>
+      <SEO
+        title='Facilities | Aqua Cainta Resort'
+        description='Facilities'
+        name='Aqua Cainta Resort'
+        type='Facilities'
+        hashtag='#AquaCaintaResort'
+        image={headerImage}
+        quote="Facilities"
+      />
       <Header
         imageUrl={headerImage}
         title='Facilities'

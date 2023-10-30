@@ -203,11 +203,9 @@ function App() {
     <HelmetProvider>
       <SkeletonTheme baseColor="#313131" highlightColor="#525252">
         <div className="app">
-
           <div className="container">
             <RouterProvider router={router} />
           </div>
-
         </div>
       </SkeletonTheme>
     </HelmetProvider>

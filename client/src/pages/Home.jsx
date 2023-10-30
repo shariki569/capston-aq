@@ -8,7 +8,7 @@ import TwoSections from '../Components/Sections/TwoSections'
 import HomeSection1 from '../Components/Sections/HomeSection1'
 import Facility_Section from '../Components/Sections/Facility_Section'
 import Amenities from '../Components/Sections/Amenities'
-import SEO from '../Components/admin/Media/SocialMedia/SEO'
+import SEO from '../Components/SEO/SEO'
 
 
 const Home = () => {

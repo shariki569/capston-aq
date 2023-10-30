@@ -4,9 +4,11 @@ import axios from 'axios';
 import { FiMail, FiMapPin, FiPhone } from 'react-icons/fi';
 import { BiMobileAlt } from "react-icons/bi";
 import { Link } from 'react-router-dom';
-import ShareButton from '../admin/Media/SocialMedia/ShareButton';
+
 import { useContactInfo } from '../../API/fetchContact';
-import SEO from '../admin/Media/SocialMedia/SEO';
+import SEO from '../SEO/SEO';
+import ShareButton from '../SEO/ShareButton';
+
 
 const Footer = () => {
 

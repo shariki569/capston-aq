@@ -9,6 +9,7 @@ import TwoSections from '../Components/Sections/TwoSections'
 import HomeSection1 from '../Components/Sections/HomeSection1'
 import Facility_Section from '../Components/Sections/Facility_Section'
 import Amenities from '../Components/Sections/Amenities'
+import SEO from '../Components/admin/Media/SocialMedia/SEO'
 
 
 const Home = () => {
@@ -16,6 +17,15 @@ const Home = () => {
 
   return (
     <>
+    <SEO
+      title='Homepage | Aqua Cainta Resort'
+      description='Surrender to the Allure of Our Resort'
+      name='Aqua Cainta Resort'
+      type='Homepage'
+      url='https://aquacaintaresort.netlify.app/'
+      hashtag = '#AquaCaintaResort'
+      image={homeHeader}
+    />
       <div className='home'>
         <div className="container">
           <div className='home-header-wrapper'>

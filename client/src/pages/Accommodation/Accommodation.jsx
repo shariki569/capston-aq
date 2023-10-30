@@ -15,7 +15,7 @@ const Accommodation = () => {
       <Header
         imageUrl={headerImage}
         title="Accommodations"
-        state=""
+        small
       />
 
       <Accommodation_Items />

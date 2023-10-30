@@ -29,7 +29,7 @@ const Single = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`/api/posts/${postId}`)
+        const res = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/posts/${postId}`)
         setPost(res.data);
       } catch (err) {
         console.log(err);

@@ -1,11 +1,14 @@
 import React from 'react'
+import { HelmetData } from 'react-helmet-async';
 import { FaFacebook, FaTwitter } from 'react-icons/fa';
 import { FacebookShareButton, FacebookIcon } from "react-share";
+import SEO from './SEO';
+
 const ShareButton = () => {
 
   return (
     <div className='share-buttons'>
-
+      <SEO/>
       <FacebookShareButton
         url='https://aquacaintaresort.netlify.app/'
         quote="Aqua Cainta - Surrender to the Allure of Our Resort"

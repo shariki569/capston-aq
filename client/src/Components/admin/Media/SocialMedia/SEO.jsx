@@ -12,7 +12,8 @@ const SEO = ({ title, description, name, type, hashtag, image, quote }) => {
             <meta name='description' content={description} />
             <meta property="type" content="website" />
             <meta property="url" content={currentUrl} />
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+            <meta content="image/*" property="og:image:type" />
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
             <meta name="msapplication-TileColor" content="#ffffff" />
             { /* Facebook tags */}
             <meta property="og:type" content={type} />
@@ -22,7 +23,6 @@ const SEO = ({ title, description, name, type, hashtag, image, quote }) => {
             <meta property="og:hashtag" content={hashtag} />
             <meta property="og:title" content={title} />
             <meta property="og:image" content={image} />
-            <meta content="image/*" property="og:image:type" />
             <meta property="og:description" content={description} />
             { /* End Facebook tags */}
             { /* Twitter tags */}

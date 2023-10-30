@@ -6,11 +6,12 @@ import { BiMobileAlt } from "react-icons/bi";
 import { Link } from 'react-router-dom';
 import ShareButton from '../admin/Media/SocialMedia/ShareButton';
 import { useContactInfo } from '../../API/fetchContact';
+import SEO from '../admin/Media/SocialMedia/SEO';
 
 const Footer = () => {
 
   const { contactInfo } = useContactInfo();
-
+  
   const footerLinks = [
     { title: "About Us", path: "/about-us" },
     { title: "Privacy Policy", path: "/" },
@@ -21,6 +22,7 @@ const Footer = () => {
 
   return (
     <footer>
+      <SEO/>
       <div className='footer'>
         <div className='footer-content'>
           <div className="footer-items">

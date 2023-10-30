@@ -196,11 +196,11 @@ const router = createBrowserRouter([
   },
 ]);
 
-const helmetContext = {};
+
 
 function App() {
   return (
-    <HelmetProvider context={helmetContext}>
+    <HelmetProvider>
       <SkeletonTheme baseColor="#313131" highlightColor="#525252">
         <div className="app">
 

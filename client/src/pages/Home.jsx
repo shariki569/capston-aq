@@ -2,7 +2,7 @@ import axios from 'axios'
 import DOMPurify from 'dompurify'
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import homeHeader from '../img/HEADER-HOMEPAGE.jpg'
+import homeHeader from '../img/HEADER-HOMEPAGE.webp'
 import { FaRegLifeRing } from "react-icons/fa";
 import TwoSections from '../Components/Sections/TwoSections'
 import HomeSection1 from '../Components/Sections/HomeSection1'
@@ -12,8 +12,7 @@ import SEO from '../Components/admin/Media/SocialMedia/SEO'
 
 
 const Home = () => {
-
-
+  const imageUrl = 'https://aquacaintaresort.netlify.app/assets/HEADER-HOMEPAGE-778b2982.jpg'
   return (
     <>
       <SEO
@@ -23,7 +22,7 @@ const Home = () => {
         type='Homepage'
         url='https://aquacaintaresort.netlify.app/'
         hashtag='#AquaCaintaResort'
-        image={homeHeader}
+        image={imageUrl}
         quote="Aqua Cainta - Surrender to the Allure of Our Resort"
       />
       <div className='home'>

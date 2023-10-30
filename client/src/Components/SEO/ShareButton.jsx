@@ -24,7 +24,7 @@ const ShareButton = () => {
       <FacebookShareButton
         url='https://aquacaintaresort.netlify.app/'
         quote="Aqua Cainta - Surrender to the Allure of Our Resort"
-        hashtag='#AquaCaintaResort'
+        hashtag='#AquaCaintaResortWAWA'
         className='btn-2'
       >
         <FaFacebook size={25} />

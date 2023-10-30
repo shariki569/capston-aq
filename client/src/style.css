@@ -480,6 +480,13 @@
   transform: translateX(0);
 }
 
+.share-buttons {
+  border: none;
+}
+.share-buttons:hover {
+  color: #03335b;
+}
+
 .input-flex {
   display: flex;
   flex-direction: row;

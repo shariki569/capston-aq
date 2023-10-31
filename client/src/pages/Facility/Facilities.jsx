@@ -12,7 +12,7 @@ const Facilities = () => {
   const { facilities } = useFacilities([])
 
   return (
-    <>
+    <div>
       <SEO
         title='Facilities | Aqua Cainta Resort'
         description='Facilities'
@@ -50,7 +50,7 @@ const Facilities = () => {
 
 
       <Amenities />
-    </>
+    </div>
   )
 }
 

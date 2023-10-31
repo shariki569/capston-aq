@@ -25,17 +25,14 @@
         transform: translateX(-100%);
         transition: all 0.3s;
         z-index: -1111;
-
     }
-    &:hover{
+    &:hover {
         color: $honeyDew;
     }
     &:hover::before {
         transform: translateX(0);
-        
     }
 }
-
 
 .btn-2 {
     display: flex;
@@ -43,10 +40,10 @@
     position: relative;
     background-color: transparent;
     padding: $base-button-size;
-    border-radius: $base-border-radius;
+    // border-radius: $base-border-radius;
     cursor: pointer;
     color: $lightGreyColor;
-    border: $base-border-thickness $lightGreyColor;
+        // border: $base-border-thickness $lightGreyColor;
     z-index: 999;
     overflow: hidden;
     transition: all 0.3s;
@@ -62,19 +59,28 @@
         transition: all 0.5s;
         z-index: -1111;
     }
-    &:hover{
-        color: $primary;
+
+    span {
+        display: flex;
+        padding: 0.2rem;
+        // border: $base-border-thickness $lightGreyColor;
+        border-radius: $base-border-radius;
+    }
+
+    &:hover {
+        span {
+            color: $primary
+        }
     }
     &:hover::before {
         transform: translateX(0);
-        
     }
 }
 
-.share-buttons{
-    // color: $primary;
-    border: none;
-    &:hover{
-        color: $primary;
-    }
-}
+// .share-buttons{
+//     // color: $primary;
+//     border: none;
+//     &:hover{
+//         color: $primary;
+//     }
+// }

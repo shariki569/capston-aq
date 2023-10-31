@@ -453,10 +453,8 @@
   position: relative;
   background-color: transparent;
   padding: 0.75rem 1.5rem;
-  border-radius: 10px;
   cursor: pointer;
   color: #b4b9ae;
-  border: 2px solid #b4b9ae;
   z-index: 999;
   overflow: hidden;
   transition: all 0.3s;
@@ -473,18 +471,16 @@
   transition: all 0.5s;
   z-index: -1111;
 }
-.btn-2:hover {
+.btn-2 span {
+  display: flex;
+  padding: 0.2rem;
+  border-radius: 10px;
+}
+.btn-2:hover span {
   color: #03335b;
 }
 .btn-2:hover::before {
   transform: translateX(0);
-}
-
-.share-buttons {
-  border: none;
-}
-.share-buttons:hover {
-  color: #03335b;
 }
 
 .input-flex {

@@ -1,29 +1,44 @@
 import React from 'react'
 import { HelmetData } from 'react-helmet-async';
 import { FaFacebook, FaTwitter } from 'react-icons/fa';
-import { FacebookShareButton, FacebookIcon } from "react-share";
+import { FaXTwitter } from 'react-icons/fa6'
+
+import { useLocation } from 'react-router-dom';
+import { FacebookShareButton, FacebookIcon, TwitterShareButton } from "react-share";
+
 
 
 const ShareButton = () => {
   const imageUrl = 'https://aquacaintaresort.netlify.app/assets/HEADER-HOMEPAGE-778b2982.webp'
+  const location = useLocation();
   return (
     <div className='share-buttons'>
 
       <FacebookShareButton
-        url='https://aquacaintaresort.netlify.app/'
+        url={location.pathname}
         quote="Aqua Cainta - Surrender to the Allure of Our Resort"
-        hashtag='#AquaCaintaResort-ShareButton'
+        hashtag='#AquaCaintaResort'
         className='btn-2'
       >
-        <FaFacebook size={25}/>
+        <span><FaFacebook size={25} /></span>
       </FacebookShareButton>
-  
+
+
+      <TwitterShareButton
+        url={location.pathname}
+        hashtag='#AquaCaintaResort'
+        className='btn-2'
+      >
+
+        {/* <span><FaXTwitter size={25} /></span> */}
+        <span><FaXTwitter size={25} /></span>
+      </TwitterShareButton>
     </div>
   )
 }
 
 export default ShareButton
-    {/* <button className='btn-2' onClick={shareOnFacebook}>
+{/* <button className='btn-2' onClick={shareOnFacebook}>
         <FaFacebook size={25} /> Share on Facebook
       </button>
       <button className='btn-2' onClick={shareOnTwitter}>

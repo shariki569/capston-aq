@@ -12,7 +12,7 @@ const ShareButton = () => {
 
   const location = useLocation()
 
-  const url = 'https://resortcainta.netlify.app/' + location.pathname;
+  const url = 'https://resortcainta.netlify.app' + location.pathname;
   
   return (
     <div className='share-buttons'>

@@ -39,7 +39,7 @@ import Media from "./Components/admin/Media/GalleryMedia/Media";
 import PostsLayout from "./Components/layouts/PostsLayout";
 import Posts_Menu from "./Components/admin/Posts/Posts_Menu";
 import Accommodation_Single from "./pages/Accommodation/Accommodation_Single";
-import { HelmetProvider } from 'react-helmet-async';
+
 // Context import
 import { AuthContext } from "./context/authContext";
 
@@ -200,13 +200,13 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <HelmetProvider>
+   
       <div className="app">
         <div className="container">
           <RouterProvider router={router} />
         </div>
       </div>
-    </HelmetProvider>
+ 
   );
 }
 

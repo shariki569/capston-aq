@@ -14,6 +14,7 @@ const SEO = ({ title, description, name, type, hashtag, image, quote }) => {
             <meta property="url" content={currentUrl} />
             <meta content="image/*" property="og:image:type" />
             <meta name="msapplication-TileColor" content="#ffffff" />
+            <link rel="canonical" href={currentUrl} />
             { /* Facebook tags */}
             <meta property="og:type" content={type} />
             <meta property="og:locale" content="en_US" />

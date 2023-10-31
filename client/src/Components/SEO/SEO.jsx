@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom'
 const SEO = ({ title, description, name, type, hashtag, image, quote }) => {
 
     const location = useLocation()
-    const currentUrl = 'https://aquacaintaresort.netlify.app' + location.pathname;
+    const currentUrl = 'https://resortcainta.netlify.app/' + location.pathname;
     return (
         <Helmet>
             <meta charset="utf-8" />

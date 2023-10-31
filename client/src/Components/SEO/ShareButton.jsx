@@ -9,13 +9,16 @@ import { FacebookShareButton, FacebookIcon, TwitterShareButton } from "react-sha
 
 
 const ShareButton = () => {
-  const imageUrl = 'https://aquacaintaresort.netlify.app/assets/HEADER-HOMEPAGE-778b2982.webp'
-  const location = useLocation();
+
+  const location = useLocation()
+
+  const url = 'https://resortcainta.netlify.app/' + location.pathname;
+  
   return (
     <div className='share-buttons'>
 
       <FacebookShareButton
-        url={location.pathname}
+        url={url}
         quote="Aqua Cainta - Surrender to the Allure of Our Resort"
         hashtag='#AquaCaintaResort'
         className='btn-2'
@@ -25,7 +28,7 @@ const ShareButton = () => {
 
 
       <TwitterShareButton
-        url={location.pathname}
+        url={url}
         hashtag='#AquaCaintaResort'
         className='btn-2'
       >

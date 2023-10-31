@@ -7,6 +7,7 @@ import { useSingleAccommData } from '../../API/fetchAccommodations'
 import Accom_Sidebar from './Accom_Sidebar'
 import { BiLogoFacebookCircle, BiLogoInstagramAlt, BiLogoTwitter } from 'react-icons/bi'
 import Amenities_Single from '../../Components/Sections/Amenities_Single'
+import ShareButton from '../../Components/SEO/ShareButton'
 //styling is in the Single.scss file
 
 const Accommodation_Single = () => {
@@ -30,12 +31,12 @@ const Accommodation_Single = () => {
               <div className="title">
                 <h1>{accomm?.Accommodation_Title}</h1>
                 <div className="social-media">
-                  <div className="icons">
-                    <BiLogoFacebookCircle size={25} color='blue'/>
-                    <BiLogoTwitter size={25} color="lightblue"/>
-                    <BiLogoInstagramAlt size={25} color="pink"/>
 
-                  </div>
+                  {/* <BiLogoFacebookCircle size={25} color='blue'/>
+                    <BiLogoTwitter size={25} color="lightblue"/>
+                    <BiLogoInstagramAlt size={25} color="pink"/> */}
+                  <ShareButton />
+
                 </div>
               </div>
               <div className="description">

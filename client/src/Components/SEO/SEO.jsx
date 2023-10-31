@@ -4,13 +4,13 @@ import { useLocation } from 'react-router-dom'
 const SEO = ({ title, description, name, type, hashtag, image, quote }) => {
 
     const location = useLocation()
-    const currentUrl = 'https://resortcainta.netlify.app/' + location.pathname;
+    const currentUrl = 'https://resortcainta.netlify.app' + location.pathname;
     return (
         <Helmet>
             <meta charset="utf-8" />
             <title>{title}</title>
             <meta name='description' content={description} />
-            <meta property="type" content="website" />
+            <meta property="type" content={type} />
             <meta property="url" content={currentUrl} />
             <meta content="image/*" property="og:image:type" />
             <meta name="msapplication-TileColor" content="#ffffff" />
@@ -29,6 +29,8 @@ const SEO = ({ title, description, name, type, hashtag, image, quote }) => {
             <meta name="twitter:card" content={type} />
             <meta name="twitter:title" content={title} />
             <meta name="twitter:description" content={description} />
+            <meta property="twitter:url" content={currentUrl}/>
+            <meta name="twitter:image" content={image} />
             { /* End Twitter tags */}
         </Helmet>
     )

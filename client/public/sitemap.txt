@@ -1,0 +1,6 @@
+https://resortcainta.netlify.app/
+https://resortcainta.netlify.app/about-us
+https://resortcainta.netlify.app/facilities
+https://resortcainta.netlify.app/accommodations
+https://resortcainta.netlify.app/contact-us
+https://resortcainta.netlify.app/login

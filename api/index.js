@@ -10,11 +10,14 @@ import accommRoutes from "./routes/accommodations.js";
 import imageRoutes from "./routes/images.js"
 import emailRoutes from "./routes/emailRoute.js"
 import amenityRoutes from "./routes/amenities.js";
+// import metaTagRoutes from "./routes/metaTag.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import upload from "./middleware/multerUpload.js";
 import dotenv from "dotenv";
+
+
 if (process.env.NODE_ENV !== 'production') {
   dotenv.config();
 }
@@ -48,9 +51,6 @@ app.use("/api/images", imageRoutes);
 app.use("/api/facilities", facilityRoutes);
 
 
-// app.listen(8800, () => {
-//   console.log("Connected oy amaw!");
-// });
 const port = process.env.PORT || 3000;
 app.listen(port, "0.0.0.0", function () {
   console.log("Connected oy amaw!");

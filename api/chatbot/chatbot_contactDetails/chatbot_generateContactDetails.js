@@ -59,7 +59,7 @@ export const  generateLocationEntry = (contactDetails) => {
       {
         intent: "contact.requestbooking",
         utterances: [
-          ""
+          "Can I book for a cottage online?"
         ],
         answers: [
           `Sure! Heres our Contact Number:<strong>${contactDetails.con_cellphone}</strong>

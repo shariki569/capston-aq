@@ -155,6 +155,7 @@ body {
     overflow-x: hidden;
     background-color: $lighterGreyColor;
     font-family: $secondary-font;
+    // overflow-x: hidden;
 }
 
 input::-webkit-outer-spin-button,
@@ -235,6 +236,20 @@ li {
         padding-inline: $xxlarge-padding;
         color: $greyColor;
         font-family: $secondary-font;
+    }
+
+    @include devices (tablet) {
+        p {
+            padding-inline: 0;
+            text-align: justify;
+            text-indent: 2rem;
+        }
+        h4{
+            font-size: $f-xlarge;
+        }
+        h2{
+            font-size: $f-medium
+        }
     }
 }
 

@@ -9,9 +9,8 @@
     min-height: 30rem;
 
     .facility-items {
-       @include gridView(12rem, 0.5rem);
+        @include gridView(12rem, 0.5rem);
         .facility-item {
-           
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -20,7 +19,6 @@
             &:hover {
                 .title {
                     margin-top: -45%;
-                    
                 }
             }
         }
@@ -81,13 +79,13 @@
         @include imageDefault(100px, 100px, cover);
     }
     #facility-gallery-section {
-        &:nth-child(2n+1) {
+        &:nth-child(2n + 1) {
             flex-direction: row-reverse;
         }
 
-        .image-wrapper{
+        .image-wrapper {
             position: relative;
-            .see-more-button{
+            .see-more-button {
                 position: absolute;
                 top: 5%;
                 right: 3%;
@@ -97,15 +95,26 @@
                 padding: $small-padding;
                 cursor: pointer;
                 border-radius: $small-border-radius;
-              
 
-                &:hover{
+                &:hover {
                     background-color: $secondary;
                 }
             }
+        }
 
+        @include devices(tablet) {
+            #facility-gallery-section {
+                @include leftFlexboxColumn;
+                height: 100%;
+                flex-wrap: wrap;
+            }
 
+            .image-container{
+                width: fit-content;
+            }
+            .content-wrapper{
+                width: fit-content;
+            }
         }
     }
-   
 }

@@ -137,6 +137,30 @@
             }
         }
     }
+
+
+    @include devices (tablet) {
+        
+        flex-direction: column;
+        max-height: none;
+        .image-container,
+        .content-wrapper {
+            width: 100%;
+        }
+    }
+
+    @include  devices (mobile) {
+        .image-container,
+        .content-wrapper {
+            width: 100%;
+        }
+        .image-container {
+            order: 2;
+        }
+        .content-wrapper {
+            order: 1;
+        }
+    }
 }
 
 

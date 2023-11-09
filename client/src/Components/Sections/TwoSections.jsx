@@ -4,10 +4,7 @@ import DOMPurify from 'dompurify'
 
 const TwoSections = ({ images, content, title, inverse, cta, icon, }) => {
   const flexDirection = inverse? 'row-reverse' : 'row';
-  // const isSingleImage = images.length === 1; //if theres only one image
   
-  // const height = full ? '100vh' : '70vh';
-
   return (
     <div className='two-sections-container bg-white' style={{ flexDirection }}>
       <div className="image-container">

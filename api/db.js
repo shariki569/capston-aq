@@ -1,10 +1,12 @@
 import mysql from "mysql2/promise";
 import dotenv from "dotenv";
 
-// dotenv.config({ path: "./env/acc.env" });
-if (process.env.NODE_ENV !== 'production') {
-  dotenv.config();
-}
+dotenv.config({ path: "./env/acc.env" });
+// if (process.env.NODE_ENV !== "production") {
+//   dotenv.config();
+// } else {
+//   dotenv.config({ path: "./env/acc.env" });
+// }
 export const db = mysql.createPool({
   host: process.env.MYSQLHOST,
   user: process.env.MYSQLUSER,
@@ -17,8 +19,7 @@ export const db = mysql.createPool({
   idleTimeout: 60000, // idle connections timeout, in milliseconds, the default value 60000
   queueLimit: 0,
   enableKeepAlive: true,
-  keepAliveInitialDelay: 0
+  keepAliveInitialDelay: 0,
 });
-console.log('Database pool created successfully');
-export default db;
 
+export default db;

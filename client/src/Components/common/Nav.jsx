@@ -1,26 +1,25 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../../img/Cainta Logo.png";
 import { AuthContext } from "../../context/authContext";
 import { accommType, catLinks } from "../common/MenuItems";
 import Dropdown from "../ui/Dropdown";
 import { FaPenNib, FaS } from "react-icons/fa6";
+import MobileNav from "./MobileNav";
+import { navLinks } from "./Links";
 
 const Nav = () => {
   const [scrolled, setScrolled] = useState(false);
   const { currentUser, logout } = useContext(AuthContext);
   const [showDropdown, setShowDropdown] = useState(false);
 
-  // const toggleDropdown = () => {
-  //   setShowDropdown(!showDropdown);
-  // };
+
 
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 0;
       setScrolled(isScrolled);
     };
-
     window.addEventListener("scroll", handleScroll);
 
     return () => {
@@ -37,64 +36,25 @@ const Nav = () => {
           </Link>
         </div>
         <ul className="main-link">
-          <li className="link-item">
-            <Link className="link" to="/">
-              <h6>Home</h6>
-            </Link>
-          </li>
-          <li className="link-item">
-            <Link className="link" to="/about-us">
-              <h6>About Us</h6>
-            </Link>
-          </li>
-          <li className="link-item">
-            <Link className="link" to="/facilities">
-              <h6>Facilities</h6>
-            </Link>
-          </li>
-          <li className="link-item">
-            <Link className="link" to="/accommodations">
-              <h6>Accommodation</h6>
-            </Link>
-
-            <Dropdown>
-              {accommType.map((items) => (
-                <Link key={items.id} className="sub-link" to={items.path}>
-                  <li >
-                    {items.name}
-                  </li>
-                </Link>
-              ))}
-            </Dropdown>
-          </li>
-                
-          <li className="link-item">
-            <Link className="link" to="/posts">
-              <h6>Posts</h6>
-            </Link>
-
-
-            <Dropdown>
-              {catLinks.map((items) => (
-                <Link key={items.id} className="sub-link" to={items.path}>
-                  <li >
-                    {items.name}
-                  </li>
-                </Link>
-              ))}
-            </Dropdown>
-          </li>
-          
-          <li className="link-item">
-            <Link className="link" to="/contact-us">
-              <h6>Contact Us</h6>
-            </Link>
-          </li>
-
+          {navLinks.map((items, index) => (
+            <li className="link-item" key={index}>
+              <Link className="link" to={items.path}>
+                <h6>{items.title}</h6>
+              </Link>
+              {items.children &&
+                (<Dropdown>
+                  {items.children.map((subLink) => (
+                    <Link key={subLink.id} className="sub-link" to={subLink.path}>
+                      <li >
+                        {subLink.name}
+                      </li>
+                    </Link>
+                  ))}
+                </Dropdown>
+                )}
+            </li>
+          ))}
         </ul>
-
-
-
         <div className="user-link">
           <Link className="main-link-item " to="/dashboard/admin">
             <span>{currentUser?.username}</span>
@@ -106,14 +66,9 @@ const Nav = () => {
               Login
             </Link>
           )}
-          {/* { currentUser && (<span className='write'>
-            <Link 
-              className="link" 
-              to="/write">
-                <FaPenNib size={20}/>
-            </Link>
-          </span>)} */}
+
         </div>
+        <MobileNav />
       </div>
     </nav>
   );

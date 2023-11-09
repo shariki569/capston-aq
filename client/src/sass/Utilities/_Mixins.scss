@@ -75,3 +75,18 @@
     text-indent: 1rem;
   
 }
+
+
+@mixin devices($breakpoint) {
+    @if $breakpoint == tablet {
+        @media (max-width: 820px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint == mobile {
+        @media (max-width: 418px) {
+            @content;
+        }
+    }
+}

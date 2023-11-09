@@ -1,8 +1,6 @@
 @use "../Utilities/" as *;
 
 .home {
-
-
     .grid-view {
         @include gridView(4rem, 0.5rem);
     }
@@ -62,49 +60,56 @@
         }
     }
 
-    .row{
-        .row-title{
+    .row {
+        .row-title {
             @include centerFlexboxColumn;
-            h2{
-              
+            h2 {
                 margin: $base-margin-y;
                 // margin-inline: auto;
                 color: $tertiary;
             }
-            p{
-                
+            p {
                 max-width: 70%;
                 text-align: center;
                 color: $darkerGreyColor;
             }
-           
         }
     }
 
-   
+    @include devices(tablet) {
+        .home-title-wrapper {
+            width: 100%;
+        }
+    }
+
+    @include devices(mobile) {
+        .home-title {
+            h1 {
+                font-size: $f-xlarge;
+            }
+        }
+    }
 }
 
-h4.subheading:contains('Ammenities'){
+h4.subheading:contains("Ammenities") {
     color: $lighterGreyColor;
 }
 
-.amenity-items{
+.amenity-items {
     @include gridView(15rem, 0.5rem);
     @include containerStyle(70rem, 1rem);
-    .amenity-item{
+    .amenity-item {
         padding: $large-padding;
         @include cardBase($base-border-radius);
         @include centerFlexboxColumn;
-        img{
+        img {
             @include imageDefault(50%, 50%, contain);
-            
         }
-        .title{
+        .title {
             text-align: center;
             margin: $base-margin-y;
             font-family: $font-libre-baskerville;
             color: $greyColor;
         }
     }
-  
 }

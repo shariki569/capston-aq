@@ -76,6 +76,12 @@
   
 }
 
+@mixin centerAndSet($maxWidth, $paddingInline) {
+    margin-inline: auto;
+    max-width: $maxWidth;
+    padding-inline: $paddingInline;
+}
+
 
 @mixin devices($breakpoint) {
     @if $breakpoint == tablet {

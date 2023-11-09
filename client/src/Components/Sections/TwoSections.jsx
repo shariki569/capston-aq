@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 import DOMPurify from 'dompurify'
 
 const TwoSections = ({ images, content, title, inverse, cta, icon, }) => {
-  const flexDirection = inverse? 'row-reverse' : 'row';
+  const flexDirection = inverse ? 'two-sections-reverse' : '';
   
   return (
-    <div className='two-sections-container bg-white' style={{ flexDirection }}>
+    <div className={`two-sections-container bg-white ${flexDirection}`} >
       <div className="image-container">
         <div className="image-grid">
           {images && images.map((img, index) => (
@@ -27,7 +27,6 @@ const TwoSections = ({ images, content, title, inverse, cta, icon, }) => {
           </div>}
         </div>
       </div>
-
     </div>
   )
 }

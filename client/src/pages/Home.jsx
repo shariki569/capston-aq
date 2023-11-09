@@ -23,7 +23,7 @@ const Home = () => {
         type='Homepage'
         url='https://aquacaintaresort.netlify.app/'
         hashtag='#AquaCaintaResortHomepage'
-        image={OGimg}
+        image='https://caintaresort-test.netlify.app/assets/opengraph-image-31c22eb7.png'
         quote="Discover the quiet charm of Aqua Cainta Resort in Cebu City. Our resort offers comfortable rooms, tranquil pools, and a variety of amenities for a peaceful stay. Experience Cebu at its most serene."
       />
       <div className='home'>

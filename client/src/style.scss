@@ -19,6 +19,7 @@
 @use "./sass/components/Gallery.scss";
 @use "./sass/components/Amenities.scss";
 @use "./sass/components/Chatbot.scss";
+@use './Components/PostComponents/postHeading.scss';
 
 //Pages
 @use "./sass/Pages/_Homepage.scss";

@@ -3,6 +3,7 @@ import DOMPurify from 'dompurify'
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import homeHeader from '../img/HEADER-HOMEPAGE.webp'
+import OGimg from '/src/opengraph-image.png'
 import { FaRegLifeRing } from "react-icons/fa";
 import TwoSections from '../Components/Sections/TwoSections'
 import HomeSection1 from '../Components/Sections/HomeSection1'
@@ -16,14 +17,14 @@ const Home = () => {
   return (
     <>
       <SEO
-        title='Homepage | Aqua Cainta Resort'
-        description='Surrender to the Allure of Our Resort'
+        title='Aqua Cainta Resort - A Relaxing Oasis in Cebu City'
+        description='Discover the quiet charm of Aqua Cainta Resort in Cebu City. Our resort offers comfortable rooms, tranquil pools, and a variety of amenities for a peaceful stay. Experience Cebu at its most serene.'
         name='Aqua Cainta Resort'
         type='Homepage'
         url='https://aquacaintaresort.netlify.app/'
         hashtag='#AquaCaintaResortHomepage'
-        image={homeHeader}
-        quote="Aqua Cainta - Surrender to the Allure of Our Resort"
+        image={OGimg}
+        quote="Discover the quiet charm of Aqua Cainta Resort in Cebu City. Our resort offers comfortable rooms, tranquil pools, and a variety of amenities for a peaceful stay. Experience Cebu at its most serene."
       />
       <div className='home'>
         <div className="container">

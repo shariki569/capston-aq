@@ -3,7 +3,7 @@ import DOMPurify from 'dompurify'
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import homeHeader from '../img/HEADER-HOMEPAGE.webp'
-import OGimg from '/src/opengraph-image.png'
+import OGimg from '../img/opengraph-image.png'
 import { FaRegLifeRing } from "react-icons/fa";
 import TwoSections from '../Components/Sections/TwoSections'
 import HomeSection1 from '../Components/Sections/HomeSection1'
@@ -31,7 +31,7 @@ const Home = () => {
           <div className='home-header-wrapper'>
             <picture>
               <source />
-              <img className='home-header' src={homeHeader} alt="" />
+              <img className='home-header' src={OGimg} alt="" />
             </picture>
             <div className='home-title-wrapper'>
               <div className='home-title'>

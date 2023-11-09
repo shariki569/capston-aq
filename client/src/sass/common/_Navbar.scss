@@ -24,9 +24,9 @@ $nav-footer: 10px 50px;
         justify-content: space-between;
 
         h6 {
-            font-size: $content;
+            font-size: $large;
             font-weight: 300;
-            
+
             text-decoration: none;
             text-transform: uppercase;
             color: $honeyDew;
@@ -40,7 +40,6 @@ $nav-footer: 10px 50px;
 
         .submenu {
             text-decoration: none;
-           
 
             h2 {
                 padding: $small-padding;
@@ -54,7 +53,7 @@ $nav-footer: 10px 50px;
 
         .main-link {
             position: relative;
-            gap: 50px;
+            gap: 30px;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -110,7 +109,6 @@ $nav-footer: 10px 50px;
                 }
             }
         }
-
     }
 
     .user-link {
@@ -125,5 +123,108 @@ $nav-footer: 10px 50px;
             cursor: pointer;
             font-family: $font-libre-franklin;
         }
+    }
+
+    @include devices(mobile) {
+        .container {
+            .main-link {
+                display: none;
+            }
+            .user-link {
+                display: none;
+            }
+        }
+    }
+
+    @include devices(tablet) {
+        .container {
+            .main-link {
+                display: none;
+            }
+            .user-link {
+                display: none;
+            }
+        }
+    }
+}
+
+//MOBILE NAVBAR
+.mobile-nav-container {
+    margin-block: auto;
+    display: none;
+
+    .mobile-nav {
+        width: 30px;
+        // height: 40px;
+
+        .burger-icon {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 7px;
+            cursor: pointer;
+            .line {
+                height: 4px;
+                background-color: $lighterGreyColor;
+            }
+        }
+
+        .menu-mobile {
+            position: relative;
+            background-color: $lighterGreyColor;
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 70%;
+            // margin-left: $large-margin;
+            transform: scale(0);
+            transform-origin: top right;
+            transition: transform 0.5s ease-out;
+            will-change: transform, border-radius;
+
+            .close-button {
+                position: absolute;
+                right: 10%;
+                top: 20px;
+                cursor: pointer;
+                font-size: $heading;
+                color: $greyColor;
+            }
+
+         
+
+            .mobile-links {
+                @include centerFlexboxColumn;
+                gap: $base-margin;
+                height: 100%;
+                width: 100%;
+                a {
+                    text-align: left;
+                    padding: $base-padding-x;
+                    width: 100%;
+                    text-decoration: none;
+                    color: $greyColor;
+                }
+                ul,
+                li {
+                    list-style: none;
+                   
+                }
+                // mobile-link {
+                // }
+            }
+        }  
+         .menu-mobile.animate {
+            transform: scale(1);
+            border-radius: 0%;
+        }
+    }
+}
+
+@include devices(tablet) {
+    .mobile-nav-container {
+        display: block;
     }
 }

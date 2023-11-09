@@ -10,7 +10,6 @@ const Posts_Menu = () => {
     const cat = useLocation().search;
 
 
-
     useEffect(() => {
         const fetchData = async () => {
             try {

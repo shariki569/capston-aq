@@ -222,6 +222,24 @@
 .facility #facility-gallery-section .image-wrapper .see-more-button:hover {
   background-color: #D2B48C;
 }
+@media (max-width: 820px) {
+  .facility #facility-gallery-section #facility-gallery-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100%;
+    flex-wrap: wrap;
+  }
+  .facility #facility-gallery-section .image-container {
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  .facility #facility-gallery-section .content-wrapper {
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+}
 
 .form-wrapper {
   display: flex;
@@ -405,6 +423,28 @@
   margin: auto 0;
   text-align: center;
   margin-bottom: auto;
+}
+@media (max-width: 820px) {
+  .two-sections-container {
+    flex-direction: column;
+    max-height: none;
+  }
+  .two-sections-container .image-container,
+  .two-sections-container .content-wrapper {
+    width: 100%;
+  }
+}
+@media (max-width: 418px) {
+  .two-sections-container .image-container,
+  .two-sections-container .content-wrapper {
+    width: 100%;
+  }
+  .two-sections-container .image-container {
+    order: 2;
+  }
+  .two-sections-container .content-wrapper {
+    order: 1;
+  }
 }
 
 .card {
@@ -1229,6 +1269,16 @@ table tr td .crud-btn button:nth-child(3) {
   text-align: center;
   color: #5c5b5b;
 }
+@media (max-width: 820px) {
+  .home .home-title-wrapper {
+    width: 100%;
+  }
+}
+@media (max-width: 418px) {
+  .home .home-title h1 {
+    font-size: 2rem;
+  }
+}
 
 h4.subheading:contains("Ammenities") {
   color: #faf7f7;
@@ -1701,7 +1751,7 @@ h4.subheading:contains("Ammenities") {
   justify-content: space-between;
 }
 .navbar .container h6 {
-  font-size: 0.85rem;
+  font-size: 1rem;
   font-weight: 300;
   text-decoration: none;
   text-transform: uppercase;
@@ -1723,7 +1773,7 @@ h4.subheading:contains("Ammenities") {
 }
 .navbar .container .main-link {
   position: relative;
-  gap: 50px;
+  gap: 30px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -1784,7 +1834,93 @@ h4.subheading:contains("Ammenities") {
   cursor: pointer;
   font-family: "Libre Franklin";
 }
+@media (max-width: 418px) {
+  .navbar .container .main-link {
+    display: none;
+  }
+  .navbar .container .user-link {
+    display: none;
+  }
+}
+@media (max-width: 820px) {
+  .navbar .container .main-link {
+    display: none;
+  }
+  .navbar .container .user-link {
+    display: none;
+  }
+}
 
+.mobile-nav-container {
+  margin-block: auto;
+  display: none;
+}
+.mobile-nav-container .mobile-nav {
+  width: 30px;
+}
+.mobile-nav-container .mobile-nav .burger-icon {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 7px;
+  cursor: pointer;
+}
+.mobile-nav-container .mobile-nav .burger-icon .line {
+  height: 4px;
+  background-color: #faf7f7;
+}
+.mobile-nav-container .mobile-nav .menu-mobile {
+  position: relative;
+  background-color: #faf7f7;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 70%;
+  transform: scale(0);
+  transform-origin: top right;
+  transition: transform 0.5s ease-out;
+  will-change: transform, border-radius;
+}
+.mobile-nav-container .mobile-nav .menu-mobile .close-button {
+  position: absolute;
+  right: 10%;
+  top: 20px;
+  cursor: pointer;
+  font-size: 2.5rem;
+  color: #232422;
+}
+.mobile-nav-container .mobile-nav .menu-mobile .mobile-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  height: 100%;
+  width: 100%;
+}
+.mobile-nav-container .mobile-nav .menu-mobile .mobile-links a {
+  text-align: left;
+  padding: 0 1rem;
+  width: 100%;
+  text-decoration: none;
+  color: #232422;
+}
+.mobile-nav-container .mobile-nav .menu-mobile .mobile-links ul,
+.mobile-nav-container .mobile-nav .menu-mobile .mobile-links li {
+  list-style: none;
+}
+.mobile-nav-container .mobile-nav .menu-mobile.animate {
+  transform: scale(1);
+  border-radius: 0%;
+}
+
+@media (max-width: 820px) {
+  .mobile-nav-container {
+    display: block;
+  }
+}
 footer {
   margin-top: 5rem;
   padding: 10px 50px;
@@ -2152,6 +2288,19 @@ li {
   padding-inline: 10rem;
   color: #232422;
   font-family: "Quicksand-Medium";
+}
+@media (max-width: 820px) {
+  .centered-heading p {
+    padding-inline: 0;
+    text-align: justify;
+    text-indent: 2rem;
+  }
+  .centered-heading h4 {
+    font-size: 2rem;
+  }
+  .centered-heading h2 {
+    font-size: 0.8rem;
+  }
 }
 
 .dark {

@@ -14,7 +14,7 @@ const About = () => {
       <SEO
         title='About Us | Aqua Cainta Resort'
         name="Aqua Cainta Resort"
-        type="About Us"
+        type="website"
         hashtag="#AquaCaintaResort"
         image={headerImage}
         quote="About Us" />

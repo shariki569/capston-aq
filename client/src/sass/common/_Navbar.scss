@@ -169,56 +169,81 @@ $nav-footer: 10px 50px;
                 background-color: $lighterGreyColor;
             }
         }
-
         .menu-mobile {
             position: relative;
-            background-color: $lighterGreyColor;
+            background-color: rgba(14, 13, 13, 0.562);
             position: fixed;
             top: 0;
             right: 0;
             height: 100%;
-            width: 70%;
+            width: 100%;
             // margin-left: $large-margin;
-            transform: scale(0);
-            transform-origin: top right;
+            // transform: scale(0);
+            // transform-origin: top right;
             transition: transform 0.5s ease-out;
-            will-change: transform, border-radius;
-
+            // will-change: transform, border-radius;
+            transform: translateX(-100%);
             .close-button {
                 position: absolute;
                 right: 10%;
                 top: 20px;
                 cursor: pointer;
-                font-size: $heading;
+                font-size: $subheading;
                 color: $greyColor;
             }
-
-         
 
             .mobile-links {
                 @include centerFlexboxColumn;
                 gap: $base-margin;
                 height: 100%;
-                width: 100%;
+                width: 70%;
+                margin-left: auto;
+
+                background-color: $lighterGreyColor;
                 a {
                     text-align: left;
                     padding: $base-padding-x;
-                    width: 100%;
+
                     text-decoration: none;
                     color: $greyColor;
                 }
                 ul,
                 li {
                     list-style: none;
-                   
                 }
-                // mobile-link {
-                // }
+                .mobile-link {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    .mobile-link-title {
+                        display: flex;
+                    }
+                    .mobile-toggle {
+                        display: flex;
+                        cursor: pointer;
+                    }
+                    .mobile-sublinks {
+                        padding-left: $large-padding;
+                    }
+                }
+
+                .share-container{
+                    width: 100%;
+                    padding: $base-padding-x;
+                    margin-top: $base-margin;
+                    display: flex;
+                    align-items: flex-start;
+                    flex-direction: column;
+
+                    .share-title{
+                        padding: $base-padding-y;
+                    }
+                }
             }
-        }  
-         .menu-mobile.animate {
-            transform: scale(1);
-            border-radius: 0%;
+        }
+        .menu-mobile.animate {
+            transform: translateX(0%);
+            // border-radius: 0%;
         }
     }
 }

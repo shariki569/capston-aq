@@ -57,18 +57,19 @@
         .subtitle {
             @include justifyIndent;
             min-height: 9rem;
-            //                 background-color: $greyColor;
-            //                 position: absolute;
-            //                 left: 100%;
-            //                 bottom: 0%;
+           
             font-family: $secondary-font;
-            //                 color: $lighterGreyColor;
-            //                 z-index: 2;
+          
             padding: $small-padding;
-            //                 font-size: $content;
-            //                 transform: translateY(100%);
+            
         }
         //         }
+    }
+
+    @include devices (tablet) {
+        .facility-items {
+            @include gridView(20rem, 0.5rem);
+        }
     }
 }
 

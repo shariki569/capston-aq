@@ -1,0 +1,35 @@
+@use '../../../src/sass/Utilities/' as *;
+
+.postheading__container{    
+    display: flex;
+    height: 70dvh;
+    background-color: $primary;
+    @include centerFlexboxRow;
+    
+    .postheading__title{
+        color: $lighterGreyColor;
+        font-size: $f-large;
+        font-family: $primary-font;
+        width: 30%;
+    }
+
+    .postheading__imageWrapper{
+        width: 100%;
+        height: 14rem;
+        // object-fit: contain;
+        img{
+            @include fullSize;
+        }
+    }
+
+
+    @include devices (tablet){
+        flex-direction: column;
+        height: 90dvh;
+        .postheading__title {
+            font-size: $f-large;
+            width: 100%;
+            text-align: center;
+        }
+    }
+}

@@ -31,7 +31,7 @@ const Home = () => {
           <div className='home-header-wrapper'>
             <picture>
               <source />
-              <img className='home-header' src={OGimg} alt="" />
+              <img className='home-header' src={homeHeader} alt="" />
             </picture>
             <div className='home-title-wrapper'>
               <div className='home-title'>

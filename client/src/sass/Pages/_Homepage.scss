@@ -96,8 +96,8 @@ h4.subheading:contains("Ammenities") {
 }
 
 .amenity-items {
-    @include gridView(15rem, 0.5rem);
-    @include containerStyle(70rem, 1rem);
+    @include gridView(20rem, 0.5rem);
+    @include centerAndSet(1300px, 1rem);
     .amenity-item {
         padding: $large-padding;
         @include cardBase($base-border-radius);
@@ -111,5 +111,19 @@ h4.subheading:contains("Ammenities") {
             font-family: $font-libre-baskerville;
             color: $greyColor;
         }
+    }
+   
+}
+@include devices(tablet) {
+    .amenity-items {
+        @include centerAndSet(700px, 1rem);
+        @include gridView(15rem, 0.5rem);
+    }
+}
+
+@include devices(mobile) {
+    .amenity-items {
+        @include centerAndSet(100%, 1rem);
+        // @include gridView(20rem, 0.5rem);
     }
 }

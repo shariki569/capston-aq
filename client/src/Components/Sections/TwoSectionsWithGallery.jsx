@@ -30,16 +30,16 @@ const TwoSectionsWithGallery = ({ title, desc, galleries, featuredImg, inverse }
 
     return (
         <>
-            <div id="facility-gallery-section" className='two-sections-container h-60'>
-                <div className='image-container'>
-                    <div className="image-wrapper">
+            <div className='facility__two-sections-container'>
+                <div className='facility__image-container'>
+                    <div className="facility__image-wrapper">
                         <img src={`upload/${featuredImg}`} alt="" />
                         <button className='see-more-button' onClick={() => openLightBox(0)}>See Gallery</button>
                     </div>
                 </div>
-                <div className="content-wrapper">
-                    <div className="content">
-                        <h4 className='xxl-font'>{title}</h4>
+                <div className="facility__content-wrapper">
+                    <div className="facility__content">
+                        <h4 className='facility__title'>{title}</h4>
                         <p>{desc}</p>
                     </div>
                 </div>

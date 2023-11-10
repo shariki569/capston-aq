@@ -59,7 +59,7 @@ const MobileNav = () => {
                                             {showDropdown[index] && (
                                                 <ul className='mobile-sublinks'>
                                                     {item.children.map((subLink) => (
-                                                        <Link key={subLink.id}>
+                                                        <Link key={subLink.id} to={subLink.path}>
                                                             <li className='mobile-sublink'>
                                                                 {subLink.name}
                                                             </li>

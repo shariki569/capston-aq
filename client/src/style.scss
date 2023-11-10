@@ -184,6 +184,13 @@ li {
 
 .flex-container {
     @include centerFlexboxRow;
+
+    @include devices(mobile) {
+        flex-direction: column;
+    }
+    @include devices(tablet) {
+        flex-direction: column-reverse;
+    }
 }
 
 .container {
@@ -215,7 +222,7 @@ li {
 
 .centered-heading {
     @include centeredHeading;
-
+    @include centerAndSet(1300px, 2rem);
     h2 {
         font-size: $subheading;
         color: $tertiary;

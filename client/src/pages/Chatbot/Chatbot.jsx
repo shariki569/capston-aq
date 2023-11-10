@@ -24,7 +24,7 @@ const Chatbot = () => {
     return (
         <>
             <Header title='Chatbot Test' />
-            <div className='wrapper'>
+            <div className='wrapper_!'>
                 <div className='chatbot-inbox full-width h-60'>
                     {messages.map((message, index) => (
                         <p key={index}>

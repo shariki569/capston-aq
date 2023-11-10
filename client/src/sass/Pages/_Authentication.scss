@@ -4,13 +4,13 @@
     @include centerFlexboxColumn;
     height: 100vh;
     width: 100%;
-    background-color: $secondaryColor;
-
+    background-color: $primary;
+    font-family: $secondary-font;
     h1 {
         font-size: 20px;
         color: $honeyDew;
         margin-bottom: 20px;
-        font-family: $font-libre-franklin;
+        font-family: $secondary-font;
         font-size: $subheading;
     }
 
@@ -19,7 +19,7 @@
         flex-direction: column;
         padding: 50px;
         background-color: $lightColor;
-        width: 200;
+        width: 25%;
         gap: 20px;
         border-radius: 15px;
 
@@ -27,31 +27,80 @@
             padding: 10px;
             border: none;
             border-bottom: 1px solid gray;
-            font-family: $font-libre-baskerville;
+            font-family: inherit;
             font-size: $content;
         }
 
-        button {
-            padding: 10px;
-            border: none;
-            background-color: $accentColor;
-            color: white;
-            cursor: pointer;
-            font-family: $font-libre-baskerville;
-            font-size: $content;
-        }
+        // button {
+        //     padding: 10px;
+        //     border: none;
+        //     background-color: $accentColor;
+        //     color: white;
+        //     cursor: pointer;
+        //     font-family: $font-libre-baskerville;
+        //     font-size: $content;
+        // }
 
         p {
-            font-size: $mini;
+            font-size: $f-small;
             color: red;
             text-align: center;
-            font-family: $font-libre-franklin;
+            font-family: inherit;
         }
 
         span {
             font-size: 12px;
             text-align: center;
-            font-family: $font-libre-baskerville;
+        }
+    }
+
+    .alternative {
+        font-family: inherit;
+        @include centerFlexboxColumn;
+        width: 25%;
+        color: $lightGreyColor;
+        p {
+            margin: $base-margin-y;
+        }
+        .icons {
+            @include centerFlexboxColumn;
+            width: 100%;
+            gap: 10px;
+            button {
+                border: none;
+                background-color: transparent;
+                cursor: pointer;
+                width: 100%;
+                padding: $base-padding-y;
+                font-size: $f-normal;
+                border-radius: $base-border-radius;
+                display: flex;
+                justify-content: center;
+                gap: $small-padding;
+            }
+
+            .facebook {
+                background-color: #0165e1;
+                color: rgb(245, 240, 240);
+                font-weight: $w-bold;
+
+                &:hover {
+                    background-color: #0870f0;
+                }
+            }
+
+            .google {
+                background-color: rgb(245, 240, 240);
+                font-weight: $w-bold;
+                color: $greyColor;
+                &:hover {
+                    background-color: #e9eaec;
+                }
+
+                .icon {
+                    color: #db4437;
+                }
+            }
         }
     }
 }

@@ -26,14 +26,14 @@ const Facilities = () => {
         imageUrl={headerImage}
         title='Facilities'
       />
-      <div className='wrapper m-margin-y'>
+      {/* <div className='wrapper'> */}
         <SectionWithHeading
           main="Your Gateway to Enjoyment"
           subheading="Explore our Facilities"
           desc="Shine a spotlight on the intersection of comfort and convenience as you navigate the heart of our resort's offerings" />
 
-      </div>
-      <section className='facility wrapper'>
+      {/* </div> */}
+      <section className='facility_wrapper'>
         <div className="facility-sections" id='facility-container'>
           {facilities.map((facility) => (
             <TwoSectionsWithGallery

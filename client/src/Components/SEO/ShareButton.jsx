@@ -8,7 +8,7 @@ import { FacebookShareButton, FacebookIcon, TwitterShareButton } from "react-sha
 
 
 
-const ShareButton = () => {
+const ShareButton = ({color}) => {
 
   const location = useLocation()
 
@@ -23,7 +23,7 @@ const ShareButton = () => {
         hashtag='#AquaCaintaResort'
         className='btn-2'
       >
-        <span><FaFacebook size={25} /></span>
+        <span><FaFacebook size={25} color={color}/></span>
       </FacebookShareButton>
 
 
@@ -32,9 +32,8 @@ const ShareButton = () => {
         hashtag='#AquaCaintaResort'
         className='btn-2'
       >
-
         {/* <span><FaXTwitter size={25} /></span> */}
-        <span><FaXTwitter size={25} /></span>
+        <span><FaXTwitter size={25} color={color}/></span>
       </TwitterShareButton>
     </div>
   )

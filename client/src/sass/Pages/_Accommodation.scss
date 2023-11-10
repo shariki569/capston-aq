@@ -9,7 +9,6 @@
     }
 
     .container {
-        
         margin-inline: auto;
         max-width: 100rem;
         padding-inline: 5rem;
@@ -41,17 +40,16 @@
         display: flex;
         flex-direction: row;
 
-        .title  {
+        .title {
             font-size: $large;
             font-family: $font-libre-baskerville;
-           
+
             padding: $small-padding 0 $large-padding 0;
             text-decoration: none;
 
-            a{
+            a {
                 color: $primaryColor;
             }
-            
         }
 
         .card {
@@ -82,8 +80,6 @@
                 flex-direction: column;
                 padding: $base-padding;
                 width: 100%;
-                
-                
 
                 .price {
                     color: $tertiary;
@@ -108,13 +104,12 @@
                     line-height: $base-line-height;
                     min-height: 8rem;
 
-
                     p {
                         display: -webkit-box;
                         -webkit-line-clamp: 3;
                         -webkit-box-orient: vertical;
                         overflow: hidden;
-                        margin: $small-margin 0 auto 0 ;
+                        margin: $small-margin 0 auto 0;
                     }
                 }
 
@@ -148,5 +143,69 @@
                 }
             }
         }
+    }
+
+    @include devices(mobile) {
+        .container {
+            padding-inline: 0.4rem;
+        }
+    }
+
+    @include devices(tablet) {
+        .container {
+            padding-inline: 2rem;
+            .card {
+                margin: $base-margin-y;
+            }
+        }
+    }
+}
+
+//Accommodation Single Wrapper{
+
+.accomm__single_wrapper {
+    display: flex;
+    @include centerAndSet(1300px, 2rem);
+    margin: $base-margin-y;
+    gap: 15px;
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        flex: 5;
+
+        img {
+            border-radius: $base-border-radius;
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+    }
+
+    .accommodation-wrapper {
+        min-height: 70vh;
+        height: 100%;
+
+        .title {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: $base-padding;
+            .social-media {
+                display: flex;
+                justify-content: flex-start;
+                position: relative;
+                padding: $base-padding-x;
+            }
+        }
+    }
+
+    @include devices(tablet) {
+        flex-direction: column;
+    }
+
+
+    .accomm__side_menu{
+
+        
     }
 }

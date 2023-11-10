@@ -28,7 +28,7 @@ footer {
         .footer-content {
             @include leftFlexboxColumn;
             gap: 1rem;
-        
+
             .footer-items {
                 width: 100%;
                 @include leftFlexboxColumn;
@@ -40,7 +40,7 @@ footer {
                     width: inherit;
                     display: flex;
                     align-items: center;
-                    
+
                     text-decoration: none;
                     .icon {
                         padding: $small-padding-x;
@@ -57,7 +57,7 @@ footer {
                     @include leftFlexboxColumn;
                     gap: 0.8rem;
                     .sub-link {
-                        width: inherit; 
+                        width: inherit;
                         color: $lightGreyColor;
                         gap: 1.2rem;
                         span {
@@ -66,6 +66,14 @@ footer {
                     }
                 }
             }
+        }
+    }
+}
+@include devices(mobile) {
+    footer {
+        padding: $base-padding;
+        .footer {
+            flex-direction: column;
         }
     }
 }

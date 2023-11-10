@@ -194,7 +194,7 @@
   font-family: "Quicksand-Medium";
   padding: 0.5rem;
 }
-@media (max-width: 820px) {
+@media (max-width: 800px) {
   .facilities .facility-items {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
@@ -202,20 +202,37 @@
   }
 }
 
-.facility img {
+.facility_wrapper {
+  margin-inline: auto;
+  max-width: 1300px;
+  padding-inline: 1rem;
+}
+.facility_wrapper img {
   height: 100px;
   width: 100px;
   aspect-ratio: 1/1;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.facility #facility-gallery-section:nth-child(2n+1) {
+.facility_wrapper .facility__two-sections-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-block: 1rem;
+}
+.facility_wrapper .facility__two-sections-container:nth-child(2n+1) {
   flex-direction: row-reverse;
 }
-.facility #facility-gallery-section .image-wrapper {
+.facility_wrapper .facility__two-sections-container .facility__image-wrapper {
+  height: 300px;
   position: relative;
+  aspect-ratio: 2/1;
 }
-.facility #facility-gallery-section .image-wrapper .see-more-button {
+.facility_wrapper .facility__two-sections-container .facility__image-wrapper img {
+  height: 100%;
+  width: 100%;
+}
+.facility_wrapper .facility__two-sections-container .facility__image-wrapper .see-more-button {
   position: absolute;
   top: 5%;
   right: 3%;
@@ -226,25 +243,80 @@
   cursor: pointer;
   border-radius: 5px;
 }
-.facility #facility-gallery-section .image-wrapper .see-more-button:hover {
+.facility_wrapper .facility__two-sections-container .facility__image-wrapper .see-more-button:hover {
   background-color: #D2B48C;
 }
-@media (max-width: 820px) {
-  .facility #facility-gallery-section #facility-gallery-section {
+.facility_wrapper .facility__two-sections-container .facility__content-wrapper {
+  width: 100%;
+  padding: 0 1.75rem;
+  width: 50%;
+}
+.facility_wrapper .facility__two-sections-container .facility__content-wrapper .facility__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.facility_wrapper .facility__two-sections-container .facility__content-wrapper .facility__content h4 {
+  color: #03335b;
+  font-family: "Britney-Regular";
+  font-size: 2rem;
+}
+@media (max-width: 800px) {
+  .facility_wrapper .facility__two-sections-container {
+    margin-inline: auto;
+    max-width: 600px;
+    padding-inline: 1rem;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    height: 100%;
-    flex-wrap: wrap;
+    padding: 1rem 0;
   }
-  .facility #facility-gallery-section .image-container {
-    width: -moz-fit-content;
-    width: fit-content;
+  .facility_wrapper .facility__two-sections-container:nth-child(2n+1) {
+    flex-direction: column;
   }
-  .facility #facility-gallery-section .content-wrapper {
-    width: -moz-fit-content;
-    width: fit-content;
+  .facility_wrapper .facility__two-sections-container .facility__image-wrapper {
+    min-width: 200px;
+    aspect-ratio: 1/1;
+  }
+  .facility_wrapper .facility__two-sections-container .facility__content-wrapper {
+    padding: 1.25rem 0;
+    width: 100%;
+  }
+  .facility_wrapper .facility__two-sections-container .facility__content-wrapper .facility__content {
+    font-size: 1rem;
+  }
+  .facility_wrapper .facility__two-sections-container .facility__content-wrapper .facility__content h4 {
+    color: #03335b;
+    font-family: "Britney-Regular";
+    font-size: 2rem;
+  }
+}
+@media (max-width: 418px) {
+  .facility_wrapper .facility__two-sections-container {
+    margin-inline: auto;
+    max-width: 100%;
+    padding-inline: 1rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+  }
+  .facility_wrapper .facility__two-sections-container:nth-child(2n+1) {
+    flex-direction: column;
+  }
+  .facility_wrapper .facility__two-sections-container .facility__image-wrapper {
+    width: 100%;
+    aspect-ratio: 1/1;
+  }
+  .facility_wrapper .facility__two-sections-container .facility__content-wrapper {
+    padding: 1.25rem 0;
+  }
+  .facility_wrapper .facility__two-sections-container .facility__content-wrapper .facility__content {
+    font-size: 1rem;
+  }
+  .facility_wrapper .facility__two-sections-container .facility__content-wrapper .facility__content h4 {
+    color: #03335b;
+    font-family: "Britney-Regular";
+    font-size: 2rem;
   }
 }
 
@@ -437,7 +509,7 @@
   margin-bottom: auto;
 }
 
-@media (max-width: 820px) {
+@media (max-width: 800px) {
   .two-sections-container {
     flex-direction: column;
     height: 100dvh;
@@ -489,6 +561,7 @@
 
 .btn {
   display: flex;
+  justify-content: center;
   gap: 1rem;
   position: relative;
   background-color: transparent;
@@ -1130,7 +1203,6 @@ table tr td .crud-btn button:nth-child(3) {
   align-items: flex-start;
   box-shadow: 1px 2px 11px 3px rgba(26, 25, 25, 0.3215686275);
   height: 700px;
-  width: 400px;
   max-height: 500px;
   background-color: #faf7f7;
   border-radius: 10px;
@@ -1227,6 +1299,16 @@ table tr td .crud-btn button:nth-child(3) {
   color: #faf7f7;
 }
 
+@media (max-width: 418px) {
+  .chatbot-inbox {
+    position: fixed;
+  }
+  .chatbot-button {
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+  }
+}
 .postheading__container {
   display: flex;
   height: 70dvh;
@@ -1249,7 +1331,7 @@ table tr td .crud-btn button:nth-child(3) {
   height: 100%;
   width: 100%;
 }
-@media (max-width: 820px) {
+@media (max-width: 800px) {
   .postheading__container {
     flex-direction: column;
     height: 90dvh;
@@ -1337,7 +1419,7 @@ table tr td .crud-btn button:nth-child(3) {
   text-align: center;
   color: #5c5b5b;
 }
-@media (max-width: 820px) {
+@media (max-width: 800px) {
   .home .home-title-wrapper {
     width: 100%;
   }
@@ -1354,10 +1436,10 @@ h4.subheading:contains("Ammenities") {
 
 .amenity-items {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   gap: 0.5rem;
   margin-inline: auto;
-  max-width: 70rem;
+  max-width: 1300px;
   padding-inline: 1rem;
 }
 .amenity-items .amenity-item {
@@ -1384,6 +1466,23 @@ h4.subheading:contains("Ammenities") {
   color: #232422;
 }
 
+@media (max-width: 800px) {
+  .amenity-items {
+    margin-inline: auto;
+    max-width: 700px;
+    padding-inline: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 0.5rem;
+  }
+}
+@media (max-width: 418px) {
+  .amenity-items {
+    margin-inline: auto;
+    max-width: 100%;
+    padding-inline: 1rem;
+  }
+}
 .about .header {
   position: relative;
   min-height: 70vh;
@@ -1422,13 +1521,14 @@ h4.subheading:contains("Ammenities") {
   align-items: center;
   height: 100vh;
   width: 100%;
-  background-color: #73d2de;
+  background-color: #03335b;
+  font-family: "Quicksand-Medium";
 }
 .auth h1 {
   font-size: 20px;
   color: #e1ebdd;
   margin-bottom: 20px;
-  font-family: "Libre Franklin";
+  font-family: "Quicksand-Medium";
   font-size: 1.5rem;
 }
 .auth form {
@@ -1436,7 +1536,7 @@ h4.subheading:contains("Ammenities") {
   flex-direction: column;
   padding: 50px;
   background-color: #f8f9fa;
-  width: 200;
+  width: 25%;
   gap: 20px;
   border-radius: 15px;
 }
@@ -1444,28 +1544,69 @@ h4.subheading:contains("Ammenities") {
   padding: 10px;
   border: none;
   border-bottom: 1px solid gray;
-  font-family: "Libre Baskerville";
-  font-size: 0.85rem;
-}
-.auth form button {
-  padding: 10px;
-  border: none;
-  background-color: #d81159;
-  color: white;
-  cursor: pointer;
-  font-family: "Libre Baskerville";
+  font-family: inherit;
   font-size: 0.85rem;
 }
 .auth form p {
-  font-size: 0.75rem;
+  font-size: 0.6rem;
   color: red;
   text-align: center;
-  font-family: "Libre Franklin";
+  font-family: inherit;
 }
 .auth form span {
   font-size: 12px;
   text-align: center;
-  font-family: "Libre Baskerville";
+}
+.auth .alternative {
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+  color: #b4b9ae;
+}
+.auth .alternative p {
+  margin: 1.25rem 0;
+}
+.auth .alternative .icons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}
+.auth .alternative .icons button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  width: 100%;
+  padding: 1rem 0;
+  font-size: 1rem;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.auth .alternative .icons .facebook {
+  background-color: #0165e1;
+  color: rgb(245, 240, 240);
+  font-weight: 700;
+}
+.auth .alternative .icons .facebook:hover {
+  background-color: #0870f0;
+}
+.auth .alternative .icons .google {
+  background-color: rgb(245, 240, 240);
+  font-weight: 700;
+  color: #232422;
+}
+.auth .alternative .icons .google:hover {
+  background-color: #e9eaec;
+}
+.auth .alternative .icons .google .icon {
+  color: #db4437;
 }
 
 .contact {
@@ -1520,6 +1661,11 @@ h4.subheading:contains("Ammenities") {
   margin-left: 0.75rem;
 }
 
+@media (max-width: 800px) {
+  .contact-info {
+    width: 100%;
+  }
+}
 .container-accomodation {
   width: 100vw;
   overflow-x: none;
@@ -1910,7 +2056,7 @@ h4.subheading:contains("Ammenities") {
     display: none;
   }
 }
-@media (max-width: 820px) {
+@media (max-width: 800px) {
   .navbar .container .main-link {
     display: none;
   }
@@ -2008,7 +2154,7 @@ h4.subheading:contains("Ammenities") {
   transform: translateX(0%);
 }
 
-@media (max-width: 820px) {
+@media (max-width: 800px) {
   .mobile-nav-container {
     display: block;
   }
@@ -2324,6 +2470,16 @@ li {
   justify-content: center;
   align-items: center;
 }
+@media (max-width: 418px) {
+  .flex-container {
+    flex-direction: column;
+  }
+}
+@media (max-width: 800px) {
+  .flex-container {
+    flex-direction: column-reverse;
+  }
+}
 
 .container {
   width: 100%;
@@ -2359,6 +2515,9 @@ li {
   font-family: "Quicksand-Medium";
   padding: 1rem 0;
   text-align: center;
+  margin-inline: auto;
+  max-width: 1300px;
+  padding-inline: 2rem;
 }
 .centered-heading h2 {
   font-size: 1.5rem;
@@ -2381,7 +2540,7 @@ li {
   color: #232422;
   font-family: "Quicksand-Medium";
 }
-@media (max-width: 820px) {
+@media (max-width: 800px) {
   .centered-heading p {
     padding-inline: 0;
     text-align: justify;

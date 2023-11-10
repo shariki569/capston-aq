@@ -10,6 +10,8 @@
         flex-direction: column;
         max-width: 42%;
     }
+
+
 }
 
 .contact-title {
@@ -36,14 +38,13 @@
     .contact-items {
         list-style: none;
         color: $greyColor;
-        
+
         .contact-item {
             display: flex;
             justify-content: flex-start;
             align-items: center;
-            .icon-wrapper{
-               height: 30px;
-               
+            .icon-wrapper {
+                height: 30px;
             }
             .icon {
                 color: $accentColor;
@@ -56,5 +57,11 @@
                 margin-left: $base-margin;
             }
         }
+    }
+}
+
+@include devices(tablet) {
+    .contact-info {
+        width: 100%;
     }
 }

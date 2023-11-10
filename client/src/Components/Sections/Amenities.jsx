@@ -14,7 +14,7 @@ const Amenities = () => {
             />
             <div className="wrapper">
                 
-                <div className="amenity-items || grid-view">
+                <div className="amenity-items">
                     {amenities.map((amenity) => (
                         <div className="amenity-item" key={amenity.Amenity_Id}>
                             <img src={`../../upload/${amenity.Amenity_Img}`} alt="" />

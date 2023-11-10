@@ -23,7 +23,7 @@
         align-items: flex-start;
         box-shadow: $dark-box-shadow;
         height: 700px;
-        width: 400px;
+        // width: 400px;
         max-height: 500px;
         background-color: $lighterGreyColor;
         border-radius: $base-border-radius;
@@ -144,5 +144,20 @@
             cursor: pointer;
             color: $lighterGreyColor;
         }
+    }
+}
+
+
+@include devices (mobile) {
+    .chatbot-inbox{
+        position: fixed;
+        // bottom: 10px;
+        // right: 10px;
+     
+    }
+    .chatbot-button{
+        position: fixed;
+        bottom: 5%;
+        right: 5%;
     }
 }

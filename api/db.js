@@ -1,12 +1,12 @@
 import mysql from "mysql2/promise";
 import dotenv from "dotenv";
 
-dotenv.config({ path: "./env/acc.env" });
-// if (process.env.NODE_ENV !== "production") {
-//   dotenv.config();
-// } else {
-//   dotenv.config({ path: "./env/acc.env" });
-// }
+// dotenv.config({ path: "./env/acc.env" });
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config({ path: "./env/acc.env" });
+} else {
+  dotenv.config({ path: "./env/local.env" });
+}
 export const db = mysql.createPool({
   host: process.env.MYSQLHOST,
   user: process.env.MYSQLUSER,

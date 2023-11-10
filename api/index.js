@@ -23,7 +23,11 @@ if (process.env.NODE_ENV !== 'production') {
 }
 const app = express();
 
-app.use(cors());
+app.use(cors( {
+  origin: true,
+  credentials: true,
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+}));
 
 app.use(express.json());
 app.use(cookieParser());
@@ -53,6 +57,6 @@ app.use("/api/facilities", facilityRoutes);
 
 const port = process.env.PORT || 3000;
 app.listen(port, "0.0.0.0", function () {
-  console.log("Connected oy amaw!");
+  console.log("Connected oy amaw! " + port);
 });
 export default app;

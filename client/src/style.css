@@ -291,7 +291,7 @@
     font-size: 2rem;
   }
 }
-@media (max-width: 418px) {
+@media (max-width: 618px) {
   .facility_wrapper .facility__two-sections-container {
     margin-inline: auto;
     max-width: 100%;
@@ -532,7 +532,7 @@
     font-size: 0.8rem;
   }
 }
-@media (max-width: 418px) {
+@media (max-width: 618px) {
   .two-sections-container {
     display: flex;
     flex-direction: column;
@@ -1299,7 +1299,7 @@ table tr td .crud-btn button:nth-child(3) {
   color: #faf7f7;
 }
 
-@media (max-width: 418px) {
+@media (max-width: 618px) {
   .chatbot-inbox {
     position: fixed;
   }
@@ -1424,7 +1424,7 @@ table tr td .crud-btn button:nth-child(3) {
     width: 100%;
   }
 }
-@media (max-width: 418px) {
+@media (max-width: 618px) {
   .home .home-title h1 {
     font-size: 2rem;
   }
@@ -1476,7 +1476,7 @@ h4.subheading:contains("Ammenities") {
     gap: 0.5rem;
   }
 }
-@media (max-width: 418px) {
+@media (max-width: 618px) {
   .amenity-items {
     margin-inline: auto;
     max-width: 100%;
@@ -1792,7 +1792,61 @@ h4.subheading:contains("Ammenities") {
   color: #232422;
   margin-left: 0.25rem;
 }
+@media (max-width: 618px) {
+  .container-accomodation .container {
+    padding-inline: 0.4rem;
+  }
+}
+@media (max-width: 800px) {
+  .container-accomodation .container {
+    padding-inline: 2rem;
+  }
+  .container-accomodation .container .card {
+    margin: 1.25rem 0;
+  }
+}
 
+.accomm__single_wrapper {
+  display: flex;
+  margin-inline: auto;
+  max-width: 1300px;
+  padding-inline: 2rem;
+  margin: 1.25rem 0;
+  gap: 15px;
+}
+.accomm__single_wrapper .content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  flex: 5;
+}
+.accomm__single_wrapper .content img {
+  border-radius: 10px;
+  width: 100%;
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.accomm__single_wrapper .accommodation-wrapper {
+  min-height: 70vh;
+  height: 100%;
+}
+.accomm__single_wrapper .accommodation-wrapper .title {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+}
+.accomm__single_wrapper .accommodation-wrapper .title .social-media {
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  padding: 0 1rem;
+}
+@media (max-width: 800px) {
+  .accomm__single_wrapper {
+    flex-direction: column;
+  }
+}
 .single {
   display: flex;
   gap: 50px;
@@ -1940,11 +1994,6 @@ h4.subheading:contains("Ammenities") {
   color: black;
 }
 
-.accommodation-wrapper {
-  min-height: 70vh;
-  height: 100%;
-}
-
 .navbar {
   position: fixed;
   top: 0;
@@ -2048,7 +2097,7 @@ h4.subheading:contains("Ammenities") {
   cursor: pointer;
   font-family: "Libre Franklin";
 }
-@media (max-width: 418px) {
+@media (max-width: 618px) {
   .navbar .container .main-link {
     display: none;
   }
@@ -2229,6 +2278,14 @@ footer .footer .footer-content .footer-items .footer-link .sub-link span {
   list-style: none;
 }
 
+@media (max-width: 618px) {
+  footer {
+    padding: 1rem;
+  }
+  footer .footer {
+    flex-direction: column;
+  }
+}
 .sidebar {
   height: 100%;
   background-color: #333;
@@ -2470,7 +2527,7 @@ li {
   justify-content: center;
   align-items: center;
 }
-@media (max-width: 418px) {
+@media (max-width: 618px) {
   .flex-container {
     flex-direction: column;
   }

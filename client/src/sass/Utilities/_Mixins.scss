@@ -91,7 +91,7 @@
     }
 
     @if $breakpoint == mobile {
-        @media (max-width: 418px) {
+        @media (max-width: 618px) {
             @content;
         }
     }

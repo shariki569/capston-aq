@@ -9,21 +9,27 @@ import { BiLogoFacebookCircle, BiLogoInstagramAlt, BiLogoTwitter } from 'react-i
 import Amenities_Single from '../../Components/Sections/Amenities_Single'
 import ShareButton from '../../Components/SEO/ShareButton'
 //styling is in the Single.scss file
-
+import { FaShareAlt } from "react-icons/fa";
 const Accommodation_Single = () => {
   const location = useLocation();
   const { accomm } = useSingleAccommData();
+  // const [isOpen, setIsOpen] = useState(false)
 
+
+  // const handleToggle = e => {
+  //   setIsOpen(!isOpen)
+  // }
 
   return (
     <>
+      {/* single wrapper */}
       <Header
         title={accomm?.Accommodation_Title}
         pageSlug="accommodation"
         small
         imageUrl={`/upload/${accomm?.Accommodation_Img}`}
       />
-      <div className="single wrapper">
+      <div className="accomm__single_wrapper">
         <div className="container">
           <div className="content">
             <img src={`/upload/${accomm?.Accommodation_Img}`} alt={accomm?.Accommodation_Title} />
@@ -31,12 +37,7 @@ const Accommodation_Single = () => {
               <div className="title">
                 <h1>{accomm?.Accommodation_Title}</h1>
                 <div className="social-media">
-
-                  {/* <BiLogoFacebookCircle size={25} color='blue'/>
-                    <BiLogoTwitter size={25} color="lightblue"/>
-                    <BiLogoInstagramAlt size={25} color="pink"/> */}
-                  <ShareButton />
-
+                  <ShareButton color={'blue'} />
                 </div>
               </div>
               <div className="description">
@@ -45,11 +46,10 @@ const Accommodation_Single = () => {
             </div>
           </div>
 
-          <Amenities_Single />
         </div>
         <Accom_Sidebar price={accomm?.Accommodation_Price} type={accomm?.Accommodation_Type} currentAccommodationId={accomm.Accommodation_Id} />
       </div>
-
+      <Amenities_Single />
     </>
   )
 }

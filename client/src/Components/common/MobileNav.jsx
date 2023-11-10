@@ -77,7 +77,7 @@ const MobileNav = () => {
                                 <div className="share-title">
                                     <h4>Share us</h4>
                                 </div>
-                                <ShareButton />
+                                <ShareButton color={'#232422'}/>
                             </div>
                         </div>
 

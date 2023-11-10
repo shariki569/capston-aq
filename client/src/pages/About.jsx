@@ -19,7 +19,7 @@ const About = () => {
         image={headerImage}
         quote="About Us" />
       <div className='about'>
-        {pageData && (
+      {pageData && (
           <div>
             <Header
               imageUrl={headerImage}

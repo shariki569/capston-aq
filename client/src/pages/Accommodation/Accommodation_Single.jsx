@@ -13,13 +13,7 @@ import { FaShareAlt } from "react-icons/fa";
 const Accommodation_Single = () => {
   const location = useLocation();
   const { accomm } = useSingleAccommData();
-  // const [isOpen, setIsOpen] = useState(false)
-
-
-  // const handleToggle = e => {
-  //   setIsOpen(!isOpen)
-  // }
-
+  
   return (
     <>
       {/* single wrapper */}

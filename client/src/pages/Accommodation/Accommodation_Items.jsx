@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { FiHome, FiUser } from 'react-icons/fi';
 import { Link, useLocation } from 'react-router-dom';
 import { useAccommodations } from '../../API/fetchAccommodations';
+import ScrollToTop from '../../Components/Hoc/ScrollToTop';
 
 const Accommodation_Items = () => {
   const type = useLocation().search;
@@ -35,7 +36,7 @@ const Accommodation_Items = () => {
               {accomms.map((accomm) => (
                 <div className="card" key={accomm.Accommodation_Id}>
                   <div className="content">
-                    <img className="img" src={`../upload/${accomm.Accommodation_Img}`} alt={`${accomm.Accommodation_Title}`} />
+                    <img className="img" src={accomm.Accommodation_Img.startsWith('http') ? accomm.Accommodation_Img : `../../upload/${accomm.Accommodation_Img}`} alt={`${accomm.Accommodation_Title}`} />
                     <div className="description">
                       <div className="title">
                         <Link to={`/accommodation/${accomm.Accommodation_Title}/${accomm.Accommodation_Id}`}><h2>{accomm.Accommodation_Title}</h2></Link>
@@ -77,4 +78,4 @@ const Accommodation_Items = () => {
   )
 }
 
-export default Accommodation_Items
+export default ScrollToTop(Accommodation_Items)

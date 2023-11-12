@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../context/authContext'
-import TextInput from '../Components/forms/FormFields/TextInput'
+// import TextInput from '../Components/forms/FormFields/TextInput'
 import { BiLogoFacebook, BiLogoGmail } from "react-icons/bi";
 const Login = () => {
 
@@ -37,8 +37,8 @@ const Login = () => {
       <h1>Login</h1>
       <form action="">
 
-        <TextInput required type="text" placeholder='Username' name='username' onChange={handleChange} />
-        <TextInput required type="password" placeholder='Password' name='password' onChange={handleChange} />
+        <input required type="text" placeholder='Username' name='username' onChange={handleChange} />
+        <input required type="password" placeholder='Password' name='password' onChange={handleChange} />
         <button className='btn ' onClick={handleSubmit}>Login</button>
         {err && <p>{err}</p>}
         <span>Don't you have an account?<Link to="/register"> Register</Link></span>

@@ -4,6 +4,7 @@ import { FiChevronRight, FiMessageCircle, FiPhone } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { formatCelNumber } from '../../Components/util/formatCelNumber';
 import { useAccommodations, useRandomAccommodation } from '../../API/fetchAccommodations';
+import ScrollToTop from '../../Components/Hoc/ScrollToTop';
 
 
 const Accom_Sidebar = ({ price, type, currentAccommodationId }) => {
@@ -53,4 +54,4 @@ const Accom_Sidebar = ({ price, type, currentAccommodationId }) => {
     )
 }
 
-export default Accom_Sidebar
+export default ScrollToTop(Accom_Sidebar)

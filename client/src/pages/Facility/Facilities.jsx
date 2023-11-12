@@ -6,6 +6,7 @@ import TwoSectionsWithGallery from '../../Components/Sections/TwoSectionsWithGal
 import Amenities from '../../Components/Sections/Amenities'
 import { useFacilities } from '../../API/fetchFacilities'
 import SEO from '../../Components/SEO/SEO'
+import ScrollToTop from '../../Components/Hoc/ScrollToTop'
 
 const Facilities = () => {
 
@@ -54,4 +55,4 @@ const Facilities = () => {
   )
 }
 
-export default Facilities
+export default ScrollToTop(Facilities)

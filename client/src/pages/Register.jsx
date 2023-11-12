@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
-import TextInput from '../Components/forms/FormFields/TextInput'
+// import input from '../Components/forms/FormFields/input'
 
 const Register = () => {
   const [inputs, setInputs] = useState({
@@ -36,9 +36,9 @@ const handleSubmit = async e =>{
     <div className='auth'>
       <h1>Register</h1>
       <form>
-        <TextInput required type="text" placeholder='Username' name='username' onChange={handleChange}/>
-        <TextInput required type="email" placeholder='Email' name='email' onChange={handleChange}/>
-        <TextInput required type="password" placeholder='Password' name='password' onChange={handleChange}/>
+        <input required type="text" placeholder='Username' name='username' onChange={handleChange}/>
+        <input required type="email" placeholder='Email' name='email' onChange={handleChange}/>
+        <input required type="password" placeholder='Password' name='password' onChange={handleChange}/>
         <button className='btn' onClick={handleSubmit}>Register</button>
         {err && <p>{err}</p>}
         <span>Do you you have an account?<Link to="/Login"> Login</Link></span>

@@ -39,13 +39,13 @@ const Facilities = () => {
                   <tr key={facility.Fac_Id}>
                     <td className='center'>{facility.Fac_Id}</td>
                     <td className='center'>{facility.Fac_Title}</td>
-                    <td className='center'><img src={ `/upload/${facility.Featured_Image}`} alt="" /></td>
+                    <td className='center'><img src={facility.Featured_Image.startsWith('http') ? facility.Featured_Image : `../../upload/${facility.Featured_Image}`} alt="" /></td>
                     <td className='description'>{facility.Fac_Desc}</td>
                     <td>{moment(facility.Fac_Date).format("YYYY-MM-DD")}</td>
                     <td className='center'>
                       <div className='crud-btn'>
-                        <button>View</button>
-                        <Link state={facility} to={`/dashboard/facilities/write?edit=${facility.Fac_Id}`}><button>Edit</button></Link>
+                    
+                        <Link state={facility} to={`/dashboard/facilities/write?edit=${facility.Fac_Id}`}><button>View</button></Link>
                         <button onClick={() => handleDelete(facility.Fac_Id)}><FiTrash2 /></button>
                       </div>
                     </td>

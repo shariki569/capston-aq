@@ -10,7 +10,7 @@ export default ({ mode }) => {
     plugins: [react()],
     server: {
       proxy:{
-        "/api/": "https://capston-aq-backend-production.up.railway.app"
+        "/api/": "http://localhost:8800"
       }
     },
     build: {

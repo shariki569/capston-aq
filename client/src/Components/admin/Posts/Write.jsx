@@ -5,6 +5,8 @@ import axios from 'axios'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import TextInput from '../../forms/FormFields/TextInput';
+import ImageUploader from '../../util/ImageUploader';
+import { upload } from '../../../Hooks/imageHandling';
 
 const Write = () => {
 
@@ -14,34 +16,48 @@ const Write = () => {
   const [title, setTitle] = useState(state?.PostTitle || "")
   const [value, setValue] = useState(state?.PostDesc || "")
   const [file, setFile] = useState(null)
+  const [previewImg, setPreviewImg] = useState(null)
+  const [postImg, setPostImg] = useState(state?.PostImg || "")
   const [cat, setCat] = useState(state?.PostCat || "")
 
   const navigate = useNavigate();
 
-  const upload = async () => {
-    try {
-      const formData = new FormData();
-      formData.append("file", file)
-      const res = await axios.post("/api/upload", formData)
-      return res.data
 
-    } catch (err) {
-      console.log(err);
+
+  const handleImageChange = (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const selectedFile = e.target.files[0]
+      setFile(selectedFile);
+      setPreviewImg(URL.createObjectURL(selectedFile));
+
     }
   }
 
+  const removeSelectedImage = () => {
+    if (postImg) {
+      setFile(null)
+      setPreviewImg(null);
+      setPostImg(null)
+    } else if (postImg) {
+      setPreviewImg(null)
+    }
+  }
+
+
+
+
   const handleClick = async e => {
     e.preventDefault()
-    const imgUrl = await upload()
+    const imgUrl = file ? await upload(file) : postImg;
 
     try {
       state
-        ? await axios.put(`/api/posts/${state.PostId}`, {
-          title,
+        ? await axios.put(`${import.meta.env.VITE_APP_BACKEND_URL}/api/posts/${state.PostId}`, {
+          title,  
           desc: value,
           cat,
           img: file ?
-            imgUrl : ""
+            imgUrl : postImg,
         })
         : await axios.post(`/api/posts/`, {
           title,
@@ -93,11 +109,16 @@ const Write = () => {
           <span>
             <b>Visibility</b> Public
           </span>
-          <input style={{ display: "none" }} type="file" id='file' onChange={e => setFile(e.target.files[0])} />
-          <label className="file" htmlFor="file" encType="multipart/form-data">Upload Image</label>
+          <ImageUploader
+            file={file}
+            previewImage={previewImg}
+            handleImageChange={handleImageChange}
+            removeSelectedImage={removeSelectedImage}
+            existingImage={postImg}
+          />
           <div className="buttons">
-            <button onClick={handleClick}>Publish</button>
-            <button>Save as a Draft</button>
+            <button className='btn' onClick={handleClick}>Publish</button>
+            {/* <button>Save as a Draft</button> */}
           </div>
         </div>
         <div className="item">

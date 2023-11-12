@@ -20,6 +20,8 @@
 @use "./sass/components/Amenities.scss";
 @use "./sass/components/Chatbot.scss";
 @use './Components/PostComponents/postHeading.scss';
+@use './sass/components/RatingsComponent.scss';
+
 
 //Pages
 @use "./sass/Pages/_Homepage.scss";
@@ -29,7 +31,7 @@
 @use "./sass/Pages/Accommodation.scss";
 @use "./sass/Pages/Singlepage.scss";
 @use "./sass/Pages/MediaGallery.scss";
-// @use "./sass/Pages/Chatbot.scss";
+@use "./sass/Pages/DashboardChatbot.scss";
 
 //Commmon Components
 @use "./sass/common/Navbar.scss";
@@ -280,21 +282,21 @@ li {
         gap: 10px;
         margin-top: 20px;
 
-        :first-child {
-            cursor: pointer;
-            color: white;
-            background-color: teal;
-            border: 1px solid teal;
-            padding: 3px 5px;
-        }
+        // :first-child {
+        //     cursor: pointer;
+        //     color: white;
+        //     background-color: teal;
+        //     border: 1px solid teal;
+        //     padding: 3px 5px;
+        // }
 
-        :last-child {
-            cursor: pointer;
-            color: teal;
-            background-color: white;
-            border: 1px solid teal;
-            padding: 3px 5px;
-        }
+        // :last-child {
+        //     cursor: pointer;
+        //     color: teal;
+        //     background-color: white;
+        //     border: 1px solid teal;
+        //     padding: 3px 5px;
+        // }
     }
 
     //register
@@ -365,23 +367,23 @@ li {
                     font-family: $secondary-font;
                 }
 
-                button {
-                    width: max-content;
-                    border: none;
-                    cursor: pointer;
-                    padding: 10px 20px;
-                    background-color: white;
-                    border: 1px solid teal;
-                    color: teal;
-                    font-family: $secondary-font;
-                    transition: 0.1s ease-in-out;
+                // button {
+                //     width: max-content;
+                //     border: none;
+                //     cursor: pointer;
+                //     padding: 10px 20px;
+                //     background-color: white;
+                //     border: 1px solid teal;
+                //     color: teal;
+                //     font-family: $secondary-font;
+                //     transition: 0.1s ease-in-out;
 
-                    &:hover {
-                        border: 1px solid white;
-                        background-color: $lightGreen;
-                        color: black;
-                    }
-                }
+                //     &:hover {
+                //         border: 1px solid white;
+                //         background-color: $lightGreen;
+                //         color: black;
+                //     }
+                // }
             }
         }
     }

@@ -47,7 +47,7 @@ const AccommodationMenu = () => {
                     <td className='center'>{accomm.Accommodation_Id}</td>
                     <td className='center nowrap'>{moment(accomm.Accommodation_Date).format("YYYY-MM-DD")}</td>
                     <td className='center'>{accomm.Accommodation_Title}</td>
-                    <td className='center'><img src={`../../upload/${accomm.Accommodation_Img}`} alt="" /></td>
+                    <td className='center'><img src={accomm.Accommodation_Img.startsWith('http') ? accomm.Accommodation_Img : `../../upload/${accomm.Accommodation_Img}`}  alt="" /></td>
                     <td className='center'>{accomm.Accommodation_Type}</td>
                     <td className='description' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(accomm.Accommodation_Desc) }} />
                     {/* <td className='description'>  {DOMPurify.sanitize(accomm.Accommodation_Desc)}</td> */}
@@ -56,8 +56,7 @@ const AccommodationMenu = () => {
                     <td className='center'>{accomm.Accommodation_Unit}</td>
                     <td>
                       <div className='crud-btn'>
-                        <button>View</button>
-                        <Link state={accomm} to={`/dashboard/accommodations/write?edit=${accomm.Accommodation_Id}`}><button>Update</button></Link>
+                        <Link state={accomm} to={`/dashboard/accommodations/write?edit=${accomm.Accommodation_Id}`}><button>View</button></Link>
                         <button onClick={() => handleDelete(accomm.Accommodation_Id)}><FiTrash2 /></button>
                       </div>
                     </td>

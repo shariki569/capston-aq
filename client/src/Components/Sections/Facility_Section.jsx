@@ -26,7 +26,7 @@ const Facilities = () => {
                         <div className="facility-item" key={facility.Fac_Id}>
 
                             <div className="image-wrap-facility">
-                                <img src={`/upload/${facility.Featured_Image}`} alt={facility.Fac_Title} />
+                                <img src={facility.Featured_Image.startsWith('http') ? facility.Featured_Image : `../../upload/${facility.Featured_Image}`} alt={facility.Fac_Title} />
                             </div>
                             <div className="title">
                                 <h2>{facility.Fac_Title}</h2>

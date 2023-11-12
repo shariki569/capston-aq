@@ -36,11 +36,6 @@ const processInput = async (input, context) => {
       context.previousInput = input;
       context.previousAnswer = result.answer;
 
-      // if (result.intent === 'introduce.name') {
-      //   context.name = result.parameters.name;
-      // } else if (result.intent === 'introduce.age') {
-      //   context.age = result.parameters.age;
-      // }
       return result.answer;
     } else {
       return "I'm sorry, I didn't understand that.";

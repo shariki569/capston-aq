@@ -27,7 +27,7 @@ const ImageUploader = (props) => {
         ) : (
           existingImage ? (
             <div className="thumbnail">
-              <img src={`/upload/${existingImage}`} alt="thumb" />
+              <img src={existingImage.startsWith('http') ? existingImage : `../../upload/${existingImage}`} alt="thumb" />
               <button onClick={removeSelectedImage}><FiXSquare size={20} /></button>
             </div>
           ) : (

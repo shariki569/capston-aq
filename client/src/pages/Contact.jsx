@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { FiMapPin, FiPhone, FiMail } from "react-icons/fi";
 import { useContactInfo } from "../API/fetchContact";
 import SEO from "../Components/SEO/SEO";
+import ScrollToTop from "../Components/Hoc/ScrollToTop";
 const Contact = () => {
 
   const { contactInfo } = useContactInfo();
@@ -65,4 +66,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default ScrollToTop(Contact);

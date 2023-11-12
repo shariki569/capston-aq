@@ -8,11 +8,12 @@ import axios from 'axios'
 import moment from 'moment'
 import { upload } from '../../../Hooks/imageHandling'
 import ImageUploader from '../../util/ImageUploader'
+import { DotLoader } from 'react-spinners'
 // import { useImageUpload } from '../../../Hooks/imageHandling'
 const Add_Accommodate = () => {
 
 
- 
+
   const state = useLocation().state
   const [accommTitle, setAccommTitle] = useState(state?.Accommodation_Title || "")
   const [accommDesc, setAccommDesc] = useState(state?.Accommodation_Desc || "")
@@ -20,7 +21,7 @@ const Add_Accommodate = () => {
   const [accommPrice, setAccommPrice] = useState(state?.Accommodation_Price || "")
   const [accommUnit, setAccommUnit] = useState(state?.Accommodation_Unit || "")
   const [selectedAccommType, setSelectedAccommType] = useState(state?.Accommodation_Type || "")
-
+  const [loading, setLoading] = useState(false)
   const [file, setFile] = useState(null) // ! Do not remove THIS!!
   const [accommImg, setAccommImg] = useState(state?.Accommodation_Img || null)
   const [previewImage, setPreviewImage] = useState(null)
@@ -34,13 +35,13 @@ const Add_Accommodate = () => {
 
 
 
-  
+
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
       const selectedFile = e.target.files[0]
-     setFile(selectedFile);
+      setFile(selectedFile);
       setPreviewImage(URL.createObjectURL(selectedFile));
-      
+
     }
   }
 
@@ -58,8 +59,9 @@ const Add_Accommodate = () => {
   const handleClick = async e => {
     e.preventDefault()
     const imgUrl = file ? await upload(file) : accommImg;
-
-  try {
+    setLoading(true)
+    // const url = imgUrl.data.url;
+    try {
       state
         ? await axios.patch(`${import.meta.env.VITE_APP_BACKEND_URL}/api/accommodations/${state.Accommodation_Id}`, {
           accommTitle,
@@ -82,9 +84,10 @@ const Add_Accommodate = () => {
             imgUrl : "",
           accommDate: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")
         });
-      navigate("/accommodations")
+
+      // navigate("/accommodations")
     } catch (err) {
-      console.error( err);
+      console.error(err);
     };
   };
 
@@ -103,7 +106,7 @@ const Add_Accommodate = () => {
         />
         <div className="editorContainer">
           <ReactQuill
-            
+
             label="Description:"
             className="editor"
             theme='snow'
@@ -176,8 +179,19 @@ const Add_Accommodate = () => {
                 </div>
               </div>
               <div className="buttons">
-                <button onClick={handleClick}>Publish</button>
-                <button>Save as a Draft</button>
+                {loading ?
+                  (<button
+                    className='btn'
+                    disabled={loading}>
+                    Publishing <DotLoader color="#36d7b7" size={15} /></button>
+                  ) : (
+                    <button
+                      onClick={handleClick}
+                      className='btn'>
+                      Publish
+                    </button>
+                  )}
+                {/* <button >Save as a Draft</button> */}
               </div>
 
             </div>

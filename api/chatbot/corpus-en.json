@@ -4,7 +4,10 @@
   "data": [
     {
       "intent": "agent.whereami",
-      "utterances": ["where am i", "where am i talking"],
+      "utterances": [
+        "where am i", 
+        "where am i talking"
+      ],
       "answers": [
         {
           "answer": "you're talking from console, app is {{ app }} channel is {{ channel }}",

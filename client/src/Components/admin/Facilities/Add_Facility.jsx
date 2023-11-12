@@ -172,8 +172,8 @@ const Add_Facility = () => {
             removeImageItem={removeGalleryImage}
           />
           <div className="buttons">
-            <button onClick={handleClick}>Publish</button>
-            <button>Save as a Draft</button>
+            <button className='btn' onClick={handleClick}>Publish</button>
+            {/* <button>Save as a Draft</button> */}
           </div>
         </div>
       </div>

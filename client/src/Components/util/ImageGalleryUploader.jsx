@@ -28,7 +28,7 @@ const ImageGalleryUploader = ({ galleryImages, handleGalleryImageChange, removeI
 
                 {galleryImagesArray.map((galleryImage, index) => (
                     <div className="thumbnail" key={index}>
-                        <img src={`/upload/${galleryImage}`} alt="thumb" />
+                        <img src={galleryImage.startsWith('http') ? galleryImage : `../../upload/${galleryImage}`} alt="thumb" />
                         <button onClick={() => removeImageItem(index, "galleryImages")}>
                             <FiXSquare size={20} />
                         </button>

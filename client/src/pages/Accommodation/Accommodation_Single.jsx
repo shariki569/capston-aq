@@ -10,6 +10,7 @@ import Amenities_Single from '../../Components/Sections/Amenities_Single'
 import ShareButton from '../../Components/SEO/ShareButton'
 //styling is in the Single.scss file
 import { FaShareAlt } from "react-icons/fa";
+import ScrollToTop from '../../Components/Hoc/ScrollToTop'
 const Accommodation_Single = () => {
   const location = useLocation();
   const { accomm } = useSingleAccommData();
@@ -48,4 +49,4 @@ const Accommodation_Single = () => {
   )
 }
 
-export default Accommodation_Single
+export default ScrollToTop(Accommodation_Single)

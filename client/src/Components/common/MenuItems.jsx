@@ -48,43 +48,47 @@ export const accommType = [
 
 export const sidebarLinks = [
   {
-      title: "User",
-      path: `admin`,
-      icon: "",
+    title: "User",
+    path: `admin`,
+    icon: "",
   },
   {
-      title: "Posts",
-      path: "posts",
+    title: "Posts",
+    path: "posts",
   },
 
   {
-      title: "Pages",
-      path: "pages",
-      submenu: [
-          {
-              title: "About Us",
-              path: "pages?edit=about-us",
-          }
-      ],
+    title: "Pages",
+    path: "pages",
+    submenu: [
+      {
+        title: "About Us",
+        path: "pages?edit=about-us",
+      }
+    ],
   },
   {
-      title: "Accomodation",
-      path: "accommodations",
+    title: "Accomodation",
+    path: "accommodations",
   },
   {
-      title: "Facilites",
-      path: "facilities",
+    title: "Facilites",
+    path: "facilities",
   },
   {
-      title: "Amenities",
-      path: "amenities",
+    title: "Amenities",
+    path: "amenities",
   },
   {
-      title: "Contact Info",
-      path: "contact-details",
+    title: "Chatbot",
+    path: "chatbot",
   },
   {
-      title: "Media",
-      path: "media",
+    title: "Contact Info",
+    path: "contact-details",
+  },
+  {
+    title: "Media",
+    path: "media",
   },
 ]

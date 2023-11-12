@@ -10,6 +10,7 @@ import HomeSection1 from '../Components/Sections/HomeSection1'
 import Facility_Section from '../Components/Sections/Facility_Section'
 import Amenities from '../Components/Sections/Amenities'
 import SEO from '../Components/SEO/SEO'
+import ScrollToTop from '../Components/Hoc/ScrollToTop'
 
 
 const Home = () => {
@@ -63,4 +64,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default ScrollToTop(Home)

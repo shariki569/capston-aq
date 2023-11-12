@@ -793,7 +793,7 @@ table tr td .crud-btn button a {
 table tr td .crud-btn button:hover {
   background-color: #F4A460;
 }
-table tr td .crud-btn button:nth-child(3) {
+table tr td .crud-btn button:nth-child(2) {
   background-color: #e93131;
   padding: 0.5rem;
   border-radius: 10px;
@@ -1184,6 +1184,7 @@ table tr td .crud-btn button:nth-child(3) {
   position: fixed;
   right: 40px;
   margin-left: auto;
+  max-width: 25rem;
   bottom: 40px;
   z-index: 9999999999;
   border-radius: 10px;
@@ -1299,6 +1300,23 @@ table tr td .crud-btn button:nth-child(3) {
   color: #faf7f7;
 }
 
+@media (max-width: 800px) {
+  .chatbot-container {
+    max-width: 25rem;
+    margin-left: auto;
+  }
+  .chatbot-inbox {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    transition: 3s ease-in-out;
+  }
+  .chatbot-button {
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+  }
+}
 @media (max-width: 618px) {
   .chatbot-inbox {
     position: fixed;
@@ -1344,6 +1362,10 @@ table tr td .crud-btn button:nth-child(3) {
     width: 100%;
     text-align: center;
   }
+}
+
+.ratings__container {
+  display: flex;
 }
 
 .home {
@@ -1998,6 +2020,11 @@ h4.subheading:contains("Ammenities") {
   color: black;
 }
 
+.chatbot__container {
+  display: flex;
+  justify-content: space-between;
+}
+
 .navbar {
   position: fixed;
   top: 0;
@@ -2636,20 +2663,6 @@ li {
   gap: 10px;
   margin-top: 20px;
 }
-.app .buttons :first-child {
-  cursor: pointer;
-  color: white;
-  background-color: teal;
-  border: 1px solid teal;
-  padding: 3px 5px;
-}
-.app .buttons :last-child {
-  cursor: pointer;
-  color: teal;
-  background-color: white;
-  border: 1px solid teal;
-  padding: 3px 5px;
-}
 .app .link {
   font-family: "Quicksand-Medium";
   text-decoration: none;
@@ -2707,23 +2720,6 @@ li {
 .app .posts .post .content p {
   font-size: 0.85rem;
   font-family: "Quicksand-Medium";
-}
-.app .posts .post .content button {
-  width: -moz-max-content;
-  width: max-content;
-  border: none;
-  cursor: pointer;
-  padding: 10px 20px;
-  background-color: white;
-  border: 1px solid teal;
-  color: teal;
-  font-family: "Quicksand-Medium";
-  transition: 0.1s ease-in-out;
-}
-.app .posts .post .content button:hover {
-  border: 1px solid white;
-  background-color: #b9e7e7;
-  color: black;
 }
 .app .add {
   width: 100%;

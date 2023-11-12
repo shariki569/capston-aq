@@ -67,8 +67,9 @@ export const addAccomm = async (req, res) => {
       req.body.accommImg,
       req.body.accommDate,
     ];
+   
 
-    const connection = db.getConnection();
+    const connection = await db.getConnection();
     await connection.query(q, [values]);
     connection.release();
 

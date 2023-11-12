@@ -8,6 +8,7 @@ import axios from "axios";
 import DOMPurify from "dompurify";
 import Accommodation_Items from "./Accommodation_Items";
 import SEO from "../../Components/SEO/SEO";
+import ScrollToTop from "../../Components/Hoc/ScrollToTop";
 const Accommodation = () => {
 
 
@@ -39,4 +40,4 @@ const Accommodation = () => {
   );
 };
 
-export default Accommodation;
+export default ScrollToTop(Accommodation);

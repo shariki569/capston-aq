@@ -8,7 +8,10 @@ export const AuthContextProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem("user")) || null)
 
     const login = async(inputs) => {
-        const res = await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/login`, inputs);
+        const res = await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/login`, inputs, {
+            withCredentials: true,
+            credenitals: 'include'
+        });
         setCurrentUser(res.data)
     }
 

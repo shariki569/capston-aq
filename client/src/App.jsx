@@ -51,6 +51,7 @@ import AmenitiesLayout from "./Components/layouts/AmenitiesLayout";
 import Amenities_Menu from "./Components/admin/Amenities/Amenities_Menu";
 import Facilities from "./pages/Facility/Facilities";
 import Chatbot from "./Components/admin/Chatbot/Chatbot";
+import User from "./Components/admin/User";
 
 
 const PrivateRoute = ({ element, path }) => {
@@ -104,8 +105,12 @@ const router = createBrowserRouter([
     element: <PrivateRoute element={<DashboardLayout />} />,
     children: [
       {
-        path: "admin",
+        path: '',
         element: <PrivateRoute element={<Dashboard />} />,
+      },
+      {
+        path: "users",
+        element: <PrivateRoute element={<User />} />,
       },
       {
         path: "posts",

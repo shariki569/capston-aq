@@ -20,20 +20,35 @@
     align-items: flex-start;
 }
 
+@mixin flexBoxColumn($justify, $align, $gap) {
+    display: flex;
+    flex-direction: column;
+    justify-content: $justify;
+    align-items: $align;
+    gap: $gap;
+}
+
+@mixin flexBoxRow($justify, $align, $gap) {
+    display: flex;
+    flex-direction: row;
+    justify-content: $justify;
+    align-items: $align;
+    gap: $gap;
+}
+
 @mixin centerFlexboxRow {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-@mixin leftFlexboxRow{
+@mixin leftFlexboxRow {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
 }
 
 @mixin cardBase($borderRadius) {
-    box-shadow: $base-box-shadow;
     background-color: #ffffff;
     border-radius: $borderRadius;
 }
@@ -47,7 +62,6 @@
 @mixin solidBorder($borderValue, $borderRadius, $colorValue) {
     border: $borderValue $colorValue;
     border-radius: $borderRadius;
-
 }
 
 @mixin centeredHeading {
@@ -63,17 +77,20 @@
     object-fit: $objectFit;
 }
 
-@mixin containerStyle($maxWidth, $paddingInline){
+@mixin containerStyle($maxWidth, $paddingInline) {
     margin-inline: auto;
     max-width: $maxWidth;
     padding-inline: $paddingInline;
 }
 
-
-@mixin justifyIndent{
+@mixin boxShadow {
+    box-shadow: 3px 5px 12px -2px rgba(122,122,122,0.57);
+    -webkit-box-shadow: 3px 5px 12px -2px rgba(122,122,122,0.57);
+    -moz-box-shadow: 3px 5px 12px -2px rgba(122,122,122,0.57);
+}
+@mixin justifyIndent {
     text-align: justify;
     text-indent: 1rem;
-  
 }
 
 @mixin centerAndSet($maxWidth, $paddingInline) {
@@ -81,7 +98,6 @@
     max-width: $maxWidth;
     padding-inline: $paddingInline;
 }
-
 
 @mixin devices($breakpoint) {
     @if $breakpoint == tablet {

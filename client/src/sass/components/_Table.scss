@@ -9,7 +9,7 @@ table {
     overflow: hidden;
     tr {
         height: 50px;
-        &:nth-child(even){
+        &:nth-child(even) {
             background-color: $lighterGreyColor;
         }
 
@@ -21,15 +21,15 @@ table {
             background-color: $primaryColor;
         }
 
-        td.center{
+        td.center {
             text-align: center;
         }
 
-        .nowrap{
+        .nowrap {
             white-space: nowrap;
         }
 
-        td.description{
+        td.description {
             max-width: 250px;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -40,25 +40,20 @@ table {
             // border: 1px solid $borders;
             padding-inline: $small-padding;
             min-width: 5rem;
-            
 
-            
-            img{
+            img {
                 object-fit: cover;
                 max-width: 5rem;
                 aspect-ratio: 1/1;
-                
             }
 
-            .crud-btn{
+            .crud-btn {
                 display: flex;
                 flex-wrap: nowrap;
                 gap: 5px;
                 justify-content: center;
 
-                
-
-                button{
+                button {
                     border: none;
                     background-color: transparent;
                     cursor: pointer;
@@ -68,24 +63,21 @@ table {
                     border-radius: 10px;
                     text-decoration: none;
                     transition: ease-in 0.2s;
-                    a{
-
+                    a {
                         text-decoration: none;
                         color: $background;
                     }
 
-                    &:hover{
+                    &:hover {
                         background-color: $tertiary;
                     }
 
-                    &:nth-child(2){
+                    &:nth-child(2) {
                         background-color: $error;
                         padding: $small-padding;
                         border-radius: 10px;
-                        color: $background
-                        
+                        color: $background;
                     }
-                 
                 }
             }
         }

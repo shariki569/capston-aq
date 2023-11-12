@@ -15,7 +15,7 @@ const ModalGallery = ({ closeModal, images, handleForward, handlePrevious, curre
             <div className='overlay'>
                 <div className="image-gallery">
                     {images.map((image, index) => (
-                        <img  key={index} src={`upload/${image}`} alt=""  className={`image-modal  ${index === currentIndex ? 'active' : ''}`}/>
+                        <img  key={index} src={image.startsWith('http') ? image : `upload/${image}`} alt=""  className={`image-modal  ${index === currentIndex ? 'active' : ''}`}/>
                     ))}
                 </div>
                 <button className='dismiss' onClick={handleClick}>X</button>

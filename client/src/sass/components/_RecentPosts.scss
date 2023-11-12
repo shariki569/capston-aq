@@ -1,0 +1,8 @@
+@use "../../sass/Utilities/" as *;
+
+.recent-posts__container {
+    background-color: white;
+    @include boxShadow;
+    padding: $base-padding;
+    border-radius: $base-border-radius;
+}

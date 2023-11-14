@@ -12,13 +12,18 @@ const Chatbot = () => {
     }
   ]);
   const [input, setInput] = useState('');
+  const [isFeedbackMode, setIsFeedbackMode] = useState(false);
   const messagePanelRef = useRef(null);
 
   const [showChatbot, setShowChatbot] = useState(false);
 
   const sendMessage = async () => {
-    if (input.trim() === '') {
-      return;
+    if (input.trim() === 'I want to provide a feedback!') {
+      setIsFeedbackMode(true);
+      setMessages([...messages, { sender: 'Bot', text: 'Please let me hear your feedback.' }]);
+   
+    } else if (isFeedbackMode) {
+        
     }
 
     const userMessage = { sender: 'User', text: input, };

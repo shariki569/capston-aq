@@ -1,56 +1,56 @@
-import fs from "fs/promises";
-import path from "path";
+// import fs from "fs/promises";
+// import path from "path";
 
 
-const imageDirectory = "../client/public/upload";
+// const imageDirectory = "../client/public/upload";
 
-export const getUploadedImages = async (req, res) => {
-  try {
-    const files = await fs.readdir(imageDirectory);
-    res.json(files);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ err: "Could not list images" });
-  }
-};
+// export const getUploadedImages = async (req, res) => {
+//   try {
+//     const files = await fs.readdir(imageDirectory);
+//     res.json(files);
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ err: "Could not list images" });
+//   }
+// };
 
-export const deleteImages = async (req, res) => {
-  const fileNames = req.params.fileNames.split(','); // Split the fileNames parameter into an array
+// export const deleteImages = async (req, res) => {
+//   const fileNames = req.params.fileNames.split(','); // Split the fileNames parameter into an array
 
 
-  try {
-    const deletePromises = fileNames.map(async (fileName) => {
-      const imgPath = path.join(imageDirectory, fileName);
+//   try {
+//     const deletePromises = fileNames.map(async (fileName) => {
+//       const imgPath = path.join(imageDirectory, fileName);
 
-      try {
-        await fs.unlink(imgPath);
-        return fileName;
-      } catch (error) {
-        return Promise.reject(`Image not found or could not be deleted: ${fileName}`);
-      }
-    });
+//       try {
+//         await fs.unlink(imgPath);
+//         return fileName;
+//       } catch (error) {
+//         return Promise.reject(`Image not found or could not be deleted: ${fileName}`);
+//       }
+//     });
 
-    Promise.allSettled(deletePromises)
-      .then((results) => {
-        const deletedFileNames = results
-          .filter((result) => result.status === 'fulfilled')
-          .map((result) => result.value);
+//     Promise.allSettled(deletePromises)
+//       .then((results) => {
+//         const deletedFileNames = results
+//           .filter((result) => result.status === 'fulfilled')
+//           .map((result) => result.value);
 
-        if (deletedFileNames.length > 0) {
-          res.status(200).json({ message: `Images deleted successfully: ${deletedFileNames.join(', ')}` });
-        } else {
-          res.status(404).json({ error: 'No images found for deletion.' });
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-        res.status(500).json({ error: 'Failed to delete images.' });
-      });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Could not delete images.' });
-  }
-};
+//         if (deletedFileNames.length > 0) {
+//           res.status(200).json({ message: `Images deleted successfully: ${deletedFileNames.join(', ')}` });
+//         } else {
+//           res.status(404).json({ error: 'No images found for deletion.' });
+//         }
+//       })
+//       .catch((error) => {
+//         console.error(error);
+//         res.status(500).json({ error: 'Failed to delete images.' });
+//       });
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ error: 'Could not delete images.' });
+//   }
+// };
 
 
 // (req, res) => {

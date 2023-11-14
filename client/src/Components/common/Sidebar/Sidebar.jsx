@@ -35,7 +35,7 @@ const Sidebar = () => {
     <div className='sidebar'>
         <div className="container">
             <div className="top-section">
-                <Link to="/">
+                <Link to="/dashboard">
                     <img src={logo} alt="" />
                 </Link>
                 <span>{currentUser?.username}</span>

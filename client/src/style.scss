@@ -21,6 +21,7 @@
 @use "./sass/components/Chatbot.scss";
 @use './Components/PostComponents/postHeading.scss';
 @use './sass/components/RatingsComponent.scss';
+@use './sass/components/RecentPosts.scss';
 
 
 //Pages
@@ -31,7 +32,7 @@
 @use "./sass/Pages/Accommodation.scss";
 @use "./sass/Pages/Singlepage.scss";
 @use "./sass/Pages/MediaGallery.scss";
-@use "./sass/Pages/DashboardChatbot.scss";
+@use './sass/Pages/DashboardMain.scss';
 
 //Commmon Components
 @use "./sass/common/Navbar.scss";
@@ -584,23 +585,5 @@ li {
     }
 
     //Dashboard
-    .dashboard-layout {
-        display: flex;
-        height: 100vh;
-
-        .content-container {
-            background-color: $lighterGreyColor;
-            color: $primary;
-            flex: 1;
-            padding: 40px 20px;
-            overflow-y: auto;
-        }
-    }
-
-    .dashboard {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-    }
+   
 }

@@ -10,7 +10,7 @@ export const AuthContextProvider = ({children}) => {
     const login = async(inputs) => {
         const res = await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/login`, inputs, {
             withCredentials: true,
-            credenitals: 'include'
+            credentials: 'include'
         });
         setCurrentUser(res.data)
     }

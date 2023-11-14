@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Feedback = () => {
+const User = () => {
   return (
     <div>
-      Feedback
+      User
     </div>
   )
 }
 
-export default Feedback
+export default User

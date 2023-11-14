@@ -48,8 +48,8 @@ export const accommType = [
 
 export const sidebarLinks = [
   {
-    title: "User",
-    path: `admin`,
+    title: "Users",
+    path: `users`,
     icon: "",
   },
   {

@@ -1,0 +1,45 @@
+@use "../../../../sass/Utilities/" as *;
+
+.addIntent__container {
+    background-color: white;
+    @include flexBoxColumn(space-between, center, 1rem);
+    padding: $base-padding;
+    @include boxShadow;
+    border-radius: $base-border-radius;
+    // width: 100%;
+    font-size: $f-normal;
+
+    .addIntent__header {
+        @include flexBoxRow(flex-start, center, 1rem);
+        width: 100%;
+        .back-btn{
+            display: flex;
+            &:hover{
+                background-color: $lighterGreyColor;
+                border-radius: $base-border-radius;
+            }
+        }
+
+        button {
+            // font-size: $f-small;
+            font-weight: $w-bold;
+            font-family: $secondary-font;
+            margin-left: auto;
+
+            h3 {
+                align-items: center;
+                display: flex;
+                gap: 0.8rem;
+            }
+        }
+    }
+    .addIntent__forms{
+        width: 100%;
+        // @include flexBoxColumn(space-between, none, 2rem);
+
+      
+        // .addIntent__responses{
+        //     @include flexBoxRow(space-between, flex-end, 1rem);
+        // }
+    }
+}

@@ -33,7 +33,7 @@ const TwoSectionsWithGallery = ({ title, desc, galleries, featuredImg, inverse }
             <div className='facility__two-sections-container'>
                 <div className='facility__image-container'>
                     <div className="facility__image-wrapper">
-                        <img src={`upload/${featuredImg}`} alt="" />
+                        <img src={featuredImg.startsWith('http') ? featuredImg :  `upload/${featuredImg}`} alt="" />
                         <button className='see-more-button' onClick={() => openLightBox(0)}>See Gallery</button>
                     </div>
                 </div>

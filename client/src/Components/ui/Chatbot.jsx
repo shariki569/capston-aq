@@ -60,6 +60,7 @@ const Chatbot = () => {
 
       {showChatbot && <div className="chatbot-inbox">
         <div className="chatbot-header">
+          <h3>AquaBot</h3>
           <button onClick={toggleChatbot}><FiX size={20} color='white' /></button>
         </div>
         <div className="chatbot-panel" ref={messagePanelRef}>

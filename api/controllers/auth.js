@@ -30,6 +30,7 @@ export const register = async (req, res) => {
       res
         .cookie("access_token", token, {
           httpOnly: true,
+          expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
         })
         .status(200)
         .json("User has been created!");
@@ -68,7 +69,8 @@ export const login = async (req, res) => {
     res
       .cookie("access_token", token, {
         httpOnly: true,
-
+        secure: process.env.NODE_ENV === "production" ? true : false,
+  
       })
       .status(200)
       .json(other);

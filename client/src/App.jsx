@@ -51,6 +51,9 @@ import AmenitiesLayout from "./Components/layouts/AmenitiesLayout";
 import Amenities_Menu from "./Components/admin/Amenities/Amenities_Menu";
 import Facilities from "./pages/Facility/Facilities";
 import Chatbot from "./Components/admin/Chatbot/Chatbot";
+import User from "./Components/admin/User";
+import DashboardChatbotLayout from "./Components/layouts/DashboardChatbotLayout/DashboardChatbotLayout";
+import AddIntent from "./Components/admin/Chatbot/Add_Intent/AddIntent";
 
 
 const PrivateRoute = ({ element, path }) => {
@@ -104,8 +107,12 @@ const router = createBrowserRouter([
     element: <PrivateRoute element={<DashboardLayout />} />,
     children: [
       {
-        path: "admin",
+        path: '',
         element: <PrivateRoute element={<Dashboard />} />,
+      },
+      {
+        path: "users",
+        element: <PrivateRoute element={<User />} />,
       },
       {
         path: "posts",
@@ -168,7 +175,17 @@ const router = createBrowserRouter([
       },
       {
         path: "chatbot",
-        element: <PrivateRoute element={<Chatbot />} />,
+        element: <PrivateRoute element={<DashboardChatbotLayout />} />,
+        children: [
+          {
+            path: "",
+            element: <PrivateRoute element={<Chatbot />} />,
+          },
+          {
+            path: "add-intent",
+            element: <PrivateRoute element={<AddIntent />} />,
+          }
+        ]
       },
       {
         path: "contact-details",

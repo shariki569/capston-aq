@@ -2,5 +2,15 @@
 
 
 .ratings__container {
- display: flex;   
+  @include cardBase($base-border-radius);
+  @include boxShadow;
+  padding: $base-padding;
+
+  .ratings__header{
+    .ratings__title {
+      display: flex;
+      gap: 0.8rem;
+    }
+  }
+
 }

@@ -1,0 +1,90 @@
+@use "./../Utilities/" as *;
+
+.dashboard-layout {
+    display: flex;
+    height: 100vh;
+
+    .content-container {
+        background-color: $lighterGreyColor;
+        color: $primary;
+        flex: 1;
+        padding: 40px 20px;
+        overflow-y: auto;
+    }
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(150px, auto);
+    gap: 0.8rem;
+    .grid {
+        padding: $base-padding;
+    }
+
+    .grid1{
+        grid-column: span 4;
+       display: flex;
+       align-items: center;
+        @include cardBase($base-border-radius);
+        @include boxShadow;
+    }
+
+    .grid2{
+        grid-column: span 1;
+        grid-row: span 1;
+        @include cardBase($base-border-radius);
+        @include boxShadow;
+    }
+
+    
+    .grid3{
+        grid-column: span 3;
+        grid-row: span 2;
+        @include cardBase($base-border-radius);
+        @include boxShadow;
+    }
+    // display: flex;
+    // justify-content: center;
+    // align-items: flex-start;
+    // flex-direction: column;
+    // width: 100%;
+    // gap: 0.8rem;
+
+    // .dashboard__user {
+    //     @include flexBoxRow(flex-start, flex-start, 1rem);
+    //     background-color: white;
+    //     @include boxShadow;
+    //     padding: $base-padding;
+    //     border-radius: $base-border-radius;
+    //     width: 100%;
+    //     .dashboard__imageWrap {
+    //         height: 70px;
+    //         width: 70px;
+    //         border-radius: $base-border-radius;
+    //         overflow: hidden;
+    //         img {
+    //             height: 100%;
+    //             width: 100%;
+    //             object-fit: cover;
+    //         }
+    //     }
+
+    //     .dashboard__userName {
+    //         span {
+    //             font-size: $f-medium;
+    //         }
+    //     }
+
+    //     .dashboard__searchBar {
+    //         margin-left: auto;
+    //     }
+    // }
+    // .dashboard_ChatbotSection {
+    //     width: 100%;
+    //     @include flexBoxRow(flex-start, center, 1rem);
+    // }
+    // .dashboard__PostSection{
+
+    // }
+}

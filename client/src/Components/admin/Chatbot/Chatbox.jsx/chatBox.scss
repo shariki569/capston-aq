@@ -1,0 +1,22 @@
+@use '../../../../sass/Utilities/' as *;
+
+.chatbox__container{
+    @include cardBase($base-border-radius);
+    padding: $base-padding;
+    .chatbox__header{
+        @include flexBoxRow(space-between, center, 1rem);
+
+        .chatbox__train{
+            margin-left: auto;
+            button{
+                display: flex;
+                
+            }
+            h3{
+                display: flex;
+                align-items: center;
+                gap: 0.8rem;
+            }
+        }
+    }
+}

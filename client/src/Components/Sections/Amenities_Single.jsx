@@ -15,7 +15,7 @@ const Amenities_Single = () => {
                     {amenities.map((amenity) => (
                         <div className="accomm-amenity-item" key={amenity.Amenity_Id}>
                             <div className='accomm-amenity-image-wrap'>
-                                <img src={`../../upload/${amenity.Amenity_Img}`} alt="" />
+                                <img src={amenity.Amenity_Img.startsWith('http') ? amenity.Amenity_Img : `../../upload/${amenity.Amenity_Img}`} alt="" />
                             </div>
                             <div className="accomm-amenity-title-wrap">
                                 <p>

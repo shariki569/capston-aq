@@ -1,0 +1,21 @@
+@use "../../../../sass/Utilities/" as *;
+
+.chatbotRating__container {
+    height: 100%;
+    @include flexBoxColumn(center, center, 0.5rem);
+    margin-block: auto;
+    .chatbotRating__rating {
+        font-size: $f-xlarge;
+        display: flex;
+        gap: 0.5rem;
+        span {
+            display: flex;
+            align-items: center;
+        }
+    }
+    .chatbotRating__title {
+        font-size: $f-large;
+        text-align: center;
+        color: $tertiary;
+    }
+}

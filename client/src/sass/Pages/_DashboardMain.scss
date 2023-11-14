@@ -19,12 +19,28 @@
     grid-auto-rows: minmax(150px, auto);
     gap: 0.8rem;
     .grid {
-        padding: $small-padding;
+        padding: $base-padding;
     }
 
     .grid1{
         grid-column: span 4;
-       
+       display: flex;
+       align-items: center;
+        @include cardBase($base-border-radius);
+        @include boxShadow;
+    }
+
+    .grid2{
+        grid-column: span 1;
+        grid-row: span 1;
+        @include cardBase($base-border-radius);
+        @include boxShadow;
+    }
+
+    
+    .grid3{
+        grid-column: span 3;
+        grid-row: span 2;
         @include cardBase($base-border-radius);
         @include boxShadow;
     }

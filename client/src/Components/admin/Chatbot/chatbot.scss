@@ -1,0 +1,22 @@
+@use "../../../sass/Utilities/" as *;
+
+.chatbot__header {
+    background-color: white;
+    @include flexBoxRow(space-between, center, 1rem);
+    padding: $base-padding;
+    @include boxShadow;
+    border-radius: $base-border-radius;
+
+    .btn {
+        font-weight: $w-bold;
+    }
+}
+.chatbot__analytics {
+    @include flexBoxColumn(center, center, 1rem);
+}
+
+.chatbot__Intent {
+    @include cardBase($base-border-radius);
+    @include boxShadow;
+    padding: $base-padding;
+}

@@ -1,0 +1,12 @@
+@use '../../../sass/Utilities/' as *;
+
+
+.time__container{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    .time__text{
+        min-width: 100px;
+    }
+}

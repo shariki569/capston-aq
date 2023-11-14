@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../context/authContext'
 // import TextInput from '../Components/forms/FormFields/TextInput'
 import { BiLogoFacebook, BiLogoGmail } from "react-icons/bi";
-import { DotLoader } from 'react-spinners';
+import { MoonLoader } from 'react-spinners';
 const Login = () => {
 
   const [inputs, setInputs] = useState({
@@ -46,7 +46,7 @@ const Login = () => {
         <input required type="password" placeholder='Password' name='password' onChange={handleChange} />
         <button className='btn ' onClick={handleSubmit} disabled={inputs.loading}>
          {
-          inputs.loading ? <DotLoader color="#f8f9fa" size={20}/> : "Login"
+          inputs.loading ? <MoonLoader size={20}/> : "Login"
          }
         </button>
         {err && <p>{err}</p>}

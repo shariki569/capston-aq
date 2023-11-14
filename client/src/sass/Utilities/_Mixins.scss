@@ -93,6 +93,22 @@
     text-indent: 1rem;
 }
 
+@mixin tableHeadingWhite{
+    background-color: white;
+        width: 100%;
+        tr {
+            
+            th {
+                text-align:start;
+                padding-inline: $small-padding;
+                background-color: white;
+                color: $greyColor;
+                border: none;
+                border-left: 1px solid $lightGreyColor;
+            }
+        }
+}
+
 @mixin centerAndSet($maxWidth, $paddingInline) {
     margin-inline: auto;
     max-width: $maxWidth;

@@ -1,0 +1,23 @@
+@use "../../../../../sass/Utilities/" as *;
+
+.addIntent__responses {
+    @include flexBoxColumn(space-between, flex-start, 0.3rem);
+    .addIntent__responsesInput {
+        width: 100%;
+
+        @include flexBoxRow(space-between, flex-end, 1rem);
+    }
+    .addIntent__responsesTableContainer {
+        width: 100%;
+       
+        .addIntent__userSaysTable {
+            width: 100%;
+            font-size: $f-normal;
+
+            .addIntent__chatResponseTrash{
+                width: 1px;
+                cursor: pointer;
+            }
+        }
+    }
+}

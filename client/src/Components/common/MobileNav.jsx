@@ -7,9 +7,12 @@ const MobileNav = () => {
 
     const [isOpen, setIsOpen] = useState(false)
     const [showDropdown, setShowDropdown] = useState(new Array(navLinks.length).fill(false));
+    
+    
     const handeClick = e => {
         setIsOpen(true)
     }
+    
     const handleToggle = (index) => {
         setShowDropdown((prevShowDropdown) => {
             const updatedDropdown = [...prevShowDropdown];

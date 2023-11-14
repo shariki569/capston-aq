@@ -1,26 +1,24 @@
 import React from 'react'
+import './chatbot.scss'
 
-import Feedback from './components/Feedback'
 // import Chatbox from './Chatbox'
-import Chatbox from './components/Chatbox.jsx'
+import Chatbox from './Chatbox.jsx/Chatbox.jsx'
 import { Link } from 'react-router-dom'
-import RatingsComponent from '../../ui/RatingsComponent'
+import Intents from './Intents/Intents.jsx'
+import { BiCommentAdd } from 'react-icons/bi'
+
 
 const Chatbot = () => {
     return (
-        <div className='chatbot__container'>
-            <div className='chatbot__leftWrapper'>
-                <div className='chatbot__header'>
-                    <h1>Live Chatbot</h1>
-                    <Link className='btn'>Train Chatbot</Link>
-                </div>
-                <RatingsComponent />
-                <Feedback />
+        <>
+            <div className='chatbot__header'>
+                <h1>AquaBot</h1>
+                <Link to='add-intent' className='btn'><BiCommentAdd size={20} />Create Intent</Link>
             </div>
-            <div className='chatbot__rightWrapper'>
-                <Chatbox />
+            <div className='chatbot__Intent'>
+                <Intents />
             </div>
-        </div>
+        </>
     )
 }
 

@@ -1,0 +1,18 @@
+@use "../../../sass/Utilities/" as *;
+
+.chatbot__container {
+    display: flex;
+    // justify-content: space-between;
+    gap: 0.8rem;
+    // height: 100%;
+    
+    .chatbot__leftWrapper {
+        @include flexBoxColumn(flex-start, none, 0.8rem);
+        flex: 7;
+        gap: 0.8rem;
+    }
+
+    .chatbot__rightWrapper {
+        flex: 4;
+    }
+}

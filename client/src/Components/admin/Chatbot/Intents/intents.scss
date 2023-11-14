@@ -1,0 +1,56 @@
+@use "../../../../sass/Utilities/" as *;
+
+.chatbot__intentContainer {
+    min-width: 60vh;
+    // width: 100%;
+
+    .chatbot__intentTable {
+        border-collapse: separate;
+        overflow: auto;
+        background-color: white;
+        width: 100%;
+        font-size: $f-normal;
+        tr {
+            th {
+                text-align: start;
+                padding-inline: $small-padding;
+                background-color: white;
+                color: $greyColor;
+                border: none;
+                border-left: 1px solid $lightGreyColor;
+
+                font-size: $f-normal;
+            }
+        }
+    }
+
+    .chatbot__intentDots {
+        width: 1px;
+        cursor: pointer;
+        position: relative;
+        font-size: $f-normal;
+        &:hover{
+            background-color: $lighterGreyColor;
+            border-radius: $base-border-radius;
+        }
+        .chatbot__intentOptions {
+            z-index: 99;
+            @include flexBoxColumn(center, flex-start, 0rem);
+            @include cardBase($base-border-radius);
+            @include boxShadow;
+            overflow: hidden;
+            position: absolute;
+            top: 25px;
+            right: 0px;
+            li {
+                @include flexBoxRow(flex-start, center, 0.5rem);
+                list-style: none;
+                width: 100%;
+                padding: $small-padding $base-padding;
+                &:hover {
+                    background-color: $lighterGreyColor;
+                }
+            }
+        }
+    }
+}

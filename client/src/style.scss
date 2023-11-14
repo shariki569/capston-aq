@@ -22,7 +22,7 @@
 @use './Components/PostComponents/postHeading.scss';
 @use './sass/components/RatingsComponent.scss';
 @use './sass/components/RecentPosts.scss';
-@use './sass/components/ChatbotFeedback.scss';
+
 
 //Pages
 @use "./sass/Pages/_Homepage.scss";
@@ -32,7 +32,6 @@
 @use "./sass/Pages/Accommodation.scss";
 @use "./sass/Pages/Singlepage.scss";
 @use "./sass/Pages/MediaGallery.scss";
-@use "./sass/Pages/DashboardChatbot.scss";
 @use './sass/Pages/DashboardMain.scss';
 
 //Commmon Components

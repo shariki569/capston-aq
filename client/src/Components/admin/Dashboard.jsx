@@ -3,9 +3,11 @@ import { AuthContext } from '../../context/authContext'
 import TextInput from '../forms/FormFields/TextInput.jsx'
 import RecentPosts from '../ui/RecentPosts';
 // import ChatbotRatings from '../ui/ChatbotRatings';
-import RatingsComponent from '../ui/RatingsComponent';
-import Feedback from './Chatbot/components/Feedback';
+// import RatingsComponent from '../ui/RatingsComponent';
+// import Feedback from './Chatbot/components/Feedback';
 import UserBox from './Components/UserBox/UserBox';
+import ChatbotRating from './Components/ChatbotRating/ChatbotRating';
+import ChatbotFeedback from './Components/ChatbotFeedback/ChatbotFeedback';
 
 
 const Dashboard = () => {
@@ -15,8 +17,8 @@ const Dashboard = () => {
   return (
     <div className='dashboard'>
       <div className='grid grid1'><UserBox/></div>
-      <div className='grid grid2'>Grid 2</div>
-      <div className='grid grid3'>Grid 3</div>
+      <div className='grid grid2'><ChatbotRating/></div>
+      <div className='grid grid3'><ChatbotFeedback/></div>
       <div className='grid grid4'>Grid 4</div>
       <div className='grid grid5'>Grid 5</div>
       <div className='grid grid6'>Grid 6</div>

@@ -1,0 +1,25 @@
+@use "../../../../sass/Utilities/" as *;
+
+.chatbot__feedback {
+
+
+    .chatbot__feedbackHeader{
+        padding: $base-padding 0;
+        // background-color: red;
+
+        .chatbot__title {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+    }
+
+    .chatbot__feedbackTable {
+        @include tableHeadingWhite;
+
+        tbody{
+            overflow: scroll;
+            max-height: 200px;
+        }
+    }
+}

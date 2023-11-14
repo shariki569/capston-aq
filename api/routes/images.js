@@ -1,10 +1,10 @@
-import express from "express"
-import { deleteImages, getUploadedImages } from "../controllers/image.js"
+// import express from "express"
+// import { deleteImages, getUploadedImages } from "../controllers/image.js"
 
 
-const router = express.Router();
+// const router = express.Router();
 
-router.get('/', getUploadedImages);
-router.delete('/:fileNames', deleteImages);
+// router.get('/', getUploadedImages);
+// router.delete('/:fileNames', deleteImages);
 
-export default router;
+// export default router;

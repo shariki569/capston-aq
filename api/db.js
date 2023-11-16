@@ -14,12 +14,18 @@ export const db = mysql.createPool({
   database: process.env.MYSQLDATABASE,
   port: process.env.MYSQLPORT,
   waitForConnections: true,
-  connectionLimit: 10,
+  connectionLimit: 30,
   maxIdle: 10, // max idle connections, the default value is the same as `connectionLimit`
-  idleTimeout: 60000, // idle connections timeout, in milliseconds, the default value 60000
+  idleTimeout: 100000, // idle connections timeout, in milliseconds, the default value 60000
   queueLimit: 0,
+  // acquireTimeout: 30000,
   enableKeepAlive: true,
   keepAliveInitialDelay: 0,
 });
+
+
+// db.getConnection((err, connection) => {
+//   connection.release();
+// })
 
 export default db;

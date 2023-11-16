@@ -1,11 +1,12 @@
 @use "../../../../sass/Utilities/" as *;
 
 .chatbot__feedback {
-
-
-    .chatbot__feedbackHeader{
+    position: relative;
+    .chatbot__feedbackHeader {
         padding: $base-padding 0;
         // background-color: red;
+        @include flexBoxRow(space-between, center, 0px);
+
 
         .chatbot__title {
             display: flex;
@@ -14,12 +15,29 @@
         }
     }
 
-    .chatbot__feedbackTable {
-        @include tableHeadingWhite;
+    .loading{
+        position: absolute;
+        // @include fullSize;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 50%);
+    }
 
-        tbody{
-            overflow: scroll;
-            max-height: 200px;
+    .chatbot__feedbackTableWrap {
+        overflow-y: auto;
+        height: 300px;
+      
+        thead th{
+            position: sticky;
+            top: 0; 
+        }
+
+        .chatbot__feedbackTable {
+            @include tableHeadingWhite;
+            border-collapse: collapse;
+           
         }
     }
+
+   
 }

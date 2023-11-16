@@ -5,7 +5,9 @@
     box-sizing: border-box;
     // flex-wrap: wrap;
     height: 100dvh;
-    @include centerAndSet(1300px, 2rem);
+    border-radius: $base-border-radius;
+    // @include centerAndSet(1300px, 2rem);
+    @include boxShadow;
     &.two-sections-reverse {
         flex-direction: row-reverse !important;
     }
@@ -101,7 +103,7 @@
             p {
                 color: $greyColor;
                 font-family: $secondary-font;
-                font-size: $large;
+                font-size: $f-normalx;
                 line-height: $large-line-height;
                 padding: $large-padding-x;
                 text-align: justify;

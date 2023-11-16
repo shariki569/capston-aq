@@ -2,6 +2,7 @@
 @use "./sass/Utilities/" as *;
 
 //Components
+@use "./sass/components/SearchBar.scss";
 @use "./sass/components/Modal.scss";
 @use "./sass/components/Facilities.scss";
 @use "./sass/components/_Form.scss";

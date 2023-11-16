@@ -26,10 +26,10 @@ if (process.env.NODE_ENV !== 'production') {
 const app = express();
 
 app.use(cors({
-//   origin: [
-//     "http://localhost:5173",
-//     'https://aquacaintacapstone.netlify.app/'
-// ],
+  origin: [
+    "http://localhost:5173",
+    'https://aquacaintacapstone.netlify.app'
+],
   credentials: true
 }));
 

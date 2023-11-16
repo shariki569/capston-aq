@@ -86,6 +86,9 @@
         margin-block: $base-padding;
 
         .facility__image-wrapper {
+            @include cardBase($base-border-radius);
+            overflow: hidden;
+            @include boxShadow;
             height: 300px;
             // width: 50%;
             position: relative;

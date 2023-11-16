@@ -8,9 +8,12 @@ const nlp = new NlpManager({
   autoSave: false,
   nlu: { useNoneFeature: true, log: true },
   ner: { threshold: 1 },
+  
 });
 const context = new ConversationContext();
 nlp.addLanguage("en");
+// nlp.addLanguage("tl");
+nlp.addCorpus("./chatbot/corpus-entities.json")
 nlp.addCorpus("./chatbot/corpus-en.json");
 nlp.addCorpus("./chatbot/corpus-tl.json");
 

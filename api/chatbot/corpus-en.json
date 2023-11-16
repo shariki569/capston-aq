@@ -110,21 +110,6 @@
       "answers": ["I'm certainly trying", "I'm definitely working on it"]
     },
     {
-      "intent": "agent.beautiful",
-      "utterances": [
-        "you are looking awesome",
-        "you're looking good",
-        "you're looking fantastic",
-        "you look greet today",
-        "I think you're beautiful",
-        "you look amazing today",
-        "you're so beautiful today",
-        "you look very pretty",
-        "you look pretty good"
-      ],
-      "answers": ["Oh! Thank you!", "Aw, back at you", "You smooth talker, you"]
-    },
-    {
       "intent": "agent.birthday",
       "utterances": [
         "when is your birthday",
@@ -1029,7 +1014,7 @@
       ]
     },
     {
-      "intent": "name.introduce",
+      "intent": "introduce.name",
       "utterances": [
         "my name is %name%",
         "I am %name%",
@@ -1038,12 +1023,12 @@
       "answers": ["Hi, {{name}} ! how may I help you?"]
     },
     {
-      "intent": "name.age",
+      "intent": "introduce.age",
       "utterances": ["I am %age% years old", "I am %age%"],
       "answers": ["That's a young age"]
     },
     {
-      "intent": "name.summary",
+      "intent": "introduce.summary",
       "utterances": ["Who am I?"],
       "answers": ["You are {{name}} and you are {{age}} years old!"]
     }

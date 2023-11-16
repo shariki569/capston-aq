@@ -3,28 +3,28 @@ import React, { useEffect, useRef, useState } from 'react'
 import { FiMessageCircle, FiSend, FiX } from 'react-icons/fi'
 import TextArea from "../forms/FormFields/TextArea";
 import DOMPurify from 'dompurify';
+import { BiHappy } from "react-icons/bi";
+import { BiDotsVerticalRounded } from 'react-icons/bi';
+import FeedbackForm from './FeedbackForm/FeedbackForm';
 const Chatbot = () => {
 
+  const [input, setInput] = useState('');
+  const [showOptions, setShowOptions] = useState(false);
+  const [showFeedbackForm, setShowFeedbackForm] = useState(false);
+  // const [isFeedbackMode, setIsFeedbackMode] = useState(false);
+  // const [feedbackStep, setFeedbackStep] = useState(0);
+  // const [feedbackData, setFeedBackData] = useState({});
+  const [showChatbot, setShowChatbot] = useState(false);
+  const messagePanelRef = useRef(null);
   const [messages, setMessages] = useState([
     {
       sender: 'Bot',
       text: "Hi, I'm a chatbot in Aqua Cainta. How may I help?",
     }
   ]);
-  const [input, setInput] = useState('');
-  const [isFeedbackMode, setIsFeedbackMode] = useState(false);
-  const messagePanelRef = useRef(null);
 
-  const [showChatbot, setShowChatbot] = useState(false);
 
   const sendMessage = async () => {
-    if (input.trim() === 'I want to provide a feedback!') {
-      setIsFeedbackMode(true);
-      setMessages([...messages, { sender: 'Bot', text: 'Please let me hear your feedback.' }]);
-   
-    } else if (isFeedbackMode) {
-        
-    }
 
     const userMessage = { sender: 'User', text: input, };
     setMessages([{ sender: 'User', text: input }, ...messages]);
@@ -34,19 +34,30 @@ const Chatbot = () => {
       const response = await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/chatbotRoute`, { input });
       const botMessage = { text: response.data.answer, sender: 'Bot' };
       setMessages([...messages, userMessage, botMessage]);
-    
+
     } catch (err) {
       console.error('Error processing input:', err);
     }
+
   };
+  const openForm = (e) => {
+    e.preventDefault();
+    setShowFeedbackForm(!showFeedbackForm);
+    setShowOptions(false);
+  }
+
+  const handleOption = (e) => {
+    e.preventDefault();
+    setShowOptions(!showOptions);
+  }
 
   const handleEnter = async (e) => {
     if (!e.shiftKey && e.keyCode === 13) {
       e.preventDefault();
-      if(input.trim() !== '') {
+      if (input.trim() !== '') {
         return sendMessage();
       }
-     
+
     }
   }
 
@@ -65,9 +76,21 @@ const Chatbot = () => {
 
       {showChatbot && <div className="chatbot-inbox">
         <div className="chatbot-header">
-          <h3>AquaBot</h3>
-          <button onClick={toggleChatbot}><FiX size={20} color='white' /></button>
+          <div className="chatbot-title">
+            <h3>AquaBot</h3>
+          </div>
+          <div className="chatbot-buttons">
+            <button  className='send' onClick={handleOption}><BiDotsVerticalRounded size={20} color='white' /></button>
+            <button className='send' onClick={toggleChatbot}><FiX size={20} color='white' /></button>
+            {showOptions &&
+              <div className='chatbot-options'>
+                <button className='send' onClick={openForm}><BiHappy size={20} />Provide Feedback</button>
+              </div>
+            }
+          </div>
         </div>
+
+
         <div className="chatbot-panel" ref={messagePanelRef}>
           {messages.map((message, index) => (
             <p className={`message ${message.sender}`} key={index}>
@@ -79,18 +102,23 @@ const Chatbot = () => {
               )}
             </p>
           ))}
+
+
         </div>
+        {showFeedbackForm &&
+          <div className="feedback-form">
+          <FeedbackForm {...{ handleClose: () => setShowFeedbackForm(false) }} />
+        </div>
+        }
         <div className="chatbot-input">
           <TextArea
             placeholder="Type a message..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleEnter}
-      
           />
           <button className='send' onClick={sendMessage}><FiSend size={22} /></button>
         </div>
-
       </div>}
       {!showChatbot && <ChatbotButton click={toggleChatbot} />}
     </div>

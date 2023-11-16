@@ -1,0 +1,110 @@
+.bg-white {
+  background-color: white;
+}
+
+.bg-primary {
+  background-color: #03335b !important;
+}
+
+.padding-inline-x {
+  padding-inline: 0.5rem;
+}
+
+.large-padding-inline-x {
+  padding-inline: 1.75rem !important;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.s-margin-y {
+  margin: 0.7rem 0;
+}
+
+.m-margin-y {
+  margin: 1.25rem 0;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.h-60 {
+  height: 60dvh !important;
+}
+
+.main-bold {
+  font-weight: 500;
+}
+
+.sm-font {
+  font-size: 0.75rem !important;
+}
+
+.m-font {
+  font-size: 0.85rem !important;
+}
+
+.l-font {
+  font-size: 1rem !important;
+  padding: 1rem 0;
+}
+
+.xl-font {
+  font-size: 1.5rem !important;
+}
+
+.xxl-font {
+  font-size: 2.5rem !important;
+}
+
+.xxxl-font {
+  font-size: 3.5rem !important;
+}
+
+.base-line-height {
+  line-height: 1.25rem !important;
+}
+
+.large-line-height {
+  line-height: 1.75rem !important;
+}
+
+.feedBackForm__container {
+  padding: 0.5rem 1.75rem;
+  background-color: #ffffff;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: none;
+  gap: 0.3rem;
+  width: 100%;
+}
+.feedBackForm__container .feedBackForm__header {
+  color: #03335b;
+  font-size: 1rem;
+  margin-inline: auto;
+  display: flex;
+  width: 100%;
+}
+.feedBackForm__container .feedBackForm__header h4 {
+  margin-inline: auto;
+}
+.feedBackForm__container .feedBackForm__body .feedBackForm__input {
+  height: 70px;
+  padding-bottom: 0;
+}
+.feedBackForm__container .feedBackForm__body .feedBackForm__input .label {
+  font-size: 1rem;
+}
+.feedBackForm__container .feedBackForm__body button {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}/*# sourceMappingURL=feedbackForm.css.map */

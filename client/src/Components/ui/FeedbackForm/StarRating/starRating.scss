@@ -1,0 +1,16 @@
+@use '../../../../sass/Utilities/' as *;
+
+.star-rating {
+    @include flexBoxColumn(flex-start, none, 0.3rem);
+    padding: $small-padding 0 0 0;
+    .label{
+        // margin: $small-margin-y;
+        font-size: $large;
+        color: $primary;
+        font-weight: $w-bold;
+    }
+
+    .star{
+        cursor: pointer;
+    }
+}

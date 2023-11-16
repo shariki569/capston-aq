@@ -1,0 +1,17 @@
+@use '../Utilities/' as *;
+
+
+.component__searchBar{
+    position: relative;
+    min-width: 300px;
+    .component__searchIcon{
+        position: absolute;
+        display: flex;
+        margin-block: auto;
+        right: 10px;
+        top: 10px;
+    }
+
+
+  
+}

@@ -5,6 +5,7 @@ import axios from 'axios';
 import { BiEdit, BiSearch, BiTrash } from 'react-icons/bi'
 import TextInput from '../../../forms/FormFields/TextInput'
 import { BiDotsVertical } from "react-icons/bi";
+import SearchInput from '../../../forms/FormFields/SearchInput';
 const Intents = () => {
 
   const [intents, setIntents] = useState([])
@@ -41,11 +42,9 @@ const Intents = () => {
 
   return (
     <div className='chatbot__intentContainer'>
-      <div className="chatbot__searchIcon">
-        {/* < BiSearch size={20} /> */}
-        <TextInput placeholder='Search' value={searchTerm} onChange={handleSearch} />
+    
 
-      </div>
+      <SearchInput placeholder='Search Intent' value={searchTerm} onChange={handleSearch}/>
       <table className='chatbot__intentTable'>
         <thead>
           <tr>

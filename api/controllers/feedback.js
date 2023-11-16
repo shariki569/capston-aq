@@ -3,7 +3,7 @@ import db from "../db.js";
 export const addFeedback = async (req, res) => {
   try {
     const q =
-      "INSERT INTO feedback (`FeedBack_Name`, `FeedBack_Email`, `FeedBack_Rating`, `FeedBack_Description`) VALUES (?, ?, ?, ,?)";
+      "INSERT INTO feedback (`FeedBack_Name`, `FeedBack_Email`, `FeedBack_Rating`, `FeedBack_Description`) VALUES (?, ?, ?, ?)";
 
     const values = [
       req.body.Name,
@@ -19,16 +19,17 @@ export const addFeedback = async (req, res) => {
     return res.status(500).json("Internal server error");
   }
 };
-
 export const getFeedback = async (req, res) => {
   try {
     const q = `SELECT 
+    FeedBack_ID,
     FeedBack_Name, 
     FeedBack_Email, 
     AVG(FeedBack_Rating) as AverageRating,
     GROUP_CONCAT(FeedBack_Description) as Descriptions
-FROM feedback 
-GROUP BY FeedBack_Name, FeedBack_Email; `;
+    FROM feedback 
+    GROUP BY FeedBack_ID, FeedBack_Name, FeedBack_Email
+    ORDER BY MAX(FeedBack_Date) DESC `;
 
     const connection = await db.getConnection();
     const [rows] = await connection.query(q);
@@ -43,16 +44,13 @@ GROUP BY FeedBack_Name, FeedBack_Email; `;
 export const getRatings = async (req, res) => {
   try {
     const q = `SELECT 
-    FeedBack_Name, 
-    FeedBack_Email, 
-    SUM(FeedBack_Rating) as TotalRating
-FROM feedback 
-GROUP BY FeedBack_Name, FeedBack_Email;`;
+    AVG(FeedBack_Rating) as TotalRating
+FROM feedback `;
 
     const connection = await db.getConnection();
     const [rows] = await connection.query(q);
     return res.status(200).json(rows);
-  } catch {
+  } catch(err) {
     console.log(err);
     return res.status(500).json("Internal server error");
   }

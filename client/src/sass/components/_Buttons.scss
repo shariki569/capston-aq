@@ -46,6 +46,9 @@
         transform: translateX(0);
     }
 
+    &.btn-small {
+        padding: $small-button-size;
+    }
 
 }
 

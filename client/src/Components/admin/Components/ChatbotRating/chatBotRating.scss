@@ -2,11 +2,11 @@
 
 .chatbotRating__container {
     height: 100%;
-    @include flexBoxColumn(center, center, 0.5rem);
+    @include flexBoxColumn(center, center, 0.3rem);
     margin-block: auto;
     .chatbotRating__rating {
-        font-size: $f-xlarge;
-        display: flex;
+        font-size: $f-xxlarge;
+        @include flexBoxColumn(center, center, 0);
         gap: 0.5rem;
         span {
             display: flex;

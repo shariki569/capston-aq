@@ -50,14 +50,17 @@ const Home = () => {
       <HomeSection1 />
       <Facility_Section />
       <Amenities />
-      <TwoSections
-        title='Safety First'
-        content="In our resort, your well-being is our top priority. Our dedicated team of lifeguards and a registered nurse are always on standby to ensure your safety. Rest easy, knowing you're in capable hands"
-        images={[
-          `/upload/lifeguard.webp`
-        ]}
-        icon={<FaRegLifeRing size={35} />}
-      />
+      <section className='section-full wrapper'>
+
+        <TwoSections
+          title='Safety First'
+          content="In our resort, your well-being is our top priority. Our dedicated team of lifeguards and a registered nurse are always on standby to ensure your safety. Rest easy, knowing you're in capable hands"
+          images={[
+            `/upload/lifeguard.webp`
+          ]}
+          icon={<FaRegLifeRing size={35} />}
+        />
+      </section>
 
 
     </>

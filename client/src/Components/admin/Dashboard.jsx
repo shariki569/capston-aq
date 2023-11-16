@@ -19,11 +19,11 @@ const Dashboard = () => {
       <div className='grid grid1'><UserBox/></div>
       <div className='grid grid2'><ChatbotRating/></div>
       <div className='grid grid3'><ChatbotFeedback/></div>
-      <div className='grid grid4'>Grid 4</div>
-      <div className='grid grid5'>Grid 5</div>
-      <div className='grid grid6'>Grid 6</div>
-      <div className='grid grid7'>Grid 7</div>
-      <div className='grid grid8'>Grid 8</div>
+      <div className='grid grid4'></div>
+      <div className='grid grid5'></div>
+      <div className='grid grid6'></div>
+      <div className='grid grid7'></div>
+      <div className='grid grid8'></div>
       {/* <div className='dashboard__user'>
         <div className='dashboard__imageWrap'>
           <img src={currentUser?.img} alt="" />

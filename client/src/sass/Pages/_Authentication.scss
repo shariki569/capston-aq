@@ -4,6 +4,7 @@
     @include centerFlexboxColumn;
     height: 100vh;
     width: 100%;
+    
     background-color: $primary;
     font-family: $secondary-font;
     h1 {
@@ -19,7 +20,7 @@
         flex-direction: column;
         padding: 50px;
         background-color: $lightColor;
-        width: 25%;
+        // width: 25%;
         gap: 20px;
         border-radius: 15px;
 
@@ -57,7 +58,7 @@
     .alternative {
         font-family: inherit;
         @include centerFlexboxColumn;
-        width: 25%;
+        // width: 25%;
         color: $lightGreyColor;
         p {
             margin: $base-margin-y;
@@ -71,7 +72,7 @@
                 background-color: transparent;
                 cursor: pointer;
                 width: 100%;
-                padding: $base-padding-y;
+                padding: $base-padding $xlarge-padding;
                 font-size: $f-normal;
                 border-radius: $base-border-radius;
                 display: flex;

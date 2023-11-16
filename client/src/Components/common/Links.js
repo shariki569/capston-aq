@@ -64,7 +64,7 @@ export const navLinks = [
     ],
   },
   {
-    title: "Contact-Us",
+    title: "Contact",
     path: "/contact-us",
   },
 ];

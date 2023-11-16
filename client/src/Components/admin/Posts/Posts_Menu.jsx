@@ -57,7 +57,7 @@ const Posts_Menu = () => {
                                         <td className='center'>{post.PostId}</td>
                                         <td  className='center' >{moment(post.date).format("YYYY-MM-DD")}</td>
                                         <td className='center'>{post.PostTitle}</td>
-                                        <td className='center'>  <img src={`../../upload/${post.PostImg}`} alt="" /></td>
+                                        <td className='center'>  <img src={post.PostImg} alt="" /></td>
                                         <td className='description'><p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.PostDesc) }}></p></td>
                                         <td className='center'>{post.PostCat}</td>
                                         <td className='center'>{post.username}</td>

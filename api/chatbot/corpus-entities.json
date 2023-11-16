@@ -1,0 +1,64 @@
+{
+    "name": "feedback",
+    "locale": "en-US",
+    "entities": {
+        "name": {
+                "position": "afterLast",
+                "words": ["is, am, i'm"]
+        }
+    } ,
+    "data": [
+      {
+        "intent": "request_feedback",
+        "utterances": [
+          "I want to give feedback",
+          "I'd like to provide feedback",
+          "Can I give some feedback?"
+        ],
+        "answers": [
+          "Oh, sure! Can I have your name, please?"
+        ]
+      },
+      {
+        "intent": "provide_name",
+        "utterances": [
+          "My name is @name",
+          "I'm @name",
+          "@name"
+        ],
+        "answers": [
+          "Nice to meet you, {{name}}! Could you please provide me your email?"
+        ]
+      },
+      {
+        "intent": "provide_email",
+        "utterances": [
+          "My email is {email}",
+          "{email}"
+        ],
+        "answers": [
+          "Thank you! Now, could you please rate our service from 1-5?"
+        ]
+      },
+      {
+        "intent": "provide_rating",
+        "utterances": [
+          "I rate it {rating}",
+          "{rating}"
+        ],
+        "answers": [
+          "Thank you for your rating! Finally, could you please provide your feedback about our service?"
+        ]
+      },
+      {
+        "intent": "provide_feedback",
+        "utterances": [
+          "My feedback is {feedback}",
+          "{feedback}"
+        ],
+        "answers": [
+          "Thank you for your feedback! This will help us improve our service."
+        ]
+      }
+    ]
+  }

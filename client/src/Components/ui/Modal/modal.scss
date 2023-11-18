@@ -1,0 +1,14 @@
+@use '../../../sass/Utilities/' as *;
+
+.modal__content{
+    @include cardBase($base-border-radius);
+    padding: $base-padding;
+    position: relative;
+
+    .dismiss{
+        color: $greyColor;
+        top: 8%;
+        right: 4%;
+    }
+
+}

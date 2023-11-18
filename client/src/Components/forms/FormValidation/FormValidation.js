@@ -1,18 +1,15 @@
-const validateEmail = ({ email, setMailError }) => {
+const validateEmail = ({ email, setEmailError }) => {
   const mailRegex =
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  // return email && !email.match(mailRegex)
   const errorMessage = !email
     ? "*Email must not be empty"
     : !email.match(mailRegex)
     ? "*Please enter a valid email"
     : "";
-  setMailError(errorMessage);
+  setEmailError(errorMessage);
   return errorMessage === "";
-
-  // ? setMailError('Please enter a valid email')
-  // : setMailError('');
 };
+
 
 const validatePhone = ({ phone, setPhoneError }) => {
   const phoneRegex =

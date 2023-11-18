@@ -6,16 +6,22 @@
         padding: $base-padding 0;
         // background-color: red;
         @include flexBoxRow(space-between, center, 0px);
-
-
-        .chatbot__title {
+        .chatbot__feedbackTitle {
             display: flex;
-            align-items: center;
-            gap: 0.8rem;
+            span{
+                display: flex;
+                align-items: center;
+            }
+           .chatbot__title {
+                display: flex;
+                align-items: center;
+                gap: 0.8rem;
+                margin-left: auto;
+            }
         }
     }
 
-    .loading{
+    .loading {
         position: absolute;
         // @include fullSize;
         top: 50%;
@@ -26,18 +32,77 @@
     .chatbot__feedbackTableWrap {
         overflow-y: auto;
         height: 300px;
-      
-        thead th{
+        //
+
+        thead th {
             position: sticky;
-            top: 0; 
+            top: 0px;
+            z-index: 999;
         }
 
         .chatbot__feedbackTable {
             @include tableHeadingWhite;
             border-collapse: collapse;
-           
+            padding: $base-padding-y;
+        }
+        .chatbot__feedbackBody {
+            .status {
+                background-color: $lightGreyColor;
+                padding: $small-padding;
+                color: $lighterGreyColor;
+                border-radius: $base-border-radius;
+
+                &.approved {
+                    background-color: $success-light;
+                    color: $lighterGreyColor;
+                }
+
+                &.rejected {
+                    background-color: $error-light;
+                    color: $lighterGreyColor;
+                }
+            }
         }
     }
 
-   
+    .chatbot__feedbackModal {
+        // position: relative;
+        padding: $base-padding-x;
+        min-width: 400px;
+        max-width: 500px;
+        min-height: 20dvh;
+        .chatbot__feedbackModalHeader {
+            padding: $small-padding-y;
+            @include flexBoxRow(flex-start, center, 1rem);
+            .chatbot__feedbackModalStatus {
+                @include flexBoxRow(flex-start, center, 0.5rem);
+
+                .status {
+                    border: 1px solid $lighterGreyColor;
+                    font-family: $secondary-font;
+                    padding: $small-padding;
+                    font-size: $f-normal;
+                    border-radius: $base-border-radius;
+                    background-color: $lighterGreyColor;
+                }
+
+                // .status:focus,
+                // .status:hover {
+                //     outline: none;
+                //     border: 1px solid $lighterGreyColor;
+                // }
+            }
+        }
+        .chatbot__feedbackModalContent {
+            @include flexBoxColumn(center, flex-start, 0.5rem);
+            padding: $small-padding-y;
+            .rating {
+                @include flexBoxRow(flex-start, center, 0.2rem);
+            }
+        }
+    }
+
+    .chatbot__feedbackModalFooter {
+        @include flexBoxRow(flex-end, center, 0.5rem);
+    }
 }

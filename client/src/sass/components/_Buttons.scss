@@ -50,6 +50,19 @@
         padding: $small-button-size;
     }
 
+    &.btn-err {
+        border: $base-border-thickness $error;
+        color: $error;
+
+        &::before{
+            background-color: $error;
+          
+        }
+        &:hover {
+            color: $honeyDew;
+        }
+    }
+
 }
 
 

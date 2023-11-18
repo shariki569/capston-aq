@@ -6,7 +6,7 @@ table {
     font-size: $content;
     border-collapse: collapse;
     border-radius: $base-border-radius;
-    overflow: hidden;
+    // overflow: auto;
     tr {
         height: 50px;
         &:nth-child(even) {
@@ -14,10 +14,14 @@ table {
         }
 
         th {
-            border: 1px solid $primary;
+            // border: 1px solid $primary;
             color: $lighterGreyColor;
             font-weight: $w-bold;
             background-color: $primaryColor;
+        }
+        td.small{
+            // // min-width: 3rem;
+            width: 150px;
         }
 
         td.center {
@@ -77,6 +81,37 @@ table {
                         border-radius: 10px;
                         color: $background;
                     }
+                }
+            }
+        }
+    }
+
+    td.dots {
+        width: 1px;
+        cursor: pointer;
+        position: relative;
+        font-size: $f-normal;
+        &:hover{
+            background-color: $lighterGreyColor;
+            border-radius: $base-border-radius;
+        }
+
+        .dots-menu{
+            z-index: 12;
+            @include flexBoxColumn(center, flex-start, 0rem);
+            @include cardBase($base-border-radius);
+            @include boxShadow;
+            overflow: hidden;
+            position: absolute;
+            top: 25px;
+            right: 0px;
+            li {
+                @include flexBoxRow(flex-start, center, 0.5rem);
+                list-style: none;
+                width: 100%;
+                padding: $small-padding $base-padding;
+                &:hover {
+                    background-color: $lighterGreyColor;
                 }
             }
         }

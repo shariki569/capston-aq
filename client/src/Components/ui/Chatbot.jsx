@@ -6,6 +6,8 @@ import DOMPurify from 'dompurify';
 import { BiHappy } from "react-icons/bi";
 import { BiDotsVerticalRounded } from 'react-icons/bi';
 import FeedbackForm from './FeedbackForm/FeedbackForm';
+import { FiUsers } from "react-icons/fi";
+
 const Chatbot = () => {
 
   const [input, setInput] = useState('');
@@ -61,6 +63,8 @@ const Chatbot = () => {
     }
   }
 
+ 
+
   useEffect(() => {
     if (messagePanelRef.current) {
       messagePanelRef.current.scrollTop = messagePanelRef.current.scrollHeight;
@@ -69,18 +73,33 @@ const Chatbot = () => {
 
   const toggleChatbot = () => {
     setShowChatbot(!showChatbot);
+
+    if(showFeedbackForm) {
+      setShowFeedbackForm(false);
+    }
+    
   }
+
+
+  const handleFeedbackOpen = () => {
+    toggleChatbot();
+  
+    // Open the feedback form after a delay (adjust the delay as needed)
+    setTimeout(() => {
+      setShowFeedbackForm(true);
+    }, 800);
+  };
+
 
   return (
     <div className='chatbot-container'>
-
       {showChatbot && <div className="chatbot-inbox">
         <div className="chatbot-header">
           <div className="chatbot-title">
             <h3>AquaBot</h3>
           </div>
           <div className="chatbot-buttons">
-            <button  className='send' onClick={handleOption}><BiDotsVerticalRounded size={20} color='white' /></button>
+            <button className='send' onClick={handleOption}><BiDotsVerticalRounded size={20} color='white' /></button>
             <button className='send' onClick={toggleChatbot}><FiX size={20} color='white' /></button>
             {showOptions &&
               <div className='chatbot-options'>
@@ -94,7 +113,7 @@ const Chatbot = () => {
         <div className="chatbot-panel" ref={messagePanelRef}>
           {messages.map((message, index) => (
             <p className={`message ${message.sender}`} key={index}>
-              <span className='sender'>{message.sender}</span>
+              {/* <span className='sender'>{message.sender}</span> */}
               {message.sender === 'Bot' ? (<span dangerouslySetInnerHTML={{
                 __html: DOMPurify.sanitize(message.text),
               }}></span>) : (
@@ -107,8 +126,8 @@ const Chatbot = () => {
         </div>
         {showFeedbackForm &&
           <div className="feedback-form">
-          <FeedbackForm {...{ handleClose: () => setShowFeedbackForm(false) }} />
-        </div>
+            <FeedbackForm {...{ handleClose: () => setShowFeedbackForm(false) }} />
+          </div>
         }
         <div className="chatbot-input">
           <TextArea
@@ -117,10 +136,11 @@ const Chatbot = () => {
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleEnter}
           />
-          <button className='send' onClick={sendMessage}><FiSend size={22} /></button>
+          <button className='send' onClick={sendMessage} disabled={!input.trim()}><FiSend size={22} /></button>
         </div>
       </div>}
       {!showChatbot && <ChatbotButton click={toggleChatbot} />}
+      {!showFeedbackForm && <FeedBackButton click={handleFeedbackOpen} />}
     </div>
   )
 }
@@ -135,6 +155,16 @@ const ChatbotButton = ({ click }) => {
   return (
     <span className='chatbot-button' onClick={click}>
       <FiMessageCircle size={30} color='white' />
+    </span>
+  )
+}
+
+const FeedBackButton = ({ click }) => {
+
+  return (
+    <span className='feedback-button' onClick={click}>
+        <FiUsers /> Give us a feedback
+
     </span>
   )
 }

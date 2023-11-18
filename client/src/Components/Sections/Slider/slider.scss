@@ -1,0 +1,103 @@
+@use "../../../sass/Utilities/" as *;
+.slider-container {
+    position: relative;
+    height: 65dvh;
+    .carousel {
+        display: flex;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        @include centerAndSet(1300px, 0.6rem);
+        margin: 0 auto; // Center the slider horizontally
+
+        .carousel-container {
+            height: 100%;
+            display: flex;
+            gap: 1.5rem;
+            flex-direction: row;
+            justify-content: center;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item {
+            // height: 100%;
+            margin-block: auto;
+            // gap: 5px;
+            flex: 0 0 calc(30% / 4);
+            box-sizing: border-box;
+            position: relative;
+            .quote-right {
+                color: $lightGreyColor;
+                position: absolute;
+                top: 30px;
+                right: 17px;
+            }
+
+            // .quote-left {
+            //     position: absolute;
+            // }
+        }
+
+        .indicators {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+
+            .indicator {
+                width: 10px;
+                height: 10px;
+                background-color: #aaa;
+                border-radius: 50%;
+                margin: 0 5px;
+                cursor: pointer;
+
+                &.active {
+                    background-color: #333;
+                }
+            }
+        }
+    }
+ 
+    .arrow {
+        display: flex;
+        align-items: center;
+        font-family: $secondary-font;
+        position: absolute;
+        top: 2%;
+        font-size: 24px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        color: $lighterGreyColor;
+        transition: 0.1s ease-in-out;
+        &:hover {
+            transform: scale(1.1);
+        }
+
+        &.prev {
+            left: 10px;
+        }
+
+        &.next {
+            right: 10px;
+        }
+    }
+
+    @include devices(tablet) {
+        .carousel {
+            @include centerAndSet(800px, 0.6rem);
+            .carousel-item {
+                flex: calc(12% / 4);
+            }
+        }
+    }
+
+    @include devices(mobile) {
+        .carousel-item {
+            flex: 1;
+        }
+    }
+}

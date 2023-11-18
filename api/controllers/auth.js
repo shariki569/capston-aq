@@ -1,6 +1,8 @@
 import { db } from "../db.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { envConfig } from "../middleware/envConfig.js";
+envConfig();
 
 export const register = async (req, res) => {
   try {
@@ -19,13 +21,15 @@ export const register = async (req, res) => {
       username: req.body.username,
       email: req.body.email,
       password: hashedPassword,
+      isDeleted: 0,
+      role: 3
     };
 
     const [result] = await db.query("INSERT INTO users SET ?", newUser);
     if (result.affectedRows > 0) {
       //User has created
       const userId = result.insertId;
-      const token = jwt.sign({ id: userId }, "jwtkey");
+      const token = jwt.sign({ id: userId }, process.env.JWT_SECRET);
 
       res
         .cookie("access_token", token, {
@@ -46,7 +50,7 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   try {
     // Check user
-    const q = "SELECT * FROM users WHERE username = ?";
+    const q = "SELECT users.*, role.Role_Name FROM users  INNER JOIN role ON users.role = role.Role_Id WHERE username = ?";
     const [rows] = await db.query(q, [req.body.username]);
 
     if (rows.length === 0) {
@@ -63,7 +67,7 @@ export const login = async (req, res) => {
       return res.status(400).json("Wrong username and password!");
     }
 
-    const token = jwt.sign({ id: rows[0].id }, "jwtkey");
+    const token = jwt.sign({ id: rows[0].id, Role: rows[0].Role_Name }, process.env.JWT_SECRET);
     const { password, ...other } = rows[0];
 
     res

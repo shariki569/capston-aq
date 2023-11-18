@@ -1,0 +1,54 @@
+@use "../../../sass/Utilities/" as *;
+
+.testimonial__container {
+    // height: 100dvh;
+    padding-block: $base-padding;
+    // @include centerAndSet(1300px, 2rem);
+
+    background: linear-gradient(rgba($primary, 0.9), rgba(8, 8, 8, 0.8)),
+        url("./upload/1696560451248GRILL\ \(1\)\ \(1\).webp") center/cover no-repeat fixed;
+    .testimonial__item {
+        @include cardBase($base-border-radius);
+        padding: $base-padding;
+        width: 200px;
+        min-width: 300px;
+        min-height: 300px;
+
+        .testimonial__message {
+            min-height: 10rem;
+            // display: flex;
+            padding-right: 2.5rem;
+            font-style: italic;
+
+            p {
+                height: 100%;
+                margin-top: $base-margin;
+                @include ellipsis(7);
+                color: $greyColor;
+                font-size: $f-normal;
+            }
+        }
+
+        .testimonial__info {
+            @include flexBoxColumn(center, flex-start, 0.5rem);
+            min-height: 4rem;
+            // height: 5rem;
+          
+            .testimonial__name {
+                min-height: 4rem;
+                width: 100%;
+                font-size: $f-large;
+                font-weight: $w-bold;
+                color: $primary;
+            }
+        }
+    }
+
+    // @include devices(tablet) {
+    //     .testimonial__item {
+    //         width: 100%;   
+    //         min-width: 100%;
+    //         min-height: 100%;
+    //     }
+    // }
+}

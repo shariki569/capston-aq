@@ -9,7 +9,7 @@ import {
   validateName,
   validatePhone,
 } from "./FormValidation/FormValidation";
-import InlineError from "./FormValidation/InlineError";
+
 
 const ContactForm = () => {
   const [name, setName] = useState('');
@@ -36,18 +36,18 @@ const ContactForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-     // Validate inputs
-     const isEmailValid = validateEmail({email, setMailError});
-     const isPhoneValid = validatePhone({phone: number, setPhoneError});
-     const isNameValid = validateName({ name, setNameError }); 
-     const isMessageValid = validateMessage({ message, setMessageError });
- 
-     if (!isEmailValid || !isPhoneValid || !isNameValid || !isMessageValid) {
-       setLoading(false);
-       return;
-     }
+    // Validate inputs
+    const isEmailValid = validateEmail({ email, setMailError });
+    const isPhoneValid = validatePhone({ phone: number, setPhoneError });
+    const isNameValid = validateName({ name, setNameError });
+    const isMessageValid = validateMessage({ message, setMessageError });
 
-   
+    if (!isEmailValid || !isPhoneValid || !isNameValid || !isMessageValid) {
+      setLoading(false);
+      return;
+    }
+
+
 
     try {
       const formData = {
@@ -116,7 +116,7 @@ const ContactForm = () => {
             cols={60}
             error={messageError}
           />
-        
+
           {loading ? (
             <button className="btn" disabled>
               Sending <DotLoader color="#36d7b7" size={15} />

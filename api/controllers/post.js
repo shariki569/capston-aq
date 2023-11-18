@@ -1,6 +1,7 @@
 import { db} from "../db.js";
 import jwt from "jsonwebtoken";
-
+import { envConfig } from "../middleware/envConfig.js";
+envConfig();
 
 export const getPosts = async (req, res) => {
   try {
@@ -39,7 +40,7 @@ export const addPost = async (req, res) => {
   if (!token) return res.status(401).json('Not authenticated');
 
   try {
-    const userInfo = jwt.verify(token, 'jwtkey');
+    const userInfo = jwt.verify(token, process.env.JWT_SECRET);
 
     const q =
       'INSERT INTO posts(`PostTitle`, `PostDesc`, `PostImg`, `PostCat`, `date`, `Post_Uid` ) VALUES (?, ?, ?, ?, ?, ?)';
@@ -61,7 +62,7 @@ export const deletePost = async (req, res) => {
   if (!token) return res.status(401).json('Not authenticated');
 
   try {
-    const userInfo = jwt.verify(token, 'jwtkey');
+    const userInfo = jwt.verify(token, process.env.JWT_SECRET);
     const postId = req.params.id;
     
     const q = 'DELETE FROM posts WHERE `PostId` = ? AND `Post_Uid` = ?';
@@ -83,7 +84,7 @@ export const updatePost = async (req, res) => {
   if (!token) return res.status(401).json('Not authenticated');
 
   try {
-    const userInfo = jwt.verify(token, 'jwtkey');
+    const userInfo = jwt.verify(token, process.env.JWT_SECRET);
     const postId = req.params.id;
     
     const q =

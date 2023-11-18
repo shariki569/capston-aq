@@ -8,11 +8,6 @@ export default ({ mode }) => {
   return defineConfig({
     base: "./",
     plugins: [react()],
-    server: {
-      proxy:{
-        "/api/": "http://localhost:8800"
-      }
-    },
     build: {
       rollupOptions: {
         output: {

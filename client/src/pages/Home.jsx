@@ -11,6 +11,7 @@ import Facility_Section from '../Components/Sections/Facility_Section'
 import Amenities from '../Components/Sections/Amenities'
 import SEO from '../Components/SEO/SEO'
 import ScrollToTop from '../Components/Hoc/ScrollToTop'
+import TestimonialSection from '../Components/Sections/TestimonialSection/TestimonialSection'
 
 
 const Home = () => {
@@ -50,6 +51,9 @@ const Home = () => {
       <HomeSection1 />
       <Facility_Section />
       <Amenities />
+      <section className='section-full-wrapper'>
+        <TestimonialSection/>
+      </section>
       <section className='section-full wrapper'>
 
         <TwoSections
@@ -61,8 +65,7 @@ const Home = () => {
           icon={<FaRegLifeRing size={35} />}
         />
       </section>
-
-
+    
     </>
   )
 }

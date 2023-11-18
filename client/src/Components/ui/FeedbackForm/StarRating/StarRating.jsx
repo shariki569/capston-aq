@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaStar } from "react-icons/fa";
 import './starRating.scss';
-const StarRating = ({ totalStars, starsSelected = 0, onRate = f => f, label }) => {
+const StarRating = ({ totalStars, starsSelected = 0, onRate = f => f, label, readOnly = false }) => {
     const [rating, setRating] = useState(starsSelected);
     const [hover, setHover] = useState(0);
 
@@ -15,7 +15,7 @@ const StarRating = ({ totalStars, starsSelected = 0, onRate = f => f, label }) =
                     return (
                         <span key={i}>
                             <label  >
-                                <input
+                               {!readOnly && <input
                                     style={{ display: "none" }}
                                     type="radio"
                                     name="rating"
@@ -25,13 +25,13 @@ const StarRating = ({ totalStars, starsSelected = 0, onRate = f => f, label }) =
                                         onRate(ratingValue);
                                         console.log('StarRating value:', ratingValue);
                                     }}
-                                />
+                                />}
                                 <FaStar
-                                    className="star"
+                                    className={`${readOnly ? "readonly" : "star"}`}
                                     color={ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
                                     size={25}
-                                    onMouseEnter={() => setHover(ratingValue)}
-                                    onMouseLeave={() => setHover(0)}
+                                    onMouseEnter={() => !readOnly && setHover(ratingValue)}
+                                    onMouseLeave={() =>  !readOnly && setHover(0)}
                                 />
                             </label>
                         </span>

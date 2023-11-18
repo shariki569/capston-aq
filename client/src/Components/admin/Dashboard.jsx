@@ -18,10 +18,10 @@ const Dashboard = () => {
     <div className='dashboard'>
       <div className='grid grid1'><UserBox/></div>
       <div className='grid grid2'><ChatbotRating/></div>
-      <div className='grid grid3'><ChatbotFeedback/></div>
+      <div className='grid grid3'></div>
       <div className='grid grid4'></div>
       <div className='grid grid5'></div>
-      <div className='grid grid6'></div>
+      <div className='grid grid6'><ChatbotFeedback/></div>
       <div className='grid grid7'></div>
       <div className='grid grid8'></div>
       {/* <div className='dashboard__user'>

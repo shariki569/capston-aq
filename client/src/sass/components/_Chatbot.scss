@@ -191,6 +191,29 @@
             color: $lighterGreyColor;
         }
     }
+
+    .feedback-button{
+        display: flex;
+        gap: 10px;
+        background-color: $tertiary;
+        position: fixed;
+        top: 40%;
+        padding: $small-padding $base-padding;
+        right: -12%;
+        border-radius: $base-border-radius 0  0 $base-border-radius ;
+        width: fit-content;
+        //  
+        opacity: 0.8;
+        transition: 0.2s ease-in;
+        &:hover{
+            right: 0%;
+            background-color: $primary;
+            opacity: 1;
+            cursor: pointer;
+            color: $lighterGreyColor;
+        }
+
+    }
 }
 
 

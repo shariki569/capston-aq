@@ -213,6 +213,14 @@
             color: $lighterGreyColor;
         }
 
+        @include devices(tablet){
+            right: -20%;
+        }
+
+        @include devices(mobile){
+            right: -34%;
+        }
+
     }
 }
 
@@ -233,6 +241,13 @@
         bottom: 5%;
         right: 5%;
     }
+
+    // .feedback-button{
+       
+    //     display: none;
+       
+
+    // }
 }
 
 @include devices (mobile) {
@@ -251,4 +266,7 @@
         bottom: 5%;
         right: 5%;
     }
+   
+
+    
 }

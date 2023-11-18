@@ -14,7 +14,7 @@ router.post("/", upload.single("file"), function (req, res) {
                 message: "Upload failed",
             })
         } 
-        res.status(200).send(result.secure_url);
+        res.status(200).send(result.url);
     })
 });
 

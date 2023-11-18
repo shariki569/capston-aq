@@ -74,7 +74,7 @@ export const login = async (req, res) => {
       .cookie("access_token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production" ? true : false,
-  
+        sameSite: "none",
       })
       .status(200)
       .json(other);

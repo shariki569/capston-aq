@@ -37,6 +37,13 @@
         @include boxShadow;
     }
 
+    .grid3{
+        grid-column: span 1;
+        grid-row: span 1;
+        @include cardBase($base-border-radius);
+        @include boxShadow;
+    }
+
     
     .grid6{
         grid-column: span 4;

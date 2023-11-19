@@ -3,10 +3,7 @@ import { useAmenities } from '../../API/fetchAmenities';
 import Skeleton from 'react-loading-skeleton';
 
 const Amenities_Single = () => {
-
     const { amenities } = useAmenities();
-
-
     return (
         <>
             <div className="amenity-accomm">

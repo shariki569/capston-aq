@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FaStar } from "react-icons/fa";
 import './starRating.scss';
 const StarRating = ({ totalStars, starsSelected = 0, onRate = f => f, label, readOnly = false }) => {
-    const [rating, setRating] = useState(starsSelected);
+    const [rating, setRating] = useState(Math.round(starsSelected));
     const [hover, setHover] = useState(0);
 
     return (

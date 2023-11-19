@@ -84,9 +84,9 @@
 }
 
 @mixin boxShadow {
-    box-shadow: 6px 6px 6px 1px rgba(191, 176, 176, 0.41);
-    -webkit-box-shadow: 6px 6px 6px 1px rgba(191, 176, 176, 0.41);
-    -moz-box-shadow: 6px 6px 6px 1px rgba(191, 176, 176, 0.41);
+    box-shadow: 6px 8px 5px -4px rgba(143,143,143,0.71);
+    -webkit-box-shadow: 6px 8px 5px -4px rgba(143,143,143,0.71);
+    -moz-box-shadow: 6px 8px 5px -4px rgba(143,143,143,0.71);
 }
 @mixin justifyIndent {
     text-align: justify;

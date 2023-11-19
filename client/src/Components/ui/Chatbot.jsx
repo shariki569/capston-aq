@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { FiMessageCircle, FiSend, FiX } from 'react-icons/fi'
 import TextArea from "../forms/FormFields/TextArea";
 import DOMPurify from 'dompurify';
@@ -63,6 +63,9 @@ const Chatbot = () => {
     }
   }
 
+  const changeValue = useCallback ((e) => {
+    setInput(e.target.value);
+  }, [])
  
 
   useEffect(() => {
@@ -133,7 +136,7 @@ const Chatbot = () => {
           <TextArea
             placeholder="Type a message..."
             value={input}
-            onChange={(e) => setInput(e.target.value)}
+            onChange={changeValue}
             onKeyDown={handleEnter}
           />
           <button className='send' onClick={sendMessage} disabled={!input.trim()}><FiSend size={22} /></button>
@@ -162,7 +165,7 @@ const ChatbotButton = ({ click }) => {
 const FeedBackButton = ({ click }) => {
 
   return (
-    <span className='feedback-button' onClick={click}>
+    <span draggable='true' className='feedback-button' onClick={click}>
         <FiUsers /> Give us a feedback
 
     </span>

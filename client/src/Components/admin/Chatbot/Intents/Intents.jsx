@@ -6,6 +6,7 @@ import { BiEdit, BiSearch, BiTrash } from 'react-icons/bi'
 import TextInput from '../../../forms/FormFields/TextInput'
 import { BiDotsVertical } from "react-icons/bi";
 import SearchInput from '../../../forms/FormFields/SearchInput';
+import { Link } from 'react-router-dom';
 const Intents = () => {
 
   const [intents, setIntents] = useState([])
@@ -42,9 +43,9 @@ const Intents = () => {
 
   return (
     <div className='chatbot__intentContainer'>
-    
 
-      <SearchInput placeholder='Search Intent' value={searchTerm} onChange={handleSearch}/>
+
+      <SearchInput placeholder='Search Intent' value={searchTerm} onChange={handleSearch} />
       <table className='chatbot__intentTable'>
         <thead>
           <tr>
@@ -63,8 +64,8 @@ const Intents = () => {
                 <BiDotsVertical size={20} onClick={() => toggleOpen(intent.IntentID)} />
                 {openOptions === intent.IntentID && (
                   <div className='chatbot__intentOptions'>
-                    <li><BiEdit/>Edit</li>
-                    <li><BiTrash/>Delete</li>
+                    <Link className='chatbot__intentView' state={intent} to={`/dashboard/chatbot/add-intent?edit=${intent.IntentID}`}><BiEdit />View</Link>
+                    <li><BiTrash />Delete</li>
                   </div>
                 )}
               </td>

@@ -1,8 +1,10 @@
 import { HiTrendingUp } from 'react-icons/hi'
-import './chatBotRating.scss'
+// import './chatBotRating.scss'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { MoonLoader } from 'react-spinners'
+import StarRating from '../../../ui/FeedbackForm/StarRating/StarRating'
+import Container from '../Container/Container'
 
 const ChatbotRating = () => {
   const [rating, setRating] = useState(0)
@@ -19,16 +21,16 @@ const ChatbotRating = () => {
         console.log(err)
         setLoading(false)
       }
+
     }
     fetchData()
   }, [])
-
-
+  // const roundedRating = Math.round(parseFloat(rating.TotalRating));
+  // console.log(roundedRating)
   return (
-    <div className='chatbotRating__container'>
-      <h4 className='chatbotRating__rating'>{loading ? <MoonLoader color="#03335b" size={30}/> : `${Number(rating.TotalRating).toFixed(1)}` }</h4>
-      <h3 className='chatbotRating__title'>Rating</h3>
-    </div>
+    <>
+      <Container title='Rating' data={Number(rating.TotalRating).toFixed(1)} loading={loading} />
+    </>
   )
 }
 

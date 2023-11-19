@@ -175,6 +175,27 @@
                 }
             }
         }
+
+        @include devices (mobile) {
+            //  .chatbot-container{
+            //     max-width: none;
+            //     width: 100%;
+            //  }
+                .chatbot-inbox{
+                    position: fixed;
+                    bottom: 0;
+                    right: 0;
+                    transition: 3s ease-in-out;
+                }
+                .chatbot-button{
+                    position: fixed;
+                    bottom: 5%;
+                    right: 5%;
+                }
+               
+            
+                
+            }
     }
     .chatbot-button {
         background-color: $tertiary;
@@ -199,7 +220,7 @@
         position: fixed;
         top: 40%;
         padding: $small-padding $base-padding;
-        right: -12%;
+        right: -155px;
         border-radius: $base-border-radius 0  0 $base-border-radius ;
         width: fit-content;
         //  
@@ -214,11 +235,11 @@
         }
 
         @include devices(tablet){
-            right: -20%;
+            right: -155px;
         }
 
         @include devices(mobile){
-            right: -34%;
+            right: -175px;
         }
 
     }
@@ -257,8 +278,8 @@
 //  }
     .chatbot-inbox{
         position: fixed;
-        bottom: 0px;
-        right: 0px;
+        bottom: 0;
+        right: 0;
         transition: 3s ease-in-out;
     }
     .chatbot-button{

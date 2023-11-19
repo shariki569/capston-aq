@@ -15,17 +15,32 @@ export const restrictTo = (...role) => {
   };
 };
 
+
 export const authenticateToken = (req, res, next) => {
-    const authHeader = req.headers["authorization"];
-    const token = authHeader && authHeader.split(" ")[1];
-    if (token == null) {
-      return res.sendStatus(401);
+  const token = req.cookies.access_token;
+  if (!token) {
+    return res.sendStatus(401);
+  }
+  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    if (err) {
+      return res.sendStatus(403).json('You are not authenticated!');
     }
-    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-      if (err) {
-        return res.sendStatus(401);
-      }
-      req.user = user;
-      next();
-    });
-  };
+    req.user = user.Role_Name;
+    next();
+  })
+}
+
+// export const authenticateToken = (req, res, next) => {
+//     const authHeader = req.headers["authorization"];
+//     const token = authHeader && authHeader.split(" ")[1];
+//     if (token == null) {
+//       return res.sendStatus(401);
+//     }
+//     jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+//       if (err) {
+//         return res.sendStatus(401);
+//       }
+//       req.user = user;
+//       next();
+//     });
+//   };

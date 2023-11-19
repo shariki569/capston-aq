@@ -4,29 +4,29 @@ import { createContext, useEffect, useState } from "react";
 export const AuthContext = createContext()
 
 
-export const AuthContextProvider = ({children}) => {
+export const AuthContextProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem("user")) || null)
 
-    const login = async(inputs) => {
+    const login = async (inputs) => {
         const res = await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/login`, inputs, {
-            withCredentials: true,
-            credentials: 'include'
+            credentials: 'include',
+            withCredentials: true
         });
         setCurrentUser(res.data)
     }
 
-    const logout = async(inputs) => {
+    const logout = async (inputs) => {
         await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/logout`)
         setCurrentUser(null)
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         localStorage.setItem("user", JSON.stringify(currentUser))
-    },[currentUser]);
+    }, [currentUser]);
 
 
     return (
-        <AuthContext.Provider value={{currentUser, login, logout}}>
+        <AuthContext.Provider value={{ currentUser, login, logout }}>
             {children}
         </AuthContext.Provider>
     )

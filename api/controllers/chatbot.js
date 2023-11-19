@@ -63,3 +63,51 @@ export const addIntent = async (req, res) => {
     return res.status(500).json({ message: "Cannot add intent" });
   }
 };
+
+
+// Update an existing intent and its utterances and answers
+export const updateIntent = async (req, res) => {
+  try {
+    const intentID = req.params.id;
+    const { Intent, Utterances, Answers } = req.body;
+
+    // Check if the intent exists
+    const [existingIntent] = await db.query(
+      `SELECT * FROM intents WHERE IntentID = ?`,
+      [intentID]
+    );
+    if (existingIntent.length === 0) {
+      return res.status(404).json({ message: "Intent not found" });
+    }
+
+    // Update the intent name in the intents table
+    await db.query(`UPDATE intents SET IntentName = ? WHERE IntentID = ?`, [
+      Intent,
+      intentID,
+    ]);
+
+    // Delete the old utterances and answers for the intent
+    await db.query(`DELETE FROM utterances WHERE intentID = ?`, [intentID]);
+    await db.query(`DELETE FROM answers WHERE ans_intentID = ?`, [intentID]);
+
+    // Add the new utterances and answers for the intent
+    for (const utterance of Utterances) {
+      await db.query(
+        `INSERT INTO utterances (UtteranceText, intentID) VALUES (?, ?)`,
+        [utterance, intentID]
+      );
+    }
+
+    for (const answer of Answers) {
+      await db.query(
+        `INSERT INTO answers (AnswerTxt, ans_intentID) VALUES (?, ?)`,
+        [answer, intentID]
+      );
+    }
+
+    return res.status(200).json({ message: "Intent updated successfully" });
+  } catch (err) {
+    console.error("Error updating intent:", err);
+    return res.status(500).json({ message: "Cannot update intent" });
+  }
+};

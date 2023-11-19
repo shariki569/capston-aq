@@ -8,6 +8,7 @@ import RecentPosts from '../ui/RecentPosts';
 import UserBox from './Components/UserBox/UserBox';
 import ChatbotRating from './Components/ChatbotRating/ChatbotRating';
 import ChatbotFeedback from './Components/ChatbotFeedback/ChatbotFeedback';
+import TotalFeedback from './Components/ChatbotFeedback/TotalChatbotFeedback/TotalFeedback';
 
 
 const Dashboard = () => {
@@ -18,7 +19,7 @@ const Dashboard = () => {
     <div className='dashboard'>
       <div className='grid grid1'><UserBox/></div>
       <div className='grid grid2'><ChatbotRating/></div>
-      <div className='grid grid3'></div>
+      <div className='grid grid3'><TotalFeedback/></div>
       <div className='grid grid4'></div>
       <div className='grid grid5'></div>
       <div className='grid grid6'><ChatbotFeedback/></div>

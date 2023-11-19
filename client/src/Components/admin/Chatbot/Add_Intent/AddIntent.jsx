@@ -4,19 +4,22 @@ import { BiArrowFromRight, BiDotsVertical, BiSolidSave } from "react-icons/bi";
 import TextInput from '../../../forms/FormFields/TextInput';
 import UserSays from './UserSays/UserSays';
 import ChatResponse from './ChatResponse/ChatResponse';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { MoonLoader} from 'react-spinners';
 const AddIntent = () => {
-
+  
+  const state = useLocation().state
   const [addIntent, setAddIntent] = useState({
-    intentTitle: '',
+    intentTitle: state?.IntentName || '',
     userSays: '',
     userSaysPreview: [],
     chatResponse: '',
     chatResponsePreview: [],
     loading: false,
   });
+
+  
 
   const handleClick = async (e) => {
     e.preventDefault();

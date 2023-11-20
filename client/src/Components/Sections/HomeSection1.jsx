@@ -18,6 +18,7 @@ const HomeSection1 = () => {
                 main='Escape to Your Perfect Getaway'
                 subheading='Welcome to Aqua Cainta Resorts Paradise'
                 desc='At Aqua Cainta Resort, we believe in creating more than just vacations; we craft unforgettable staycation experiences. Our pristine haven offers a symphony of relaxation, adventure, and indulgence, making it the ultimate destination for your next retreat.'
+                background={true}
             />
             <SectionWithHeading
                 main='Discover Our Oasis'
@@ -34,6 +35,7 @@ const HomeSection1 = () => {
 
                     ]
                 }
+                background={true}
             />
             <TwoSections
                 inverse={true}
@@ -47,6 +49,7 @@ const HomeSection1 = () => {
 
                     ]
                 }
+                background={true}
             />
 
 

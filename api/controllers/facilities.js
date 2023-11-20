@@ -19,6 +19,7 @@ export const getFacilitiesWithImages = async (req, res) => {
   g.Gallery_Images AS Gallery_Images
 FROM
   facilities f
+ 
 LEFT JOIN (  SELECT Fac_Id, GROUP_CONCAT(FacImg_Name) AS Featured_Image FROM
     facility_images
   WHERE
@@ -40,7 +41,9 @@ LEFT JOIN (
     Fac_Id
 ) g
 ON
-  f.Fac_Id = g.Fac_Id`;
+  f.Fac_Id = g.Fac_Id
+  
+  WHERE f.Is_Deleted = 0`;
 
 try {
     const [data] = await db.query(q);
@@ -345,7 +348,7 @@ export const updateFacility = async (req, res) => {
 
 export const deleteFacility = (req, res) => {
   const facId = req.params.id;
-  const q = "DELETE FROM facilities WHERE `Fac_Id` = ?";
+  const q = "UPDATE facilities SET `Is_Deleted` = 1 WHERE `Fac_Id` = ?";
 
   db.query(q, [facId], (err, data) => {
     if (err) return res.status(500).json("Database error: " + err.message);

@@ -116,16 +116,17 @@ const ContactForm = () => {
             cols={60}
             error={messageError}
           />
-
-          {loading ? (
-            <button className="btn" disabled>
-              Sending <DotLoader color="#36d7b7" size={15} />
-            </button>
-          ) : (
-            <button type="submit" className="btn">
-              Submit
-            </button>
-          )}
+          <div className="btn-wrapper">
+            {loading ? (
+              <button className="btn" disabled>
+                Sending <DotLoader color="#36d7b7" size={15} />
+              </button>
+            ) : (
+              <button type="submit" className="btn">
+                Submit
+              </button>
+            )}
+          </div>
         </form>
       </div>
     </div>

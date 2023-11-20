@@ -63,6 +63,7 @@ const Home = () => {
             `/upload/lifeguard.webp`
           ]}
           icon={<FaRegLifeRing size={35} />}
+          background={true}
         />
       </section>
     

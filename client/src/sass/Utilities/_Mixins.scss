@@ -48,6 +48,15 @@
     align-items: flex-start;
 }
 
+@mixin skewedBackground( $color) {
+    background-color: $color;
+    position: absolute;
+    content: "";
+    inset: 0;
+    z-index: -1;
+    transform: skewY(-2deg);
+}
+
 @mixin cardBase($borderRadius) {
     background-color: #ffffff;
     border-radius: $borderRadius;
@@ -84,9 +93,9 @@
 }
 
 @mixin boxShadow {
-    box-shadow: 6px 8px 5px -4px rgba(143,143,143,0.71);
-    -webkit-box-shadow: 6px 8px 5px -4px rgba(143,143,143,0.71);
-    -moz-box-shadow: 6px 8px 5px -4px rgba(143,143,143,0.71);
+    box-shadow: 6px 8px 5px -4px rgba(143, 143, 143, 0.71);
+    -webkit-box-shadow: 6px 8px 5px -4px rgba(143, 143, 143, 0.71);
+    -moz-box-shadow: 6px 8px 5px -4px rgba(143, 143, 143, 0.71);
 }
 @mixin justifyIndent {
     text-align: justify;
@@ -102,7 +111,6 @@
     text-overflow: ellipsis;
     display: -webkit-box;
 }
-
 
 @mixin tableHeadingWhite {
     background-color: white;

@@ -3,8 +3,14 @@
 .chatbox__container{
     @include cardBase($base-border-radius);
     padding: $base-padding;
+    @include boxShadow;
+    height: 100%;
+    min-height: 100dvh;
+    max-height: 100dvh;
+    box-sizing: border-box;
+    @include flexBoxColumn(space-between, flex-end, 1rem);
     .chatbox__header{
-        @include flexBoxRow(space-between, center, 1rem);
+        @include flexBoxColumn(space-between, center, 1rem);
 
         .chatbox__train{
             margin-left: auto;
@@ -16,6 +22,33 @@
                 display: flex;
                 align-items: center;
                 gap: 0.8rem;
+            }
+        }
+    }
+
+    .chatbot__container{
+        height: 550px;
+        width: 100%;
+        // max-height: ;
+        display: flex;
+        margin-top: auto;
+        border-radius: $base-border-radius;
+        // border: 2px solid $lightGreyColor;
+        display: flex;
+        flex-direction: column;
+      
+        // @include flexBoxColumn(space-between, center, 1rem);
+        .chatbot__panel{
+            width: 100%;
+        }
+        .chatbot__input{
+            width: 100%;
+            display: flex;
+            margin-top: auto;
+
+            .send-admin{
+                border-radius: 0  $base-border-radius  $base-border-radius  0;
+                margin-left: -3px;
             }
         }
     }

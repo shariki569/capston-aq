@@ -13,6 +13,7 @@ const Nav = () => {
   const { currentUser, logout } = useContext(AuthContext);
   const [showDropdown, setShowDropdown] = useState(false);
 
+  const location = useLocation();
 
 
   useEffect(() => {
@@ -39,7 +40,7 @@ const Nav = () => {
           {navLinks.map((items, index) => (
             <li className="link-item" key={index}>
               <Link className="link" to={items.path}>
-                <h6>{items.title}</h6>
+                <h6 className={location.pathname === items.path ? "active" : ""}>{items.title}</h6>
               </Link>
               {items.children &&
                 (<Dropdown>

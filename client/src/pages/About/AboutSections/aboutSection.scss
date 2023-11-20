@@ -1,0 +1,63 @@
+@use "../../../sass/Utilities/" as *;
+
+.about__sections {
+    @include centerAndSet(1300px, 2rem);
+    @include flexBoxColumn(center, center, 2rem);
+    padding-block: 2rem;
+    .about__image {
+
+        width: 1000px;
+        height: 500px;
+   
+        img{
+            border-radius: $base-border-radius;
+            @include fullSize;
+            object-fit: cover;
+        }
+      
+    }
+    .about__content{
+        width: 100%;
+        @include centerAndSet(1100px, 5rem);
+        .about__title{
+            font-size: $f-large;
+            color: $primary;
+            padding-bottom: $base-padding;
+            font-family: $primary-font;
+
+            &::after{
+                content: "";
+                display: block;
+                height: 2px;
+                width: 70px;
+                margin-top: $small-padding;
+                background-color: $tertiary;
+            }
+        }
+
+        .about__text{
+            font-size: $f-normal;
+        }
+
+      
+    }
+    @include devices (tablet) {
+        .about__image {
+            @include centerAndSet(100%, 1rem);
+        }
+
+        .about__content {
+            @include centerAndSet(100%, 1rem);
+        }
+    }
+
+    // @include devices (mobile) {
+    //     .about__image {
+    //         @include centerAndSet(100%, 1rem);
+    //     }
+
+    //     .about__content {
+    //         @include centerAndSet(100%, 1rem);
+    //     }
+    // }
+}

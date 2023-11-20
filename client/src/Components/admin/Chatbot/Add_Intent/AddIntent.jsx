@@ -13,10 +13,11 @@ const AddIntent = () => {
   const [addIntent, setAddIntent] = useState({
     intentTitle: state?.IntentName || '',
     userSays: '',
-    userSaysPreview: [],
+    userSaysPreview: state?.utterances || [],
     chatResponse: '',
-    chatResponsePreview: [],
+    chatResponsePreview: state?.answers || [],
     loading: false,
+    error: null,
   });
 
   
@@ -28,13 +29,24 @@ const AddIntent = () => {
       loading: true,
     }))
     try {
-      await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/chatbotRoute/intents`, {
+      state ? await axios.patch(`${import.meta.env.VITE_APP_BACKEND_URL}/api/chatbotRoute/intents/${state.IntentID}`, {
+        Intent: addIntent.intentTitle,
+        Utterances: addIntent.userSaysPreview,
+        Answers: addIntent.chatResponsePreview,
+      })
+      : await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/chatbotRoute/intents`, {
         Intent: addIntent.intentTitle,
         Utterances: addIntent.userSaysPreview,
         Answers: addIntent.chatResponsePreview,
       });
     } catch (err) {
       console.log(err, 'cannot post');
+      {
+        setAddIntent((prevIntent) => ({
+          ...prevIntent,
+          error: err.response.data,
+        }));
+      }
     } finally {
       setAddIntent((prevIntent) => ({
         ...prevIntent,
@@ -99,7 +111,9 @@ const AddIntent = () => {
             <h3><BiSolidSave size={20} />Save Intent</h3>
           </button>
         )}
-
+        {addIntent.error && (
+          <div className='error'>{addIntent.error}</div>
+        )}
       </div>
       <div className='addIntent__forms'>
         <TextInput
@@ -107,6 +121,7 @@ const AddIntent = () => {
           onChange={(e) => setAddIntent({ ...addIntent, intentTitle: e.target.value })}
           placeholder='Enter Intent Name'
           label='Intent Name'
+          err
         />
         {/* <UserSays value={addIntent.userSays} onAddUserSays={handleAddUserSays} /> */}
         <UserSays

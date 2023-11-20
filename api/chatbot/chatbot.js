@@ -8,7 +8,7 @@ const nlp = new NlpManager({
   autoSave: false,
   nlu: { useNoneFeature: true, log: true },
   ner: { threshold: 1 },
-  
+
 });
 const context = new ConversationContext();
 nlp.addLanguage("en");
@@ -19,27 +19,8 @@ nlp.addCorpus("./chatbot/corpus-tl.json");
 
 const corpusEntries = await generateCorpusEntries();
 
-// const [intents, fields] = await db.execute('SELECT * FROM intents');
-// for (let intent of intents) {
-//   const [utterances, fields] = await db.execute('SELECT * FROM utterances WHERE intentID = ?', [intent.IntentID]);
-//   for (let utterance of utterances) {
-//     nlp.addDocument('en', utterance.UtteranceText, intent.IntentName);
-//   }
-// }
- 
-// const [answes, fields] = await db.execute('SELECT * FROM answers');
-const [intents, fields] = await db.execute('SELECT * FROM intents');
-for (let intent of intents) {
-  const [utterances, utteranceFields] = await db.execute('SELECT * FROM utterances WHERE intentID = ?', [intent.IntentID]);
-  for (let utterance of utterances) {
-    nlp.addDocument('en', utterance.UtteranceText, intent.IntentName);
-  }
 
-  const [answers, answerFields] = await db.execute('SELECT * FROM answers WHERE ans_intentID = ?', [intent.IntentID]);
-  for (let answer of answers) {
-    nlp.addAnswer('en', intent.IntentName, answer.AnswerTxt);
-  }
-}
+
 // Add each entry to the NLP manager
 corpusEntries.forEach((entry) => {
   entry.utterances.forEach((utterance) => {
@@ -70,6 +51,30 @@ const processInput = async (input, context) => {
     throw new Error("Internal server error");
   }
 };
+
+export const trainChatbot = async (req, res) => {
+  try {
+    const [intents, fields] = await db.execute('SELECT * FROM intents');
+    for (let intent of intents) {
+      const [utterances, utteranceFields] = await db.execute('SELECT * FROM utterances WHERE intentID = ?', [intent.IntentID]);
+      for (let utterance of utterances) {
+        nlp.addDocument('en', utterance.UtteranceText, intent.IntentName);
+      }
+
+      const [answers, answerFields] = await db.execute('SELECT * FROM answers WHERE ans_intentID = ?', [intent.IntentID]);
+      for (let answer of answers) {
+        nlp.addAnswer('en', intent.IntentName, answer.AnswerTxt);
+      }
+    }
+
+    await nlp.train();
+    return res.status(200).json({ message: 'Training successful'  });
+
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: 'Internal server error' + err });
+  }
+}
 
 export const chatbotRes = async (req, res) => {
   const { input } = req.body;

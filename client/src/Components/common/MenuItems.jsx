@@ -58,14 +58,8 @@ export const sidebarLinks = [
   },
 
   {
-    title: "Pages",
+    title: "About Us",
     path: "pages",
-    submenu: [
-      {
-        title: "About Us",
-        path: "pages?edit=about-us",
-      }
-    ],
   },
   {
     title: "Accomodation",

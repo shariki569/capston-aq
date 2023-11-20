@@ -39,16 +39,18 @@ const Intents = () => {
   const filteredIntents = intents.filter((intent) =>
     intent.IntentName.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
+  const handleDelete = (intentId) => {
+    axios.delete(`${import.meta.env.VITE_APP_BACKEND_URL}/api/chatbotRoute/intents/${intentId}`)
+    setIntents((prevIntents) => prevIntents.filter((intent) => intent.IntentID !== intentId))
+  }
 
   return (
     <div className='chatbot__intentContainer'>
-
-
       <SearchInput placeholder='Search Intent' value={searchTerm} onChange={handleSearch} />
       <table className='chatbot__intentTable'>
         <thead>
           <tr>
+            {/* <th></th> */}
             <th>Intent</th>
             <th>Utterances</th>
             <th>Answers</th>
@@ -57,6 +59,7 @@ const Intents = () => {
         <tbody>
           {filteredIntents.map((intent) => (
             <tr key={intent.IntentID}>
+              {/* <td><input type="checkbox" name="intent" /></td> */}
               <td>{intent.IntentName}</td>
               <td>{intent.total_utterances}</td>
               <td>{intent.total_answers}</td>
@@ -65,7 +68,7 @@ const Intents = () => {
                 {openOptions === intent.IntentID && (
                   <div className='chatbot__intentOptions'>
                     <Link className='chatbot__intentView' state={intent} to={`/dashboard/chatbot/add-intent?edit=${intent.IntentID}`}><BiEdit />View</Link>
-                    <li><BiTrash />Delete</li>
+                    <li onClick={() => handleDelete(intent.IntentID)}><BiTrash />Delete</li>
                   </div>
                 )}
               </td>

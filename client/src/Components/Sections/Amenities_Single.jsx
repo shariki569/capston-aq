@@ -9,7 +9,7 @@ const Amenities_Single = () => {
             <div className="amenity-accomm">
                 <h1 className='xl-font '>Amenities</h1>
                 <div className='accomm-amenity-items'>
-                    {amenities.map((amenity) => (
+                    {amenities && amenities.map((amenity) => (
                         <div className="accomm-amenity-item" key={amenity.Amenity_Id}>
                             <div className='accomm-amenity-image-wrap'>
                                 <img src={amenity.Amenity_Img.startsWith('http') ? amenity.Amenity_Img : `../../upload/${amenity.Amenity_Img}`} alt="" />

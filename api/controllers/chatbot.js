@@ -1,5 +1,39 @@
 import db from "../db.js";
 
+// export const getIntents = async (req, res) => {
+//   try {
+//     const connection = await db.getConnection();
+//     const [rows] = await connection.query(`
+//     SELECT 
+//     intents.IntentID,
+//     intents.IntentName, 
+//     GROUP_CONCAT(DISTINCT utterances.UtteranceText SEPARATOR '|') AS utterances,
+//     GROUP_CONCAT(DISTINCT answers.AnswerTxt SEPARATOR '|') AS answers,
+//     COUNT(DISTINCT answers.AnswerID) AS total_answers,
+//     COUNT(DISTINCT utterances.UtteranceID) AS total_utterances
+//     FROM intents
+//     LEFT JOIN answers ON intents.IntentID = answers.ans_intentID
+//     LEFT JOIN utterances ON intents.IntentID = utterances.intentID
+//     WHERE intents.Is_Deleted = 0
+//     GROUP BY intents.IntentID
+//     ORDER BY intents.IntentName
+//     `);
+
+
+//     const result = rows.map((row) => ({
+//       ...row,
+//       utterances: row.utterances.split("|"),
+//       answers: row.answers.split("|"),
+//     }))
+
+//     connection.release();
+//     return res.status(200).json(result);
+//   } catch (err) {
+//     console.error("Database error:", err);
+//     res.status(500).json("Internal server error");
+//   }
+// };
+
 export const getIntents = async (req, res) => {
   try {
     const connection = await db.getConnection();
@@ -7,20 +41,32 @@ export const getIntents = async (req, res) => {
     SELECT 
     intents.IntentID,
     intents.IntentName, 
+    GROUP_CONCAT(DISTINCT utterances.UtteranceText SEPARATOR '\n') AS utterances,
+    GROUP_CONCAT(DISTINCT answers.AnswerTxt SEPARATOR '\n') AS answers,
     COUNT(DISTINCT answers.AnswerID) AS total_answers,
     COUNT(DISTINCT utterances.UtteranceID) AS total_utterances
     FROM intents
     LEFT JOIN answers ON intents.IntentID = answers.ans_intentID
     LEFT JOIN utterances ON intents.IntentID = utterances.intentID
+    WHERE intents.Is_Deleted = 0
     GROUP BY intents.IntentID
+    ORDER BY intents.IntentName
     `);
+
+    const result = rows.map((row) => ({
+      ...row,
+      utterances: row.utterances ? row.utterances.split("\n") : [],
+      answers: row.answers ? row.answers.split("\n") : [],
+    }));
+
     connection.release();
-    return res.status(200).json(rows);
+    return res.status(200).json(result);
   } catch (err) {
     console.error("Database error:", err);
     res.status(500).json("Internal server error");
   }
 };
+
 
 export const addIntent = async (req, res) => {
   try {
@@ -63,7 +109,6 @@ export const addIntent = async (req, res) => {
     return res.status(500).json({ message: "Cannot add intent" });
   }
 };
-
 
 // Update an existing intent and its utterances and answers
 export const updateIntent = async (req, res) => {
@@ -111,3 +156,18 @@ export const updateIntent = async (req, res) => {
     return res.status(500).json({ message: "Cannot update intent" });
   }
 };
+
+export const deleteIntent = async (req, res) => {
+  try {
+    const intentID = req.params.id;
+
+    await db.query(`UPDATE intents SET Is_Deleted = 1 WHERE IntentID = ?`, [
+      intentID,
+    ]);
+    res.status(200).json({ message: "Intent deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ message: "Intent Delete Error" });
+  }
+};
+
+

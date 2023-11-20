@@ -59,7 +59,7 @@ const Write = () => {
           img: file ?
             imgUrl : postImg,
         })
-        : await axios.post(`/api/posts/`, {
+        : await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/posts/`, {
           title,
           desc: value,
           cat,

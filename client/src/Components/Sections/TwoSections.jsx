@@ -2,11 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import DOMPurify from 'dompurify'
 
-const TwoSections = ({ images, content, title, inverse, cta, icon, }) => {
+const TwoSections = ({ images, content, title, inverse, cta, icon, background }) => {
   const flexDirection = inverse ? 'two-sections-reverse' : '';
-  
+  const backGround = background ? 'bg-white' : '';
   return (
-    <div className={`two-sections-container bg-white ${flexDirection}`} >
+    <div className={`two-sections-container ${backGround} ${flexDirection}`} >
       <div className="image-container">
         <div className="image-grid">
           {images && images.map((img, index) => (

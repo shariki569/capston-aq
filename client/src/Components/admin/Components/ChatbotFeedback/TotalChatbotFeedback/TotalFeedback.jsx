@@ -14,7 +14,6 @@ const TotalFeedback = () => {
          try {
            const res = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/feedback/rating`)
            setRating(res.data[0])
-           console.log(res.data)
            setLoading(false)
          } catch (err) {
            console.log(err)

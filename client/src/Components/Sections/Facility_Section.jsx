@@ -22,7 +22,7 @@ const Facilities = () => {
             </div> */}
             <div className='facilities'>
                 <div className='facility-items'>
-                    {facilities.map((facility) => (
+                    {facilities && facilities.map((facility) => (
                         <div className="facility-item" key={facility.Fac_Id}>
 
                             <div className="image-wrap-facility">

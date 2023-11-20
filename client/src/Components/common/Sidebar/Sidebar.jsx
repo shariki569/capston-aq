@@ -19,17 +19,17 @@ const Sidebar = () => {
     }
 
 
-    useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const res = await axios.get('/api/pages/about-us')
-            setPageData(res.data);
-          } catch (err) {
-            console.log(err);
-          }
-        };
-        fetchData();
-      }, [])
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //       try {
+    //         const res = await axios.get('/api/pages/about-us')
+    //         setPageData(res.data);
+    //       } catch (err) {
+    //         console.log(err);
+    //       }
+    //     };
+    //     fetchData();
+    //   }, [])
 
   return (
     <div className='sidebar'>

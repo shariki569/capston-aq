@@ -1,3 +1,4 @@
+import { EventEmitter } from "events";
 import express from "express";
 import postRoutes from "./routes/posts.js";
 import facilityRoutes from "./routes/facilities.js";
@@ -19,6 +20,7 @@ import bodyParser from "body-parser";
 // import upload from "./middleware/multerUpload.js";
 import dotenv from "dotenv";
 
+EventEmitter.defaultMaxListeners = 30;
 
 if (process.env.NODE_ENV !== 'production') {
   dotenv.config();

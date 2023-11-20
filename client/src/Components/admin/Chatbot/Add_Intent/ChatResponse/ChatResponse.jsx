@@ -19,12 +19,12 @@ const ChatResponse = ({ value, handleChatResponseInput, handleAddChatResponse, p
                 <table className='addIntent__userSaysTable'>
                     <tbody>
                         {
-                            preview && preview.map((response, index) => (
+                            Array.isArray(preview) ? preview.map((response, index) => (
                                 <tr key={index}>
                                     <td>{response}</td>
                                     <td className='addIntent__chatResponseTrash'><BiSolidTrash size={20} onClick={() => handleRemove(index)}/></td>
                                 </tr>
-                            ))
+                            )) : null
                         }
                 
                     </tbody>

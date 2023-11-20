@@ -16,7 +16,7 @@ $nav-footer: 10px 50px;
 
     &.scrolled {
         transition: $base-transition;
-        background-color: $primaryColor;
+        background-color: $primary;
     }
 
     .container {
@@ -61,15 +61,58 @@ $nav-footer: 10px 50px;
             align-items: center;
 
             .link-item {
+              
                 display: flex;
                 cursor: pointer;
                 height: 100%;
                 align-items: center;
                 transition: ease-in-out 0.9s;
+                // overflow: hidden;
 
                 &:hover {
                     .dropdown-menu {
                         display: block;
+                    }
+
+                    
+                }
+
+                .link {
+                    overflow: hidden;
+                    position: relative;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 40%;
+                    // margin-block: auto;
+                    &:hover{
+                        h6{
+                            &::before{
+                                transform: translateX(0%);
+                            }
+
+                            
+                        }
+                    }
+                    
+                    h6 {
+                        &::before {
+                            content: "";
+                            width: 100%;
+                            background-color: $tertiary;
+                            position: absolute;
+                            bottom: 0px;
+                            height: 3px;
+                            border-radius: $base-border-radius;
+                            transform: translateX(-110%);
+                            transition: ease-in-out 0.2s;
+                        }
+
+                        &.active{
+                            &::before{
+                                transform: translateX(0%);
+                            }
+                        }
                     }
                 }
             }
@@ -227,7 +270,7 @@ $nav-footer: 10px 50px;
                     }
                 }
 
-                .share-container{
+                .share-container {
                     width: 100%;
                     padding: $base-padding-x;
                     margin-top: $base-margin;
@@ -235,7 +278,7 @@ $nav-footer: 10px 50px;
                     align-items: flex-start;
                     flex-direction: column;
 
-                    .share-title{
+                    .share-title {
                         padding: $base-padding-y;
                     }
                 }

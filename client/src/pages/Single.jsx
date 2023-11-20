@@ -48,12 +48,11 @@ const Single = () => {
     }
   }
 
-  
 
   return (
     <div className='single'>
       <div className="content">
-          <img src={`../upload/${post?.PostImg}`} alt="" />
+          <img src={post?.PostImg} alt="" />
           <div className="user">
             {
               post.userImage && <img 

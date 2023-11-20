@@ -87,7 +87,6 @@ const Contact_Info = () => {
     <div className='add'>
       <div className='content'>
         <h2 className='dashboard-header'>Contact Information</h2>
-
         <div className="contact-details">
           <ul className='contact-items'>
             {contactItems.map((item, index) => (

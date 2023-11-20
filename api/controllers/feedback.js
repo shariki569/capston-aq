@@ -43,7 +43,7 @@ export const getFeedback = async (req, res) => {
 
     const connection = await db.getConnection();
     const [rows] = await connection.query(q);
-
+    
     return res.status(200).json(rows);
   } catch (err) {
     console.log(err);

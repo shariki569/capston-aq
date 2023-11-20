@@ -3,7 +3,7 @@ import './slider.scss';
 import { FaQuoteRight } from "react-icons/fa";
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
 const Slider = ({ children }) => {
-  const itemsPerSlide = 1;
+  const itemsPerSlide = 2;
   const totalSlides = Math.ceil(children.length / itemsPerSlide) || 1;
 
 

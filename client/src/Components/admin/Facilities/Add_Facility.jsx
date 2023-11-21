@@ -22,6 +22,8 @@ const Add_Facility = () => {
     previewFeaturedImage: null,
     galleryImages: state?.Gallery_Images || [],
     galleryFiles: [],
+    loading: false,
+    error: null,
   });
 
   const handleImageChange = (e) => {
@@ -101,7 +103,10 @@ const Add_Facility = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-
+    setFacility((prevFacility) => ({
+      ...prevFacility,
+      loading: true,
+    }))
     try {
       let updatedGalleryImages = [...facility.galleryImages];
       if (facility.galleryFiles.length > 0) {
@@ -127,7 +132,16 @@ const Add_Facility = () => {
       console.log("Existing Gallery Images:", facility.galleryImages);
       navigate('/dashboard/facilities');
     } catch (err) {
-      console.log(err, "cannot post");
+      // console.log(err, "cannot post");
+      setFacility((prevFacility) => ({
+        ...prevFacility,
+        error: err.err,
+      }))
+    } finally {
+      setFacility((prevFacility) => ({
+        ...prevFacility,
+        loading: false,
+      }))
     }
   };
   console.log("Existing Gallery Images:", facility.galleryImages);
@@ -163,6 +177,7 @@ const Add_Facility = () => {
             previewImage={facility.previewFeaturedImage}
             removeSelectedImage={removeFeaturedImage}
             handleImageChange={handleImageChange}
+            err={facility.error}
           />
           <ImageGalleryUploader
             title="Gallery Images"
@@ -172,11 +187,15 @@ const Add_Facility = () => {
             removeImageItem={removeGalleryImage}
           />
           <div className="buttons">
-            <button className='btn' onClick={handleClick}>Publish</button>
+            {facility.loading ? (
+              <button className='btn btn-loading' disabled>Publishing</button>
+            ) : (
+              <button button className='btn' onClick={handleClick}>Publish</button>
+            )}
             {/* <button>Save as a Draft</button> */}
           </div>
         </div>
-      </div>
+      </div >
     </>
   );
 };

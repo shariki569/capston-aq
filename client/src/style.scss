@@ -202,6 +202,9 @@ li {
     width: 100%;
     margin-inline: auto;
 }
+.error{
+    color: $error;
+}
 
 .hidden {
     display: none;

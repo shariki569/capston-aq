@@ -15,11 +15,14 @@ export const getAmenities = async (req, res) => {
 };
 
 export const deleteAmenity = (req, res) => {
+  const connection = db.getConnection();
   const amenityId = req.params.id;
   const q = "DELETE FROM amenities WHERE `Amenity_Id` = ?";
 
-  db.query(q, [amenityId], (err, data) => {
+  connection.query(q, [amenityId], (err, data) => {
     if (err) return res.status(500).json("Error Deleting" + err.message);
     return res.json("Amenity Deleted");
   });
+
+  connection.end();
 };

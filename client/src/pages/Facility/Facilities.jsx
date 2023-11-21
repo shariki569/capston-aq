@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../../Components/ui/Header'
-import headerImage from '/upload/1697021778728IMG_6025.jpg'
+import headerImage from '../../img/header1.jpg'
 import SectionWithHeading from '../../Components/Sections/SectionWithHeading'
 import TwoSectionsWithGallery from '../../Components/Sections/TwoSectionsWithGallery'
 import Amenities from '../../Components/Sections/Amenities'

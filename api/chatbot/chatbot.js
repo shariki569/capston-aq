@@ -31,7 +31,7 @@ corpusEntries.forEach((entry) => {
   });
 });
 
-await nlp.train();
+// await nlp.train();
 
 const processInput = async (input, context) => {
   try {

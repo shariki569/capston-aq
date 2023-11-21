@@ -5,6 +5,7 @@ envConfig();
 
 export const addFeedback = async (req, res) => {
   try {
+    const connection = await db.getConnection();
     const q =
       "INSERT INTO feedback (`FeedBack_Name`, `FeedBack_Email`, `FeedBack_Rating`, `FeedBack_Description`, `FeedBack_Status`, `is_Deleted`) VALUES (?, ?, ?, ?, ?, ?)";
 
@@ -17,7 +18,8 @@ export const addFeedback = async (req, res) => {
       0,
     ];
 
-    await db.query(q, values);
+    await connection.query(q, values);
+    connection.release();
     return res.json("Feedback has been added");
   } catch (err) {
     console.log(err);
@@ -26,6 +28,7 @@ export const addFeedback = async (req, res) => {
 };
 export const getFeedback = async (req, res) => {
   try {
+    const connection = await db.getConnection();
     const q = `SELECT 
     feedback.FeedBack_ID,
     feedback.FeedBack_Name, 
@@ -41,9 +44,9 @@ export const getFeedback = async (req, res) => {
     GROUP BY FeedBack_ID, FeedBack_Name, FeedBack_Email
     ORDER BY MAX(FeedBack_Date) DESC `;
 
-    const connection = await db.getConnection();
+
     const [rows] = await connection.query(q);
-    
+    connection.release();
     return res.status(200).json(rows);
   } catch (err) {
     console.log(err);
@@ -59,6 +62,7 @@ export const getRatings = async (req, res) => {
 
     const connection = await db.getConnection();
     const [rows] = await connection.query(q);
+    connection.release();
     return res.status(200).json(rows);
   } catch (err) {
     console.log(err);
@@ -72,11 +76,12 @@ export const updateFeedback = async (req, res) => {
     return res.status(401).json("Not Authenticated to Update this feedback");
 
   try {
+    const connection = await db.getConnection();
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const userId = decoded.id;
     const feedbackId = req.params.id;
 
-    const [users] = await db.query(
+    const [users] = await connection.query(
       "SELECT users.id, users.username, users.email, role.Role_Name FROM users INNER JOIN role ON users.role = role.Role_ID WHERE users.id = ?",
       [userId]
     );
@@ -92,7 +97,8 @@ export const updateFeedback = async (req, res) => {
 
     const values = [req.body.Status, userId, feedbackId];
 
-    const [result] = await db.query(q, values);
+    const [result] = await connection.query(q, values);
+    connection.release();
     return res.json("Feedback has been approved!");
   } catch (error) {
     console.log(error);
@@ -105,7 +111,7 @@ export const approvedFeedback = async (req, res) => {
     const q = `SELECT FeedBack_ID, FeedBack_Name, FeedBack_Email, FeedBack_Description, FeedBack_Rating FROM feedback WHERE FeedBack_Status = 'Approved'`;
     const connection = await db.getConnection();
     const [rows] = await connection.query(q);
-
+    connection.release();
     if (rows.length === 0) {
       return res.status(404).json("No feedback found");
     }

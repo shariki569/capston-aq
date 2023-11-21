@@ -10,7 +10,8 @@ const ImageUploader = (props) => {
     handleImageChange,
     removeSelectedImage,
     existingImage,
-    title
+    title,
+    err
   } = props;
 
 
@@ -44,6 +45,7 @@ const ImageUploader = (props) => {
           </label>
         </div>
       </div>
+      {err && <p className='error'>{err}</p>}
     </>
   );
 }

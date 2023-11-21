@@ -5,6 +5,8 @@ import home2 from '../../img/Home/home2.webp'
 import home1 from '../../img/Home/home_1.jpg'
 import home3 from '../../img/Home/home3.webp'
 import home4 from '../../img/Home/home4.webp'
+import home5 from '../../img/Home/home7.webp'
+import home6 from '../../img/Home/home8.webp'
 //images
 import Accommodation_Items from '../../pages/Accommodation/Accommodation_Items'
 import SectionWithHeading from './SectionWithHeading'
@@ -43,9 +45,9 @@ const HomeSection1 = () => {
                 content="Leave the hustle and bustle of daily life far behind as you immerse yourself in the rejuvenating ambiance of our resort. Our serene surroundings provide the perfect getaway for recharging your mind, body, and soul."
                 images={
                     [
-                        `/upload/1691565564092Accomodation-Header.jpeg`,
+                        home5,
                         home4,
-                        `/upload/16955525828161691565231316Small-cottage.webp`,
+                        home6
 
                     ]
                 }

@@ -12,6 +12,7 @@ const AddIntentInputs = ({searchPlaceholder, label, value, onChange, handleButto
           placeholder='Type Dialogue and Press enter'
           label={label}
           value={value}
+          containerClass={'addIntent__InputField'}
         />
         <button onClick={handleButton} className='addIntent__Btn'><BiReply size={25} /></button>
       </div>

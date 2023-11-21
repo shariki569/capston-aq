@@ -12,7 +12,7 @@ const Chatbox = () => {
   const [messages, setMessages] = useState([
     {
       sender: 'Bot',
-      text: "Hi, I'm Admin",
+      text: "Hi, Admin you wanna train me today?",
     }
   ])
   const [loading, setLoading] = useState(false);

@@ -6,7 +6,8 @@ envConfig();
 
 export const register = async (req, res) => {
   try {
-    const [existingUsers] = await db.query(
+    const connection = await db.getConnection();
+    const [existingUsers] = await connection.query(
       "SELECT * FROM users WHERE email = ? OR username = ?",
       [req.body.email, req.body.username]
     );
@@ -25,7 +26,7 @@ export const register = async (req, res) => {
       role: 3
     };
 
-    const [result] = await db.query("INSERT INTO users SET ?", newUser);
+    const [result] = await connection.query("INSERT INTO users SET ?", newUser);
     if (result.affectedRows > 0) {
       //User has created
       const userId = result.insertId;
@@ -38,6 +39,8 @@ export const register = async (req, res) => {
         })
         .status(200)
         .json("User has been created!");
+
+      connection.release();
     } else {
       return res.status(500).json("User registration failed");
     }
@@ -50,8 +53,9 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   try {
     // Check user
+    const connection = await db.getConnection();
     const q = "SELECT users.*, role.Role_Name FROM users  INNER JOIN role ON users.role = role.Role_Id WHERE username = ?";
-    const [rows] = await db.query(q, [req.body.username]);
+    const [rows] = await connection.query(q, [req.body.username]);
 
     if (rows.length === 0) {
       return res.status(404).json("User Not Found!");
@@ -79,6 +83,7 @@ export const login = async (req, res) => {
       })
       .status(200)
       .json(other);
+      connection.release();
   } catch (err) {
     console.error("Database error:", err);
     return res.status(500).json(err);

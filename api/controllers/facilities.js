@@ -45,11 +45,11 @@ ON
   
   WHERE f.Is_Deleted = 0`;
 
-try {
-    const [data] = await db.query(q);
-    
-    const facilitiesWithImages = [];
+  try {
+    const connection = await db.getConnection();
+    const [data] = await connection.query(q);
 
+    const facilitiesWithImages = [];
     data.forEach((facility) => {
       const {
         Fac_Id,
@@ -80,11 +80,13 @@ try {
         existingFacility.Gallery_Images.push(Gallery_Images);
       }
     });
+    connection.release();
 
     return res.status(200).json(facilitiesWithImages);
-} catch (err) {
+  } catch (err) {
     return res.status(500).json(err);
-}
+  }
+
 };
 
 export const addFacility = async (req, res) => {
@@ -136,7 +138,7 @@ export const updateFacility = async (req, res) => {
   try {
     const facId = req.params.id;
     const { fac_title, fac_desc, featured_img, gallery_imgs } = req.body;
-
+    const connection = await db.getConnection();
     // Define the SQL query to update facility title and description
     const updateFacilityQuery = `
       UPDATE facilities
@@ -145,7 +147,7 @@ export const updateFacility = async (req, res) => {
     `;
 
     // Execute the query to update facility title and description
-    const [updateFacilityResult] = await db.query(updateFacilityQuery, [fac_title, fac_desc, facId]);
+    const [updateFacilityResult] = await connection.query(updateFacilityQuery, [fac_title, fac_desc, facId]);
 
     if (updateFacilityResult.affectedRows < 1) {
       return res.status(404).json('Facility not found or not updated');
@@ -158,7 +160,7 @@ export const updateFacility = async (req, res) => {
       WHERE Fac_Id = ?;
     `;
 
-    const [existingGalleryImages] = await db.query(existingGalleryImagesQuery, [facId]);
+    const [existingGalleryImages] = await connection.query(existingGalleryImagesQuery, [facId]);
 
     const existingGalleryImgs = existingGalleryImages.map((img) => img.FacImg_Name);
 
@@ -170,7 +172,7 @@ export const updateFacility = async (req, res) => {
         WHERE Fac_Id = ? AND FacImg_Name IN (?);
       `;
 
-      await db.query(removeImagesQuery, [facId, imagesToRemove]);
+      await connection.query(removeImagesQuery, [facId, imagesToRemove]);
     }
 
     const imagesToAdd = gallery_imgs.filter((img) => !existingGalleryImgs.includes(img));
@@ -183,7 +185,7 @@ export const updateFacility = async (req, res) => {
 
       const insertGalleryValues = imagesToAdd.map((filename) => [facId, filename, 0]);
 
-      await db.query(insertGalleryImagesQuery, [insertGalleryValues]);
+      await connection.query(insertGalleryImagesQuery, [insertGalleryValues]);
     }
 
     // Handle featured image
@@ -193,7 +195,7 @@ export const updateFacility = async (req, res) => {
       WHERE Fac_Id = ?;
     `;
 
-    await db.query(updateFeaturedImgQuery, [facId]);
+    await connection.query(updateFeaturedImgQuery, [facId]);
 
     if (featured_img) {
       const insertFeaturedImgQuery = `
@@ -203,9 +205,9 @@ export const updateFacility = async (req, res) => {
 
       const insertFeaturedImgValues = [facId, featured_img];
 
-      await db.query(insertFeaturedImgQuery, insertFeaturedImgValues);
+      await connection.query(insertFeaturedImgQuery, insertFeaturedImgValues);
     }
-
+    connection.release();
     return res.json('Facility has been updated');
   } catch (err) {
     console.error('Error during facility update:', err);

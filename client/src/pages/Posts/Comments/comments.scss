@@ -1,0 +1,56 @@
+@use '../../../sass/Utilities/' as *;
+
+.comments__container {
+    .comments__title {
+        padding-block: $base-padding;
+        h3 {
+            color: $primary;
+        }
+    }
+    .comments__wrapper {
+        @include flexBoxRow(center, center, 1rem);
+        .comments__form {
+            flex: 5;
+        }
+
+        .comments__btn {
+            flex: 1;
+
+            .btn {
+                width: 100%;
+                display: flex;
+            }
+        }
+    }
+
+    .comment__items {
+        padding-block: $base-padding;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        .comment__item {
+            @include flexBoxColumn(center, flex-start, 0.5rem);
+            .comment__header {
+                display: flex;
+                gap: 1rem;
+            }
+            .comment__avatar {
+                width: 50px;
+                height: 50px;
+                border-radius: 100%;
+                overflow: hidden;
+                img {
+                    @include fullSize;
+                }
+            }
+            .comment__user{
+                h3{
+                    color: $greyColor;
+                }
+                span{
+                    color: $lightGreyColor;
+                }
+            }
+        }
+    }
+}

@@ -4,26 +4,8 @@ import { BiDotsVertical, BiReply, BiSolidTrash } from 'react-icons/bi'
 import './userSays.scss'
 import AddIntentInputs from '../../../Components/AddIntentInputs/AddIntentInputs'
 const UserSays = ({value, handleUserSaysInput, handleAddUserSays, preview, handleRemove}) => {
-    // const [userSaysInput, setUserSaysInput] = useState('');
-    // const [userSaysPreview, setUserSaysPreview] = useState([]);
 
-    // const handleUserSaysInput = (e) => {
-    //     setUserSaysInput(e.target.value);
-    // };
 
-    // const handleAddUserSays = () => {
-    //     if (userSaysInput.trim() !== '') {
-    //         setUserSaysPreview((prevUserSays) => [...prevUserSays, userSaysInput.trim()]);
-    //         setUserSaysInput('');
-    //     }
-    // };
-
-    // const handleRemoveUserSays = (index) => {
-    //     const updatedUserSays = [...userSaysPreview];
-    //     updatedUserSays.splice(index, 1);
-    //     setUserSaysPreview(updatedUserSays);
-    // };
-  
     return (
         <div className='addIntent__userSays'>
             <AddIntentInputs

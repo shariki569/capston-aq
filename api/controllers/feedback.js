@@ -122,3 +122,22 @@ export const approvedFeedback = async (req, res) => {
     return res.status(500).json("Internal server error");
   }
 };
+
+
+export const deleteFeedback = async (req, res) => {
+  const token = req.cookies.access_token;
+  if (!token) return res.status(401).json("Not Authenticated");
+
+  try {
+    const connection = await db.getConnection();
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const userId = decoded.id;
+    const feedbackId = req.params.id;
+
+    const q = 'UPDATE feedback SET Is_Deleted = 1 WHERE FeedBack_ID = ? AND approved_By = ?';
+    connection.query(q, [feedbackId, userId]);
+    connection.release();
+  } catch (error) {
+    console.log(error)
+  }
+}

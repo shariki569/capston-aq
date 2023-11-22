@@ -1,11 +1,13 @@
 @use '../Utilities/' as *;
 
 .single {
+    padding-block: $base-padding;
     display: flex;
     gap: 50px;
-    margin: $large-margin-y;
-    margin-inline: auto;
-    padding-inline: 10rem;
+    @include centerAndSet(1300px, 2rem);
+    // margin: $large-margin-y;
+    // margin-inline: auto;
+    // padding-inline: 10rem;
 
     .content {
         display: flex;
@@ -17,6 +19,7 @@
             width: 100%;
             height: 300px;
             object-fit: cover;
+            border-radius: $base-border-radius;
         }
 
         .user {
@@ -83,7 +86,8 @@
         p {
            
             text-align: justify;
-            line-height: 30px;
+            // line-height: 30px;
+            color: $description
         }
 
         .wrapper{
@@ -132,45 +136,42 @@
         gap: 25px;
 
         h1 {
-            font-size: $content;
-            color: #555;
-            font-family: $font-libre-franklin;
+            font-size: $f-large;
+            color: $description
+        
         }
 
         .post {
             display: flex;
             flex-direction: column;
             gap: 10px;
+            
 
             img {
                 width: 100%;
                 height: 200px;
                 object-fit: cover;
+                border-radius: $base-border-radius;
             }
 
             h2 {
                 color: #555;
-                font-family: $font-libre-franklin;
+               
                 font-weight: $w-bold;
                 font-size: $subheading;
             }
 
-            button {
+            .btn-menu {
                 width: max-content;
-                border: none;
-                cursor: pointer;
-                padding: 10px 20px;
+                // border: none;
+                // cursor: pointer;
+                padding: $small-button-size;
                 background-color: white;
-                border: 1px solid teal;
-                color: teal;
-                font-family: $font-libre-baskerville;
-                transition: 0.1s ease-in-out;
+               
+                
+               
 
-                &:hover {
-                    border: 1px solid white;
-                    background-color: $lightGreen;
-                    color: black;
-                }
+               
             }
         }
     }

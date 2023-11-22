@@ -42,8 +42,8 @@ const Posts_Menu = () => {
                                 <tr>
                                     <th>Id</th>
                                     <th>Date Posted</th>
-                                    <th>Title</th>
                                     <th>Img</th>
+                                    <th>Title</th>
                                     <th>Description</th>
                                     <th>Category</th>
 
@@ -55,17 +55,17 @@ const Posts_Menu = () => {
                                 {posts.map((post) => (
                                     <tr key={post.PostId}>
                                         <td className='center'>{post.PostId}</td>
-                                        <td  className='center' >{moment(post.date).format("YYYY-MM-DD")}</td>
-                                        <td className='center'>{post.PostTitle}</td>
+                                        <td className='center' >{moment(post.date).format("YYYY-MM-DD")}</td>
                                         <td className='center'>  <img src={post.PostImg} alt="" /></td>
+                                        <td className='small '><p className='ellipse'>{post.PostTitle}</p></td>
                                         <td className='description'><p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.PostDesc) }}></p></td>
                                         <td className='center'>{post.PostCat}</td>
                                         <td className='center'>{post.username}</td>
                                         <td>
                                             <div className='crud-btn'>
-                                              
+
                                                 <Link state={post} to={`/dashboard/posts/write?edit=${post.PostId}`}><button>View</button></Link>
-                                                <button onClick={() => handleDelete(post.PostId)}><FiTrash2/></button>
+                                                <button onClick={() => handleDelete(post.PostId)}><FiTrash2 /></button>
                                             </div>
                                         </td>
                                     </tr>

@@ -155,6 +155,11 @@ a {
     text-decoration: none;
 }
 
+
+.ql-container .ql-snow{
+    min-height: 300px !important;
+}
+
 body {
     min-height: 100vh;
     overflow-x: hidden;
@@ -335,7 +340,10 @@ li {
             display: flex;
             flex-direction: column;
             gap: 5px;
+            max-width: 100%;
+
             color: #555;
+            padding: $base-padding-x;
             h1 {
                 margin: $base-margin-y;
                 font-size: $heading;
@@ -362,6 +370,12 @@ li {
                 }
             }
 
+            .title{
+                font-size: $f-large;
+                font-weight: $w-bold;
+                color: $lighterGreyColor;
+            }
+
             .container {
                 margin: $small-margin-y;
             }
@@ -373,14 +387,22 @@ li {
             // }
 
             .editorContainer {
-                height: 300px;
-                overflow: scroll;
+                // max-width: 60%;
+                min-height: 300px;
+                height: 100%;
+                // overflow-y: auto;
                 border: 1px solid lightgray;
 
                 .editor {
                     height: 100%;
                     border: none;
                 }
+                .ql-editor.ql-blank{
+                    min-height: 300px;
+                }
+                // .react-quill {
+                //     max-width: 100%;
+                // }
             }
         }
 

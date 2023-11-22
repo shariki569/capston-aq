@@ -24,7 +24,7 @@
             align-items: center;
             gap: 10px;
             font-size: $content;
-            font-family: $font-libre-baskerville;
+        
 
             img {
                 width: 50px;
@@ -35,7 +35,7 @@
 
             span {
                 font-weight: bold;
-                font-family: font-libre-franklin;
+                 
                 font-weight: $w-semi-bold;
                 font-size: $content;
             }
@@ -56,12 +56,12 @@
                 border: none;
             }
             .icon {
-                background-color: teal;
+                background-color: $primary;
                 padding: 8px;
                 border-radius: 50%;
                 color: white;
-                width: 20px;
-                height: 20px;
+                width: 30px;
+                height: 30px;
                 cursor: pointer;
                 transition: 0.1s ease-in-out;
             }
@@ -76,12 +76,12 @@
 
         h1 {
             font-size: $heading;
-            font-family: $font-libre-franklin;
-            color: #333;
+            // font-family: $font-libre-franklin;
+            color: $description;
         }
 
         p {
-            font-family: $font-libre-baskerville;
+           
             text-align: justify;
             line-height: 30px;
         }

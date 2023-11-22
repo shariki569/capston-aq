@@ -19,7 +19,7 @@ const TestimonialSection = () => {
         setTestimonial(res.data)
         setIsLoading(false)
         console.log(res.data)
-      } catch (error) {
+      } catch (err) {
         console.log(err)
       }
     }

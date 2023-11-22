@@ -124,7 +124,7 @@ const ChatbotFeedback = () => {
                 <tr key={feedback.FeedBack_ID}>
                   <td className="small">{feedback.FeedBack_Name}</td>
                   <td>{feedback.FeedBack_Email}</td>
-                  <td className='description'>{feedback.Descriptions}</td>
+                  <td className='description'><p className="ellipsis">{feedback.Descriptions}</p></td>
                   <td>{Number(feedback.AverageRating).toFixed(1)}</td>
                   <td>{moment(feedback.FeedBack_Date).format("DD/MM/YYYY")}</td>
                   <td ><span className={`status ${feedback.FeedBack_Status.toLowerCase()}`}>{feedback.FeedBack_Status}</span></td>

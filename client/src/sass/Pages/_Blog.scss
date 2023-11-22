@@ -20,7 +20,7 @@
         justify-content: flex-start;
         @include cardBase($base-border-radius);
         @include boxShadow;
-        height: 200px;
+        height: 220px;
         .img {
             display: flex;
             flex: 1;
@@ -58,16 +58,16 @@
             }
             h1 {
                 font-family: $secondary-font;
-                font-size: $heading;
+                font-size: $f-large;
                 color: $primary;
-                @include ellipsis(1);
+                @include ellipsis(2);
                
             }
 
             p {
-                font-size: $content;
+                font-size: $f-normal;
                 font-family: $secondary-font;
-                @include ellipsis(3);
+                @include ellipsis(2);
               
             }
             .btn_wrapper{
@@ -99,9 +99,12 @@
                 gap: 0.5rem;
                 color: $lightGreyColor;
                 margin: $small-margin-y;
+                height: 100px;
             }
             .desc{
                 font-size: $f-normalx;
+                height: 190px;
+                // @include ellipsis(1);
             }
         }
     }

@@ -83,6 +83,7 @@ export const addAccomm = async (req, res) => {
 
 export const updateAccomm = async (req, res) => {
   try {
+    const connection = await db.getConnection();
     const q =
       'UPDATE accommodations SET `Accommodation_Title`=?, `Accommodation_Img`= ?, `Accommodation_Type`=?, `Accommodation_Desc`=?, `Accommodation_Cap`=?, `Accommodation_Price`=? , `Accommodation_Unit`=? WHERE `Accommodation_Id`=?';
 
@@ -97,8 +98,8 @@ export const updateAccomm = async (req, res) => {
       req.body.accommUnit,
       accommId,
     ];
-
-    db.query(q, values);
+    connection.query(q, values);
+    connection.release();
     return res.json('Accommodation has been updated');
   } catch (error) {
     console.error('Database error:', error);

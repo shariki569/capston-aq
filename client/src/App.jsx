@@ -55,13 +55,28 @@ import User from "./Components/admin/User";
 import DashboardChatbotLayout from "./Components/layouts/DashboardChatbotLayout/DashboardChatbotLayout";
 import AddIntent from "./Components/admin/Chatbot/Add_Intent/AddIntent";
 import FAQs from "./pages/FAQs/FAQs";
+import Unauthorized from "./Components/admin/Unauthorized/Unauthorized";
 
+
+// const PrivateRoute = ({ element, path }) => {
+//   const { currentUser } = useContext(AuthContext);
+//   return currentUser ? element : <Navigate to="/login" />;
+// };
 
 const PrivateRoute = ({ element, path }) => {
   const { currentUser } = useContext(AuthContext);
-  return currentUser ? element : <Navigate to="/login" />;
+  
+  if (!currentUser) {
+    // If the user is not logged in, redirect to the login page
+    return <Navigate to="/login" />;
+  } else if (currentUser.Role_Name === 'User') {
+    // If the user's role is 'User', redirect to an unauthorized page
+    return <Navigate to="/unauthorized" />;
+  } else {
+    // If the user's role is 'Admin', allow them to access the dashboard
+    return element;
+  }
 };
-
 
 
 const router = createBrowserRouter([
@@ -214,8 +229,8 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/create-blog",
-    element: <Write />,
+    path: "/unauthorized",
+    element: <Unauthorized/>,
   },
 ]);
 

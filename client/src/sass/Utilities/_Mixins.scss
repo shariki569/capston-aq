@@ -104,12 +104,12 @@
 
 @mixin ellipsis($clampSize) {
     // width: $width;
+    display: -webkit-box;
     text-overflow: clip;
     overflow: hidden;
     -webkit-line-clamp: $clampSize;
     -webkit-box-orient: vertical;
     text-overflow: ellipsis;
-    display: -webkit-box;
 }
 
 @mixin tableHeadingWhite {

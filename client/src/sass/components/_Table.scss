@@ -19,25 +19,33 @@ table {
             font-weight: $w-bold;
             background-color: $primaryColor;
         }
-        td.small{
+        td.small {
             // // min-width: 3rem;
             width: 150px;
+         
         }
 
         td.center {
             text-align: center;
         }
 
+        .ellipsis{
+            @include ellipsis(3);
+           
+        }
         .nowrap {
             white-space: nowrap;
         }
 
         td.description {
             max-width: 250px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            padding: $small-padding;
+            padding-block: $small-padding;
+    
+            p {
+                height: 54px;
+                @include ellipsis(3);
+                padding-block: $small-padding;
+            }
         }
         td {
             // border: 1px solid $borders;
@@ -91,12 +99,12 @@ table {
         cursor: pointer;
         position: relative;
         font-size: $f-normal;
-        &:hover{
+        &:hover {
             background-color: $lighterGreyColor;
             border-radius: $base-border-radius;
         }
 
-        .dots-menu{
+        .dots-menu {
             z-index: 12;
             @include flexBoxColumn(center, flex-start, 0rem);
             @include cardBase($base-border-radius);

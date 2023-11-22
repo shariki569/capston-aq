@@ -45,7 +45,7 @@ const Facilities = () => {
                     <td className='center'>
                       <div className='crud-btn'>
                     
-                        <Link state={facility} to={`/dashboard/facilities/write?edit=${facility.Fac_Id}`}><button>View</button></Link>
+                        <Link state={facility} to={`/dashboard/facilities/write?edit=${facility.Fac_Id}`}><button>Edit</button></Link>
                         <button onClick={() => handleDelete(facility.Fac_Id)}><FiTrash2 /></button>
                       </div>
                     </td>

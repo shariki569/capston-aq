@@ -9,6 +9,7 @@ import axios from 'axios'
 import DOMPurify from 'dompurify'
 import PostHeading from "../Components/PostComponents/PostHeading";
 import SEO from '../Components/SEO/SEO'
+import Comments from './Posts/Comments/Comments'
 
 
 
@@ -89,6 +90,7 @@ const Single = () => {
           <p
             dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.PostDesc) }}>
           </p>
+          <Comments id={postId}/>
         </div>
         <Menu cat={post.PostCat} />
       </div>

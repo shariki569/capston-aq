@@ -6,7 +6,7 @@ import Header from "../../Components/ui/Header";
 import Skeleton from "react-loading-skeleton";
 import PostHeading from "../../Components/PostComponents/PostHeading";
 import PostItems from "./PostItems";
-
+import ScrollToTop from "../../Components/Hoc/ScrollToTop";
 const Posts = () => {
   const [posts, setPosts] = useState([]);
 
@@ -44,4 +44,4 @@ const Posts = () => {
   );
 };
 
-export default Posts;
+export default ScrollToTop(Posts);

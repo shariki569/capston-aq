@@ -56,7 +56,7 @@ const AccommodationMenu = () => {
                     <td className='center'>{accomm.Accommodation_Unit}</td>
                     <td>
                       <div className='crud-btn'>
-                        <Link state={accomm} to={`/dashboard/accommodations/write?edit=${accomm.Accommodation_Id}`}><button>View</button></Link>
+                        <Link state={accomm} to={`/dashboard/accommodations/write?edit=${accomm.Accommodation_Id}`}><button>Edit</button></Link>
                         <button onClick={() => handleDelete(accomm.Accommodation_Id)}><FiTrash2 /></button>
                       </div>
                     </td>

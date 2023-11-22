@@ -104,9 +104,9 @@ export const updatePost = async (req, res) => {
     const postId = req.params.id;
 
     const q =
-      'UPDATE posts SET `PostTitle` = ?, `PostDesc` = ?, `PostImg` = ?, `PostCat` = ? WHERE `PostId` = ? AND `post_uid` = ?';
+      'UPDATE posts SET `PostTitle` = ?,`PostSlug` = ?, `PostDesc` = ?, `PostImg` = ?, `PostCat` = ? WHERE `PostId` = ? AND `post_uid` = ?';
 
-    const values = [req.body.title, req.body.desc, req.body.img, req.body.cat, postId, userInfo.id];
+    const values = [req.body.title,req.body.slug, req.body.desc, req.body.img, req.body.cat, postId, userInfo.id];
 
     const [result] = await connection.query(q, values);
 

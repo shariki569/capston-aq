@@ -30,8 +30,10 @@ const app = express();
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    'https://aquacaintacapstone.netlify.app'
+    'https://aquacaintacapstone.netlify.app',
+    
 ],
+  optionsSuccessStatus: 200,
   credentials: true
 }));
 

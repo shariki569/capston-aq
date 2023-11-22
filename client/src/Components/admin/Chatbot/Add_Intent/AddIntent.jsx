@@ -112,7 +112,7 @@ const AddIntent = () => {
           </button>
         )}
         {addIntent.error && (
-          <div className='error'>{addIntent.error}</div>
+          <div className='error'>{addIntent.error.message}</div>
         )}
       </div>
       <div className='addIntent__forms'>

@@ -22,12 +22,12 @@ const Accommodation_Single = () => {
         title={accomm?.Accommodation_Title}
         pageSlug="accommodation"
         small
-        imageUrl={`/upload/${accomm?.Accommodation_Img}`}
+        imageUrl={accomm?.Accommodation_Img}
       />
       <div className="accomm__single_wrapper">
         <div className="container">
           <div className="content">
-            <img src={`/upload/${accomm?.Accommodation_Img}`} alt={accomm?.Accommodation_Title} />
+            <img src={accomm?.Accommodation_Img} alt={accomm?.Accommodation_Title} />
             <div className="accommodation-wrapper">
               <div className="title">
                 <h1>{accomm?.Accommodation_Title}</h1>

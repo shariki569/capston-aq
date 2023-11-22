@@ -83,7 +83,7 @@ const Chatbox = () => {
         </div>
       </div>
       <div className='chatbot__container'>
-        <div className='chatbot-panel' ref={messagePanelRef}>
+        <div className='chatbot-panel colored-panel' ref={messagePanelRef}>
           {messages.map((message, index) => (
             <p className={`message ${message.sender}`} key={index}>
               {message.sender === 'Bot' ? (<span dangerouslySetInnerHTML={{

@@ -24,7 +24,7 @@ const Posts_Menu = () => {
 
     const handleDelete = async (postId) => {
         try {
-            await axios.delete(`/api/posts/${postId}`)
+            await axios.delete(`${import.meta.env.VITE_APP_BACKEND_URL}/api/posts/${postId}`)
             setPosts(posts.filter((post) => post.PostId !== postId))
         } catch (err) {
             console.log(err)
@@ -47,7 +47,7 @@ const Posts_Menu = () => {
                                     <th>Description</th>
                                     <th>Category</th>
 
-                                    <th>User</th>
+                                    <th>Posted By</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -63,8 +63,8 @@ const Posts_Menu = () => {
                                         <td className='center'>{post.username}</td>
                                         <td>
                                             <div className='crud-btn'>
-                                                <button>View</button>
-                                                <Link state={post} to={`/dashboard/posts/write?edit=${post.PostId}`}><button>Update</button></Link>
+                                              
+                                                <Link state={post} to={`/dashboard/posts/write?edit=${post.PostId}`}><button>View</button></Link>
                                                 <button onClick={() => handleDelete(post.PostId)}><FiTrash2/></button>
                                             </div>
                                         </td>

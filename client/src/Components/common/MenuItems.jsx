@@ -81,8 +81,4 @@ export const sidebarLinks = [
     title: "Contact Info",
     path: "contact-details",
   },
-  {
-    title: "Media",
-    path: "media",
-  },
 ]

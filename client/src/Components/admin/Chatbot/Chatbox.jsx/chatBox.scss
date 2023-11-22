@@ -1,6 +1,6 @@
-@use '../../../../sass/Utilities/' as *;
+@use "../../../../sass/Utilities/" as *;
 
-.chatbox__container{
+.chatbox__container {
     @include cardBase($base-border-radius);
     padding: $base-padding;
     @include boxShadow;
@@ -9,16 +9,15 @@
     max-height: 100dvh;
     box-sizing: border-box;
     @include flexBoxColumn(space-between, flex-end, 1rem);
-    .chatbox__header{
+    .chatbox__header {
         @include flexBoxColumn(space-between, center, 1rem);
 
-        .chatbox__train{
+        .chatbox__train {
             margin-left: auto;
-            button{
+            button {
                 display: flex;
-                
             }
-            h3{
+            h3 {
                 display: flex;
                 align-items: center;
                 gap: 0.8rem;
@@ -26,7 +25,7 @@
         }
     }
 
-    .chatbot__container{
+    .chatbot__container {
         height: 550px;
         width: 100%;
         // max-height: ;
@@ -36,18 +35,20 @@
         // border: 2px solid $lightGreyColor;
         display: flex;
         flex-direction: column;
-      
+        background: $lighterGreyColor;
         // @include flexBoxColumn(space-between, center, 1rem);
-        .chatbot__panel{
+        .chatbot__panel {
             width: 100%;
+         
+          
         }
-        .chatbot__input{
+        .chatbot__input {
             width: 100%;
             display: flex;
             margin-top: auto;
 
-            .send-admin{
-                border-radius: 0  $base-border-radius  $base-border-radius  0;
+            .send-admin {
+                border-radius: 0 $base-border-radius $base-border-radius 0;
                 margin-left: -3px;
             }
         }

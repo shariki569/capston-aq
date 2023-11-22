@@ -1,7 +1,11 @@
-import { db} from "../db.js";
+import { db } from "../db.js";
 import jwt from "jsonwebtoken";
-import { envConfig } from "../middleware/envConfig.js";
-envConfig();
+// import { envConfig } from "../middleware/envConfig.js";
+// envConfig();
+import env from "dotenv";
+env.config();
+
+
 
 export const getPosts = async (req, res) => {
   try {
@@ -24,11 +28,12 @@ export const getPosts = async (req, res) => {
 export const getPost = async (req, res) => {
   try {
     const q =
-      'SELECT PostId, `username`, `PostTitle`, `PostDesc`, `PostImg`, u.img AS userImage, `PostCat`, `date` FROM users u JOIN posts p ON u.id = p.Post_Uid WHERE PostId = ?';
-      const connection = await db.getConnection();
-    const [rows] = await connection.query(q, [req.params.id]);
-    
-    return res.status(200).json(rows[0]);
+      'SELECT PostId, username, PostSlug, PostTitle, PostDesc, PostImg, u.img AS userImage, PostCat, date FROM users u JOIN posts p ON u.id = p.post_uid WHERE PostSlug = ?';
+    const connection = await db.getConnection();
+    const [data] = await connection.query(q, [req.params.slug]);
+
+    connection.release();
+    return res.status(200).json(data[0]);
   } catch (err) {
     console.error('Database error:', err);
     return res.status(500).json(err);
@@ -36,19 +41,28 @@ export const getPost = async (req, res) => {
 };
 
 export const addPost = async (req, res) => {
+
   const token = req.cookies.access_token;
   if (!token) return res.status(401).json('Not authenticated');
+  const userInfo = jwt.verify(token, process.env.JWT_SECRET);
 
   try {
-    const userInfo = jwt.verify(token, process.env.JWT_SECRET);
-
+    const connection = await db.getConnection();
     const q =
-      'INSERT INTO posts(`PostTitle`, `PostDesc`, `PostImg`, `PostCat`, `date`, `Post_Uid` ) VALUES (?, ?, ?, ?, ?, ?)';
-    
-    const values = [req.body.title, req.body.desc, req.body.img, req.body.cat, req.body.date, userInfo.id];
-    
-    await db.query(q, values);
-    
+      'INSERT INTO posts(`PostTitle`, `PostDesc`, `PostImg`, `PostCat`, `date`, `post_uid` ) VALUES (?, ?, ?, ?, ?, ?)';
+
+    const values = [
+      req.body.title,
+      req.body.slug,
+      req.body.desc,
+      req.body.img,
+      req.body.cat,
+      req.body.date,
+      userInfo.id
+    ];
+
+    await connection.query(q, values);
+    connection.release();
     return res.json('Post has been created');
   } catch (err) {
     console.error('JWT error:', err);
@@ -64,40 +78,42 @@ export const deletePost = async (req, res) => {
   try {
     const userInfo = jwt.verify(token, process.env.JWT_SECRET);
     const postId = req.params.id;
-    
-    const q = 'DELETE FROM posts WHERE `PostId` = ? AND `Post_Uid` = ?';
-    
+
+    // const q = 'DELETE FROM posts WHERE `PostId` = ? AND `Post_Uid` = ?';
+    const q = `UPDATE posts SET Is_Deleted = 1 WHERE PostId = ? AND Post_Uid = ?`;
     const [result] = await db.query(q, [postId, userInfo.id]);
-    
+
     if (result.affectedRows === 0) {
       return res.status(403).json('You can only delete your post!');
     }
-    
+
     return res.json('Post has been deleted!');
   } catch (err) {
     console.error('JWT error:', err);
     return res.status(403).json('Token is not valid');
   }
 };
+
+
 export const updatePost = async (req, res) => {
   const token = req.cookies.access_token;
   if (!token) return res.status(401).json('Not authenticated');
-
+  const connection = await db.getConnection();
   try {
     const userInfo = jwt.verify(token, process.env.JWT_SECRET);
     const postId = req.params.id;
-    
+
     const q =
-      'UPDATE posts SET `PostTitle` = ?, `PostDesc` = ?, `PostImg` = ?, `PostCat` = ? WHERE `PostId` = ? AND `Post_Uid` = ?';
-    
+      'UPDATE posts SET `PostTitle` = ?, `PostDesc` = ?, `PostImg` = ?, `PostCat` = ? WHERE `PostId` = ? AND `post_uid` = ?';
+
     const values = [req.body.title, req.body.desc, req.body.img, req.body.cat, postId, userInfo.id];
-    
-    const [result] = await db.query(q, values);
-    
+
+    const [result] = await connection.query(q, values);
+
     if (result.affectedRows === 0) {
       return res.status(403).json('You can only update your post!');
     }
-    
+    connection.release(); 
     return res.json('Post has been updated');
   } catch (err) {
     console.error('JWT error:', err);

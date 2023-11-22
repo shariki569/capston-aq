@@ -1,0 +1,38 @@
+@use '../../sass/Utilities/' as *;
+
+
+.faqs__list{
+    @include centerAndSet(1300px, 1rem);
+    @include flexBoxRow(center, flex-start, 1rem);
+    .faqs__left{
+        width: 50%;
+    }
+    .faqs__right{
+        width: 50%;
+    }
+
+    ol{
+     
+
+        li{
+            padding-block: $small-padding;
+            list-style: none;
+            display: list-item;
+            list-style-position: inside;
+            font-size: $f-normalx;
+            font-weight: $w-bold;
+            color: $primary;
+            ul{
+                li{
+                    list-style: disc;
+                    list-style-position: inside;
+                    padding-left: 4px;
+                    font-size: $f-normalx;
+                    font-weight: $w-normal;
+                    color: $description;
+                }
+                
+            }
+        }
+    }
+}

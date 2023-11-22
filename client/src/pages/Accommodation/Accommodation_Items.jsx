@@ -39,7 +39,7 @@ const Accommodation_Items = () => {
                     <img className="img" src={accomm.Accommodation_Img.startsWith('http') ? accomm.Accommodation_Img : `../../upload/${accomm.Accommodation_Img}`} alt={`${accomm.Accommodation_Title}`} />
                     <div className="description">
                       <div className="title">
-                        <Link to={`/accommodation/${accomm.Accommodation_Title}/${accomm.Accommodation_Id}`}><h2>{accomm.Accommodation_Title}</h2></Link>
+                        <Link to={`/accommodation/${accomm.Accommodation_Slug}/${accomm.Accommodation_Id}`}><h2>{accomm.Accommodation_Title}</h2></Link>
                       </div>
                       <p className="price">₱ {accomm.Accommodation_Price}</p>
                       <div className="accomodation-details">

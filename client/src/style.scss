@@ -20,12 +20,12 @@
 @use "./sass/components/Gallery.scss";
 @use "./sass/components/Amenities.scss";
 @use "./sass/components/Chatbot.scss";
-@use './Components/PostComponents/postHeading.scss';
-@use './sass/components/RatingsComponent.scss';
-@use './sass/components/RecentPosts.scss';
-
+@use "./Components/PostComponents/postHeading.scss";
+@use "./sass/components/RatingsComponent.scss";
+@use "./sass/components/RecentPosts.scss";
 
 //Pages
+@use "./sass/Pages/Blog.scss";
 @use "./sass/Pages/_Homepage.scss";
 @use "./sass/Pages/_About.scss";
 @use "./sass/Pages/Authentication.scss";
@@ -33,7 +33,7 @@
 @use "./sass/Pages/Accommodation.scss";
 @use "./sass/Pages/Singlepage.scss";
 @use "./sass/Pages/MediaGallery.scss";
-@use './sass/Pages/DashboardMain.scss';
+@use "./sass/Pages/DashboardMain.scss";
 
 //Commmon Components
 @use "./sass/common/Navbar.scss";
@@ -202,7 +202,7 @@ li {
     width: 100%;
     margin-inline: auto;
 }
-.error{
+.error {
     color: $error;
 }
 
@@ -253,17 +253,17 @@ li {
         font-family: $secondary-font;
     }
 
-    @include devices (tablet) {
+    @include devices(tablet) {
         p {
             padding-inline: 0;
             text-align: justify;
             text-indent: 2rem;
         }
-        h4{
+        h4 {
             font-size: $f-xlarge;
         }
-        h2{
-            font-size: $f-medium
+        h2 {
+            font-size: $f-medium;
         }
     }
 }
@@ -313,85 +313,6 @@ li {
     }
 
     //This is for the posts
-    .posts {
-        .post-items {
-            margin-top: 50px;
-            display: flex;
-            flex-direction: column;
-            gap: 150px;
-            padding: 20px 200px;
-        }
-
-        .post {
-            display: flex;
-            gap: 100px;
-
-            &:nth-child(2n + 1) {
-                flex-direction: row-reverse;
-            }
-
-            .img {
-                flex: 1;
-                position: relative;
-
-                &::after {
-                    content: "";
-                    width: 100%;
-                    height: 100%;
-                    background-color: $lightGreen;
-                    position: absolute;
-                    top: 20px;
-                    left: -20px;
-                    z-index: -1;
-                }
-
-                img {
-                    width: 100%;
-                    max-height: 400px;
-                    object-fit: cover;
-                }
-            }
-
-            .content {
-                flex: 3;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-
-                a {
-                    text-decoration: none;
-                }
-                h1 {
-                    font-family: $secondary-font;
-                    font-size: $heading;
-                    color: black;
-                }
-
-                p {
-                    font-size: $content;
-                    font-family: $secondary-font;
-                }
-
-                // button {
-                //     width: max-content;
-                //     border: none;
-                //     cursor: pointer;
-                //     padding: 10px 20px;
-                //     background-color: white;
-                //     border: 1px solid teal;
-                //     color: teal;
-                //     font-family: $secondary-font;
-                //     transition: 0.1s ease-in-out;
-
-                //     &:hover {
-                //         border: 1px solid white;
-                //         background-color: $lightGreen;
-                //         color: black;
-                //     }
-                // }
-            }
-        }
-    }
 
     //WRITING PAGE
     .add {
@@ -515,11 +436,20 @@ li {
 
                     .item-input {
                         display: flex;
-                        align-items: center;
-                        justify-content: center;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        // justify-content: center;
 
-                        span {
-                            padding: $small-padding-x;
+                        // span {
+                        //     padding: $small-padding-x;
+                        //     margin-top: auto;
+                        // }
+                        .label{
+                            font-size: $f-normal;
+                            font-weight: $w-bold;
+                            color: $primary;
+                            width: 100%;
+                            // padding: $small-margin-y;
                         }
 
                         .dropdown-input {
@@ -552,6 +482,16 @@ li {
                                 width: 2rem;
                                 background: $lightGreyColor;
                                 pointer-events: none;
+                            }
+                        }
+                        .radio-input-wrapper {
+                            @include flexBoxColumn(flex-start, flex-start, 0.3rem);
+                            padding: $small-padding-y;
+                            width: 100%;
+                            .radio-input {
+                                font-size: $f-normal;
+                                color: $description;
+                                @include flexBoxRow(flex-start, center, 0.2rem);
                             }
                         }
                     }
@@ -590,5 +530,4 @@ li {
     }
 
     //Dashboard
-   
 }

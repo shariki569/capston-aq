@@ -5,6 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 import Header from "../../Components/ui/Header";
 import Skeleton from "react-loading-skeleton";
 import PostHeading from "../../Components/PostComponents/PostHeading";
+import PostItems from "./PostItems";
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
@@ -25,27 +26,20 @@ const Posts = () => {
 
   return (
     <div className="posts">
-      <PostHeading/>
-      <div className="post-items">
-        {posts.map((post) => (
-          <div className="post" key={post.PostId}>
-            <div className="img">
-              <img src={post.PostImg} alt="" />
-            </div>
-            <div className="content">
-              <Link to={`/post/${post.PostId}`}>
-                <h1>{post.PostTitle || <Skeleton/>}</h1>
-              </Link>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(post.PostDesc),
-                }}
-              ></p>
-              <button>Read More</button>
-            </div>
+      <PostHeading />
+      <div className="post__container">
+        <div className="left">
+          <PostItems posts={posts} />
+        </div>
+        <div className=" right">
+          <div>
+            <h4>Other Posts you may like</h4>
+            {/* <PostItems posts={posts} /> */}
           </div>
-        ))}
+        </div>
       </div>
+
+
     </div>
   );
 };

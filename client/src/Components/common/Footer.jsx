@@ -16,7 +16,7 @@ const Footer = () => {
     { title: "About Us", path: "/about-us" },
     { title: "Privacy Policy", path: "/" },
     { title: "Resort Policy", path: "/" },
-    { title: "FAQs", path: "/" },
+    { title: "FAQs", path: "/frequently-asked-questions" },
     { title: "Blog", path: "/" },
   ]
 

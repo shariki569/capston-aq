@@ -44,14 +44,14 @@ const UserSays = ({value, handleUserSaysInput, handleAddUserSays, preview, handl
                                 </td>
                             </tr>
                         ))} */}
-                        {Array.isArray(preview) ? preview.map((userSay, index) => (
+                        {preview.map((userSay, index) => (
                             <tr key={index}>
                                 <td>{userSay}</td>
                                 <td className='addIntent__userSaysDelete'>
                                     <BiSolidTrash size={20} onClick={() => handleRemove(index)} />
                                 </td>
                             </tr>
-                        )) : null}
+                        )) }
                     </tbody>
                 </table>
             </div>

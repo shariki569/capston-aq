@@ -7,11 +7,11 @@ import moment from 'moment';
 import TextInput from '../../forms/FormFields/TextInput';
 import ImageUploader from '../../util/ImageUploader';
 import { upload } from '../../../Hooks/imageHandling';
-
+import { slugify } from '../../util/slugify.js';
 const Write = () => {
 
   const state = useLocation().state
-  
+
 
   const [title, setTitle] = useState(state?.PostTitle || "")
   const [value, setValue] = useState(state?.PostDesc || "")
@@ -19,7 +19,7 @@ const Write = () => {
   const [previewImg, setPreviewImg] = useState(null)
   const [postImg, setPostImg] = useState(state?.PostImg || "")
   const [cat, setCat] = useState(state?.PostCat || "")
-
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
 
@@ -48,28 +48,39 @@ const Write = () => {
 
   const handleClick = async e => {
     e.preventDefault()
+    setLoading(true)
     const imgUrl = file ? await upload(file) : postImg;
 
     try {
       state
         ? await axios.put(`${import.meta.env.VITE_APP_BACKEND_URL}/api/posts/${state.PostId}`, {
-          title,  
+          title,
+          slug: slugify(title),
           desc: value,
           cat,
           img: file ?
             imgUrl : postImg,
+        }, {
+          withCredentials: true
         })
         : await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/posts/`, {
           title,
+          slug: slugify(title),
           desc: value,
           cat,
           img: file ?
             imgUrl : "",
           date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")
+        }, {
+          withCredentials: true
         });
+      
       navigate("/")
     } catch (err) {
+      setLoading(false)
       console.log(err);
+    } finally {
+      setLoading(false)
     };
   };
 
@@ -77,7 +88,7 @@ const Write = () => {
   return (
     <div className='add'>
       <div className="content">
-      <span><Link to='/dashboard/posts'>Back</Link></span>
+        <span><Link to='/dashboard/posts'>Back</Link></span>
         <TextInput
           type="text"
           value={title}
@@ -117,7 +128,13 @@ const Write = () => {
             existingImage={postImg}
           />
           <div className="buttons">
-            <button className='btn' onClick={handleClick}>Publish</button>
+            {loading ?
+              (
+                <button className='btn btn-loading' disabled={true}>Publishing</button>
+              ) : (
+                <button className='btn' onClick={handleClick}>Publish</button>
+              )
+            }
             {/* <button>Save as a Draft</button> */}
           </div>
         </div>

@@ -35,10 +35,10 @@ const Accom_Sidebar = ({ price, type, currentAccommodationId }) => {
                     {randomAccommodation ? (
                         <div className='recommended-item'>
                             <div className='recommended-img'>
-                                <img src={`/upload/${randomAccommodation.Accommodation_Img}`} alt="" />
+                                <img src={randomAccommodation.Accommodation_Img} alt="" />
                             </div>
                             <div className="recommended-title">
-                                <Link className='link l-font' to={`/accommodation/${randomAccommodation.Accommodation_Title}/${randomAccommodation.Accommodation_Id}`}>
+                                <Link className='link l-font' to={`/accommodation/${randomAccommodation.Accommodation_Slug}/${randomAccommodation.Accommodation_Id}`}>
                                     <div>{randomAccommodation.Accommodation_Title} </div>
                                     <FiChevronRight className='link-icon' size={20} />
                                 </Link>

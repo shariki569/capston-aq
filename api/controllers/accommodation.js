@@ -22,10 +22,10 @@ export const getAccomms = async (req, res) => {
 export const getAccomm = async (req, res) => {
   try {
     const q =
-      'SELECT Accommodation_Id, Accommodation_Title, Accommodation_Desc, Accommodation_Cap, Accommodation_Price, Accommodation_Unit, Accommodation_Type, Accommodation_Img FROM accommodations WHERE Accommodation_Id = ? AND Is_Deleted = 0';
+      'SELECT Accommodation_Id, Accommodation_Title, Accommodation_Desc, Accommodation_Cap, Accommodation_Price, Accommodation_Unit, Accommodation_Type, Accommodation_Img FROM accommodations WHERE Accommodation_Slug = ? AND Is_Deleted = 0';
 
     const connection = await db.getConnection();
-    const [data] = await connection.query(q, [req.params.id]);
+    const [data] = await connection.query(q, [req.params.slug]);
     connection.release();
 
     return res.status(200).json(data[0]);
@@ -52,13 +52,14 @@ export const deleteAccomm = async (req, res) => {
 export const addAccomm = async (req, res) => {
   try {
     const q =
-      "INSERT INTO accommodations (`Accommodation_Id`, `Accommodation_Title`, `Accommodation_Desc`, `Accommodation_Cap`, `Accommodation_Price`, `Accommodation_Unit`, `Accommodation_Type`, `Accommodation_Img`, `Accommodation_Date`) VALUES (?)";
+      "INSERT INTO accommodations (`Accommodation_Id`, `Accommodation_Title`, `Accommodation_Slug`, `Accommodation_Desc`, `Accommodation_Cap`, `Accommodation_Price`, `Accommodation_Unit`, `Accommodation_Type`, `Accommodation_Img`, `Accommodation_Date`) VALUES (?)";
 
     const Id = idGenerator();
 
     const values = [
       Id,
       req.body.accommTitle,
+      req.body.accommSlug,
       req.body.accommDesc,
       req.body.accommCap,
       req.body.accommPrice,

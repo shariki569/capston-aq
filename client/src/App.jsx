@@ -54,6 +54,7 @@ import Chatbot from "./Components/admin/Chatbot/Chatbot";
 import User from "./Components/admin/User";
 import DashboardChatbotLayout from "./Components/layouts/DashboardChatbotLayout/DashboardChatbotLayout";
 import AddIntent from "./Components/admin/Chatbot/Add_Intent/AddIntent";
+import FAQs from "./pages/FAQs/FAQs";
 
 
 const PrivateRoute = ({ element, path }) => {
@@ -77,7 +78,7 @@ const router = createBrowserRouter([
         element: <About />,
       },
       {
-        path: "/post/:id",
+        path: "/post/:title/:id",
         element: <Single />,
       },
       {
@@ -100,6 +101,10 @@ const router = createBrowserRouter([
         path: "/contact-us",
         element: <Contact />,
       },
+      {
+        path: "/frequently-asked-questions",
+        element: <FAQs />,
+      }
     ],
   },
   {

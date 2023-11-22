@@ -9,6 +9,7 @@ import moment from 'moment'
 import { upload } from '../../../Hooks/imageHandling'
 import ImageUploader from '../../util/ImageUploader'
 import { DotLoader } from 'react-spinners'
+import { slugify } from '../../util/slugify'
 // import { useImageUpload } from '../../../Hooks/imageHandling'
 const Add_Accommodate = () => {
 
@@ -58,13 +59,15 @@ const Add_Accommodate = () => {
 
   const handleClick = async e => {
     e.preventDefault()
-    const imgUrl = file ? await upload(file) : accommImg;
     setLoading(true)
+    const imgUrl = file ? await upload(file) : accommImg;
+
     // const url = imgUrl.data.url;
     try {
       state
         ? await axios.patch(`${import.meta.env.VITE_APP_BACKEND_URL}/api/accommodations/${state.Accommodation_Id}`, {
           accommTitle,
+          accommSlug: slugify(accommTitle),
           accommDesc,
           accommCap,
           accommPrice,
@@ -75,6 +78,7 @@ const Add_Accommodate = () => {
         })
         : await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/accommodations/`, {
           accommTitle,
+          accommSlug: slugify(accommTitle),
           accommDesc,
           accommCap,
           accommPrice,
@@ -84,10 +88,12 @@ const Add_Accommodate = () => {
             imgUrl : "",
           accommDate: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")
         });
-
-      // navigate("/accommodations")
+      navigate("/dashboard/accommodations")
     } catch (err) {
+      setLoading(false)
       console.error(err);
+    } finally {
+      setLoading(false)
     };
   };
 
@@ -136,54 +142,66 @@ const Add_Accommodate = () => {
             <h1>Accommodation Info</h1>
             <div className="item-container">
               <div className="item-input">
-                <span><FiHome size={20} /></span>
-                <div className="dropdown-input">
-                  <select className='select-box' value={selectedAccommType} onChange={(e) => setSelectedAccommType(e.target.value)}>
+                {/* <span><FiHome size={20} /></span> */}
+                <label className='label'>Type</label>
+                <div className='radio-input-wrapper'>
+                  <div className="radio-input">
+                    <input type="radio" checked={selectedAccommType === "Cottage"} value="Cottage" onChange={(e) => setSelectedAccommType(e.target.value)} />
+                    <label htmlFor='cottage'>Cottage</label>
+                  </div>
+                  <div className="radio-input">
+                    <input type="radio" checked={selectedAccommType === "Room"} value="Room" onChange={(e) => setSelectedAccommType(e.target.value)} />
+                    <label htmlFor='room'>Room</label>
+                    {/* <select className='select-box' value={selectedAccommType} onChange={(e) => setSelectedAccommType(e.target.value)}>
                     <option disabled value="" >Select accommodation type...</option>
                     <option value="Cottage">Cottage</option>
                     <option value="Room">Room</option>
                   </select>
-                  <FiChevronDown className='custom-arrow' size={15} />
+                  <FiChevronDown className='custom-arrow' size={15} /> */}
+                  </div>
                 </div>
               </div>
               <div className="top-row">
                 <div className="item-input">
-                  <span><FiCreditCard size={20} /></span>
+                  {/* <span><FiCreditCard size={20} /></span> */}
                   <TextInput
                     type="number"
                     placeholder='Price'
                     value={accommPrice}
                     onChange={(e) => setAccommPrice(e.target.value)}
                     width={100}
+                    label="Price"
                   />
                 </div>
                 <div className="item-input">
-                  <span><FiHash size={20} /></span>
+                  {/* <span><FiHash size={20} /></span> */}
                   <TextInput
                     type="number"
                     placeholder='No. of Units'
                     value={accommUnit} onChange={(e) => setAccommUnit(e.target.value)}
                     width={100}
+                    label="No. of Units"
                   />
                 </div>
               </div>
               <div className="full-row">
                 <div className="item-input">
-                  <span><FiUser size={20} /></span>
+                  {/* <span><FiUser size={20} /></span> */}
                   <TextInput
                     type="number"
                     placeholder='Capacity'
                     value={accommCap} onChange={(e) => setAccommCap(e.target.value)}
                     width={100}
+                    label="Capacity"
                   />
                 </div>
               </div>
               <div className="buttons">
                 {loading ?
                   (<button
-                    className='btn'
-                    disabled={loading}>
-                    Publishing <DotLoader color="#36d7b7" size={15} /></button>
+                    className='btn btn-loading'
+                    disabled={true}>
+                    Publishing...</button>
                   ) : (
                     <button
                       onClick={handleClick}

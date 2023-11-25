@@ -7,6 +7,7 @@ import Skeleton from "react-loading-skeleton";
 import PostHeading from "../../Components/PostComponents/PostHeading";
 import PostItems from "./PostItems";
 import ScrollToTop from "../../Components/Hoc/ScrollToTop";
+import SEO from "../../Components/SEO/SEO";
 const Posts = () => {
   const [posts, setPosts] = useState([]);
 
@@ -25,22 +26,27 @@ const Posts = () => {
   }, [cat]);
 
   return (
-    <div className="posts">
-      <PostHeading />
-      <div className="post__container">
-        <div className="left">
-          <PostItems posts={posts} />
-        </div>
-        <div className=" right">
-          <div>
-            <h4>Other Posts you may like</h4>
-            {/* <PostItems posts={posts} /> */}
+    <>
+    <SEO
+      title="Blog | Aqua Cainta Resort"
+    />
+      <div className="posts">
+        <PostHeading />
+        <div className="post__container">
+          <div className="left">
+            <PostItems posts={posts} />
+          </div>
+          <div className=" right">
+            <div>
+              <h4>Other Posts you may like</h4>
+              {/* <PostItems posts={posts} /> */}
+            </div>
           </div>
         </div>
+
+
       </div>
-
-
-    </div>
+    </>
   );
 };
 

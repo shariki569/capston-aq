@@ -46,9 +46,16 @@
 
             padding: $small-padding 0 $large-padding 0;
             text-decoration: none;
-
+            display: flex;
+            flex-direction: flex-start;
+            justify-content: space-between;
+            height: 70px;
             a {
                 color: $primaryColor;
+            }
+
+            .select{
+                margin-left: auto;
             }
         }
 
@@ -60,7 +67,7 @@
             // max-height: 5rem;
             aspect-ratio: 0.5 / 0.7;
             @include cardBase($base-border-radius);
-
+            @include boxShadow;
             .content {
                 width: 100%;
 
@@ -80,6 +87,7 @@
                 flex-direction: column;
                 padding: $base-padding;
                 width: 100%;
+                height: 350px;
 
                 .price {
                     color: $tertiary;
@@ -99,10 +107,12 @@
                     display: flex;
                     color: $description;
                     font-family: $font-libre-franklin;
-
+                    overflow: hidden;
                     font-size: $large;
                     line-height: $base-line-height;
-                    min-height: 8rem;
+                    min-height: 4.5rem;
+                    height: 4.5rem;
+                    margin-block: auto;
 
                     p {
                         display: -webkit-box;
@@ -115,7 +125,7 @@
 
                 .accomodation-details {
                     display: flex;
-                    margin-bottom: auto;
+                    // margin-bottom: auto;
                     padding: $small-padding-y;
 
                     .accomodation-detail {
@@ -190,6 +200,7 @@
             display: flex;
             justify-content: space-between;
             padding-bottom: $base-padding;
+            // height: 70px;
             .social-media {
                 display: flex;
                 justify-content: flex-start;

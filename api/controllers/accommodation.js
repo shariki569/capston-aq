@@ -22,7 +22,7 @@ export const getAccomms = async (req, res) => {
 export const getAccomm = async (req, res) => {
   try {
     const q =
-      'SELECT Accommodation_Id, Accommodation_Title, Accommodation_Desc, Accommodation_Cap, Accommodation_Price, Accommodation_Unit, Accommodation_Type, Accommodation_Img FROM accommodations WHERE Accommodation_Slug = ? AND Is_Deleted = 0';
+      'SELECT Accommodation_Id, Accommodation_Title, Accommodation_Desc, Accommodation_Cap, Accommodation_Price, Accommodation_NightPrice, Accommodation_Unit, Accommodation_Type, Accommodation_Img FROM accommodations WHERE Accommodation_Slug = ? AND Is_Deleted = 0';
 
     const connection = await db.getConnection();
     const [data] = await connection.query(q, [req.params.slug]);
@@ -52,7 +52,7 @@ export const deleteAccomm = async (req, res) => {
 export const addAccomm = async (req, res) => {
   try {
     const q =
-      "INSERT INTO accommodations (`Accommodation_Id`, `Accommodation_Title`, `Accommodation_Slug`, `Accommodation_Desc`, `Accommodation_Cap`, `Accommodation_Price`, `Accommodation_Unit`, `Accommodation_Type`, `Accommodation_Img`, `Accommodation_Date`) VALUES (?)";
+      "INSERT INTO accommodations (`Accommodation_Id`, `Accommodation_Title`, `Accommodation_Slug`, `Accommodation_Desc`, `Accommodation_Cap`, `Accommodation_Price`,`Accommodation_NightPrice`, `Accommodation_Unit`, `Accommodation_Type`, `Accommodation_Img`, `Accommodation_Date`) VALUES (?)";
 
     const Id = idGenerator();
 
@@ -63,6 +63,7 @@ export const addAccomm = async (req, res) => {
       req.body.accommDesc,
       req.body.accommCap,
       req.body.accommPrice,
+      req.body.accommNightPrice,
       req.body.accommUnit,
       req.body.accommType,
       req.body.accommImg,
@@ -85,7 +86,7 @@ export const updateAccomm = async (req, res) => {
   try {
     const connection = await db.getConnection();
     const q =
-      'UPDATE accommodations SET `Accommodation_Title`=?, `Accommodation_Img`= ?, `Accommodation_Type`=?, `Accommodation_Desc`=?, `Accommodation_Cap`=?, `Accommodation_Price`=? , `Accommodation_Unit`=? WHERE `Accommodation_Id`=?';
+      'UPDATE accommodations SET `Accommodation_Title`=?, `Accommodation_Img`= ?, `Accommodation_Type`=?, `Accommodation_Desc`=?, `Accommodation_Cap`=?, `Accommodation_Price`=? ,`Accommodation_NightPrice`=? , `Accommodation_Unit`=? WHERE `Accommodation_Id`=?';
 
     const accommId = req.params.id;
     const values = [
@@ -95,6 +96,7 @@ export const updateAccomm = async (req, res) => {
       req.body.accommDesc,
       req.body.accommCap,
       req.body.accommPrice,
+      req.body.accommNightPrice,
       req.body.accommUnit,
       accommId,
     ];

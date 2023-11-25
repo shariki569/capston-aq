@@ -24,7 +24,10 @@ const Posts_Menu = () => {
 
     const handleDelete = async (postId) => {
         try {
-            await axios.delete(`${import.meta.env.VITE_APP_BACKEND_URL}/api/posts/${postId}`)
+            await axios.delete(`${import.meta.env.VITE_APP_BACKEND_URL}/api/posts/${postId}`, 
+            {
+                withCredentials: true
+            })
             setPosts(posts.filter((post) => post.PostId !== postId))
         } catch (err) {
             console.log(err)
@@ -44,7 +47,7 @@ const Posts_Menu = () => {
                                     <th>Date Posted</th>
                                     <th>Img</th>
                                     <th>Title</th>
-                                    <th>Description</th>
+                                    {/* <th>Description</th> */}
                                     <th>Category</th>
 
                                     <th>Posted By</th>
@@ -57,8 +60,8 @@ const Posts_Menu = () => {
                                         <td className='center'>{post.PostId}</td>
                                         <td className='center' >{moment(post.date).format("YYYY-MM-DD")}</td>
                                         <td className='center'>  <img src={post.PostImg} alt="" /></td>
-                                        <td className='small '><p className='ellipse'>{post.PostTitle}</p></td>
-                                        <td className='description'><p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.PostDesc) }}></p></td>
+                                        <td ><p className='ellipse'>{post.PostTitle}</p></td>
+                                        {/* <td className='description'><p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.PostDesc) }}></p></td> */}
                                         <td className='center'>{post.PostCat}</td>
                                         <td className='center'>{post.username}</td>
                                         <td>

@@ -1,33 +1,48 @@
 
 // import { envConfig } from "./envConfig.js";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 // envConfig();
 
 
-export const restrictTo = (...role) => {
-  return (req, res, next) => {
-    if (!role.includes(req.user.Role_Name)) {
-      return res
-        .status(403)
-        .json({ message: "You do not have permission to perform this action" });
-    }
-    next();
-  };
-};
+// export const restrictTo = (...role) => {
+//   return (req, res, next) => {
+//     if (!role.includes(req.user.Role_Name)) {
+//       return res
+//         .status(403)
+//         .json({ message: "You do not have permission to perform this action" });
+//     }
+//     next();
+//   };
+// };
 
 
-export const authenticateToken = (req, res, next) => {
+export const isAdmin = (req, res, next) => {
   const token = req.cookies.access_token;
   if (!token) {
-    return res.sendStatus(401);
+    return res.status(401).json({ message: "Not authenticated" });
   }
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-    if (err) {
-      return res.sendStatus(403).json('You are not authenticated!');
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const userId = decoded.id;
+    const userRole = decoded.Role_Name;
+
+
+    if (userRole === "Admin") {
+      return res.status(403).json({ message: "You do not have permission to perform this action" });
+      // user is not an admin
     }
-    req.user = user.Role_Name;
-    next();
-  })
+
+    // user is an admin, pass the user id and role to the next middleware
+    req.userId = userId;
+    req.userRole = userRole;
+    next()
+
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json("Internal server error");
+  }
+
 }
 
 // export const authenticateToken = (req, res, next) => {

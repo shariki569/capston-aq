@@ -1,14 +1,25 @@
-@use '../../../sass/Utilities/' as *;
+@use "../../../sass/Utilities/" as *;
 
-.modal__content{
+.modal__content {
     @include cardBase($base-border-radius);
     padding: $base-padding;
     position: relative;
 
-    .dismiss{
+    .dismiss {
         color: $greyColor;
         top: 8%;
         right: 4%;
     }
 
+    .modal__close {
+        top: 3%;
+        right: 3%;
+        padding: $small-padding;
+        background-color: transparent;
+        display: flex;
+        &:hover {
+            background-color: $grey-300;
+            border-radius: 50%;
+        }
+    }
 }

@@ -99,3 +99,23 @@
         outline: $small-border-thickness $error;
     }
 }
+
+.select_input {
+    color: $grey-700;
+    border: none;
+    outline: none;
+    font-family: $secondary-font;
+    padding: $small-padding;
+    font-weight: $w-bold;
+    font-size: $f-normal;
+    border-radius: $base-border-radius;
+    background-color: $grey-200;
+
+    option{
+        border: none;
+    }
+    // appearance: none;
+    // option{
+    //     border-radius: $base-border-radius;
+    // }
+}

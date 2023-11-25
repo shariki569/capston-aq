@@ -10,8 +10,8 @@ env.config();
 export const getPosts = async (req, res) => {
   try {
     const q = req.query.cat
-      ? 'SELECT p.*, u.username FROM posts p JOIN users u ON p.Post_Uid = u.id WHERE p.PostCat = ?'
-      : 'SELECT p.*, u.username FROM posts p JOIN users u ON p.Post_Uid = u.id';
+      ? 'SELECT p.*, u.username FROM posts p JOIN users u ON p.Post_Uid = u.id WHERE p.PostCat = ? AND Is_Deleted = 0'
+      : 'SELECT p.*, u.username FROM posts p JOIN users u ON p.Post_Uid = u.id WHERE Is_Deleted = 0';
 
     const connection = await db.getConnection();
     const [rows] = await connection.query(q, [req.query.cat]);

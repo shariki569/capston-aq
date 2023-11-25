@@ -20,6 +20,7 @@ const Add_Accommodate = () => {
   const [accommDesc, setAccommDesc] = useState(state?.Accommodation_Desc || "")
   const [accommCap, setAccommCap] = useState(state?.Accommodation_Cap || "")
   const [accommPrice, setAccommPrice] = useState(state?.Accommodation_Price || "")
+  const [accommNightPrice, setAccommNightPrice] = useState(state?.Accommodation_NightPrice || "")
   const [accommUnit, setAccommUnit] = useState(state?.Accommodation_Unit || "")
   const [selectedAccommType, setSelectedAccommType] = useState(state?.Accommodation_Type || "")
   const [loading, setLoading] = useState(false)
@@ -71,6 +72,7 @@ const Add_Accommodate = () => {
           accommDesc,
           accommCap,
           accommPrice,
+          accommNightPrice,
           accommUnit,
           accommType: selectedAccommType,
           accommImg: file ?
@@ -82,6 +84,7 @@ const Add_Accommodate = () => {
           accommDesc,
           accommCap,
           accommPrice,
+          accommNightPrice,
           accommUnit,
           accommType: selectedAccommType,
           accommImg: file ?
@@ -161,7 +164,7 @@ const Add_Accommodate = () => {
                   </div>
                 </div>
               </div>
-              <div className="top-row">
+              {/* <div className="top-row"> */}
                 <div className="item-input">
                   {/* <span><FiCreditCard size={20} /></span> */}
                   <TextInput
@@ -174,6 +177,17 @@ const Add_Accommodate = () => {
                   />
                 </div>
                 <div className="item-input">
+                  {/* <span><FiCreditCard size={20} /></span> */}
+                  <TextInput
+                    type="number"
+                    placeholder='Night Price'
+                    value={accommNightPrice}
+                    onChange={(e) => setAccommNightPrice(e.target.value)}
+                    width={100}
+                    label="Night Price"
+                  />
+                </div>
+                <div className="item-input">
                   {/* <span><FiHash size={20} /></span> */}
                   <TextInput
                     type="number"
@@ -183,7 +197,7 @@ const Add_Accommodate = () => {
                     label="No. of Units"
                   />
                 </div>
-              </div>
+              {/* </div> */}
               <div className="full-row">
                 <div className="item-input">
                   {/* <span><FiUser size={20} /></span> */}

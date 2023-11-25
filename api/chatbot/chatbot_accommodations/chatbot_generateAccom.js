@@ -6,7 +6,7 @@ export const generateAccommodation = async (accommDetails) => {
       utterances: ['Accommodation?'],
       answers: [
         `What kind of accommodation are you looking for? 
-        ${accommDetails.map(accomm => accomm.Accommodation_Title).join(', ')} ?`
+        <strong>${accommDetails.map(accomm => accomm.Accommodation_Title).join(', ')} </strong> ?`
       ],
     },
   ];

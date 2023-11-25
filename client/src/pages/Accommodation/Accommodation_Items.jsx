@@ -9,6 +9,7 @@ import ScrollToTop from '../../Components/Hoc/ScrollToTop';
 const Accommodation_Items = () => {
   const type = useLocation().search;
   const { accomms, fetchData } = useAccommodations(type);
+  const [priceType, setPriceType] = useState({});
   const shouldDisplayTitle = !!type;
 
   useEffect(() => {
@@ -40,8 +41,18 @@ const Accommodation_Items = () => {
                     <div className="description">
                       <div className="title">
                         <Link to={`/accommodation/${accomm.Accommodation_Slug}/${accomm.Accommodation_Id}`}><h2>{accomm.Accommodation_Title}</h2></Link>
+                        {/* <p>{accomm.Accommodation_NightPrice}</p> */}
+                        <div className="select">
+                          {accomm.Accommodation_NightPrice && <select className='select_input' name="" id="" onChange={(e) => setPriceType({ ...priceType, [accomm.Accommodation_Id]: e.target.value })}>
+                            <option value="DayPrice">Day Price</option>
+                            <option value="NightPrice">Night Price</option>
+                          </select>}
+                        </div>
                       </div>
-                      <p className="price">₱ {accomm.Accommodation_Price}</p>
+                      <p className="price">
+                        ₱{(priceType[accomm.Accommodation_Id] === 'NightPrice') ?
+                          accomm.Accommodation_NightPrice : accomm.Accommodation_Price}
+                      </p>
                       <div className="accomodation-details">
                         <div className="accomodation-detail">
                           <FiUser className="icon" />
@@ -71,9 +82,7 @@ const Accommodation_Items = () => {
             </div>
           </div>
         </div>
-
       </div>
-
     </div>
   )
 }

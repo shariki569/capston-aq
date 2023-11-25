@@ -43,7 +43,9 @@ export const useAccommodations = (type = "") => {
 export const useDeleteAccomms = () => {
   const deleteData = async (accommId, updateAccomm) => {
     try {
-      await axios.delete(`${import.meta.env.VITE_APP_BACKEND_URL}/api/accommodations/${accommId}`);
+      await axios.delete(`${import.meta.env.VITE_APP_BACKEND_URL}/api/accommodations/${accommId}`, {
+        withCredentials: true,
+      });
       // Update the accommodations list after deletion
       updateAccomm((prevAccomms) =>
         prevAccomms.filter((accomm) => accomm.Accommodation_Id !== accommId)

@@ -25,7 +25,6 @@ const ChatbotFeedback = () => {
         setLoading(true)
         const res = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/feedback`)
         setFeedback(res.data)
-        console.log(res.data)
         setLoading(false)
       } catch (err) {
         console.log(err)
@@ -146,7 +145,7 @@ const ChatbotFeedback = () => {
       {isModalOpen && (
         <Modal closeModal={closeModal}>
           <div className="chatbot__feedbackModal">
-            <button className='dismiss'>X</button>
+            {/* <button className='dismiss'>X</button> */}
             <div className="chatbot__feedbackModalHeader">
               <h3>Feedback Details -</h3>
               <div className="chatbot__feedbackModalStatus">

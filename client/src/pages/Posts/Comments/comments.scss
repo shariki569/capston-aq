@@ -50,6 +50,15 @@
                 span{
                     color: $lightGreyColor;
                 }
+
+                .comment__author{
+                    background-color: $lightGreyColor;
+                    color: $lighterGreyColor;
+                    font-size: $f-medium;
+                    padding: $small-padding;
+                    border-radius: $base-border-radius;
+
+                }
             }
         }
     }

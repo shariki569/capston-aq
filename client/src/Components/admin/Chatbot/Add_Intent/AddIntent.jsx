@@ -6,9 +6,9 @@ import UserSays from './UserSays/UserSays';
 import ChatResponse from './ChatResponse/ChatResponse';
 import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import { MoonLoader} from 'react-spinners';
+import { MoonLoader } from 'react-spinners';
 const AddIntent = () => {
-  
+
   const state = useLocation().state
   const [addIntent, setAddIntent] = useState({
     intentTitle: state?.IntentName || '',
@@ -20,7 +20,7 @@ const AddIntent = () => {
     error: null,
   });
 
-  
+
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -34,11 +34,11 @@ const AddIntent = () => {
         Utterances: addIntent.userSaysPreview,
         Answers: addIntent.chatResponsePreview,
       })
-      : await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/chatbotRoute/intents`, {
-        Intent: addIntent.intentTitle,
-        Utterances: addIntent.userSaysPreview,
-        Answers: addIntent.chatResponsePreview,
-      });
+        : await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/chatbotRoute/intents`, {
+          Intent: addIntent.intentTitle,
+          Utterances: addIntent.userSaysPreview,
+          Answers: addIntent.chatResponsePreview,
+        });
     } catch (err) {
       console.log(err, 'cannot post');
       {
@@ -52,8 +52,8 @@ const AddIntent = () => {
         ...prevIntent,
         loading: false,
       }));
-       
-      
+
+
     }
   }
   const handleAddChatResponse = () => {
@@ -102,19 +102,20 @@ const AddIntent = () => {
       <div className='addIntent__header'>
         <Link to='/dashboard/chatbot' className='back-btn'><BiArrowFromRight size={25} /></Link>
         <h2>Add Intent</h2>
+
         {addIntent.loading ? (
           <button disabled={true} className={`${addIntent.loading ? 'btn' : 'btn-loading'}`}>
-            <h3><MoonLoader color='#faf7f7' size={23}/>Saving</h3>
+            <h3><MoonLoader color='#faf7f7' size={23} />Saving</h3>
           </button>
         ) : (
           <button onClick={handleClick} className='btn'>
             <h3><BiSolidSave size={20} />Save Intent</h3>
           </button>
         )}
-        {addIntent.error && (
-          <div className='error'>{addIntent.error.message}</div>
-        )}
       </div>
+      {addIntent.error && (
+        <div className='error'>{addIntent.error.message}</div>
+      )}
       <div className='addIntent__forms'>
         <TextInput
           value={addIntent.intentTitle}

@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
+import moment from 'moment'
 // import input from '../Components/forms/FormFields/input'
 
 const Register = () => {
@@ -9,7 +10,7 @@ const Register = () => {
     username:"",
     password:"",
     email:"",
-
+    dateCreated: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")
   })
   
 const [err, setError] = useState(null)

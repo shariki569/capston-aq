@@ -56,9 +56,9 @@ const Single = () => {
 
   return (
     <>
-    <SEO
-      title={`Aqua Cainta || ${post?.PostTitle}`}
-      image={post?.PostImg}
+      <SEO
+        title={`${post?.PostTitle} | Aqua Cainta Resort Blog`}
+        image={post?.PostImg}
       />
       <PostHeading />
       <div className='single'>
@@ -87,9 +87,11 @@ const Single = () => {
             </div>)}
           </div>
           <h1>{post.PostTitle}</h1>
-          <p
-            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.PostDesc) }}>
-          </p>
+          <div className="description">
+            <p
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.PostDesc) }}>
+            </p>
+          </div>
           <Comments id={postId}/>
         </div>
         <Menu cat={post.PostCat} />

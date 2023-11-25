@@ -123,6 +123,13 @@
                     ul{
                         margin-left: 2rem;
                     }
+
+                    ol{
+                        // list-style-type: none;
+                        li{
+                            list-style: decimal !important;
+                        }
+                    }
                 }
             }
         }
@@ -142,6 +149,7 @@
         }
 
         .post {
+            
             display: flex;
             flex-direction: column;
             gap: 10px;

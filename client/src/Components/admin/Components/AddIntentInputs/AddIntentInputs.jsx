@@ -9,7 +9,7 @@ const AddIntentInputs = ({searchPlaceholder, label, value, onChange, handleButto
       <div className='addIntent__Input'>
         <TextInput
           onChange={onChange}
-          placeholder='Type Dialogue and Press enter'
+          placeholder='Type Dialogue'
           label={label}
           value={value}
           containerClass={'addIntent__InputField'}

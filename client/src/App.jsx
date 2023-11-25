@@ -51,11 +51,12 @@ import AmenitiesLayout from "./Components/layouts/AmenitiesLayout";
 import Amenities_Menu from "./Components/admin/Amenities/Amenities_Menu";
 import Facilities from "./pages/Facility/Facilities";
 import Chatbot from "./Components/admin/Chatbot/Chatbot";
-import User from "./Components/admin/User";
+
 import DashboardChatbotLayout from "./Components/layouts/DashboardChatbotLayout/DashboardChatbotLayout";
 import AddIntent from "./Components/admin/Chatbot/Add_Intent/AddIntent";
 import FAQs from "./pages/FAQs/FAQs";
 import Unauthorized from "./Components/admin/Unauthorized/Unauthorized";
+import User from "./Components/admin/Users/User";
 
 
 // const PrivateRoute = ({ element, path }) => {

@@ -26,8 +26,8 @@ export const  generateLocationEntry = (contactDetails) => {
         answers: [
           `You can contact us through:
           <ul>
-            <li>Contact No:<bold>${contactDetails.con_cellphone}</bold></li>
-            <li>Email:<bold>${contactDetails.con_email}</bold></li>
+            <li>Contact No:<strong>${contactDetails.con_cellphone}</strong></li>
+            <li>Email:<strong>${contactDetails.con_email}</strong></li>
           </ul>`,
         ],
       },

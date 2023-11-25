@@ -1,0 +1,24 @@
+@use "../../../sass/Utilities/" as *;
+
+.pagination__container {
+    @include flexBoxRow(space-between, center, 0);
+
+    .pagination__btn {
+        padding: $small-padding $base-padding;
+        border-radius: $small-border-radius;
+        border: none;
+        background-color: $grey-400;
+        color: $grey-700;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $grey-300;
+        }
+
+        &.disabled{
+            cursor: not-allowed;
+            background-color: $grey-200;
+            color: $grey-500;
+        }
+    }
+}

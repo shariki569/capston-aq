@@ -23,7 +23,8 @@ export const register = async (req, res) => {
       email: req.body.email,
       password: hashedPassword,
       isDeleted: 0,
-      role: 3
+      role: 3,
+      Date_Created: req.body.dateCreated
     };
 
     const [result] = await connection.query("INSERT INTO users SET ?", newUser);
@@ -74,6 +75,9 @@ export const login = async (req, res) => {
     const token = jwt.sign({ id: rows[0].id, Role: rows[0].Role_Name }, process.env.JWT_SECRET);
     const { password, ...other } = rows[0];
 
+    delete other.Date_Created;
+    delete other.role;
+    delete other.isDeleted;
     res
       .cookie("access_token", token, {
         httpOnly: true,

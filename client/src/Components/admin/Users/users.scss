@@ -1,0 +1,50 @@
+@use "../../../sass/Utilities/" as *;
+
+.title {
+    padding-inline: $base-padding;
+}
+
+.user__modal {
+    width: 400px;
+    .user__modal__header {
+        @include flexBoxRow(flex-start, center, 1rem);
+
+        .user__modal__image {
+            height: 50px;
+            width: 50px;
+            img {
+                @include fullSize;
+            }
+        }
+    }
+    .user__modal__status{
+        
+        padding: $small-padding-y;
+    }
+    .user__modal__body {
+        padding: $small-padding-y;
+        @include flexBoxColumn( flex-start, space-between, 1rem);
+        .user__modal__info {
+            @include flexBoxRow( space-between, center, 1rem);
+            h3 {
+              
+           
+                // min-width: 200px;
+
+                span {
+                    margin-left: auto;
+                }
+
+                select {
+                    margin-left: auto;
+                }
+            }
+        }
+    }
+    .user__modal__footer{
+        display: flex;
+        gap: 1rem;
+        margin-left: auto;
+       justify-content:  flex-end;
+    }
+}

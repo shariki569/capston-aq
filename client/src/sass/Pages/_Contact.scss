@@ -11,6 +11,11 @@
         max-width: 42%;
     }
 
+    .contact-container{
+        @include centerAndSet(1300px, 2rem);
+        align-items: center;
+        justify-content: center;
+    }
 
 }
 

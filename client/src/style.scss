@@ -154,9 +154,10 @@ textarea {
 a {
     text-decoration: none;
 }
-
-
-.ql-container .ql-snow{
+.ql-editor  {
+    min-height: 300px !important;
+}
+.ql-container .ql-snow {
     min-height: 300px !important;
 }
 
@@ -178,9 +179,16 @@ input[type="number"] {
     -moz-appearance: textfield;
     appearance: textfield;
 }
-ul,
-li {
-    list-style: inside;
+ul {
+    li {
+        list-style: inside;
+    }
+}
+ol {
+    li {
+        list-style-position: inside;
+        list-style-type: decimal;
+    }
 }
 .fixed-container {
     position: fixed;
@@ -192,14 +200,17 @@ li {
 }
 
 .flex-container {
-    @include centerFlexboxRow;
-
+    display: flex;
     @include devices(mobile) {
         flex-direction: column;
     }
     @include devices(tablet) {
         flex-direction: column-reverse;
     }
+}
+
+.flex-left{
+    justify-content: first baseline;
 }
 
 .container {
@@ -209,6 +220,12 @@ li {
 }
 .error {
     color: $error;
+}
+
+.success{
+    display: flex;
+    gap: 0.5rem;
+    color: $success;
 }
 
 .hidden {
@@ -280,6 +297,9 @@ li {
 .grid-view {
     @include gridView(20rem, 2rem);
 }
+
+
+
 
 .app {
     display: flex;
@@ -370,7 +390,7 @@ li {
                 }
             }
 
-            .title{
+            .title {
                 font-size: $f-large;
                 font-weight: $w-bold;
                 color: $lighterGreyColor;
@@ -397,7 +417,7 @@ li {
                     height: 100%;
                     border: none;
                 }
-                .ql-editor.ql-blank{
+                .ql-editor.ql-blank {
                     min-height: 300px;
                 }
                 // .react-quill {
@@ -466,7 +486,7 @@ li {
                         //     padding: $small-padding-x;
                         //     margin-top: auto;
                         // }
-                        .label{
+                        .label {
                             font-size: $f-normal;
                             font-weight: $w-bold;
                             color: $primary;
@@ -474,38 +494,38 @@ li {
                             // padding: $small-margin-y;
                         }
 
-                        .dropdown-input {
-                            position: relative;
-                            width: 100%;
+                        // .dropdown-input {
+                        //     position: relative;
+                        //     width: 100%;
 
-                            .select-box {
-                                font-family: $secondary-font;
-                                width: 100%;
+                        //     .select-box {
+                        //         font-family: $secondary-font;
+                        //         width: 100%;
 
-                                padding: $small-padding;
-                                border: 1px solid lightgray;
-                                color: $greyColor;
+                        //         padding: $small-padding;
+                        //         border: 1px solid lightgray;
+                        //         color: $greyColor;
 
-                                &:focus {
-                                    border-bottom: $base-border-thickness $primaryColor;
-                                    border-radius: $input-border-radius;
-                                }
-                            }
-                            .select-box option[disabled][selected] {
-                                color: $lightGreyColor;
-                                opacity: 0.5;
-                            }
-                            .custom-arrow {
-                                position: absolute;
-                                display: block;
-                                top: 0;
-                                right: 0;
-                                height: 100%;
-                                width: 2rem;
-                                background: $lightGreyColor;
-                                pointer-events: none;
-                            }
-                        }
+                        //         &:focus {
+                        //             border-bottom: $base-border-thickness $primaryColor;
+                        //             border-radius: $input-border-radius;
+                        //         }
+                        //     }
+                        //     .select-box option[disabled][selected] {
+                        //         color: $lightGreyColor;
+                        //         opacity: 0.5;
+                        //     }
+                        //     .custom-arrow {
+                        //         position: absolute;
+                        //         display: block;
+                        //         top: 0;
+                        //         right: 0;
+                        //         height: 100%;
+                        //         width: 2rem;
+                        //         background: $lightGreyColor;
+                        //         pointer-events: none;
+                        //     }
+                        // }
                         .radio-input-wrapper {
                             @include flexBoxColumn(flex-start, flex-start, 0.3rem);
                             padding: $small-padding-y;

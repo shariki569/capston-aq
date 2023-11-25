@@ -15,7 +15,7 @@ const Accommodation = () => {
   return (
     <>
       <SEO
-        title="Accommodation | Aqua Cainta Resort"
+        title="Accommodation - Aqua Cainta Resort"
         description="Accommodations"
         name="Aqua Cainta Resort"
         type="Accommodation"

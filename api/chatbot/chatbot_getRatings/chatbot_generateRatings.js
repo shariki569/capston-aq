@@ -26,7 +26,7 @@ export const generateRatingEntry = async (ratingDetails) => {
             ],
             answers: [
                 
-                `The average rating of our service is ${ratingDetails.TotalRating} out of 5`,
+                `The average rating of our service is ${Number(ratingDetails.TotalRating).toFixed(1)} out of 5`,
                 `We have an average rating of ${ratingDetails.TotalRating} out of 5`
             ]
 

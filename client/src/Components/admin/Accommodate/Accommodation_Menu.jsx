@@ -34,7 +34,7 @@ const AccommodationMenu = () => {
                   <th>Title</th>
                   <th>Img</th>
                   <th>Type</th>
-                  <th>Description</th>
+                  {/* <th>Description</th> */}
                   <th>Capacity</th>
                   <th>Price</th>
                   <th>No. of Units</th>
@@ -49,7 +49,7 @@ const AccommodationMenu = () => {
                     <td className='center'>{accomm.Accommodation_Title}</td>
                     <td className='center'><img src={accomm.Accommodation_Img.startsWith('http') ? accomm.Accommodation_Img : `../../upload/${accomm.Accommodation_Img}`}  alt="" /></td>
                     <td className='center'>{accomm.Accommodation_Type}</td>
-                    <td className='description' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(accomm.Accommodation_Desc) }} />
+                    {/* <td className='description' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(accomm.Accommodation_Desc) }} /> */}
                     {/* <td className='description'>  {DOMPurify.sanitize(accomm.Accommodation_Desc)}</td> */}
                     <td className='center'>{accomm.Accommodation_Cap}</td>
                     <td>{accomm.Accommodation_Price}</td>

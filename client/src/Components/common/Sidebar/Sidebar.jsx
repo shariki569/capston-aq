@@ -8,10 +8,11 @@ import SidebarItem from './SidebarItem'
 import { HiUserCircle } from 'react-icons/hi'
 import { sidebarLinks } from '../MenuItems'
 import axios from 'axios'
+import { FiHome } from 'react-icons/fi'
 const Sidebar = () => {
 
-    const {currentUser, logout } = useContext(AuthContext)
-    const navigate = useNavigate(); 
+    const { logout } = useContext(AuthContext)
+    const navigate = useNavigate();
     const [pageData, setPageData] = useState(null)
     const handleLogout = () => {
         logout();
@@ -31,26 +32,29 @@ const Sidebar = () => {
     //     fetchData();
     //   }, [])
 
-  return (
-    <div className='sidebar'>
-        <div className="container">
-            <div className="top-section">
-                <Link to="/dashboard">
-                    <img src={logo} alt="" />
-                </Link>
-                <span>{currentUser?.username}</span>
-            </div>
-            <div className="mid-section">
-                {sidebarLinks.map((item, index) => 
-                    <SidebarItem key={index} item={item}/>
-                )}
-            </div>
-            <div className="bottom-section">
-                <span className='side-links' onClick={handleLogout}>Logout</span>
+    return (
+        <div className='sidebar'>
+            <div className="container">
+                <div className="top-section">
+                    <div className="logo">
+                        <Link to="/dashboard">
+                            <img src={logo} alt="" />
+                        </Link>
+                        <h3>Aqua Cainta Dashboard</h3>
+                    </div>
+                    <Link className='home-link' to="/"><FiHome/> Go to Homepage</Link>
+                </div>
+                <div className="mid-section">
+                    {sidebarLinks.map((item, index) =>
+                        <SidebarItem key={index} item={item} />
+                    )}
+                </div>
+                <div className="bottom-section">
+                    <span className='side-links' onClick={handleLogout}>Logout</span>
+                </div>
             </div>
         </div>
-    </div>
-  )
+    )
 }
 
 export default Sidebar

@@ -3,13 +3,27 @@
 .dashboard-layout {
     display: flex;
     height: 100vh;
-
+    // position: relative;
+    // .nav-container{
+    //     position: absolute;
+    // }
+    .dashboard-container{
+        flex: 1;    
+        width: 100%;
+        overflow-y: auto;
+    }
+    .nav-container{
+        width: 100%;
+        position: sticky;
+        top: 0;
+        background-color: $primary;
+        color: $grey-100;
+    }
     .content-container {
         background-color: $lighterGreyColor;
         color: $primary;
         flex: 1;
         padding: 40px 20px;
-        overflow-y: auto;
     }
 }
 

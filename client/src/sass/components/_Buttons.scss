@@ -16,7 +16,10 @@
     overflow: hidden;
     transition: all 0.3s;
 
-    &.btn-loading{
+    &.btn-full {
+        width: 100%;
+    }
+    &.btn-loading {
         display: flex;
         justify-content: center;
         gap: 0.8rem;
@@ -54,22 +57,14 @@
         border: $base-border-thickness $error;
         color: $error;
 
-        &::before{
+        &::before {
             background-color: $error;
-          
         }
         &:hover {
             color: $honeyDew;
         }
     }
-
 }
-
-
-
-
-
-
 
 .btn-2 {
     display: flex;
@@ -80,7 +75,7 @@
     // border-radius: $base-border-radius;
     cursor: pointer;
     color: $lightGreyColor;
-        // border: $base-border-thickness $lightGreyColor;
+    // border: $base-border-thickness $lightGreyColor;
     z-index: 999;
     overflow: hidden;
     transition: all 0.3s;
@@ -106,7 +101,7 @@
 
     &:hover {
         span {
-            color: $primary
+            color: $primary;
         }
     }
     &:hover::before {

@@ -11,7 +11,7 @@ const UserBox = () => {
     <div className='userBox'>
       <div className='userBox__wrap'>
         <div className="userBox__imageWrap">
-          <img src={currentUser?.img} alt="" />
+         {currentUser?.img ? ( <img src={currentUser?.img} alt="" />) : ( <img src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png' alt="" />)}
         </div>
         <div className='userBox__userName'>
           <h3>Welcome Back!</h3>

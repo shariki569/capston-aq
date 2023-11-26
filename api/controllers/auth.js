@@ -2,6 +2,7 @@ import { db } from "../db.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { envConfig } from "../middleware/envConfig.js";
+import { recoveryEmail } from "./sendEmail.js";
 envConfig();
 
 export const register = async (req, res) => {
@@ -78,16 +79,19 @@ export const login = async (req, res) => {
     delete other.Date_Created;
     delete other.role;
     delete other.isDeleted;
+    delete other.otp;
+    delete other.otp_expiry;
+    delete other.otp_attempts;
     res
       .cookie("access_token", token, {
         httpOnly: true,
         secure: true,
         sameSite: "none",
-        
+
       })
       .status(200)
       .json(other);
-      connection.release();
+    connection.release();
   } catch (err) {
     console.error("Database error:", err);
     return res.status(500).json(err);
@@ -104,3 +108,85 @@ export const logout = (req, res) => {
     .status(200)
     .json("User has been logged out");
 };
+
+
+export const sendOTP = async (req, res) => {
+  try {
+    const connection = await db.getConnection();
+    const { email } = req.body;
+    const otp = Math.floor(Math.random() * 9000 + 1000);
+    const otp_expiry = new Date();
+
+    otp_expiry.setMinutes(otp_expiry.getMinutes() + 5);
+
+    const [checkEmail] = await connection.query("SELECT * FROM users WHERE email = ?", [email]);
+
+    if (!checkEmail.length) {
+      return res.status(404).json({ message: "Email not found" });
+    }
+
+    const q = "UPDATE users SET otp = ?, otp_expiry = ? WHERE email = ?";
+    const [rows] = await connection.query(q, [otp, otp_expiry, email]);
+    connection.release();
+    await recoveryEmail(email, otp);
+
+    res.status(200).json(rows);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+}
+
+
+export const verifyOTP = async (req, res) => {
+  try {
+    const connection = await db.getConnection();
+    const { email, otp } = req.body;
+
+    const [user] = await connection.query("SELECT * FROM users WHERE email = ?", [email]);
+
+    if (!user.length) {
+      return res.status(404).json("Email not found");
+    }
+
+    if (user[0].otp === otp && new Date() < new Date(user[0].otp_expiry)) {
+      res.status(200).json({ success: true, message: "OTP is valid" });
+    } else {
+      res.status(400).json({ success: false, message: "OTP is invalid or expired please try again" });
+    }
+
+    connection.release()
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
+}
+
+export const resetPassword = async (req, res) => {
+  try {
+    const connection = await db.getConnection();
+    const { email, otp, newPassword } = req.body;
+   
+    const [checkEmail] = await connection.query("SELECT * FROM users WHERE email = ?", [email]);
+
+    if (!checkEmail.length) {
+      return res.status(404).json({ message: "Email not found" });
+    }
+
+    if (checkEmail[0].otp === otp && new Date() < new Date(checkEmail[0].otp_expiry)) {
+      const saltRounds = 10;
+      const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
+      await connection.query("UPDATE users SET password = ? WHERE email = ?", [hashedPassword, email]);
+
+      //Clear OTP fields
+      await connection.query('UPDATE users SET otp = NULL, otp_expiry = NULL WHERE email = ?', [email]);
+      res.status(200).json({ success: true, message: "Password reset successful" });
+    } else {
+      res.status(400).json({ success: false, message: "OTP is invalid or expired please try again" });
+    } 
+
+    connection.release()
+  } catch(err) {
+    console.error("Database error:", err);
+    res.status(500).json({success: false, message: "Internal Server Error" });
+  }
+}

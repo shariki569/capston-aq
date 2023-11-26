@@ -5,6 +5,7 @@ import { AuthContext } from '../context/authContext'
 // import TextInput from '../Components/forms/FormFields/TextInput'
 import { BiLogoFacebook, BiLogoGmail } from "react-icons/bi";
 import { MoonLoader } from 'react-spinners';
+
 const Login = () => {
 
   const [inputs, setInputs] = useState({
@@ -12,6 +13,8 @@ const Login = () => {
     password: "",
     loading: false
   })
+
+
 
   const [err, setError] = useState(null)
 
@@ -45,12 +48,16 @@ const Login = () => {
         <input required type="text" placeholder='Username' name='username' onChange={handleChange} />
         <input required type="password" placeholder='Password' name='password' onChange={handleChange} />
         <button className='btn ' onClick={handleSubmit} disabled={inputs.loading}>
-         {
-          inputs.loading ? <MoonLoader size={20}/> : "Login"
-         }
+          {
+            inputs.loading ? <MoonLoader size={20} /> : "Login"
+          }
         </button>
         {err && <p>{err}</p>}
-        <span>Don't you have an account?<Link to="/register"> Register</Link></span>
+        <div className='auth-footer'>
+
+          <span>Don't you have an account?<Link to="/register"> Register</Link></span>
+          <span><Link to='/forgot-password'>Forgot Password</Link></span>
+        </div>
       </form>
       <div className="alternative">
         <p>Or Login With</p>

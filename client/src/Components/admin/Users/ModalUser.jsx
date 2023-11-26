@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './users.scss'
 import axios from 'axios'
 import { FiCheckCircle } from 'react-icons/fi'
-const ModalUser = ({ user, closeModal, update }) => {
+const ModalUser = ({ user, closeModal }) => {
     const [role, setRole] = useState(user?.role || '')
     const [err, setErr] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -19,7 +19,6 @@ const ModalUser = ({ user, closeModal, update }) => {
             setLoading(true)
             closeModal()
             setSuccess(response.data)
-            update(true)
         } catch (err) {
             setErr(err.response.data)
         } finally {

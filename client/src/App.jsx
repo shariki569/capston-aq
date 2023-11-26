@@ -1,5 +1,5 @@
 // React and React Router imports
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -57,6 +57,8 @@ import AddIntent from "./Components/admin/Chatbot/Add_Intent/AddIntent";
 import FAQs from "./pages/FAQs/FAQs";
 import Unauthorized from "./Components/admin/Unauthorized/Unauthorized";
 import User from "./Components/admin/Users/User";
+import OTPverify from "./pages/OTPverify";
+import ResetPassword from "./pages/ResetPassword";
 
 
 // const PrivateRoute = ({ element, path }) => {
@@ -66,7 +68,7 @@ import User from "./Components/admin/Users/User";
 
 const PrivateRoute = ({ element, path }) => {
   const { currentUser } = useContext(AuthContext);
-  
+
   if (!currentUser) {
     // If the user is not logged in, redirect to the login page
     return <Navigate to="/login" />;
@@ -212,12 +214,6 @@ const router = createBrowserRouter([
         path: "contact-details",
         element: <PrivateRoute element={<Contact_Info />} />,
       },
-      // {
-      //   path: "media",
-      //   element: <PrivateRoute element={<Media />} />,
-      // }
-
-
     ],
   },
   {
@@ -228,24 +224,33 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Login />,
   },
-
+  {
+    path: '/forgot-password',
+    element: <OTPverify />
+  },
+  {
+    path: '/reset-password',
+    element: <ResetPassword />
+  },
   {
     path: "/unauthorized",
-    element: <Unauthorized/>,
+    element: <Unauthorized />,
   },
 ]);
 
 
 
 function App() {
+
+
+
   return (
-   
-      <div className="app">
-        <div className="container">
-          <RouterProvider router={router} />
-        </div>
+    <div className="app">
+      <div className="container">
+        <RouterProvider router={router} />
       </div>
- 
+    </div>
+
   );
 }
 

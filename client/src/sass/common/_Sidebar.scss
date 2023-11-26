@@ -15,17 +15,31 @@
         height: 100%;
 
         .top-section {
-            // width: 100%;
+            width: 100%;
             // height: 100%;
-            padding: 30px;
-            @include centerFlexboxColumn;
-            img{
-                @include imageDefault(70px, 70px, cover);
+            padding: 10px;
+            @include flexBoxColumn(center, center, 0.5rem);
+            .logo {
+                @include flexBoxRow(center, center, 0.5rem);
+                img {
+                    @include imageDefault(40px, 40px, cover);
+                }
+                span {
+                    font-size: $f-normalx;
+                    font-family: $secondary-font;
+                }
             }
-            span {
-                font-size: $subheading;
-                font-family: $secondary-font;
-               
+            .home-link {
+                display: flex;
+                gap: 0.3rem;
+                text-decoration: underline;
+                color: $grey-300;
+
+                width: 100%;
+                margin-inline: auto;
+                &:hover {
+                    color: $grey-500;
+                }
             }
         }
 
@@ -49,7 +63,7 @@
             .sidebar-title {
                 display: flex;
                 justify-content: space-between;
-                
+
                 cursor: pointer;
                 color: inherit;
 

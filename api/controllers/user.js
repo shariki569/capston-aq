@@ -24,11 +24,11 @@ export const getUsers = async (req, res) => {
          [limit, offset]
       );
 
+      connection.release();
 
-      if (rows.length === 0) {
+      if (!rows.length) {
          return res.status(404).json("No users found");
       }
-      connection.release();
       return res.status(200).json({ users: rows, totalPages });
    } catch (err) {
       console.error("Database error:", err);

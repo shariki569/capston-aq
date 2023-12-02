@@ -3,26 +3,20 @@
 .input-flex {
     display: flex;
     flex-direction: row;
-
-    // .label {
-    //     min-width: 200px;
-    // }
 }
 
-// .start {
-//     float: left;
-// }
+
 
 .text-input {
     display: flex;
     flex-direction: column;
     font-family: $secondary-font;
-    // margin: $base-margin;
+
     font-size: $content;
     color: $greyColor;
     width: 100%;
     min-width: 10%;
-    // padding-bottom: $small-padding;
+  
 
     .label {
         margin: $small-margin-y;
@@ -114,8 +108,5 @@
     option{
         border: none;
     }
-    // appearance: none;
-    // option{
-    //     border-radius: $base-border-radius;
-    // }
+
 }

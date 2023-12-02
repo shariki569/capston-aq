@@ -98,3 +98,5 @@ export const updateRole = async (req, res) => {
       return res.status(500).json("Internal server error");
    }
 }
+
+

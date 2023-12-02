@@ -248,7 +248,12 @@ ol {
     color: $primary;
     line-height: $xxlarge-line-height;
 }
-
+.confirm-msg{
+    font-size: $f-large;
+    text-align: center;
+    width: 100%;
+    padding-block: $base-padding;
+}
 .centered-heading {
     @include centeredHeading;
     @include centerAndSet(1300px, 2rem);
@@ -308,10 +313,10 @@ ol {
 
     .buttons {
         display: flex;
-        justify-content: flex-start;
+        // justify-content: flex-end;
         gap: 10px;
         margin-top: 20px;
-
+        width: 100%;
         // :first-child {
         //     cursor: pointer;
         //     color: white;
@@ -376,9 +381,14 @@ ol {
             }
 
             .add-button {
-                display: inline;
+                display: flex;
                 align-items: center;
-
+                color: green;
+                cursor: pointer;
+                gap: 5px;
+                &:hover {
+                    text-decoration: underline;
+                }
                 a {
                     display: flex;
                     color: green;
@@ -390,7 +400,7 @@ ol {
                 }
             }
 
-            .title {
+            .title-input {
                 font-size: $f-large;
                 font-weight: $w-bold;
                 color: $lighterGreyColor;
@@ -400,11 +410,7 @@ ol {
                 margin: $small-margin-y;
             }
 
-            // input {
-            //     padding: 10px;
-            //     border: 1px solid lightgray;
-            //     width: 100%;
-            // }
+      
 
             .editorContainer {
                 // max-width: 60%;
@@ -427,6 +433,7 @@ ol {
         }
 
         .page-sections {
+          
             margin: $base-margin-y;
             .page-sections-wrapper {
                 display: flex;

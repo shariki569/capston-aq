@@ -1,5 +1,9 @@
 @use "./../Utilities/" as *;
-
+.group-btn {
+    display: flex;
+    gap: 1rem;
+    padding-top: $base-padding;
+}
 .btn {
     display: flex;
     justify-content: center;
@@ -29,6 +33,7 @@
         color: $honeyDew;
         border-radius: $base-border-radius;
         padding: $base-button-size;
+        background-color: $primary-fade;
     }
 
     &::before {
@@ -53,6 +58,16 @@
         padding: $small-button-size;
     }
 
+    &.disabled{
+        pointer-events: none;
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    &.btn-right{
+        margin-left: auto;
+    }
+
     &.btn-err {
         border: $base-border-thickness $error;
         color: $error;
@@ -65,6 +80,7 @@
         }
     }
 }
+
 
 .btn-2 {
     display: flex;

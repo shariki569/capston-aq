@@ -7,6 +7,7 @@ import TextInput from '../../../forms/FormFields/TextInput'
 import { BiDotsVertical } from "react-icons/bi";
 import SearchInput from '../../../forms/FormFields/SearchInput';
 import { Link } from 'react-router-dom';
+import { toast } from 'sonner';
 const Intents = () => {
 
   const [intents, setIntents] = useState([])
@@ -42,6 +43,7 @@ const Intents = () => {
   const handleDelete = (intentId) => {
     axios.delete(`${import.meta.env.VITE_APP_BACKEND_URL}/api/chatbotRoute/intents/${intentId}`)
     setIntents((prevIntents) => prevIntents.filter((intent) => intent.IntentID !== intentId))
+    toast.error('Intent Deleted')
   }
 
   return (

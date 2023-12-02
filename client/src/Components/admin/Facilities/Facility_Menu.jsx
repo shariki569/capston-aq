@@ -1,21 +1,51 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { deleteFacility, useFacilities } from '../../../API/fetchFacilities'
 import { Link } from 'react-router-dom';
-import { FiPlusCircle, FiTrash2 } from 'react-icons/fi';
-import axios from 'axios';
+import { FiAlertCircle, FiPlusCircle, FiTrash2 } from 'react-icons/fi';
 import moment from 'moment';
+import Modal from '../../ui/Modal/Modal';
+import { toast } from 'sonner';
 
 const Facilities = () => {
   const { facilities, fetchFacilities } = useFacilities();
   const { deleteData } = deleteFacility();
- 
-  const handleDelete = async (facId) => {
+  const [openDialog, setOpenDialog] = useState(false);
+  const [selectedFacilities, setSelectedFacilities] = useState(null);
+
+
+  const handleDelete = async () => {
     try {
-      await deleteData(facId, fetchFacilities);
-    } catch (error) {
-      console.error(error);
+      toast.error(`Facility ${selectedFacilities.Fac_Title} has been deleted`);
+      handleClose();
+      await deleteData(selectedFacilities?.Fac_Id);
+    } catch (err) {
+      console.error(err);
+      toast.error(`Error deleting ${selectedFacilities.Fac_Title}`);
+    } finally {
+      fetchFacilities();
     }
+  };
+
+  const handleSelection = (facId) => {
+    if (facId) {
+      // Existing accommodation, perform update
+      const selectedFacility = facilities.find((fac) => fac.Fac_Id === facId);
+      setSelectedFacilities(selectedFacility);
+    } else {
+      // No accommodationId, indicating a new accommodation is being added
+      setSelectedFacilities(null);
+    }
+    setOpenDialog(true);
+  };
+
+  
+  const handleClose = () => {
+    setOpenDialog(false);
   }
+
+  useEffect(() => {
+    fetchFacilities();
+  }, [facilities]);
 
   return (
     <>
@@ -44,9 +74,10 @@ const Facilities = () => {
                     <td>{moment(facility.Fac_Date).format("YYYY-MM-DD")}</td>
                     <td className='center'>
                       <div className='crud-btn'>
-                    
+
                         <Link state={facility} to={`/dashboard/facilities/write?edit=${facility.Fac_Id}`}><button>Edit</button></Link>
-                        <button onClick={() => handleDelete(facility.Fac_Id)}><FiTrash2 /></button>
+                        <button onClick={() => handleSelection(facility.Fac_Id)}><FiTrash2 /></button>
+
                       </div>
                     </td>
                   </tr>
@@ -54,7 +85,25 @@ const Facilities = () => {
 
               </tbody>
             </table>
-
+            {openDialog && (
+              <Modal
+                closeModal={handleClose}
+                dialogMsg={`Are you sure you want to delete?`}
+                symbol={<FiAlertCircle size={30} color='red' />}
+              >
+                <h2 className='confirm-msg'>
+                  {selectedFacilities?.Fac_Title}
+                </h2>
+                <div className='group-btn'>
+                  <span
+                    className={`btn btn-small btn-right ${selectedFacilities?.Fac_Id ? '' : 'disabled'}`}
+                    onClick={() => handleDelete(selectedFacilities?.Fac_Id)}
+                  >Yes
+                  </span>
+                  <span className='btn btn-err btn-small' onClick={handleClose}>No</span>
+                </div>
+              </Modal>
+            )}
           </div>
         </div>
       </div>

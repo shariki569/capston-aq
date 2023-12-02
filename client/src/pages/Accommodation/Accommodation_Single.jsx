@@ -42,7 +42,7 @@ const Accommodation_Single = () => {
           </div>
 
         </div>
-        <Accom_Sidebar price={accomm?.Accommodation_Price} type={accomm?.Accommodation_Type} currentAccommodationId={accomm.Accommodation_Id} />
+        <Accom_Sidebar priceNight= {accomm?.Accommodation_NightPrice} price={accomm?.Accommodation_Price} type={accomm?.Accommodation_Type} currentAccommodationId={accomm.Accommodation_Id} />
       </div>
       <Amenities_Single />
     </>

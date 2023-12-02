@@ -1,24 +1,55 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import DOMPurify from 'dompurify';
-import { FiPlusCircle, FiTrash2 } from 'react-icons/fi';
+import { FiAlertCircle, FiPlusCircle, FiTrash2 } from 'react-icons/fi';
 import moment from 'moment';
 import { useAccommodations, useDeleteAccomms } from '../../../API/fetchAccommodations';
+import { toast } from 'sonner';
+import Modal from '../../ui/Modal/Modal';
 // import DataTable from '../../ui/DataTable(OnHold)';
 
 const AccommodationMenu = () => {
-
   const { accomms, fetchData } = useAccommodations();
   const { deleteData } = useDeleteAccomms();
+  const [openDialog, setOpenDialog] = useState(false);
+  const [selectedAccomm, setSelectedAccomm] = useState(null);
 
-  const handleDelete = async (accommId) => {
+  const handleDelete = async () => {
     try {
-      await deleteData(accommId, fetchData); // Pass setAccomms function to update the accommodations list
+      if (selectedAccomm && selectedAccomm.Accommodation_Id) {
+        await deleteData(selectedAccomm.Accommodation_Id);
+        
+        toast.error(`Accommodation ${selectedAccomm.Accommodation_Title} has been deleted`);
+      } else {
+        console.error("Invalid accommodation data");
+      }
+
     } catch (err) {
       console.log(err);
+      toast.error(`Error deleting ${selectedAccomm.Accommodation_Title}`);
+    } finally {
+      setOpenDialog(false); // Close the confirmation dialog
+
     }
+  };
+
+  const handleClose = () => {
+    setOpenDialog(!openDialog);
   }
-  console.log(accomms);
+
+  const handleSelection = (accommodationId) => {
+    if (accommodationId) {
+      // Existing accommodation, perform update
+      const selectedAccomm = accomms.find((accomm) => accomm.Accommodation_Id === accommodationId);
+      setSelectedAccomm(selectedAccomm);
+    } else {
+      // No accommodationId, indicating a new accommodation is being added
+      setSelectedAccomm(null);
+    }
+    setOpenDialog(true);
+  };
+  useEffect(() => {
+    fetchData();
+  }, [accomms])
 
   return (
     <>
@@ -47,7 +78,7 @@ const AccommodationMenu = () => {
                     <td className='center'>{accomm.Accommodation_Id}</td>
                     <td className='center nowrap'>{moment(accomm.Accommodation_Date).format("YYYY-MM-DD")}</td>
                     <td className='center'>{accomm.Accommodation_Title}</td>
-                    <td className='center'><img src={accomm.Accommodation_Img.startsWith('http') ? accomm.Accommodation_Img : `../../upload/${accomm.Accommodation_Img}`}  alt="" /></td>
+                    <td className='center'><img src={accomm.Accommodation_Img?.startsWith('http') ? accomm.Accommodation_Img : `../../upload/${accomm.Accommodation_Img}`} alt="" /></td>
                     <td className='center'>{accomm.Accommodation_Type}</td>
                     {/* <td className='description' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(accomm.Accommodation_Desc) }} /> */}
                     {/* <td className='description'>  {DOMPurify.sanitize(accomm.Accommodation_Desc)}</td> */}
@@ -57,18 +88,35 @@ const AccommodationMenu = () => {
                     <td>
                       <div className='crud-btn'>
                         <Link state={accomm} to={`/dashboard/accommodations/write?edit=${accomm.Accommodation_Id}`}><button>Edit</button></Link>
-                        <button onClick={() => handleDelete(accomm.Accommodation_Id)}><FiTrash2 /></button>
+                        <button
+                          onClick={() => handleSelection(accomm.Accommodation_Id)}>
+                          <FiTrash2 />
+                        </button>
                       </div>
                     </td>
                   </tr>))}
               </tbody>
             </table>
-            {/* 
-            <DataTable
-              columns={accommodationColumns}
-              data={accomms}
-              actions={accommodationActions}
-            /> */}
+            {openDialog && (
+              <Modal
+                closeModal={handleClose}
+                dialogMsg={`Are you sure you want to delete?`}
+                symbol={<FiAlertCircle size={30} color='red' />}
+              >
+                <h2 className='confirm-msg'>
+                  {selectedAccomm?.Accommodation_Title}
+                </h2>
+                <div className='group-btn'>
+                  <span
+                    className={`btn btn-small btn-right ${selectedAccomm?.Accommodation_Id ? '' : 'disabled'}`}
+                    onClick={() => handleDelete(selectedAccomm?.Accommodation_Id)}
+                  >
+                    Yes
+                  </span>
+                  <span className='btn btn-err btn-small' onClick={handleClose}>No</span>
+                </div>
+              </Modal>
+            )}
 
           </div>
         </div>

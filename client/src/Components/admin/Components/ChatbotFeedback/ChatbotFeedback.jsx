@@ -9,6 +9,7 @@ import { BiDotsVertical, BiEdit, BiTrash } from "react-icons/bi"
 import Modal from "../../../ui/Modal/Modal"
 import StarRating from "../../../ui/FeedbackForm/StarRating/StarRating"
 import { AiOutlineReload } from "react-icons/ai";
+import { toast } from "sonner"
 
 const ChatbotFeedback = () => {
   const [feedback, setFeedback] = useState([])
@@ -52,6 +53,7 @@ const ChatbotFeedback = () => {
       console.log(err)
     } finally {
       setLoading(false)
+      toast.success('Feedback updated successfully')
     }
   }
 

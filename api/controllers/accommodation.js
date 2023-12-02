@@ -3,19 +3,18 @@ import jwt from "jsonwebtoken";
 import { idGenerator } from "../idGenerator/index.js";
 
 export const getAccomms = async (req, res) => {
+  const connection = await db.getConnection();
   try {
     const q = req.query.type
       ? "SELECT * FROM accommodations WHERE Accommodation_Type = ? AND Is_Deleted = 0"
       : "SELECT * FROM accommodations WHERE Is_Deleted = 0";
-
-    const connection = await db.getConnection();
     const [rows] = await connection.query(q, [req.query.type]);
-    connection.release();
-
     return res.status(200).json(rows);
   } catch (err) {
     console.error("Database error:", err);
     return res.status(500).json("Internal server error");
+  } finally {
+    connection.release();
   }
 };
 
@@ -50,6 +49,7 @@ export const deleteAccomm = async (req, res) => {
 
 
 export const addAccomm = async (req, res) => {
+  const connection = await db.getConnection();
   try {
     const q =
       "INSERT INTO accommodations (`Accommodation_Id`, `Accommodation_Title`, `Accommodation_Slug`, `Accommodation_Desc`, `Accommodation_Cap`, `Accommodation_Price`,`Accommodation_NightPrice`, `Accommodation_Unit`, `Accommodation_Type`, `Accommodation_Img`, `Accommodation_Date`) VALUES (?)";
@@ -69,16 +69,13 @@ export const addAccomm = async (req, res) => {
       req.body.accommImg,
       req.body.accommDate,
     ];
-   
-
-    const connection = await db.getConnection();
     await connection.query(q, [values]);
-    connection.release();
-
     return res.json("Accommodation has been added");
-  } catch (error) {
-    console.error("Database error:", error);
+  } catch (err) {
+    console.error("Database error:", err);
     return res.status(500).json("Internal server error");
+  } finally {
+    connection.release();
   }
 };
 

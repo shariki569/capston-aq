@@ -30,7 +30,14 @@ $f-large: 1.5rem;
 $f-xlarge: 2rem;
 $f-xxlarge: 3rem;
 
+.f-normal{
+    font-size: $f-normal;
+}
 
+
+.f-large {
+    font-size: $f-large;
+}
 //Defining font weight and 
 $w-thin:100;
 $w-extra-light: 200;

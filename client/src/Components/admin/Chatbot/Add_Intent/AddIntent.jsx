@@ -7,6 +7,7 @@ import ChatResponse from './ChatResponse/ChatResponse';
 import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { MoonLoader } from 'react-spinners';
+import { toast } from 'sonner';
 const AddIntent = () => {
 
   const state = useLocation().state
@@ -39,6 +40,8 @@ const AddIntent = () => {
           Utterances: addIntent.userSaysPreview,
           Answers: addIntent.chatResponsePreview,
         });
+
+        toast.success('Intent Added');
     } catch (err) {
       console.log(err, 'cannot post');
       {

@@ -49,12 +49,12 @@
             display: flex;
             flex-direction: flex-start;
             justify-content: space-between;
-            height: 70px;
+            min-height: 70px;
             a {
                 color: $primaryColor;
             }
 
-            .select{
+            .select {
                 margin-left: auto;
             }
         }
@@ -91,9 +91,11 @@
 
                 .price {
                     color: $tertiary;
-                    font-size: $heading;
+                    font-size: $f-large;
                     font-family: $font-libre-baskerville;
-
+                    // &.night {
+                    //     background-color: $description
+                    // }
                     &::after {
                         content: "";
                         width: 70px;
@@ -176,7 +178,7 @@
 .accomm__single_wrapper {
     display: flex;
     @include centerAndSet(1300px, 2rem);
-    margin: $base-margin-y;
+    padding: $large-padding-y;
     gap: 15px;
     .content {
         display: flex;
@@ -192,7 +194,7 @@
         }
     }
 
-    .accommodation-wrapper {    
+    .accommodation-wrapper {
         min-height: 70vh;
         height: 100%;
 
@@ -213,6 +215,4 @@
     @include devices(tablet) {
         flex-direction: column;
     }
-
-    
 }

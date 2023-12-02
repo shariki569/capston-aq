@@ -40,31 +40,21 @@ const About = () => {
         image={headerImage}
         quote="About Us" />
       <div className='about'>
-        {pageData && (
-          <div>
-            <Header
-              small
-              imageUrl={headerImage}
-              title={pageData.PageTitle}
-              pageSlug={pageData.Slug}
-              state={pageData}
-            />
-            {/* <div className='mini__banner'>
-             <h1>Our Story</h1>  
-            </div> */}
-            {/* <div className='image__mini__banner'>
-              <img src="" alt="" />
-            </div> */}
-            {pageData.sections.map((section) => (
-              <AboutSections key={section.SectionId}
-                image={`/upload/${section.SectionImage}`}
-                title={section.SectionHeading}
-                text={section.SectionContent}
+        <div>
+          <Header
+            small
+            imageUrl={headerImage}
+            title='About Us'
+          />
+
+            {pageData?.map((section) => (
+              <AboutSections key={section.About_Id}
+                image={section.About_Img.startsWith('http') ? section.About_Img : `/upload/${section.About_Img}`}
+                title={section.About_Heading}
+                text={section.About_Content}
               />
 
             ))}
-
-
             {/* {pageData.sections.map((section) => (
                 <TwoSections
 
@@ -79,10 +69,8 @@ const About = () => {
                   }
                 />
               ))} */}
-
-
           </div>
-        )}
+  
 
 
         <div className='about__misvis'>

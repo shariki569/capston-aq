@@ -3,6 +3,7 @@ import TextInput from '../forms/FormFields/TextInput'
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import { formatAsCellPhoneNumber, formatAsPhoneNumber } from '../util/formatDetails';
+import { toast } from 'sonner';
 
 const Contact_Info = () => {
   const [contactInfo, setContactInfo] = useState(null);
@@ -47,11 +48,13 @@ const Contact_Info = () => {
   const handleSave = async () => {
     try {
       // Make the API call to update the contact information
-      await axios.put(`/api/contacts/1`, contactInfo);
+      await axios.put(`${import.meta.env.VITE_APP_BACKEND_URL}/api/contacts/1`, contactInfo);
       // Exit edit mode after saving
       setEditMode(false);
     } catch (err) {
       console.error(err);
+    } finally {
+      toast.success('Contact information updated successfully!');
     }
   };
 
@@ -95,6 +98,7 @@ const Contact_Info = () => {
                 <div className='contact-info || full-width s-margin-y'>
                   {editMode ? (
                     <TextInput
+                      
                       type={item.type}
                       name={item.key}
                       value={contactInfo[item.key] || ''}
@@ -124,14 +128,13 @@ const Contact_Info = () => {
           {/* <label className="file" htmlFor="file" encType="multipart/form-data">Upload Image</label> */}
           {editMode ? (
             <div className="buttons">
-              <button onClick={handleSave}>Save</button>
-              <button onClick={toggleEditMode}>Cancel</button>
+              <button className='btn'onClick={handleSave}>Save</button>
+              <button className='btn btn-err' onClick={toggleEditMode}>Cancel</button>
             </div>
 
           ) : (
             <div className="buttons">
-              <button onClick={toggleEditMode}>Edit</button>
-
+              <button  className='btn' onClick={toggleEditMode}>Edit</button>
             </div>
           )}
         </div>

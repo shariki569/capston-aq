@@ -8,20 +8,18 @@ env.config();
 
 
 export const getPosts = async (req, res) => {
+  const connection = await db.getConnection();
   try {
     const q = req.query.cat
       ? 'SELECT p.*, u.username FROM posts p JOIN users u ON p.Post_Uid = u.id WHERE p.PostCat = ? AND Is_Deleted = 0'
       : 'SELECT p.*, u.username FROM posts p JOIN users u ON p.Post_Uid = u.id WHERE Is_Deleted = 0';
-
-    const connection = await db.getConnection();
     const [rows] = await connection.query(q, [req.query.cat]);
-
-    connection.release();
-
     return res.status(200).json(rows);
   } catch (err) {
     console.error('Database error:', err);
     return res.status(500).json(err);
+  } finally {
+    connection.release();
   }
 };
 

@@ -26,7 +26,8 @@
     }
 
     .chatbot__container {
-        height: 550px;
+        // min-height: 550px;
+        height: 85dvh;
         width: 100%;
         // max-height: ;
         display: flex;

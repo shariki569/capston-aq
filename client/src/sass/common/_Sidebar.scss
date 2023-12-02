@@ -28,6 +28,10 @@
                     font-size: $f-normalx;
                     font-family: $secondary-font;
                 }
+                a{
+                    text-decoration: none;
+                    color: $grey-300;
+                }
             }
             .home-link {
                 display: flex;

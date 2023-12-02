@@ -40,9 +40,11 @@ const Sidebar = () => {
                         <Link to="/dashboard">
                             <img src={logo} alt="" />
                         </Link>
-                        <h3>Aqua Cainta Dashboard</h3>
+                        <Link to="/dashboard">
+                            <h3>Aqua Cainta Dashboard</h3>
+                        </Link>
                     </div>
-                    <Link className='home-link' to="/"><FiHome/> Go to Homepage</Link>
+                    <Link className='home-link' to="/"><FiHome /> Go to Homepage</Link>
                 </div>
                 <div className="mid-section">
                     {sidebarLinks.map((item, index) =>

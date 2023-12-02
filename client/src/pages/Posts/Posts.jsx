@@ -8,6 +8,7 @@ import PostHeading from "../../Components/PostComponents/PostHeading";
 import PostItems from "./PostItems";
 import ScrollToTop from "../../Components/Hoc/ScrollToTop";
 import SEO from "../../Components/SEO/SEO";
+import { Menu } from "../../Components";
 const Posts = () => {
   const [posts, setPosts] = useState([]);
 
@@ -38,8 +39,9 @@ const Posts = () => {
           </div>
           <div className=" right">
             <div>
-              <h4>Other Posts you may like</h4>
+              {/* <h4>Suggested Posts</h4> */}
               {/* <PostItems posts={posts} /> */}
+              {/* <Menu cat={cat}/> */}
             </div>
           </div>
         </div>

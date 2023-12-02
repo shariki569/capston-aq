@@ -69,7 +69,7 @@ const Accommodation_Items = () => {
                         <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(accomm.Accommodation_Desc), }}>
                         </p>
                       </div>
-                      <Link to={`/accommodation/${accomm.Accommodation_Title}/${accomm.Accommodation_Id}`}><button className="btn" type="submit">
+                      <Link to={`/accommodation/${accomm.Accommodation_Slug}/${accomm.Accommodation_Id}`}><button className="btn" type="submit">
                         View Details
                       </button>
                       </Link>

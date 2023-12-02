@@ -1,0 +1,42 @@
+@use "../../sass/Utilities/" as *;
+
+.privacy_policy {
+    @include centerAndSet(1300px, 2rem);
+    // @include flexBoxColumn(center, center, 2rem);
+    // padding-block: 2rem;
+    .privacy_policy__container {
+        @include centerAndSet(1300px, 2rem);
+        color: $grey-800;
+        li {
+            font-size: $f-large;
+            font-weight: $w-bold;
+            padding: $small-padding-y;
+
+            .privacy_policy__list_alphabet {
+                font-size: $f-normal;
+                list-style: lower-alpha;
+                font-weight: $w-normal;
+                list-style-position: inside;
+                padding-left: 1rem;
+            }
+
+            .privacy_policy__list {
+                font-size: $f-normal;
+                list-style-type: none;
+                font-weight: $w-normal;
+                list-style-position: inside;
+                padding-left: 1rem;
+            }
+
+            .privacy_policy__subheading {
+                font-size: $f-normal;
+            }
+        }
+        p {
+            font-size: $f-normalx;
+            padding: $base-padding-y;
+            font-weight: $w-bold;
+            text-align: center;
+        }
+    }
+}

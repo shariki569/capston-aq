@@ -24,6 +24,7 @@ import {
   Contact,
   Accommodation,
 } from "./pages";
+import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy";
 import Dashboard from "./Components/admin/Dashboard";
 import Layout from "./Components/layouts/Layout";
 import DashboardLayout from "./Components/layouts/DashboardLayout";
@@ -51,7 +52,6 @@ import AmenitiesLayout from "./Components/layouts/AmenitiesLayout";
 import Amenities_Menu from "./Components/admin/Amenities/Amenities_Menu";
 import Facilities from "./pages/Facility/Facilities";
 import Chatbot from "./Components/admin/Chatbot/Chatbot";
-
 import DashboardChatbotLayout from "./Components/layouts/DashboardChatbotLayout/DashboardChatbotLayout";
 import AddIntent from "./Components/admin/Chatbot/Add_Intent/AddIntent";
 import FAQs from "./pages/FAQs/FAQs";
@@ -122,6 +122,10 @@ const router = createBrowserRouter([
       {
         path: "/frequently-asked-questions",
         element: <FAQs />,
+      },
+      {
+        path: '/privacy-policy',
+        element: <PrivacyPolicy />
       }
     ],
   },

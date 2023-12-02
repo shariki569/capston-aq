@@ -14,8 +14,7 @@ const Footer = () => {
   const { contactInfo } = useContactInfo();
   const footerLinks = [
     { title: "About Us", path: "/about-us" },
-    { title: "Privacy Policy", path: "/" },
-    { title: "Resort Policy", path: "/" },
+    { title: "Privacy Policy", path: "/privacy-policy" },
     { title: "FAQs", path: "/frequently-asked-questions" },
     { title: "Blog", path: "/" },
   ]

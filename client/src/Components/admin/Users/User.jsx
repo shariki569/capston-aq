@@ -24,22 +24,23 @@ const User = () => {
   const navigate = useNavigate()
   const [showModal, setShowModal] = useState(false)
   const [selectedUser, setSelectedUser] = useState(null)
-  const { currentUser } = useContext(AuthContext )
+  const { currentUser } = useContext(AuthContext)
   // const [page, setPage] = useState(1)
   // const [totalPages, setTotalPages] = useState(0)
   // const [limt, setLimit] = useState(10)
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/users?page=${page}`)
-        setUsers(res.data.users)
-        console.log(res.data.users)
-        setTotalPages(res.data.totalPages)
-      } catch (err) {
-        console.log(err)
-      }
+  const fetchData = async () => {
+    try {
+      const res = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/users?page=${page}`)
+      setUsers(res.data.users)
+      console.log(res.data.users)
+      setTotalPages(res.data.totalPages)
+    } catch (err) {
+      console.log(err)
     }
+  }
+  
+  useEffect(() => {
+
     fetchData()
   }, [page])
 
@@ -74,6 +75,10 @@ const User = () => {
       console.log(err)
     }
   }
+
+  useEffect(() => {
+    fetchData()
+  }, [users])
   return (
     <div>
       <div className='title'>
@@ -94,7 +99,7 @@ const User = () => {
                   {/* <th>Description</th> */}
                   <th>Date Created</th>
 
-               {currentUser.Role_Name === 'Admin' &&   <th>Action</th>}
+                  {currentUser.Role_Name === 'Admin' && <th>Action</th>}
                 </tr>
               </thead>
               <tbody>
@@ -108,7 +113,7 @@ const User = () => {
                     <td>{user.email}</td>
                     <td className='center'>{user.Role_Name}</td>
                     <td className='center'>{moment(user.Date_Time).fromNow()}</td>
-                   {currentUser.Role_Name === 'Admin' && <td>
+                    {currentUser.Role_Name === 'Admin' && <td>
                       <div className='crud-btn'>
 
                         <button onClick={() => openModal(user.id)}>View</button>
@@ -126,7 +131,7 @@ const User = () => {
 
       {showModal && (
         <Modal closeModal={() => setShowModal(false)}>
-          <ModalUser user={selectedUser} closeModal={() => setShowModal(false)}/>
+          <ModalUser user={selectedUser} closeModal={() => setShowModal(false)} />
         </Modal>
       )}
     </div>

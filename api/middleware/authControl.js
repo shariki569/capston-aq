@@ -2,8 +2,8 @@
 // import { envConfig } from "./envConfig.js";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-// envConfig();
 
+dotenv.config();
 
 // export const restrictTo = (...role) => {
 //   return (req, res, next) => {
@@ -25,10 +25,10 @@ export const isAdmin = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const userId = decoded.id;
-    const userRole = decoded.Role_Name;
+    const userRole = decoded.Role;
 
 
-    if (userRole === "Admin") {
+    if (userRole !== "Admin") {
       return res.status(403).json({ message: "You do not have permission to perform this action" });
       // user is not an admin
     }

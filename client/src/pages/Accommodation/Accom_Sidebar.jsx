@@ -7,7 +7,7 @@ import { useAccommodations, useRandomAccommodation } from '../../API/fetchAccomm
 import ScrollToTop from '../../Components/Hoc/ScrollToTop';
 
 
-const Accom_Sidebar = ({ price, type, currentAccommodationId }) => {
+const Accom_Sidebar = ({ price, type, currentAccommodationId, priceNight }) => {
 
     const { contactInfo } = useContactInfo();
     const formattedCelNumber = formatCelNumber(contactInfo?.con_cellphone);
@@ -18,7 +18,8 @@ const Accom_Sidebar = ({ price, type, currentAccommodationId }) => {
             {/* classes are in the _SideMenu.css*/}
             <div className="side_menu">
                 <div className="price_wrapper">
-                    <h1 className='price'>₱ {price}<span>/Per Night</span></h1>
+                    <h1 className='price'>₱ {price}<span>Day Price</span></h1>
+                 {priceNight &&   <h1 className='price night'>₱ {priceNight}<span>Night Price</span></h1>}
                 </div>
                 <div className="contact-info">
                     <h2>Interested?</h2>

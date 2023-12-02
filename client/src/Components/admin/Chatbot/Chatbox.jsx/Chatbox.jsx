@@ -6,6 +6,7 @@ import TextArea from '../../../forms/FormFields/TextArea';
 import { FiSend } from 'react-icons/fi';
 import DOMPurify from 'dompurify';
 import axios from 'axios';
+import { toast } from 'sonner';
 const Chatbox = () => {
 
   const [input, setInput] = useState('');
@@ -43,9 +44,10 @@ const Chatbox = () => {
     try {
       setLoading(true);
       await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/chatbotRoute/train`);
-      alert('Training complete!');
+      toast.success('Training complete!');
     } catch (err) {
       console.log(err);
+      toast.error(err.response.data);
     } finally {
       setLoading(false);
     }

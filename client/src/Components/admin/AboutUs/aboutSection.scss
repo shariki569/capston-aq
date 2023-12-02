@@ -1,0 +1,33 @@
+@use "../../../sass/Utilities/" as *;
+
+.about-section-image-wrap {
+    width: 100%;
+    height: 300px;
+
+    img {
+        border-radius: $base-border-radius;
+        @include fullSize;
+        object-fit: cover;
+    }
+}
+.about-section-item {
+    display: flex;
+    flex-direction: column;
+    margin-top: $large-margin;
+    gap: 0.5rem;
+
+}
+
+.about-section-title {
+    margin: $base-margin-y;
+    font-size: $f-large;
+ 
+    input{  
+        color: $grey-700;
+        font-weight: $w-semi-bold;
+        font-size: $f-large;
+    }
+}
+.section-editor{
+    margin-block: $large-margin;
+}

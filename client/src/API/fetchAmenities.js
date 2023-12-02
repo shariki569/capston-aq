@@ -20,10 +20,12 @@ export const useAmenities = () => {
 }   
 
 export const useDeleteAmenity = () => {
-    const deleteData = async (amenityId, updateAmenity) => {
+    const deleteData = async (amenityId) => {
         try {
-            await axios.delete(`${import.meta.env.VITE_APP_BACKEND_URL}/api/amenities/${amenityId}`)
-            updateAmenity((prevAmenity) => prevAmenity.filter((amenity) => amenity.Amenity_Id !== amenityId))
+            await axios.delete(`${import.meta.env.VITE_APP_BACKEND_URL}/api/amenities/${amenityId}`, {
+                withCredentials: true
+            })
+            // updateAmenity((prevAmenity) => prevAmenity.filter((amenity) => amenity.Amenity_Id !== amenityId))
         } catch (error) {
             console.log(error)
         }

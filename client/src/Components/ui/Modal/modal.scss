@@ -2,7 +2,7 @@
 
 .modal__content {
     @include cardBase($base-border-radius);
-    padding: $base-padding;
+    padding: $large-padding;
     position: relative;
 
     .dismiss {
@@ -13,7 +13,7 @@
 
     .modal__close {
         top: 3%;
-        right: 3%;
+        right: 2%;
         padding: $small-padding;
         background-color: transparent;
         display: flex;
@@ -21,5 +21,16 @@
             background-color: $grey-300;
             border-radius: 50%;
         }
+    }
+
+    .dialog-msg{
+        color: $greyColor;
+        font-size: $f-normal;
+        padding: $base-padding-y;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: $f-normalx;
+        font-weight: $w-semi-bold;
     }
 }

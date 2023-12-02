@@ -16,11 +16,16 @@
             font-size: $heading;
             color: $tertiary;
             font-weight: $w-normal;
+            text-align: center;
+            &.night{
+                background-color: $description;
+                border-radius: $small-border-radius;
+            }
         }
     }
 
     span{
-        font-size: $content;
+        font-size: $f-normal;
         color: $lightGreyColor;
     }
 

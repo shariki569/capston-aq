@@ -53,15 +53,16 @@ const processInput = async (input, context) => {
 };
 
 export const trainChatbot = async (req, res) => {
+  const connection = await db.getConnection();
   try {
-    const [intents, fields] = await db.execute('SELECT * FROM intents');
+    const [intents, fields] = await connection.execute('SELECT * FROM intents');
     for (let intent of intents) {
-      const [utterances, utteranceFields] = await db.execute('SELECT * FROM utterances WHERE intentID = ?', [intent.IntentID]);
+      const [utterances, utteranceFields] = await connection.execute('SELECT * FROM utterances WHERE intentID = ?', [intent.IntentID]);
       for (let utterance of utterances) {
         nlp.addDocument('en', utterance.UtteranceText, intent.IntentName);
       }
 
-      const [answers, answerFields] = await db.execute('SELECT * FROM answers WHERE ans_intentID = ?', [intent.IntentID]);
+      const [answers, answerFields] = await connection.execute('SELECT * FROM answers WHERE ans_intentID = ?', [intent.IntentID]);
       for (let answer of answers) {
         nlp.addAnswer('en', intent.IntentName, answer.AnswerTxt);
       }
@@ -73,6 +74,8 @@ export const trainChatbot = async (req, res) => {
   } catch (err) {
     console.error(err);
     return res.status(500).json({ message: 'Internal server error' + err });
+  } finally {
+    connection.release();
   }
 }
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './users.scss'
 import axios from 'axios'
 import { FiCheckCircle } from 'react-icons/fi'
+import { toast } from 'sonner'
 const ModalUser = ({ user, closeModal }) => {
     const [role, setRole] = useState(user?.role || '')
     const [err, setErr] = useState(null)
@@ -18,9 +19,10 @@ const ModalUser = ({ user, closeModal }) => {
                 })
             setLoading(true)
             closeModal()
-            setSuccess(response.data)
+            toast.success('User updated successfully!')
         } catch (err) {
             setErr(err.response.data)
+            toast.error(err.response.data)
         } finally {
             setLoading(false)
         }
@@ -78,7 +80,7 @@ const ModalUser = ({ user, closeModal }) => {
             </div>
             <div className='user__modal__footer'>
                 {loading ? <span className='btn btn-small btn-loading'>Loading...</span> : <span className='btn btn-small' onClick={handleUpdate}>Edit</span>}
-                <span className='btn btn-small btn-err'>Cancel</span>
+                <span className='btn btn-small btn-err' onClick={closeModal}>Cancel</span>
             </div>
         </div>
     )

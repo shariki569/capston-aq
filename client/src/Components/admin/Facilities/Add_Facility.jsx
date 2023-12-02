@@ -9,6 +9,7 @@ import ImageUploader from '../../util/ImageUploader';
 import axios from 'axios';
 import ImageGalleryUploader from '../../util/ImageGalleryUploader';
 import moment from 'moment';
+import { toast } from 'sonner';
 
 const Add_Facility = () => {
   const state = useLocation().state;
@@ -25,6 +26,7 @@ const Add_Facility = () => {
     loading: false,
     error: null,
   });
+
 
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -87,20 +89,6 @@ const Add_Facility = () => {
     }
   }
 
-  // const removeGalleryImage = (index) => {
-  //   if (facility.galleryImages.length > 0) {
-  //     const updatedGalleryImages = [...facility.galleryImages];
-  //     const updatedGalleryFiles = [...facility.galleryFiles];
-  //     updatedGalleryImages.splice(index, 1);
-  //     updatedGalleryFiles.splice(index, 1);
-  //     setFacility((prevFacility) => ({
-  //       ...prevFacility,
-  //       galleryImages: updatedGalleryImages,
-  //       galleryFiles: updatedGalleryFiles,
-  //     }));
-  //   }
-  // };
-
   const handleClick = async (e) => {
     e.preventDefault();
     setFacility((prevFacility) => ({
@@ -129,19 +117,20 @@ const Add_Facility = () => {
           gallery_imgs: updatedGalleryImages,
         });
       }
-      console.log("Existing Gallery Images:", facility.galleryImages);
       navigate('/dashboard/facilities');
     } catch (err) {
       // console.log(err, "cannot post");
       setFacility((prevFacility) => ({
         ...prevFacility,
-        error: err.err,
+        // error: err.err,
+        error: toast.error(err.response.data)
       }))
     } finally {
       setFacility((prevFacility) => ({
         ...prevFacility,
         loading: false,
       }))
+      toast.success(`Facility Added Successfully`);
     }
   };
   console.log("Existing Gallery Images:", facility.galleryImages);
@@ -188,7 +177,7 @@ const Add_Facility = () => {
           />
           <div className="buttons">
             {facility.loading ? (
-              <button className='btn btn-loading' disabled>Publishing</button>
+              <button className='btn btn-loading' disabled={true} >Publishing</button>
             ) : (
               <button button className='btn' onClick={handleClick}>Publish</button>
             )}

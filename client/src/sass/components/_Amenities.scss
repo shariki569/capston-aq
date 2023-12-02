@@ -28,4 +28,19 @@
             }
         }
     }
+
+     
+    .btn-group{
+        display: flex;
+    }
+}
+
+
+.amenity-modal{
+    padding: $base-padding;
+
+    .amenity-input{
+        padding-bottom: 1rem;
+    }
+   
 }

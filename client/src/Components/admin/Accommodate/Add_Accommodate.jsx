@@ -10,6 +10,7 @@ import { upload } from '../../../Hooks/imageHandling'
 import ImageUploader from '../../util/ImageUploader'
 import { DotLoader } from 'react-spinners'
 import { slugify } from '../../util/slugify'
+import { toast } from 'sonner'
 // import { useImageUpload } from '../../../Hooks/imageHandling'
 const Add_Accommodate = () => {
 
@@ -20,7 +21,7 @@ const Add_Accommodate = () => {
   const [accommDesc, setAccommDesc] = useState(state?.Accommodation_Desc || "")
   const [accommCap, setAccommCap] = useState(state?.Accommodation_Cap || "")
   const [accommPrice, setAccommPrice] = useState(state?.Accommodation_Price || "")
-  const [accommNightPrice, setAccommNightPrice] = useState(state?.Accommodation_NightPrice || "")
+  const [accommNightPrice, setAccommNightPrice] = useState(state?.Accommodation_NightPrice || null)
   const [accommUnit, setAccommUnit] = useState(state?.Accommodation_Unit || "")
   const [selectedAccommType, setSelectedAccommType] = useState(state?.Accommodation_Type || "")
   const [loading, setLoading] = useState(false)
@@ -29,14 +30,7 @@ const Add_Accommodate = () => {
   const [previewImage, setPreviewImage] = useState(null)
 
 
-  // useEffect(() => {
-  //   setAccommImg(accommImg);
-  // }, [accommImg])
-
   const navigate = useNavigate();
-
-
-
 
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -52,18 +46,24 @@ const Add_Accommodate = () => {
       setFile(null)
       setPreviewImage(null);
       setAccommImg(null)
-    } else if (accommImg) {
+    } else if (file) {
       setPreviewImage(null)
     }
   }
 
+  const emptyFields = () => {
+    if (!accommTitle || !accommDesc || !accommCap || !accommPrice || !accommNightPrice || !accommUnit || !selectedAccommType) {
+      return true
+    }
+    return false
+  }
 
   const handleClick = async e => {
     e.preventDefault()
     setLoading(true)
     const imgUrl = file ? await upload(file) : accommImg;
+    emptyFields( state ? ''  : toast.error("Please fill in all fields")) 
 
-    // const url = imgUrl.data.url;
     try {
       state
         ? await axios.patch(`${import.meta.env.VITE_APP_BACKEND_URL}/api/accommodations/${state.Accommodation_Id}`, {
@@ -92,9 +92,11 @@ const Add_Accommodate = () => {
           accommDate: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")
         });
       navigate("/dashboard/accommodations")
+      state ? toast.success(`${accommTitle} updated successfully`) : toast.success(`${accommTitle} added successfully`);
     } catch (err) {
-      setLoading(false)
-      console.error(err);
+      setLoading(true)
+      toast.error(err.response.data.message)
+
     } finally {
       setLoading(false)
     };
@@ -155,48 +157,42 @@ const Add_Accommodate = () => {
                   <div className="radio-input">
                     <input type="radio" checked={selectedAccommType === "Room"} value="Room" onChange={(e) => setSelectedAccommType(e.target.value)} />
                     <label htmlFor='room'>Room</label>
-                    {/* <select className='select-box' value={selectedAccommType} onChange={(e) => setSelectedAccommType(e.target.value)}>
-                    <option disabled value="" >Select accommodation type...</option>
-                    <option value="Cottage">Cottage</option>
-                    <option value="Room">Room</option>
-                  </select>
-                  <FiChevronDown className='custom-arrow' size={15} /> */}
                   </div>
                 </div>
               </div>
               {/* <div className="top-row"> */}
-                <div className="item-input">
-                  {/* <span><FiCreditCard size={20} /></span> */}
-                  <TextInput
-                    type="number"
-                    placeholder='Price'
-                    value={accommPrice}
-                    onChange={(e) => setAccommPrice(e.target.value)}
-                    width={100}
-                    label="Price"
-                  />
-                </div>
-                <div className="item-input">
-                  {/* <span><FiCreditCard size={20} /></span> */}
-                  <TextInput
-                    type="number"
-                    placeholder='Night Price'
-                    value={accommNightPrice}
-                    onChange={(e) => setAccommNightPrice(e.target.value)}
-                    width={100}
-                    label="Night Price"
-                  />
-                </div>
-                <div className="item-input">
-                  {/* <span><FiHash size={20} /></span> */}
-                  <TextInput
-                    type="number"
-                    placeholder='No. of Units'
-                    value={accommUnit} onChange={(e) => setAccommUnit(e.target.value)}
-                    width={100}
-                    label="No. of Units"
-                  />
-                </div>
+              <div className="item-input">
+                {/* <span><FiCreditCard size={20} /></span> */}
+                <TextInput
+                  type="number"
+                  placeholder='Price'
+                  value={accommPrice}
+                  onChange={(e) => setAccommPrice(e.target.value)}
+                  width={100}
+                  label="Price"
+                />
+              </div>
+              <div className="item-input">
+                {/* <span><FiCreditCard size={20} /></span> */}
+                <TextInput
+                  type="number"
+                  placeholder='Night Price'
+                  value={accommNightPrice}
+                  onChange={(e) => setAccommNightPrice(e.target.value)}
+                  width={100}
+                  label="Night Price"
+                />
+              </div>
+              <div className="item-input">
+                {/* <span><FiHash size={20} /></span> */}
+                <TextInput
+                  type="number"
+                  placeholder='No. of Units'
+                  value={accommUnit} onChange={(e) => setAccommUnit(e.target.value)}
+                  width={100}
+                  label="No. of Units"
+                />
+              </div>
               {/* </div> */}
               <div className="full-row">
                 <div className="item-input">
@@ -213,17 +209,18 @@ const Add_Accommodate = () => {
               <div className="buttons">
                 {loading ?
                   (<button
-                    className='btn btn-loading'
-                    disabled={true}>
+                    className='btn btn-loading disabled'
+                  >
                     Publishing...</button>
                   ) : (
                     <button
                       onClick={handleClick}
-                      className='btn'>
-                      Publish
+                      className='btn'
+                    >
+                    { state ? 'Update' : 'Publish'}
                     </button>
                   )}
-                {/* <button >Save as a Draft</button> */}
+                {/* <button onClick={() => toast.success('My first toast')} >Save as a Draft</button> */}
               </div>
 
             </div>

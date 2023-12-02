@@ -79,6 +79,14 @@ $base-transition: all 0.3s;
     margin: $small-margin-y;
 }
 
+.s-padding-y{
+    padding: $small-padding-y;
+}
+
+.l-padding-y {
+    padding: $large-padding-y;
+}
+
 .m-margin-y{
     margin: $base-margin-y;
 }

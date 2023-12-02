@@ -41,7 +41,7 @@ const Home = () => {
                 <p>Surrender to the Allure of Our Resort</p>
               </div>
               <div className='home-cta'>
-                <Link className='cta' to='/'>Learn More</Link>
+                <Link className='cta' to='/about-us'>Learn More</Link>
               </div>
             </div>
 

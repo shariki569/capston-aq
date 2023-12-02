@@ -1,11 +1,13 @@
 import express from "express";
-import { getPages, getPage, updatePage } from "../controllers/page.js";
+import {  getAboutUs, updateAboutUs,  } from "../controllers/page.js";
 
 const router = express.Router();
 
-router.get("/", getPages);
-router.get("/:slug", getPage);
-// router.patch("/:slug", updatePage);
-router.put("/:slug", updatePage);
+// router.get("/", getPages);
+// router.get("/:slug", getPage);
+// router.put("/update-about-us", updatePage);
+// router.put("/:slug", updatePage);
+router.get("/", getAboutUs);
+router.put("/update-about-us", updateAboutUs);
 
 export default router;

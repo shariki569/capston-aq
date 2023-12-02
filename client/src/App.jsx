@@ -27,15 +27,15 @@ import {
 import Dashboard from "./Components/admin/Dashboard";
 import Layout from "./Components/layouts/Layout";
 import DashboardLayout from "./Components/layouts/DashboardLayout";
-import Pages from "./Components/admin/Pages";
+import Pages from "./Components/admin/AboutUs/Pages";
 import {
   Accommodation_Menu,
   Add_Accommodate,
 } from "./Components/admin/Accommodate";
 import AccommodationMenuLayout from "./Components/layouts/AccommodationLayout";
-import Accommodation_Items from "./pages/Accommodation/Accommodation_Items";
+import { Toaster } from 'sonner'
 import Contact_Info from "./Components/admin/Contact_Info";
-// import Media from "./Components/admin/Media/GalleryMedia/Media";
+
 import PostsLayout from "./Components/layouts/PostsLayout";
 import Posts_Menu from "./Components/admin/Posts/Posts_Menu";
 import Accommodation_Single from "./pages/Accommodation/Accommodation_Single";
@@ -247,6 +247,13 @@ function App() {
   return (
     <div className="app">
       <div className="container">
+        <Toaster
+          richColors
+          offset='70px'
+          toastOptions={{
+
+          }} 
+          position="top-right"/>
         <RouterProvider router={router} />
       </div>
     </div>

@@ -2,36 +2,50 @@ import axios from 'axios';
 import DOMPurify from 'dompurify';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react'
-import { FiPlusCircle, FiTrash2 } from 'react-icons/fi'
+import { FiAlertCircle, FiPlusCircle, FiTrash2 } from 'react-icons/fi'
 import { Link, useLocation } from 'react-router-dom'
+import { useDeletePost, usefetchPost } from '../../../API/fetchPost';
+import { toast } from 'sonner';
+import Modal from '../../ui/Modal/Modal';
 
 const Posts_Menu = () => {
-    const [posts, setPosts] = useState([]);
-    const cat = useLocation().search;
+    // const [posts, setPosts] = useState([]);
+    // const cat = useLocation().search;
+    const { posts, fetchData } = usefetchPost();
+    const { deletePost } = useDeletePost();
+    const [openDialog, setOpenDialog] = useState(false);
+    const [selectedPost, setSelectedPost] = useState(null);
 
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const res = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/posts`)
-                setPosts(res.data)
-            } catch (err) {
-                console.log(err)
-            }
-        }
-        fetchData();
-    }, [cat])
-
-    const handleDelete = async (postId) => {
+    const handleDelete = async () => {
         try {
-            await axios.delete(`${import.meta.env.VITE_APP_BACKEND_URL}/api/posts/${postId}`, 
-            {
-                withCredentials: true
-            })
-            setPosts(posts.filter((post) => post.PostId !== postId))
+            if (selectedPost && selectedPost.PostId) {
+                await deletePost(selectedPost.PostId);
+                toast.error(`Post ${selectedPost.PostTitle} has been deleted`);
+            } else {
+                toast.error('Invalid post data');
+            }
+            setOpenDialog(false);
         } catch (err) {
             console.log(err)
+            toast.error('Error deleting post');
+        } finally {
+            fetchData();
+            
         }
+    }
+    const handleDialog = () => {
+        handleSelection(null, setOpenDialog);
+    }
+
+    const handleSelection = (postId) => {
+        if (postId) {
+            const selectedPost = posts.find((post) => post.PostId === postId);
+            setSelectedPost(selectedPost);
+        } else {
+            setSelectedPost(null);
+        }
+        setOpenDialog(!openDialog);
     }
 
     return (
@@ -49,7 +63,6 @@ const Posts_Menu = () => {
                                     <th>Title</th>
                                     {/* <th>Description</th> */}
                                     <th>Category</th>
-
                                     <th>Posted By</th>
                                     <th>Actions</th>
                                 </tr>
@@ -67,8 +80,8 @@ const Posts_Menu = () => {
                                         <td>
                                             <div className='crud-btn'>
 
-                                                <Link state={post} to={`/dashboard/posts/write?edit=${post.PostId}`}><button>View</button></Link>
-                                                <button onClick={() => handleDelete(post.PostId)}><FiTrash2 /></button>
+                                                <Link state={post} to={`/dashboard/posts/write?edit=${post.PostId}`}><button>Edit</button></Link>
+                                                <button onClick={() => handleSelection(post.PostId)}><FiTrash2 /></button>
                                             </div>
                                         </td>
                                     </tr>
@@ -78,7 +91,22 @@ const Posts_Menu = () => {
                         </table>
 
                     </div>
+
                 </div>
+                {openDialog && <Modal
+                    dialogMsg={`Are you sure you want to delete?`}
+                    closeModal={handleDialog}
+                    handleAction={handleDelete}
+                    symbol={<FiAlertCircle size={30} color='red' />}
+                >
+                    <h2 className='confirm-msg'>
+                        {selectedPost?.PostTitle}
+                    </h2>
+                    <div className='group-btn'>
+                        <span className={`btn btn-small btn-right ${selectedPost?.PostId ? '' : 'disabled'}`} onClick={() => handleDelete(selectedPost?.PostId)}>Yes</span>
+                        <span className='btn btn-err btn-small' onClick={handleDialog}>No</span>
+                    </div>
+                </Modal>}
             </div>
         </>
     )

@@ -57,7 +57,7 @@ export const login = async (req, res) => {
     // Check user
     const connection = await db.getConnection();
     const q = "SELECT users.*, role.Role_Name FROM users  INNER JOIN role ON users.role = role.Role_Id WHERE username = ?";
-    const [rows] = await connection.query(q, [req.body.username]);
+    const [rows] = await connection.query(q, [req.body.username, req.body.email]);
 
     if (rows.length === 0) {
       return res.status(404).json("User Not Found!");

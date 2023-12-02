@@ -90,7 +90,7 @@ const Write = () => {
       <div className="content">
         <span><Link to='/dashboard/posts'>Back</Link></span>
         <TextInput
-          containerClass={'title'}
+          containerClass={'title-input'}
           type="text"
           value={title}
           placeholder='Title'

@@ -1,22 +1,23 @@
 import axios from 'axios';
 import DOMPurify from 'dompurify';
 import moment from 'moment';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FiAlertCircle, FiPlusCircle, FiTrash2 } from 'react-icons/fi'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useDeletePost, usefetchPost } from '../../../API/fetchPost';
 import { toast } from 'sonner';
 import Modal from '../../ui/Modal/Modal';
+import { AuthContext } from '../../../context/authContext';
+import Pagination from '../../ui/Pagination/Pagination';
 
 const Posts_Menu = () => {
     // const [posts, setPosts] = useState([]);
-    // const cat = useLocation().search;
-    const { posts, fetchData } = usefetchPost();
+    const { posts, fetchData, page, totalPages, handleNext, handlePrev } = usefetchPost(10);
     const { deletePost } = useDeletePost();
     const [openDialog, setOpenDialog] = useState(false);
     const [selectedPost, setSelectedPost] = useState(null);
-
-
+    const { currentUser } = useContext(AuthContext);
+  
     const handleDelete = async () => {
         try {
             if (selectedPost && selectedPost.PostId) {
@@ -31,9 +32,23 @@ const Posts_Menu = () => {
             toast.error('Error deleting post');
         } finally {
             fetchData();
-            
+
         }
     }
+
+    // const handlePrev = () => {
+    //     if (page > 1) {
+    //         const prevPage = page - 1
+    //         navigate(`?page=${prevPage}`)
+    //     } // decrement page number (for previous button to work) and navigate to new page (with updated query stringp)
+    // }
+    // const handleNext = () => {
+    //     if (page < totalPages) {
+    //         const nextPage = page + 1
+    //         navigate(`?page=${nextPage}`)
+    //     }
+    // }
+
     const handleDialog = () => {
         handleSelection(null, setOpenDialog);
     }
@@ -53,7 +68,7 @@ const Posts_Menu = () => {
             <div className="add">
                 <div className="content">
                     <span className="add-button"><Link to='/dashboard/posts/write'><FiPlusCircle size={20} />Add</Link></span>
-                    <div className="card d-flex justify-center">
+                    <div className="card justify-center">
                         <table className='full-width'>
                             <thead>
                                 <tr>
@@ -68,28 +83,31 @@ const Posts_Menu = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {posts.map((post) => (
-                                    <tr key={post.PostId}>
-                                        <td className='center'>{post.PostId}</td>
-                                        <td className='center' >{moment(post.date).format("YYYY-MM-DD")}</td>
-                                        <td className='center'>  <img src={post.PostImg} alt="" /></td>
-                                        <td ><p className='ellipse'>{post.PostTitle}</p></td>
-                                        {/* <td className='description'><p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.PostDesc) }}></p></td> */}
-                                        <td className='center'>{post.PostCat}</td>
-                                        <td className='center'>{post.username}</td>
-                                        <td>
-                                            <div className='crud-btn'>
+                                {posts.filter((post) => post.username === currentUser.username)
+                                    .map((post) => (
 
-                                                <Link state={post} to={`/dashboard/posts/write?edit=${post.PostId}`}><button>Edit</button></Link>
-                                                <button onClick={() => handleSelection(post.PostId)}><FiTrash2 /></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
+                                        <tr key={post.PostId}>
+                                            <td className='center'>{post.PostId}</td>
+                                            <td className='center' >{moment(post.date).format("YYYY-MM-DD")}</td>
+                                            <td className='center'>  <img src={post.PostImg} alt="" /></td>
+                                            <td ><p className='ellipse'>{post.PostTitle}</p></td>
+                                            {/* <td className='description'><p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.PostDesc) }}></p></td> */}
+                                            <td className='center'>{post.PostCat}</td>
+                                            <td className='center'>{post.username}</td>
+                                            <td>
+                                                <div className='crud-btn'>
+
+                                                    <Link state={post} to={`/dashboard/posts/write?edit=${post.PostId}`}><button>Edit</button></Link>
+                                                    <button onClick={() => handleSelection(post.PostId)}><FiTrash2 /></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    ))}
                             </tbody>
 
                         </table>
-
+                        <Pagination page={page} totalPages={totalPages} next={handleNext} prev={handlePrev} />
                     </div>
 
                 </div>

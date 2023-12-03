@@ -5,6 +5,7 @@ import { AuthContext } from '../context/authContext'
 // import TextInput from '../Components/forms/FormFields/TextInput'
 import { BiLogoFacebook, BiLogoGmail } from "react-icons/bi";
 import { MoonLoader } from 'react-spinners';
+import TextInput from '../Components/forms/FormFields/TextInput';
 
 const Login = () => {
 
@@ -45,8 +46,8 @@ const Login = () => {
       <h1>Login</h1>
       <form action="">
 
-        <input required type="text" placeholder='Username' name='username' onChange={handleChange} />
-        <input required type="password" placeholder='Password' name='password' onChange={handleChange} />
+        <TextInput required type="text" placeholder='Username' name='username' onChange={handleChange} />
+        <TextInput required type="password" placeholder='Password' name='password' onChange={handleChange} />
         <button className='btn ' onClick={handleSubmit} disabled={inputs.loading}>
           {
             inputs.loading ? <MoonLoader size={20} /> : "Login"

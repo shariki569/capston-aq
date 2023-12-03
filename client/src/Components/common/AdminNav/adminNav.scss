@@ -16,6 +16,10 @@
         h2 {
             font-size: $f-normal;
         }
+        .admin__nav__link{
+            text-decoration: none;
+            color: $description;
+        }
         .admin__nav__imageWrap {
             position: relative;
             overflow: hidden;
@@ -53,6 +57,8 @@
             .admin__nav__username{
                 padding: $base-padding $small-padding;
                 text-align: center;
+                border-bottom: 3px solid $grey-500 ;
+                
             }
             ul {
                 li {

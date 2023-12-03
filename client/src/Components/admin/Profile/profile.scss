@@ -1,0 +1,13 @@
+@use "../../../sass/Utilities/" as *;
+
+.profile__container {
+    padding: $base-padding-y;
+    @include flexBoxRow(flex-start, flex-start, 1rem);
+    .profile__image {
+        width: 300px;
+
+    }
+    .profile__details{
+        width: 300px;
+    }
+}

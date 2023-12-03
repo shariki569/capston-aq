@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import InlineError from "../FormValidation/InlineError";
 
-const TextInput = ({ label, width, type, value, onChange, placeholder, min, max, containerClass, name, error }) => {
+const TextInput = ({ required, label, width, type, value, onChange, placeholder, min, max, containerClass, name, error }) => {
 
   const inputContainerClassName = `text-input ${containerClass || ''}`;
 
@@ -41,6 +41,7 @@ const TextInput = ({ label, width, type, value, onChange, placeholder, min, max,
     <div className={inputContainerClassName}>
       {label && <label className="label">{label}</label>}
       <input
+        required = {required}
         className={inputClassname}
         type={type}
         value={localValue}

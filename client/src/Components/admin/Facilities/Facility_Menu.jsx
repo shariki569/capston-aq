@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { deleteFacility, useFacilities } from '../../../API/fetchFacilities'
 import { Link } from 'react-router-dom';
 import { FiAlertCircle, FiPlusCircle, FiTrash2 } from 'react-icons/fi';
 import moment from 'moment';
 import Modal from '../../ui/Modal/Modal';
 import { toast } from 'sonner';
+import { AuthContext } from '../../../context/authContext';
 
 const Facilities = () => {
   const { facilities, fetchFacilities } = useFacilities();
   const { deleteData } = deleteFacility();
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedFacilities, setSelectedFacilities] = useState(null);
-
+  const { currentUser } = useContext(AuthContext);
 
   const handleDelete = async () => {
     try {
@@ -38,7 +39,7 @@ const Facilities = () => {
     setOpenDialog(true);
   };
 
-  
+
   const handleClose = () => {
     setOpenDialog(false);
   }
@@ -76,8 +77,10 @@ const Facilities = () => {
                       <div className='crud-btn'>
 
                         <Link state={facility} to={`/dashboard/facilities/write?edit=${facility.Fac_Id}`}><button>Edit</button></Link>
-                        <button onClick={() => handleSelection(facility.Fac_Id)}><FiTrash2 /></button>
 
+                        {currentUser.Role_Name === 'admin' &&
+                          <button onClick={() => handleSelection(facility.Fac_Id)}><FiTrash2 /></button>
+                        }
                       </div>
                     </td>
                   </tr>

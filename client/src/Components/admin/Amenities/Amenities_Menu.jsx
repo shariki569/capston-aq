@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useAmenities, useDeleteAmenity } from '../../../API/fetchAmenities'
 import { Link } from 'react-router-dom'
 import { FiPlusCircle, FiTrash2 } from 'react-icons/fi'
@@ -6,13 +6,14 @@ import Modal from '../../ui/Modal/Modal'
 import Amenity_Add from './Amenity_Add'
 import { toast } from 'sonner'
 import { FiAlertCircle } from "react-icons/fi";
+import { AuthContext } from '../../../context/authContext'
 const Amenities_Menu = () => {
     const { amenities, fetchData } = useAmenities()
     const [openModal, setOpenModal] = useState(false);
     const [openDialog, setOpenDialog] = useState(false);
     const [selectedAmenity, setSelectedAmenity] = useState(null);
     const { deleteData } = useDeleteAmenity();
-
+    const { currentUser } = useContext(AuthContext);
 
     const handleDelete = async () => {
         try {
@@ -82,7 +83,7 @@ const Amenities_Menu = () => {
                                                 <div className='crud-btn'>
 
                                                     <button onClick={() => handleOpen(amenity.Amenity_Id)}><span>Edit</span></button>
-                                                    <button onClick={() => handleDialog(amenity.Amenity_Id)}><FiTrash2 /></button>
+                                                {currentUser.Role_Name === 'Admin' &&   <button onClick={() => handleDialog(amenity.Amenity_Id)}><FiTrash2 /></button>}
                                                 </div>
                                             </td>
                                         </tr>

@@ -13,24 +13,11 @@ const Sidebar = () => {
 
     const { logout } = useContext(AuthContext)
     const navigate = useNavigate();
-    const [pageData, setPageData] = useState(null)
+
     const handleLogout = () => {
         logout();
         navigate('/login')
     }
-
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //       try {
-    //         const res = await axios.get('/api/pages/about-us')
-    //         setPageData(res.data);
-    //       } catch (err) {
-    //         console.log(err);
-    //       }
-    //     };
-    //     fetchData();
-    //   }, [])
 
     return (
         <div className='sidebar'>
@@ -48,7 +35,7 @@ const Sidebar = () => {
                 </div>
                 <div className="mid-section">
                     {sidebarLinks.map((item, index) =>
-                        <SidebarItem key={index} item={item} />
+                        <SidebarItem key={index} item={item} icon={item.icon} />
                     )}
                 </div>
                 <div className="bottom-section">

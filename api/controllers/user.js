@@ -1,5 +1,5 @@
 import db from "../db.js";
-import jwt from "jsonwebtoken";
+import jwt, { verify } from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -37,6 +37,7 @@ export const getUsers = async (req, res) => {
 }
 
 export const deleteUsers = async (req, res) => {
+
    try {
       const connection = await db.getConnection();
       const userId = req.params.id;
@@ -100,3 +101,47 @@ export const updateRole = async (req, res) => {
 }
 
 
+export const updateProfile = async (req, res) => {
+   const token = req.cookies.access_token;
+   if (!token) return res.status(401).json("Not Authenticated");
+   const connection = await db.getConnection();
+   try {
+      const userInfo = jwt.verify(token, process.env.JWT_SECRET);
+      const userId = req.params.id;
+      if (Number(userId) !== userInfo.id) {
+         return res.status(403).json("You can only edit your own profile");
+      }
+      const q = 'UPDATE users SET `username` = ?, `email` = ?, `img` = ? WHERE `id` = ?';
+
+      const [result] = await connection.query(q, [
+         req.body.username,
+         req.body.email,
+         req.body.img,
+         userInfo.id
+      ])
+
+      if (result.affectedRows === 0) {
+         return res.status(404).json("User Not Found");
+      } else {
+         return res.status(200).json({ "Profile Updated": result });
+      }
+   } catch (err) {
+      return res.status(500).json("Internal Server Error");
+   } finally {
+      connection.release();
+   }
+}
+
+export const getProfile = {
+   async getProfile(req, res) {
+      try {
+         const userId = req.params.id
+         const q = "SELECT `id`, `username`, `email`, `img` FROM users WHERE id = ?";
+
+
+
+      } catch (err) {
+
+      }
+   }
+}

@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { FiAlertCircle, FiPlusCircle, FiTrash2 } from 'react-icons/fi';
 import moment from 'moment';
 import { useAccommodations, useDeleteAccomms } from '../../../API/fetchAccommodations';
 import { toast } from 'sonner';
 import Modal from '../../ui/Modal/Modal';
+import { AuthContext } from '../../../context/authContext';
 // import DataTable from '../../ui/DataTable(OnHold)';
 
 const AccommodationMenu = () => {
@@ -12,12 +13,12 @@ const AccommodationMenu = () => {
   const { deleteData } = useDeleteAccomms();
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedAccomm, setSelectedAccomm] = useState(null);
-
+  const { currentUser } = useContext(AuthContext);
   const handleDelete = async () => {
     try {
       if (selectedAccomm && selectedAccomm.Accommodation_Id) {
         await deleteData(selectedAccomm.Accommodation_Id);
-        
+
         toast.error(`Accommodation ${selectedAccomm.Accommodation_Title} has been deleted`);
       } else {
         console.error("Invalid accommodation data");
@@ -88,10 +89,10 @@ const AccommodationMenu = () => {
                     <td>
                       <div className='crud-btn'>
                         <Link state={accomm} to={`/dashboard/accommodations/write?edit=${accomm.Accommodation_Id}`}><button>Edit</button></Link>
-                        <button
+                        {currentUser.Role_Name === 'Admin' && <button
                           onClick={() => handleSelection(accomm.Accommodation_Id)}>
                           <FiTrash2 />
-                        </button>
+                        </button>}
                       </div>
                     </td>
                   </tr>))}

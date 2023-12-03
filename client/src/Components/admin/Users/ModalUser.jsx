@@ -3,6 +3,7 @@ import './users.scss'
 import axios from 'axios'
 import { FiCheckCircle } from 'react-icons/fi'
 import { toast } from 'sonner'
+import moment from 'moment'
 const ModalUser = ({ user, closeModal }) => {
     const [role, setRole] = useState(user?.role || '')
     const [err, setErr] = useState(null)
@@ -74,7 +75,7 @@ const ModalUser = ({ user, closeModal }) => {
                 </div>
                 <div className='user__modal__info'>
                     <h3>Date Registered: </h3>
-                    <span>{user?.Date_Created}</span>
+                    <span>{moment(user?.Date_Created).format('MMMM Do YYYY, h:mm:ss a')}</span>
                 </div>
 
             </div>

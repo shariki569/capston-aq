@@ -29,6 +29,7 @@ import Dashboard from "./Components/admin/Dashboard";
 import Layout from "./Components/layouts/Layout";
 import DashboardLayout from "./Components/layouts/DashboardLayout";
 import Pages from "./Components/admin/AboutUs/Pages";
+import Profile from "./Components/admin/Profile/Profile";
 import {
   Accommodation_Menu,
   Add_Accommodate,
@@ -59,6 +60,7 @@ import Unauthorized from "./Components/admin/Unauthorized/Unauthorized";
 import User from "./Components/admin/Users/User";
 import OTPverify from "./pages/OTPverify";
 import ResetPassword from "./pages/ResetPassword";
+import CategoryPost from "./pages/CategoryPost/CategoryPost";
 
 
 // const PrivateRoute = ({ element, path }) => {
@@ -104,6 +106,10 @@ const router = createBrowserRouter([
         element: <Posts />,
       },
       {
+        path: "/category",
+        element: <CategoryPost />,
+      },
+      {
         path: "/accommodations",
         element: <Accommodation />,
       },
@@ -140,6 +146,10 @@ const router = createBrowserRouter([
       {
         path: "users",
         element: <PrivateRoute element={<User />} />,
+      },
+      {
+        path: "profile",
+        element: <PrivateRoute element={<Profile />} />,
       },
       {
         path: "posts",

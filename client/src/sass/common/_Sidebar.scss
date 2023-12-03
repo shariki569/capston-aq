@@ -28,7 +28,7 @@
                     font-size: $f-normalx;
                     font-family: $secondary-font;
                 }
-                a{
+                a {
                     text-decoration: none;
                     color: $grey-300;
                 }
@@ -48,7 +48,7 @@
         }
 
         .mid-section {
-            width: 100%;
+            width: 90%;
             margin: auto;
 
             color: $lighterGreyColor;
@@ -56,14 +56,20 @@
                 color: inherit;
                 font-family: $secondary-font;
                 display: block;
-                padding: 1em;
+                padding: 1rem;
                 align-items: center;
 
                 &:hover {
                     background-color: #b9e7e72c;
+                    border-radius: $base-border-radius;
+                }
+
+                
+                &.active {
+                    background-color: #b9e7e72c;
+                    border-radius: $base-border-radius;
                 }
             }
-
             .sidebar-title {
                 display: flex;
                 justify-content: space-between;
@@ -99,6 +105,8 @@
                 }
             }
             .sidebar-item {
+                display: flex;
+                gap: 0.5rem;
                 .plain {
                     text-decoration: none;
                     display: inline-block;

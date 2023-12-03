@@ -34,32 +34,32 @@ export const navLinks = [
       {
         id: "1",
         name: "Art",
-        path: "posts/?cat=art",
+        path: "category/?cat=art",
       },
       {
         id: "2",
         name: "Science",
-        path: "posts/?cat=science",
+        path: "category/?cat=science",
       },
       {
         id: "3",
         name: "Technology",
-        path: "posts/?cat=technology",
+        path: "category/?cat=technology",
       },
       {
         id: "4",
         name: "Cinema",
-        path: "posts/?cat=cinema",
+        path: "category/?cat=cinema",
       },
       {
         id: "5",
         name: "Design",
-        path: "posts/?cat=design",
+        path: "category/?cat=design",
       },
       {
         id: "6",
         name: "Foods",
-        path: "posts/?cat=foods",
+        path: "category/?cat=foods",
       },
     ],
   },

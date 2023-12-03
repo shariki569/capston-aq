@@ -6,15 +6,32 @@ import env from "dotenv";
 env.config();
 
 
-
 export const getPosts = async (req, res) => {
   const connection = await db.getConnection();
   try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit);
+    const offset = (page - 1) * limit;
+
     const q = req.query.cat
-      ? 'SELECT p.*, u.username FROM posts p JOIN users u ON p.Post_Uid = u.id WHERE p.PostCat = ? AND Is_Deleted = 0'
-      : 'SELECT p.*, u.username FROM posts p JOIN users u ON p.Post_Uid = u.id WHERE Is_Deleted = 0';
-    const [rows] = await connection.query(q, [req.query.cat]);
-    return res.status(200).json(rows);
+      ? 'SELECT p.*, u.username FROM posts p JOIN users u ON p.Post_Uid = u.id WHERE p.PostCat = ? AND Is_Deleted = 0 LIMIT ? OFFSET ?'
+      : 'SELECT p.*, u.username FROM posts p JOIN users u ON p.Post_Uid = u.id WHERE Is_Deleted = 0 LIMIT ? OFFSET ?';
+
+    const countQuery = req.query.cat
+      ? 'SELECT COUNT(*) AS count FROM posts WHERE PostCat = ? AND Is_Deleted = 0'
+      : 'SELECT COUNT(*) AS count FROM posts WHERE Is_Deleted = 0';
+
+    const [[{ count }]] = await connection.query(countQuery, req.query.cat ? [req.query.cat] : []);
+
+    const totalPages = Math.ceil(count / limit);
+
+    const [rows] = await connection.query(q, req.query.cat ? [req.query.cat, limit, offset] : [limit, offset]);
+
+    if (!rows.length) {
+      return res.status(404).json("No posts found");
+    }
+
+    return res.status(200).json({ posts: rows, totalPages });
   } catch (err) {
     console.error('Database error:', err);
     return res.status(500).json(err);
@@ -22,6 +39,7 @@ export const getPosts = async (req, res) => {
     connection.release();
   }
 };
+
 
 export const getPost = async (req, res) => {
   try {
@@ -43,7 +61,8 @@ export const addPost = async (req, res) => {
   const token = req.cookies.access_token;
   if (!token) return res.status(401).json('Not authenticated');
   const userInfo = jwt.verify(token, process.env.JWT_SECRET);
-
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 4;
   try {
     const connection = await db.getConnection();
     const q =

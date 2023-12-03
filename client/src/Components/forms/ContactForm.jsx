@@ -3,6 +3,7 @@ import TextInput from "./FormFields/TextInput";
 import TextArea from "./FormFields/TextArea";
 import axios from "axios";
 import { DotLoader } from "react-spinners";
+import { toast } from 'sonner';
 import {
   validateEmail,
   validateMessage,
@@ -19,7 +20,7 @@ const ContactForm = () => {
   const [loading, setLoading] = useState(false);
   const [nameError, setNameError] = useState('');
   const [phoneError, setPhoneError] = useState('');
-  const [mailError, setMailError] = useState('');
+  const [emailError, setEmailError] = useState('');
   const [messageError, setMessageError] = useState('');
 
   const clearForm = () => {
@@ -29,7 +30,7 @@ const ContactForm = () => {
     setMessage("");
     setNameError("");
     setPhoneError("");
-    setMailError("");
+    setEmailError("");
     setMessageError("");
   }
 
@@ -37,7 +38,7 @@ const ContactForm = () => {
     e.preventDefault();
     setLoading(true);
     // Validate inputs
-    const isEmailValid = validateEmail({ email, setMailError });
+    const isEmailValid = validateEmail({ email, setEmailError: setEmailError });
     const isPhoneValid = validatePhone({ phone: number, setPhoneError });
     const isNameValid = validateName({ name, setNameError });
     const isMessageValid = validateMessage({ message, setMessageError });
@@ -60,7 +61,9 @@ const ContactForm = () => {
       const response = await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/emailRoute/send-email`, formData);
       if (response.status === 200) {
         // Email sent successfully
-        alert("Email Sent Successfully");
+        toast.success("Email sent successfully", {
+          position: "bottom-center",
+        });
       } else {
         // Failed to send email
         alert("Failed to send email");
@@ -104,7 +107,7 @@ const ContactForm = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="email@123.com"
-            error={mailError}
+            error={emailError}
           />
 
           <TextArea
@@ -128,6 +131,7 @@ const ContactForm = () => {
             )}
           </div>
         </form>
+       
       </div>
     </div>
   );

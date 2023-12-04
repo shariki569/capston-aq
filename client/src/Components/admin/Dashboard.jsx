@@ -9,6 +9,7 @@ import UserBox from './Components/UserBox/UserBox';
 import ChatbotRating from './Components/ChatbotRating/ChatbotRating';
 import ChatbotFeedback from './Components/ChatbotFeedback/ChatbotFeedback';
 import TotalFeedback from './Components/ChatbotFeedback/TotalChatbotFeedback/TotalFeedback';
+import TotalUserPosts from './Components/TotalUserPosts/TotalUserPosts';
 
 
 const Dashboard = () => {
@@ -20,7 +21,7 @@ const Dashboard = () => {
       <div className='grid grid1'><UserBox/></div>
       <div className='grid grid2'><ChatbotRating/></div>
       <div className='grid grid3'><TotalFeedback/></div>
-      <div className='grid grid4'></div>
+      <div className='grid grid4'><TotalUserPosts/></div>
       <div className='grid grid5'></div>
       <div className='grid grid6'><ChatbotFeedback/></div>
       <div className='grid grid7'></div>

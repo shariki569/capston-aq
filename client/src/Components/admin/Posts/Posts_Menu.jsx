@@ -1,5 +1,6 @@
 import axios from 'axios';
 import DOMPurify from 'dompurify';
+import empty from '../../../img/Empty.png'
 import moment from 'moment';
 import React, { useContext, useEffect, useState } from 'react'
 import { FiAlertCircle, FiPlusCircle, FiTrash2 } from 'react-icons/fi'
@@ -17,7 +18,7 @@ const Posts_Menu = () => {
     const [openDialog, setOpenDialog] = useState(false);
     const [selectedPost, setSelectedPost] = useState(null);
     const { currentUser } = useContext(AuthContext);
-  
+
     const handleDelete = async () => {
         try {
             if (selectedPost && selectedPost.PostId) {
@@ -32,22 +33,9 @@ const Posts_Menu = () => {
             toast.error('Error deleting post');
         } finally {
             fetchData();
-
         }
     }
 
-    // const handlePrev = () => {
-    //     if (page > 1) {
-    //         const prevPage = page - 1
-    //         navigate(`?page=${prevPage}`)
-    //     } // decrement page number (for previous button to work) and navigate to new page (with updated query stringp)
-    // }
-    // const handleNext = () => {
-    //     if (page < totalPages) {
-    //         const nextPage = page + 1
-    //         navigate(`?page=${nextPage}`)
-    //     }
-    // }
 
     const handleDialog = () => {
         handleSelection(null, setOpenDialog);
@@ -69,45 +57,64 @@ const Posts_Menu = () => {
                 <div className="content">
                     <span className="add-button"><Link to='/dashboard/posts/write'><FiPlusCircle size={20} />Add</Link></span>
                     <div className="card justify-center">
-                        <table className='full-width'>
-                            <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Date Posted</th>
-                                    <th>Img</th>
-                                    <th>Title</th>
-                                    {/* <th>Description</th> */}
-                                    <th>Category</th>
-                                    <th>Posted By</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {posts.filter((post) => post.username === currentUser.username)
-                                    .map((post) => (
+                        {posts?.filter((post) => post.username === currentUser.username).length === 0 ? (
+                            <div className="empty">
+                                <div className='empty-text'>
+                                    <p>No posts found</p>
+                                </div>
+                                <div className='empty-img'>
+                                    <img src={empty} alt="" />
+                                </div>
+                                <div>
+                                    <Link to='/dashboard/posts/write'><button className='btn_flat'>Add</button></Link>
+                                </div>
+                            </div>
 
-                                        <tr key={post.PostId}>
-                                            <td className='center'>{post.PostId}</td>
-                                            <td className='center' >{moment(post.date).format("YYYY-MM-DD")}</td>
-                                            <td className='center'>  <img src={post.PostImg} alt="" /></td>
-                                            <td ><p className='ellipse'>{post.PostTitle}</p></td>
-                                            {/* <td className='description'><p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.PostDesc) }}></p></td> */}
-                                            <td className='center'>{post.PostCat}</td>
-                                            <td className='center'>{post.username}</td>
-                                            <td>
-                                                <div className='crud-btn'>
-
-                                                    <Link state={post} to={`/dashboard/posts/write?edit=${post.PostId}`}><button>Edit</button></Link>
-                                                    <button onClick={() => handleSelection(post.PostId)}><FiTrash2 /></button>
-                                                </div>
-                                            </td>
+                        ) : (
+                            <>
+                                <table className='full-width'>
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Date Posted</th>
+                                            <th>Img</th>
+                                            <th>Title</th>
+                                            {/* <th>Description</th> */}
+                                            <th>Category</th>
+                                            <th>Posted By</th>
+                                            <th>Actions</th>
                                         </tr>
+                                    </thead>
+                                    <tbody>
+                                        {posts.filter((post) => post.username === currentUser.username && post.PostId !== selectedPost?.PostId)
+                                            .map((post) => (
 
-                                    ))}
-                            </tbody>
+                                                <tr key={post.PostId}>
+                                                    <td className='center'>{post.PostId}</td>
+                                                    <td className='center' >{moment(post.date).format("YYYY-MM-DD")}</td>
+                                                    <td className='center'>  <img src={post.PostImg} alt="" /></td>
+                                                    <td ><p className='ellipse'>{post.PostTitle}</p></td>
+                                                    {/* <td className='description'><p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.PostDesc) }}></p></td> */}
+                                                    <td className='center'>{post.PostCat}</td>
+                                                    <td className='center'>{post.username}</td>
+                                                    <td>
+                                                        <div className='crud-btn'>
 
-                        </table>
-                        <Pagination page={page} totalPages={totalPages} next={handleNext} prev={handlePrev} />
+                                                            <Link state={post} to={`/dashboard/posts/write?edit=${post.PostId}`}><button>Edit</button></Link>
+                                                            <button onClick={() => handleSelection(post.PostId)}><FiTrash2 /></button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                            ))}
+
+                                    </tbody>
+
+                                </table>
+                                <Pagination page={page} totalPages={totalPages} next={handleNext} prev={handlePrev} />
+                            </>
+                        )}
+
                     </div>
 
                 </div>

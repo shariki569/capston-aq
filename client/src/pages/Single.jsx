@@ -60,20 +60,23 @@ const Single = () => {
         title={`${post?.PostTitle} | Aqua Cainta Resort Blog`}
         image={post?.PostImg}
       />
-      <PostHeading />
+      <PostHeading 
+        title={post?.PostTitle}
+        description={post?.PostCat}
+      />
       <div className='single'>
         <div className="content">
           <img src={post?.PostImg} alt="" />
           <div className="user">
             {
-              post.userImage && <img
-                src={post.userImage}
+              post?.userImage && <img
+                src={post?.userImage}
                 alt=""
               />
             }
             <div className="info">
-              <span>{post.username}</span>
-              <p>Posted {moment(post.date).fromNow()}</p>
+              <span>{post?.display_name ? post?.display_name : post?.username}</span>
+              <p>Posted {moment(post?.date).fromNow()}</p>
             </div>
             {currentUser?.username === post?.username && (<div className="edit">
               <Link to={`/dashboard/posts/write?edit=${postId}`} state={post}>
@@ -86,15 +89,15 @@ const Single = () => {
               </Link>
             </div>)}
           </div>
-          <h1>{post.PostTitle}</h1>
+          <h1>{post?.PostTitle}</h1>
           <div className="description">
             <p
-              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.PostDesc) }}>
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post?.PostDesc) }}>
             </p>
           </div>
           <Comments id={postId}/>
         </div>
-        <Menu cat={post.PostCat} />
+        <Menu cat={post?.PostCat} />
       </div>
     </>
   )

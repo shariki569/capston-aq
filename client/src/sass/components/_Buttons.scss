@@ -16,7 +16,6 @@
     color: $primaryColor;
     border: $base-border-thickness $primaryColor;
     z-index: 999;
-    color: $primaryColor;
     overflow: hidden;
     transition: all 0.3s;
 
@@ -34,6 +33,9 @@
         border-radius: $base-border-radius;
         padding: $base-button-size;
         background-color: $primary-fade;
+        &:before {
+            transform: translateX(0);
+        }
     }
 
     &::before {
@@ -79,8 +81,54 @@
             color: $honeyDew;
         }
     }
+
+    &.btn-success {
+        border: $base-border-thickness $success;
+        color: $success;
+
+        &::before {
+            background-color: $success;
+        }
+        &:hover {
+            color: $honeyDew;
+        }
+    }
 }
 
+.btn_flat{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+    position: relative;
+    background-color: $primary;
+    padding: $base-button-size;
+    border-radius: $base-border-radius;
+    cursor: pointer;
+    color: $honeyDew;
+    border: none;
+    &:hover{
+        background-color: $primary-light;
+    }
+
+    &.flat_success {
+        background-color: $success;
+        color: $honeyDew;
+
+        &:hover{
+            background-color: $success-light;
+        }
+    }
+
+    &.btn-small {
+        padding: $small-button-size;
+    }
+
+    &.flat_loading {
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+}
 
 .btn-2 {
     display: flex;

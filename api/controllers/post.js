@@ -10,12 +10,12 @@ export const getPosts = async (req, res) => {
   const connection = await db.getConnection();
   try {
     const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit);
+    const limit = parseInt(req.query.limit) || 10;
     const offset = (page - 1) * limit;
 
     const q = req.query.cat
-      ? 'SELECT p.*, u.username FROM posts p JOIN users u ON p.Post_Uid = u.id WHERE p.PostCat = ? AND Is_Deleted = 0 LIMIT ? OFFSET ?'
-      : 'SELECT p.*, u.username FROM posts p JOIN users u ON p.Post_Uid = u.id WHERE Is_Deleted = 0 LIMIT ? OFFSET ?';
+      ? 'SELECT p.*, u.username, u.display_name FROM posts p JOIN users u ON p.Post_Uid = u.id WHERE p.PostCat = ? AND Is_Deleted = 0 LIMIT ? OFFSET ?'
+      : 'SELECT p.*, u.username, u.display_name FROM posts p JOIN users u ON p.Post_Uid = u.id WHERE Is_Deleted = 0 LIMIT ? OFFSET ?';
 
     const countQuery = req.query.cat
       ? 'SELECT COUNT(*) AS count FROM posts WHERE PostCat = ? AND Is_Deleted = 0'
@@ -44,7 +44,7 @@ export const getPosts = async (req, res) => {
 export const getPost = async (req, res) => {
   try {
     const q =
-      'SELECT PostId, username, PostSlug, PostTitle, PostDesc, PostImg, u.img AS userImage, PostCat, date FROM users u JOIN posts p ON u.id = p.post_uid WHERE PostSlug = ?';
+      'SELECT PostId, username, display_name, PostSlug, PostTitle, PostDesc, PostImg, u.img AS userImage, PostCat, date FROM users u JOIN posts p ON u.id = p.post_uid WHERE PostSlug = ?';
     const connection = await db.getConnection();
     const [data] = await connection.query(q, [req.params.slug]);
 
@@ -87,6 +87,19 @@ export const addPost = async (req, res) => {
   }
 };
 
+export const getPostCount = async (req, res) => {
+  try {
+    const connection = await db.getConnection();
+    const userId = req.params.id;
+    const q = 'SELECT COUNT(*) AS TotalPosts FROM posts WHERE Is_Deleted = 0 AND Post_Uid = ?';
+    const [count] = await connection.query(q, [userId]);
+    connection.release();
+    return res.json({ posts: count[0].TotalPosts });
+  } catch (err) {
+    console.error('Database error:', err);
+    return res.status(500).json(err);
+  }
+}
 
 export const deletePost = async (req, res) => {
   const token = req.cookies.access_token;
@@ -158,7 +171,7 @@ export const addComment = async (req, res) => {
 export const getComments = async (req, res) => {
   try {
     const q = `
-    SELECT c.Comment_Msg, u.username, u.img as userImg, c.Created_At, c.Comment_Id  
+    SELECT c.Comment_Msg, u.username, u.display_name, u.img as userImg, c.Created_At, c.Comment_Id  
     FROM comments c 
     JOIN users u 
     ON c.user_id = u.id 
@@ -173,5 +186,27 @@ export const getComments = async (req, res) => {
   } catch (err) {
     console.error('Database error:', err);
     return res.status(500).json(err);
+  }
+}
+
+export const deleteComment = async (req, res) => {
+  const token = req.cookies.access_token;
+  if (!token) return res.status(401).json('Not authenticated');
+  const connection = await db.getConnection();
+  try {
+    const userInfo = jwt.verify(token, process.env.JWT_SECRET);
+    const commentId = req.params.id;
+    const q = 'DELETE FROM comments WHERE `Comment_Id` = ? AND `user_id` = ?';
+    const [rows] = await connection.query(q, [commentId, userInfo.id]);
+
+    if (rows.affectedRows === 0) {
+      return res.status(403).json('You can only delete your comment!');
+    }
+    return res.status(200).json('Comment has been deleted!');
+  } catch (err) {
+    console.error('JWT error:', err);
+    return res.status(500).json('Internal server error');
+  } finally {
+    connection.release();
   }
 }

@@ -25,12 +25,19 @@
 
     .dialog-msg{
         color: $greyColor;
-        font-size: $f-normal;
+        font-size: $f-medium;
         padding: $base-padding-y;
         display: flex;
         align-items: center;
         gap: 0.5rem;
         font-size: $f-normalx;
         font-weight: $w-semi-bold;
+
+        &.error{
+            color: $error;
+        }
+        &.warning{
+            color: $warning;
+        }
     }
 }

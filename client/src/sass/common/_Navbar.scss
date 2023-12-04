@@ -12,7 +12,7 @@ $nav-footer: 10px 50px;
     padding: $nav-footer;
     background-color: transparent;
     font-family: $secondary-font;
-    font-weight: $w-bold;
+    // font-weight: $w-bold;
 
     &.scrolled {
         transition: $base-transition;
@@ -156,16 +156,14 @@ $nav-footer: 10px 50px;
 
     .user-link {
         display: flex;
-        justify-content: space-around;
-        flex-direction: row;
         align-items: center;
-        width: 200px;
+        // width: 200px;
 
-        span {
-            color: $honeyDew;
-            cursor: pointer;
-            font-family: $font-libre-franklin;
-        }
+        // span {
+        //     color: $honeyDew;
+        //     cursor: pointer;
+        //     font-family: $font-libre-franklin;
+        // }
     }
 
     @include devices(mobile) {

@@ -4,7 +4,8 @@ import { RecoveryContext } from '../context/recoveryContext'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ResetPassword from './ResetPassword';
-
+import { validateEmail } from '../Components/forms/FormValidation/FormValidation';
+import { toast } from 'sonner';
 
 const OTPverify = () => {
     const { email, setEmail, setOtp, otp } = useContext(RecoveryContext);
@@ -14,15 +15,24 @@ const OTPverify = () => {
     const [OTPinput, setOTPinput] = useState(['', '', '', '']);
     const [disable, setDisable] = useState(true);
     const [error, setError] = useState('');
+    const [emailErr, setEmailErr] = useState('');
     const [resetPasswordMode, setResetPasswordMode] = useState(false);
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [passwordErr, setPasswordErr] = useState('');
-
+    const isInputValid = () => {
+        // Check if email and all OTP inputs have at least one non-empty character
+        const areOTPInputsValid = OTPinput.every(char => char.trim() !== '');
+        return areOTPInputsValid;
+    };
     const handleSend = async () => {
+        setLoading(true);
+        const isEmailValid = validateEmail({ email, setEmailError: setEmailErr });
         try {
-            setLoading(true);
-
+            if (!isEmailValid) {
+                setLoading(false);
+                return;
+            }
             await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/send-otp`, {
                 email
             })
@@ -79,6 +89,7 @@ const OTPverify = () => {
             )
             const data = res.data;
             if (data.success) {
+                toast.success('Password Successfully Changed!');
                 navigate('/login');
             } else {
                 setError(data.message || 'Password reset failed');
@@ -87,7 +98,7 @@ const OTPverify = () => {
         }
         catch (err) {
             setError(err.message);
-        }finally {
+        } finally {
             setLoading(false);
         }
     }
@@ -173,12 +184,13 @@ const OTPverify = () => {
                             </div>
                         </div>
                         <div className='otp-footer'>
-                            <p>Didn't get the code?<button>Resend</button></p>
+
                             {loading ?
                                 <button className='btn btn-full btn-loading '>Sending...</button>
                                 :
-                                <button className='btn btn-full ' onClick={handleVerify}>Verify OTP</button>
+                                <button className={`${isInputValid() ? 'btn btn-full ' : 'btn btn-full disabled'}`} onClick={handleVerify} disabled={!isInputValid()}>Verify OTP</button>
                             }
+                            <p>Didn't get the code?</p><button className='btn_flat'>Resend</button>
                             {error && <p>{error}</p>}
                         </div>
                     </>
@@ -190,8 +202,9 @@ const OTPverify = () => {
                                 type='email'
                                 placeholder='Enter your email address'
                                 label="Enter your user account's verified email address and we will send you a password reset link."
+                                error={emailErr}
                             />
-                            {/* {error && <p>{error}</p>} */}
+
                             <div className='form-footer'>
                                 {loading ?
                                     <button className='btn btn-full btn-loading '>Sending...</button>

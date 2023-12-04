@@ -2,9 +2,11 @@ import express from "express";
 import {
   addComment,
   addPost,
+  deleteComment,
   deletePost,
   getComments,
   getPost,
+  getPostCount,
   getPosts,
   updatePost,
 } from "../controllers/post.js";
@@ -19,4 +21,6 @@ router.delete("/:id",  deletePost);
 router.put("/:id", updatePost);
 router.post('/comments/', addComment)
 router.get('/comments/:id', getComments)
+router.get('/count/:id', getPostCount)
+router.delete('/comments/:id', deleteComment)
 export default router;

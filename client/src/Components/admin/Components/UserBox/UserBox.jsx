@@ -15,11 +15,12 @@ const UserBox = () => {
         </div>
         <div className='userBox__userName'>
           <h3>Welcome Back!</h3>
-          <h2>{currentUser?.username}</h2>
+          <h2>{currentUser?.display_name}</h2>
+          <p>{currentUser?.Role_Name}</p>
         </div>
       </div>
 
-      <div className='userBox__searchBar'>
+      {/* <div className='userBox__searchBar'>
         <div className="userBox__searchIcon">
           < BiSearch size={20} />
         </div>
@@ -27,7 +28,7 @@ const UserBox = () => {
           <TextInput placeholder='Search' />
         </div>
 
-      </div>
+      </div> */}
       <div className='userBox__Time'>
         <TimeComponent />
       </div>

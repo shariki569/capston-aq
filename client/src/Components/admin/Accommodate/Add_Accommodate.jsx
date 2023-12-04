@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import TextInput from '../../forms/FormFields/TextInput'
 import ReactQuill from 'react-quill'
-import { FiChevronDown, FiCreditCard, FiHash, FiHome, FiUser, FiXSquare } from 'react-icons/fi'
+import { FiAlertCircle, FiChevronDown, FiCreditCard, FiHash, FiHome, FiUser, FiXSquare } from 'react-icons/fi'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import placeholder from '../../../img/placeholder-image.webp'
 import axios from 'axios'
@@ -11,6 +11,7 @@ import ImageUploader from '../../util/ImageUploader'
 import { DotLoader } from 'react-spinners'
 import { slugify } from '../../util/slugify'
 import { toast } from 'sonner'
+import Modal from '../../ui/Modal/Modal'
 // import { useImageUpload } from '../../../Hooks/imageHandling'
 const Add_Accommodate = () => {
 
@@ -28,8 +29,8 @@ const Add_Accommodate = () => {
   const [file, setFile] = useState(null) // ! Do not remove THIS!!
   const [accommImg, setAccommImg] = useState(state?.Accommodation_Img || null)
   const [previewImage, setPreviewImage] = useState(null)
-
-
+  const [unsavedChanges, setUnsavedChanges] = useState(false)
+  const [showModal, setShowModal] = useState(false)
   const navigate = useNavigate();
 
   const handleImageChange = (e) => {
@@ -37,7 +38,7 @@ const Add_Accommodate = () => {
       const selectedFile = e.target.files[0]
       setFile(selectedFile);
       setPreviewImage(URL.createObjectURL(selectedFile));
-
+      setUnsavedChanges(true)
     }
   }
 
@@ -46,8 +47,10 @@ const Add_Accommodate = () => {
       setFile(null)
       setPreviewImage(null);
       setAccommImg(null)
+      setUnsavedChanges(true)
     } else if (file) {
       setPreviewImage(null)
+      setUnsavedChanges(true)
     }
   }
 
@@ -62,7 +65,7 @@ const Add_Accommodate = () => {
     e.preventDefault()
     setLoading(true)
     const imgUrl = file ? await upload(file) : accommImg;
-    emptyFields( state ? ''  : toast.error("Please fill in all fields")) 
+    emptyFields(state ? '' : toast.error("Please fill in all fields"))
 
     try {
       state
@@ -92,28 +95,47 @@ const Add_Accommodate = () => {
           accommDate: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")
         });
       navigate("/dashboard/accommodations")
-      state ? toast.success(`${accommTitle} updated successfully`) : toast.success(`${accommTitle} added successfully`);
+      state ? toast.success(`${accommTitle} has been updated successfully`) : toast.success(`${accommTitle} has been added successfully`);
     } catch (err) {
       setLoading(true)
       toast.error(err.response.data.message)
 
     } finally {
       setLoading(false)
+      setUnsavedChanges(false)
     };
   };
 
+  const handleBack = () => {
+    if (unsavedChanges) {
+      setShowModal(true)
+    } else {
+      navigate("/dashboard/accommodations")
+    }
+  }
 
+  const handleConfirmation = (confirm) => {
+    if (confirm) {
+      setShowModal(false)
+      navigate("/dashboard/accommodations")
+    } else {
+      setShowModal(false)
+    }
+  }
   return (
     <div className='add'>
       <div className="content">
-        <span><Link to='/dashboard/accommodations/'>Back</Link></span>
+        <span onClick={handleBack} className='add-button'>Back</span>
         <TextInput
           label='Title'
           type="text"
           width={100}
           value={accommTitle}
           placeholder='Title'
-          onChange={(e) => setAccommTitle(e.target.value)}
+          onChange={(e) => {
+            setUnsavedChanges(true)
+            setAccommTitle(e.target.value)
+          }}
         />
         <div className="editorContainer">
           <ReactQuill
@@ -122,20 +144,31 @@ const Add_Accommodate = () => {
             className="editor"
             theme='snow'
             value={accommDesc}
-            onChange={setAccommDesc}
+            onChange={(content, delta, source, editor) => {
+              setAccommDesc(content);
+              setUnsavedChanges(true)
+            }}
           />
         </div>
-        <h2>Ammenities</h2>
       </div>
       <div className="menu">
+        <div className="buttons">
+          {loading ?
+            (<button
+              className='btn btn-full btn-loading disabled'
+            >
+              Publishing...</button>
+            ) : (
+              <button
+                onClick={handleClick}
+                className='btn btn-full'
+              >
+                {state ? 'Update' : 'Publish'}
+              </button>
+            )}
+        </div>
         <div className="item">
           <h1>Publish</h1>
-          <span>
-            <b>Status</b> Draft
-          </span>
-          <span>
-            <b>Visibility</b> Public
-          </span>
           <ImageUploader
             file={file}
             previewImage={previewImage}
@@ -151,11 +184,26 @@ const Add_Accommodate = () => {
                 <label className='label'>Type</label>
                 <div className='radio-input-wrapper'>
                   <div className="radio-input">
-                    <input type="radio" checked={selectedAccommType === "Cottage"} value="Cottage" onChange={(e) => setSelectedAccommType(e.target.value)} />
+                    <input
+                      type="radio"
+                      checked={selectedAccommType === "Cottage"}
+                      value="Cottage"
+                      onChange={(e) => {
+                        setSelectedAccommType(e.target.value)
+                        setUnsavedChanges(true)
+                      }}
+                    />
                     <label htmlFor='cottage'>Cottage</label>
                   </div>
                   <div className="radio-input">
-                    <input type="radio" checked={selectedAccommType === "Room"} value="Room" onChange={(e) => setSelectedAccommType(e.target.value)} />
+                    <input
+                      type="radio"
+                      checked={selectedAccommType === "Room"}
+                      value="Room"
+                      onChange={(e) => {
+                        setSelectedAccommType(e.target.value)
+                        setUnsavedChanges(true)
+                      }} />
                     <label htmlFor='room'>Room</label>
                   </div>
                 </div>
@@ -167,7 +215,10 @@ const Add_Accommodate = () => {
                   type="number"
                   placeholder='Price'
                   value={accommPrice}
-                  onChange={(e) => setAccommPrice(e.target.value)}
+                  onChange={(e) => {
+                    setAccommPrice(e.target.value)
+                    setUnsavedChanges(true)
+                  }}
                   width={100}
                   label="Price"
                 />
@@ -178,7 +229,10 @@ const Add_Accommodate = () => {
                   type="number"
                   placeholder='Night Price'
                   value={accommNightPrice}
-                  onChange={(e) => setAccommNightPrice(e.target.value)}
+                  onChange={(e) => {
+                    setAccommNightPrice(e.target.value)
+                    setUnsavedChanges(true)
+                  }}
                   width={100}
                   label="Night Price"
                 />
@@ -188,7 +242,10 @@ const Add_Accommodate = () => {
                 <TextInput
                   type="number"
                   placeholder='No. of Units'
-                  value={accommUnit} onChange={(e) => setAccommUnit(e.target.value)}
+                  value={accommUnit} onChange={(e) => {
+                    setAccommUnit(e.target.value)
+                    setUnsavedChanges(true)
+                  }}
                   width={100}
                   label="No. of Units"
                 />
@@ -200,29 +257,32 @@ const Add_Accommodate = () => {
                   <TextInput
                     type="number"
                     placeholder='Capacity'
-                    value={accommCap} onChange={(e) => setAccommCap(e.target.value)}
+                    value={accommCap} onChange={(e) => {
+                      setAccommCap(e.target.value)
+                      setUnsavedChanges(true)
+                    }}
                     width={100}
                     label="Capacity"
                   />
                 </div>
               </div>
-              <div className="buttons">
-                {loading ?
-                  (<button
-                    className='btn btn-loading disabled'
-                  >
-                    Publishing...</button>
-                  ) : (
-                    <button
-                      onClick={handleClick}
-                      className='btn'
-                    >
-                    { state ? 'Update' : 'Publish'}
-                    </button>
-                  )}
-                {/* <button onClick={() => toast.success('My first toast')} >Save as a Draft</button> */}
-              </div>
 
+              {showModal && (
+                <Modal error={true} symbol={<FiAlertCircle />} dialogMsg='Are you sure you want to go back?' closeModal={() => setShowModal(false)}>
+                  <div>
+                    <p>Any unpublish progress or changes from the current action will be lost.</p>
+                  </div>
+                  <div className='modal__buttons'>
+                    <button className='btn btn-err' onClick={() => handleConfirmation(true)}>
+                      Yes, Unsave Changes
+                    </button>
+                    <button className='btn ' onClick={() => handleConfirmation(false)}>
+                      No
+                    </button>
+                  </div>
+
+                </Modal>
+              )}
             </div>
           </div>
         </div>

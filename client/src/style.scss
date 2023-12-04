@@ -5,6 +5,7 @@
 @use "./sass/components/SearchBar.scss";
 @use "./sass/components/Modal.scss";
 @use "./sass/components/Facilities.scss";
+@use "./sass/components/Empty.scss";
 @use "./sass/components/_Form.scss";
 @use "./sass/components/Header.scss";
 @use "./sass/components/Pages.scss";
@@ -399,7 +400,10 @@ ol {
                     }
                 }
             }
-
+            .control_container{
+                width: 100%;
+                @include flexBoxRow(space-between, space-between, 0)
+            }
             .title-input {
                 font-size: $f-large;
                 font-weight: $w-bold;
@@ -533,16 +537,7 @@ ol {
                         //         pointer-events: none;
                         //     }
                         // }
-                        .radio-input-wrapper {
-                            @include flexBoxColumn(flex-start, flex-start, 0.3rem);
-                            padding: $small-padding-y;
-                            width: 100%;
-                            .radio-input {
-                                font-size: $f-normal;
-                                color: $description;
-                                @include flexBoxRow(flex-start, center, 0.2rem);
-                            }
-                        }
+                     
                     }
                 }
 

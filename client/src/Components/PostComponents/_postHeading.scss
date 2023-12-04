@@ -3,6 +3,7 @@
 .postheading__container {
     display: flex;
     height: 70dvh;
+
     background-color: $primary;
     @include centerFlexboxRow;
     // @include centerAndSet(1300px, 2rem);
@@ -11,6 +12,7 @@
         @include centerAndSet(1300px, 5rem);
         display: flex;
         justify-content: space-between;
+        min-width: 1000px;
     }
     .postheading__title {
         color: $lighterGreyColor;
@@ -29,8 +31,10 @@
         p {
             font-family: $secondary-font;
             font-size: $f-normalx;
+            text-transform: capitalize;
         }
     }
+
 
     .postheading__imageWrapper {
         width: 50%;

@@ -48,7 +48,7 @@ const ModalUser = ({ user, closeModal }) => {
             <div className='user__modal__header'>
 
                 <div className='user__modal__image'>
-                    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" />
+                    <img src={user?.img || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'} alt="" />
                 </div>
                 <div className='user__modal-name'>
                     <h2>{user?.username}</h2>
@@ -80,7 +80,7 @@ const ModalUser = ({ user, closeModal }) => {
 
             </div>
             <div className='user__modal__footer'>
-                {loading ? <span className='btn btn-small btn-loading'>Loading...</span> : <span className='btn btn-small' onClick={handleUpdate}>Edit</span>}
+                {loading ? <span className='btn btn-small btn-loading'>Loading...</span> : <span className='btn btn-small' onClick={handleUpdate}>Save</span>}
                 <span className='btn btn-small btn-err' onClick={closeModal}>Cancel</span>
             </div>
         </div>

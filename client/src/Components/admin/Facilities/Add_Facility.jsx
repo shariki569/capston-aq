@@ -10,6 +10,8 @@ import axios from 'axios';
 import ImageGalleryUploader from '../../util/ImageGalleryUploader';
 import moment from 'moment';
 import { toast } from 'sonner';
+import Modal from '../../ui/Modal/Modal';
+import { FiAlertCircle } from 'react-icons/fi';
 
 const Add_Facility = () => {
   const state = useLocation().state;
@@ -27,6 +29,8 @@ const Add_Facility = () => {
     error: null,
   });
 
+  const [unsavedChanges, setUnsavedChanges] = useState(false)
+  const [showModal, setShowModal] = useState(false)
 
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -37,6 +41,7 @@ const Add_Facility = () => {
         previewFeaturedImage: URL.createObjectURL(selectedFile),
 
       }));
+      setUnsavedChanges(true)
     }
   };
 
@@ -54,6 +59,7 @@ const Add_Facility = () => {
         ...prevFacility,
         galleryFiles: [...prevFacility.galleryFiles, ...newGalleryImages], // Keep galleryFiles for temporary preview
       }));
+      setUnsavedChanges(true)
     }
   };
 
@@ -86,6 +92,7 @@ const Add_Facility = () => {
         galleryFiles: updatedGalleryFiles,
         removedProp: 'galleryFiles',
       }));
+
     }
   }
 
@@ -130,35 +137,68 @@ const Add_Facility = () => {
         ...prevFacility,
         loading: false,
       }))
-      toast.success(`Facility Added Successfully`);
+      toast.success(state ? `Facility Updated Successfully` : `Facility Added Successfully`);
     }
   };
-  console.log("Existing Gallery Images:", facility.galleryImages);
+
+  const handleBack = () => {
+    if (unsavedChanges) {
+      setShowModal(true)
+    } else {
+      navigate("/dashboard/accommodations")
+    }
+  }
+
+  const handleConfirmation = (confirm) => {
+    if (confirm) {
+      setShowModal(false)
+      navigate("/dashboard/accommodations")
+    } else {
+      setShowModal(false)
+    }
+  }
+
+
   return (
     <>
       <div className="add">
         <div className="content">
-          <span>
-            <Link to="/dashboard/facilities/">Back</Link>
+          <span className='add-button' onClick={handleBack}>
+            Back
           </span>
           <TextInput
             type="text"
             label="Title"
             value={facility.fac_title}
-            onChange={(e) => setFacility({ ...facility, fac_title: e.target.value })}
+            onChange={(e) => {
+              setFacility({ ...facility, fac_title: e.target.value })
+              setUnsavedChanges(true)
+            }}
           />
           <TextArea
             rows={10}
             cols={100}
             value={facility.fac_desc}
-            onChange={(e) => setFacility({ ...facility, fac_desc: e.target.value })}
+            onChange={(e) => {
+              setFacility({ ...facility, fac_desc: e.target.value })
+              setUnsavedChanges(true)
+            }}
             label="Description"
           />
         </div>
         <div className="menu">
+          <div className="buttons">
+            {facility.loading ? (
+              <button className='btn btn-full btn-loading' disabled={true} >Publishing</button>
+            ) : (
+              <button button className='btn btn-full' onClick={handleClick}>Publish</button>
+            )}
+
+          </div>
           <div className="item">
             <h1>Publish</h1>
           </div>
+
           <ImageUploader
             title="Featured Image"
             file={facility.file}
@@ -175,16 +215,25 @@ const Add_Facility = () => {
             handleGalleryImageChange={handleGalleryImageChange}
             removeImageItem={removeGalleryImage}
           />
-          <div className="buttons">
-            {facility.loading ? (
-              <button className='btn btn-loading' disabled={true} >Publishing</button>
-            ) : (
-              <button button className='btn' onClick={handleClick}>Publish</button>
-            )}
-            {/* <button>Save as a Draft</button> */}
-          </div>
+
         </div>
       </div >
+      {showModal && (
+        <Modal error={true} symbol={<FiAlertCircle />} dialogMsg='Are you sure you want to go back?' closeModal={() => setShowModal(false)}>
+          <div>
+            <p>Any unpublish progress or changes from the current action will be lost.</p>
+          </div>
+          <div className='modal__buttons'>
+            <button className='btn btn-err' onClick={() => handleConfirmation(true)}>
+              Yes, Unsave Changes
+            </button>
+            <button className='btn ' onClick={() => handleConfirmation(false)}>
+              No
+            </button>
+          </div>
+
+        </Modal>
+      )}
     </>
   );
 };

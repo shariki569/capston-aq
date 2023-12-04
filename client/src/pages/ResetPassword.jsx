@@ -2,7 +2,7 @@ import React from 'react'
 import TextInput from '../Components/forms/FormFields/TextInput'
 
 const ResetPassword = ({ onChangePassword, onChangeConfirmPassword, handleSubmit, err, password, confirmPassword }) => {
-  // const { email } = useContext(RecoveryContext)
+
 
 
   return (

@@ -13,9 +13,6 @@ const Chatbot = () => {
   const [input, setInput] = useState('');
   const [showOptions, setShowOptions] = useState(false);
   const [showFeedbackForm, setShowFeedbackForm] = useState(false);
-  // const [isFeedbackMode, setIsFeedbackMode] = useState(false);
-  // const [feedbackStep, setFeedbackStep] = useState(0);
-  // const [feedbackData, setFeedBackData] = useState({});
   const [showChatbot, setShowChatbot] = useState(false);
   const messagePanelRef = useRef(null);
   const [messages, setMessages] = useState([
@@ -116,7 +113,7 @@ const Chatbot = () => {
         <div className="chatbot-panel" ref={messagePanelRef}>
           {messages.map((message, index) => (
             <p className={`message ${message.sender}`} key={index}>
-              {/* <span className='sender'>{message.sender}</span> */}
+
               {message.sender === 'Bot' ? (<span dangerouslySetInnerHTML={{
                 __html: DOMPurify.sanitize(message.text),
               }}></span>) : (

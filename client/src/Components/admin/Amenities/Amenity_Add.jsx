@@ -13,18 +13,13 @@ const Amenity_Add = ({ fetchData, close, refreshData }) => {
     const [loading, setLoading] = useState(false);
 
 
-    useEffect(() => {
-        if (fetchData) {
-            setAmenTitle(fetchData.Amenity_Title || '');
-            setAmenImg(fetchData.Amenity_Img || '');
-        }
-    }, [fetchData]);
+
 
     const handleClick = async () => {
         setLoading(true);
         const imgUrl = file ? await upload(file) : amenImg;
 
-        if(!amenTitle || !imgUrl) {
+        if (!amenTitle || !imgUrl) {
             toast.error('Please fill in all fields');
             setLoading(false);
             return;
@@ -41,17 +36,41 @@ const Amenity_Add = ({ fetchData, close, refreshData }) => {
                     Amen_Title: amenTitle,
                     Amen_Img: imgUrl,
                 });
+            toast.success(fetchData ? 'Amenity Updated' : 'Amenity Added');
             close()
             refreshData()
+
         } catch (err) {
             setLoading(false);
             toast.error(err.response.data.message);
         } finally {
-         
+
             setLoading(false);
-            toast.success(fetchData ? 'Amenity Updated' : 'Amenity Added');
+
         }
     };
+
+    useEffect(() => {
+        if (fetchData) {
+            setAmenTitle(fetchData.Amenity_Title || '');
+            setAmenImg(fetchData.Amenity_Img || '');
+        }
+        
+    }, [fetchData]);
+
+    useEffect(() => {
+        const handleKeyPress = async (e) => {
+
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                handleClick();
+            }
+        };
+        window.addEventListener('keydown', handleKeyPress);
+        return () => {
+            window.removeEventListener('keydown', handleKeyPress);
+        };
+    }, [handleClick, fetchData]);
 
     const handleImageChange = (e) => {
         if (e.target.files && e.target.files.length > 0) {
@@ -72,6 +91,8 @@ const Amenity_Add = ({ fetchData, close, refreshData }) => {
         }
     };
 
+
+
     return (
         <div className="amenity-modal">
             {fetchData ? <h2>Edit Amenity</h2> : <h2>Add Amenity</h2>}
@@ -90,11 +111,11 @@ const Amenity_Add = ({ fetchData, close, refreshData }) => {
                 existingImage={amenImg}
             />
             <div>
-              
+
                 {loading ? (
                     <span className="btn-loading btn disabled">{fetchData ? 'Updating' : 'Adding'}</span>
                 ) : (
-                    <span className="btn" onClick={handleClick}>
+                    <span className="btn" onClick={handleClick} >
                         {fetchData ? 'Update' : 'Add'}
                     </span>
                 )}

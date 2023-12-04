@@ -28,6 +28,9 @@ const Register = () => {
       if (!inputs.username || !inputs.password || !inputs.email) {
         setError("All fields are required");
         return;
+      } else if (inputs.password !== inputs.confirmPassword) {
+        setError("Passwords do not match");
+        return;
       }
 
       await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/register`, inputs)
@@ -45,6 +48,7 @@ const Register = () => {
         <TextInput required={true} type="text" placeholder='Username' name='username' onChange={handleChange} />
         <TextInput required={true} type="email" placeholder='Email' name='email' onChange={handleChange} />
         <TextInput required={true} type="password" placeholder='Password' name='password' onChange={handleChange} />
+        <TextInput required={true} type="password" placeholder='Confirm Password' name='confirmPassword' onChange={handleChange} />
         <button className='btn' onClick={handleSubmit}>Register</button>
         {err && <p>{err}</p>}
         <span>Do you you have an account?<Link to="/Login"> Login</Link></span>

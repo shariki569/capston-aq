@@ -5,6 +5,7 @@
         padding-block: $base-padding;
         h3 {
             color: $primary;
+           
         }
     }
     .comments__wrapper {
@@ -33,6 +34,7 @@
             .comment__header {
                 display: flex;
                 gap: 1rem;
+                width: 100%;
             }
             .comment__avatar {
                 width: 50px;
@@ -46,9 +48,11 @@
             .comment__user{
                 h3{
                     color: $greyColor;
+                    font-size: $f-normal;
                 }
                 span{
                     color: $lightGreyColor;
+                    font-size: $f-medium;
                 }
 
                 .comment__author{
@@ -60,6 +64,29 @@
 
                 }
             }
+
+             .comment__options{
+                position: relative;
+                display: flex;
+                margin-left: auto;
+                align-items: center;
+                justify-content: center;
+
+                &:hover {
+                    cursor: pointer;
+                    color: $primary;
+                }
+
+                .comment__option{
+                    position: absolute;
+                    @include cardBase($base-border-radius);
+                    top: 30px;
+                    right: 5px;
+                    @include boxShadow;
+                    padding: $small-padding $base-padding;
+                }
+             } 
+
         }
     }
 }

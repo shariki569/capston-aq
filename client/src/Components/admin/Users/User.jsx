@@ -5,14 +5,10 @@ import './users.scss'
 import moment from 'moment'
 import axios from 'axios'
 import Pagination from '../../ui/Pagination/Pagination'
-
+import { FiRefreshCw } from "react-icons/fi";
 import Modal from '../../ui/Modal/Modal'
 import ModalUser from './ModalUser'
 import { AuthContext } from '../../../context/authContext'
-
-
-
-
 
 
 const User = () => {
@@ -28,21 +24,25 @@ const User = () => {
   // const [page, setPage] = useState(1)
   // const [totalPages, setTotalPages] = useState(0)
   // const [limt, setLimit] = useState(10)
-  const fetchData = async () => {
-    try {
-      const res = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/users?page=${page}`)
-      setUsers(res.data.users)
-      console.log(res.data.users)
-      setTotalPages(res.data.totalPages)
-    } catch (err) {
-      console.log(err)
-    }
-  }
-  
-  useEffect(() => {
 
+
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/users?page=${page}`)
+        setUsers(res.data.users)
+        console.log(res.data.users)
+        setTotalPages(res.data.totalPages)
+      } catch (err) {
+        console.log(err)
+      }
+    }
     fetchData()
   }, [page])
+
+
 
   const openModal = (userId) => {
     const selectedUser = users.find((user) => user.id === userId)
@@ -76,9 +76,18 @@ const User = () => {
     }
   }
 
-  useEffect(() => {
-    fetchData()
-  }, [users])
+  const handleRefresh = async () => {
+    // Manually fetch the data again when the refresh button is clicked.
+    try {
+      const res = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/users?page=${page}`);
+      setUsers(res.data.users);
+      setTotalPages(res.data.totalPages);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+
   return (
     <div>
       <div className='title'>
@@ -86,7 +95,11 @@ const User = () => {
       </div>
       <div className="add">
         <div className="content">
-          <span className='add-button'><Link to='/dashboard/users'><FiPlusCircle size={20} />Add</Link></span>
+          <div className='control_container'>
+            <span className='add-button'><Link to='/dashboard/users'><FiPlusCircle size={20} />Add</Link></span>
+            <button onClick={handleRefresh} className='btn_flat btn-small'><FiRefreshCw size={15} /></button>
+          </div>
+
           <div className="card d-flex justify-center">
             <table className='full-width'>
               <thead>
@@ -112,10 +125,9 @@ const User = () => {
                     <td>{user.username}</td>
                     <td>{user.email}</td>
                     <td className='center'>{user.Role_Name}</td>
-                    <td className='center'>{moment(user.Date_Time).fromNow()}</td>
+                    <td className='center'>{moment(user.Date_Created).format('MMMM Do YYYY, h:mm:ss a')}</td>
                     {currentUser.Role_Name === 'Admin' && <td>
                       <div className='crud-btn'>
-
                         <button onClick={() => openModal(user.id)}>View</button>
                         <button onClick={() => handleDelete(user.id)}><FiTrash2 /></button>
                       </div>

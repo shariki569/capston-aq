@@ -32,7 +32,7 @@
         display: block;
     }
 
-    button {
+    .modal__close {
         position: absolute;
         top: 5%;
         right: 5%;
@@ -58,6 +58,14 @@
         position: absolute;
         right: 0%;
         top: 50%;
+    }
+
+    .modal__buttons{
+        display: flex;
+        padding-top: $base-padding;
+        gap: 0.5rem;
+       
+      
     }
     // }
 }

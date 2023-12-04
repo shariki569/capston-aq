@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 
+
+
 export const getUsers = async (req, res) => {
    const connection = await db.getConnection();
    try {
@@ -14,7 +16,7 @@ export const getUsers = async (req, res) => {
       const totalPages = Math.ceil(count / limit);
 
       const [rows] = await connection.query(`
-         SELECT u.id, u.username, u.email, u.img, u.Date_Created, u.role, r.Role_Name 
+         SELECT u.id, u.username, u.display_name, u.email, u.img, u.Date_Created, u.role, r.Role_Name 
          FROM users u 
          INNER JOIN role r 
          ON u.role = r.Role_Id
@@ -35,6 +37,7 @@ export const getUsers = async (req, res) => {
       return res.status(500).json("Internal server error");
    }
 }
+
 
 export const deleteUsers = async (req, res) => {
 
@@ -111,10 +114,11 @@ export const updateProfile = async (req, res) => {
       if (Number(userId) !== userInfo.id) {
          return res.status(403).json("You can only edit your own profile");
       }
-      const q = 'UPDATE users SET `username` = ?, `email` = ?, `img` = ? WHERE `id` = ?';
+      const q = 'UPDATE users SET `username` = ?, `display_name` = ?, `email` = ?, `img` = ? WHERE `id` = ?';
 
       const [result] = await connection.query(q, [
          req.body.username,
+         req.body.display_name,
          req.body.email,
          req.body.img,
          userInfo.id
@@ -132,16 +136,25 @@ export const updateProfile = async (req, res) => {
    }
 }
 
-export const getProfile = {
-   async getProfile(req, res) {
-      try {
-         const userId = req.params.id
-         const q = "SELECT `id`, `username`, `email`, `img` FROM users WHERE id = ?";
+export const getProfile = async (req, res) => {
+   const connection = await db.getConnection();
+   try {
+      const userId = req.params.id
+      const q = "SELECT `id`, `username`, `display_name`, `email`, `img` FROM users WHERE id = ?";
 
+      const [rows] = await connection.query(q, [userId]);
 
-
-      } catch (err) {
-
+      if (rows === 0) {
+         return res.status(404).json("User Not Found");
+      } else {
+         return res.status(200).json(rows);
       }
+
+   } catch (err) {
+      return res.status(500).json("Internal Server Error");
+   } finally {
+      connection.release();
    }
 }
+
+

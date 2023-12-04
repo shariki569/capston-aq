@@ -3,6 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 const PostItems = ({ posts }) => {
+  // console.log(posts.display_name)
   return (
     <div className="post-items">
       {posts ?
@@ -21,7 +22,7 @@ const PostItems = ({ posts }) => {
                   <span>
                     {moment(post.date).format('MMMM DD YYYY')}
                   </span>
-                  By: {post.username}
+                  By: {post.display_name ? post.display_name : post.username}
                 </p>
 
                 <p className='desc'

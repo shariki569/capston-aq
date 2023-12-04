@@ -26,9 +26,12 @@ const Contact_Info = () => {
 
 
   const toggleEditMode = () => {
-    setEditMode(!editMode);
-  };
 
+    setEditMode(!editMode);
+    if (editMode) {
+      toast.success('Canceled successfully!');
+    };
+  };
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
@@ -98,7 +101,7 @@ const Contact_Info = () => {
                 <div className='contact-info || full-width s-margin-y'>
                   {editMode ? (
                     <TextInput
-                      
+
                       type={item.type}
                       name={item.key}
                       value={contactInfo[item.key] || ''}
@@ -117,24 +120,17 @@ const Contact_Info = () => {
 
       <div className="menu">
         <div className="item">
-          <h1>Publish</h1>
-          <span>
-            <b>Status</b> Draft
-          </span>
-          <span>
-            <b>Visibility</b> Public
-          </span>
-
+          <h1>Edit Contact Information</h1>
           {/* <label className="file" htmlFor="file" encType="multipart/form-data">Upload Image</label> */}
           {editMode ? (
             <div className="buttons">
-              <button className='btn'onClick={handleSave}>Save</button>
+              <button className='btn' onClick={handleSave}>Save</button>
               <button className='btn btn-err' onClick={toggleEditMode}>Cancel</button>
             </div>
 
           ) : (
             <div className="buttons">
-              <button  className='btn' onClick={toggleEditMode}>Edit</button>
+              <button className='btn' onClick={toggleEditMode}>Edit</button>
             </div>
           )}
         </div>

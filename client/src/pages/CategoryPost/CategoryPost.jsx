@@ -46,6 +46,7 @@ const CategoryPost = () => {
         <div className='posts'>
             <PostHeading
                 title={'Category'}
+                description={`${cat}`}
             />
             <div className="post__container">
                 <div className="left">

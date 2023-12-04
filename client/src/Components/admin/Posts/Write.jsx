@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import axios from 'axios'
@@ -8,11 +8,12 @@ import TextInput from '../../forms/FormFields/TextInput';
 import ImageUploader from '../../util/ImageUploader';
 import { upload } from '../../../Hooks/imageHandling';
 import { slugify } from '../../util/slugify.js';
+import Modal from '../../ui/Modal/Modal';
+import { FiAlertCircle } from 'react-icons/fi';
+import { toast } from 'sonner';
 const Write = () => {
 
   const state = useLocation().state
-
-
   const [title, setTitle] = useState(state?.PostTitle || "")
   const [value, setValue] = useState(state?.PostDesc || "")
   const [file, setFile] = useState(null)
@@ -22,28 +23,31 @@ const Write = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-
+  const [unsavedChanges, setUnsavedChanges] = useState(false)
+  const [showModal, setShowModal] = useState(false)
 
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
       const selectedFile = e.target.files[0]
       setFile(selectedFile);
       setPreviewImg(URL.createObjectURL(selectedFile));
-
+      setUnsavedChanges(true)
     }
   }
+
+
 
   const removeSelectedImage = () => {
     if (postImg) {
       setFile(null)
       setPreviewImg(null);
       setPostImg(null)
+      setUnsavedChanges(true)
     } else if (postImg) {
       setPreviewImg(null)
+      setUnsavedChanges(true)
     }
   }
-
-
 
 
   const handleClick = async e => {
@@ -74,28 +78,51 @@ const Write = () => {
         }, {
           withCredentials: true
         });
-      
-      navigate("/")
+
+      navigate("/dashboard/posts")
     } catch (err) {
       setLoading(false)
       console.log(err);
     } finally {
+      toast.success(state ? 'Posts has been successfully updated!' : 'Post added successfully!')
       setLoading(false)
+      setUnsavedChanges(false);
     };
   };
+
+  const handleBack = () => {
+    if (unsavedChanges) {
+      setShowModal(true)
+    } else {
+      navigate("/dashboard/posts")
+    }
+  }
+
+  const handleConfirmation = (confirm) => {
+    if (confirm) {
+      setShowModal(false)
+      navigate("/dashboard/posts")
+    } else {
+      setShowModal(false)
+    }
+  }
 
 
   return (
     <div className='add'>
       <div className="content">
-        <span><Link to='/dashboard/posts'>Back</Link></span>
+        <span className="add-button" onClick={handleBack}>Back</span>
         <TextInput
           containerClass={'title-input'}
           type="text"
           value={title}
           placeholder='Title'
           width={100}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={
+            (e) => {
+              setTitle(e.target.value);
+              setUnsavedChanges(true)
+            }}
         />
         {/* <input
           type="text"
@@ -108,19 +135,26 @@ const Write = () => {
             className="editor"
             theme='snow'
             value={value}
-            onChange={setValue}
+            onChange={(content, delta, source, editor) => {
+              setValue(content);
+              setUnsavedChanges(true)
+            }}
           />
         </div>
       </div>
       <div className="menu">
+      <div className="buttons">
+            {loading ?
+              (
+                <button className='btn btn-full btn-loading disabled'>Publishing</button>
+              ) : (
+                <button className='btn btn-full' onClick={handleClick}>Publish</button>
+              )
+            }
+       
+          </div>
         <div className="item">
           <h1>Publish</h1>
-          <span>
-            <b>Status</b> Draft
-          </span>
-          <span>
-            <b>Visibility</b> Public
-          </span>
           <ImageUploader
             file={file}
             previewImage={previewImg}
@@ -128,31 +162,27 @@ const Write = () => {
             removeSelectedImage={removeSelectedImage}
             existingImage={postImg}
           />
-          <div className="buttons">
-            {loading ?
-              (
-                <button className='btn btn-loading' disabled={true}>Publishing</button>
-              ) : (
-                <button className='btn' onClick={handleClick}>Publish</button>
-              )
-            }
-            {/* <button>Save as a Draft</button> */}
-          </div>
+          
         </div>
         <div className="item">
           <h1>Category</h1>
-          <div className='cat'>
-            <input
-              type="radio"
-              checked={cat === "art"}
-              name='cat'
-              value="art"
-              id='art'
-              onChange={(e) => setCat(e.target.value)}
-            />
-            <label htmlFor="">Art</label>
+          <div className="radio-input-wrapper">
+            {categories.map((category) => (
+              <div className='radio-input' key={category.name}>
+                <input
+                  type="radio"
+                  checked={cat === category.name}
+                  name='cat'
+                  value={category.name}
+                  id={category.name}
+                  onChange={(e) => setCat(e.target.value)}
+                />
+                <label htmlFor="">{category.label}</label>
+              </div>
+            ))}
           </div>
-          <div className='cat'>
+
+          {/* <div className='cat'>
             <input type="radio" checked={cat === "science"} name='cat' value="science" id='science' onChange={e => setCat(e.target.value)} />
             <label htmlFor="science">Science</label>
           </div>
@@ -161,21 +191,76 @@ const Write = () => {
             <label htmlFor="technology">Technology</label>
           </div>
           <div className='cat'>
-            <input type="radio" checked={cat === "cinema"} name='cat' value="cinema" id='cinema' onChange={e => setCat(e.target.value)} />
-            <label htmlFor="cinema">Cinema</label>
+            <input type="radio" checked={cat === "activities and entertainment"} name='Activities and Entertainment' value="Activities and Entertainment" id='Activities and Entertainment' onChange={e => setCat(e.target.value)} />
+            <label htmlFor="Activities and Entertainment">Activities and Entertainment</label>
           </div>
           <div className='cat'>
-            <input type="radio" checked={cat === "design"} name='cat' value="design" id='design' onChange={e => setCat(e.target.value)} />
-            <label htmlFor="design">Design</label>
+            <input type="radio" checked={cat === "special offers"} name='cat' value="special offers" id='special offers' onChange={e => setCat(e.target.value)} />
+            <label htmlFor="Special Offers">Special Offers</label>
           </div>
           <div className='cat'>
             <input type="radio" checked={cat === "foods"} name='cat' value="food" id='food' onChange={e => setCat(e.target.value)} />
             <label htmlFor="food">Food</label>
-          </div>
+          </div> */}
         </div>
       </div>
-    </div>
+      {showModal && (
+        <Modal error={true} symbol={<FiAlertCircle />} dialogMsg='Are you sure you want to go back?' closeModal={() => setShowModal(false)}>
+          <div>
+            <p>Any unpublish progress or changes from the current action will be lost.</p>
+          </div>
+          <div className='modal__buttons'>
+            <button className='btn btn-err' onClick={() => handleConfirmation(true)}>
+              Yes, Unsave Changes
+            </button>
+            <button className='btn ' onClick={() => handleConfirmation(false)}>
+              No
+            </button>
+          </div>
+
+        </Modal>
+      )}
+    </div >
   )
 }
 
 export default Write
+
+
+export const categories = [
+  {
+    id: 1,
+    name: "budget-friendly",
+    label: "Budget-Friendly",
+  },
+  {
+    id: 2,
+    name: "comfort",
+    label: "Comfort",
+  },
+  {
+    id: 3,
+    name: "explore",
+    label: "Explore",
+  },
+  {
+    id: 4,
+    name: "family-fun",
+    label: "Family Fun",
+  },
+  {
+    id: 5,
+    name: "community",
+    label: "Community",
+  },
+  {
+    id: 6,
+    name: "special-offers",
+    label: "Special Offers",
+  },
+  {
+    id: 7,
+    name: 'staycation',
+    label: 'Staycation',
+  }
+]

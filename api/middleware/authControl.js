@@ -45,6 +45,33 @@ export const isAdmin = (req, res, next) => {
 
 }
 
+export const isAuthorized = (req, res, next) => {
+  const token = req.cookies.access_token;
+  if (!token) {
+    return res.status(401).json({ message: "Not authenticated" });
+  }
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const userId = decoded.id;
+    const userRole = decoded.Role;
+
+
+    if (userRole === "User") {
+      return res.status(403).json({ message: "You need to be authorized to perform this action" });
+      // user is not an authorized
+    }
+
+    
+    req.userId = userId;
+    req.userRole = userRole;
+    next()
+
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json("Internal server error");
+  }
+
+}
 // export const authenticateToken = (req, res, next) => {
 //     const authHeader = req.headers["authorization"];
 //     const token = authHeader && authHeader.split(" ")[1];

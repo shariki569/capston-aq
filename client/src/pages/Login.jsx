@@ -60,7 +60,7 @@ const Login = () => {
           <span><Link to='/forgot-password'>Forgot Password</Link></span>
         </div>
       </form>
-      <div className="alternative">
+      {/* <div className="alternative">
         <p>Or Login With</p>
         <div className="icons">
           <button className="facebook">
@@ -72,7 +72,7 @@ const Login = () => {
             Google
           </button>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

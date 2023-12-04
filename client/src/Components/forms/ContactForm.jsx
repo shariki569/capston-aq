@@ -47,9 +47,6 @@ const ContactForm = () => {
       setLoading(false);
       return;
     }
-
-
-
     try {
       const formData = {
         name,

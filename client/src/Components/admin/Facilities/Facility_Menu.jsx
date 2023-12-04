@@ -78,7 +78,7 @@ const Facilities = () => {
 
                         <Link state={facility} to={`/dashboard/facilities/write?edit=${facility.Fac_Id}`}><button>Edit</button></Link>
 
-                        {currentUser.Role_Name === 'admin' &&
+                        {currentUser.Role_Name === 'Admin' &&
                           <button onClick={() => handleSelection(facility.Fac_Id)}><FiTrash2 /></button>
                         }
                       </div>

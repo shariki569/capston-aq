@@ -5,7 +5,16 @@
     flex-direction: row;
 }
 
-
+.radio-input-wrapper {
+    @include flexBoxColumn(flex-start, flex-start, 0.3rem);
+    padding: $small-padding-y;
+    width: 100%;
+    .radio-input {
+        font-size: $f-normal;
+        color: $description;
+        @include flexBoxRow(flex-start, center, 0.2rem);
+    }
+}
 
 .text-input {
     display: flex;

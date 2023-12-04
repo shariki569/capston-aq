@@ -1,0 +1,27 @@
+@use '../../sass/Utilities/' as *;
+
+
+.notFound__container {
+    height: 100vh;
+    // @include centerAndSet(1300px, 2rem);
+    @include flexBoxColumn(center, center, 0);
+    padding-block: 2rem;
+    h1{
+        color: $primary;
+        font-size: $f-xxlarge;
+        font-weight: $w-bold;
+        font-family: $primary-font;
+    }
+    h2{
+        color: $tertiary;
+    }
+    .notFound__image {
+        // width: 700px;
+        height: 250px;
+        img{
+            border-radius: $base-border-radius;
+            @include fullSize;
+            object-fit: contain;
+        }
+    }
+ }

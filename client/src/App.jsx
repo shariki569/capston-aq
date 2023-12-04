@@ -61,6 +61,7 @@ import User from "./Components/admin/Users/User";
 import OTPverify from "./pages/OTPverify";
 import ResetPassword from "./pages/ResetPassword";
 import CategoryPost from "./pages/CategoryPost/CategoryPost";
+import NotFound from "./pages/NotFound/NotFound";
 
 
 // const PrivateRoute = ({ element, path }) => {
@@ -249,6 +250,10 @@ const router = createBrowserRouter([
   {
     path: "/unauthorized",
     element: <Unauthorized />,
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
 

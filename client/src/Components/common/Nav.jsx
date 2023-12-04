@@ -7,13 +7,21 @@ import Dropdown from "../ui/Dropdown";
 import { FaPenNib, FaS } from "react-icons/fa6";
 import MobileNav from "./MobileNav";
 import { navLinks } from "./Links";
+import './AdminNav/adminNav.scss';
+import { FiGrid, FiLogOut, FiUser, FiUsers } from "react-icons/fi";
+import Modal from "../ui/Modal/Modal";
+import Profile from "../admin/Profile/Profile";
 
 const Nav = () => {
   const [scrolled, setScrolled] = useState(false);
   const { currentUser, logout } = useContext(AuthContext);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
 
   const location = useLocation();
+  const handleClick = () => {
+    setShowDropdown(!showDropdown)
+  }
 
 
   useEffect(() => {
@@ -28,6 +36,9 @@ const Nav = () => {
     };
   }, []);
 
+  const openProfile = (e) => {
+    setShowProfile(!showProfile)
+  }
   return (
     <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
       <div className="container">
@@ -57,7 +68,7 @@ const Nav = () => {
           ))}
         </ul>
         <div className="user-link">
-          <Link className="main-link-item " to="/dashboard">
+          {/* <Link className="main-link-item " to="/dashboard">
             <span>{currentUser?.username}</span>
           </Link>
           {currentUser ? (
@@ -66,11 +77,39 @@ const Nav = () => {
             <Link className="link" to="/login">
               Login
             </Link>
+          )} */}
+
+          {currentUser ? <div className="admin__nav__user">
+            <div onClick={handleClick} className="admin__nav__imageWrap">
+              {currentUser?.img ? (<img src={currentUser?.img} alt="" />) : (<img src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png' alt="" />)}
+            </div>
+            <div className={showDropdown ? 'admin__nav__dropdown active homepage__nav' : 'admin__nav__dropdown'}>
+              <p className='admin__nav__display__name'>{currentUser?.display_name ? currentUser?.display_name : currentUser?.username}</p>
+              <p className='admin__nav__username'>({currentUser?.username})</p>
+              <ul>
+                {currentUser?.Role_Name !== 'User'  && <Link onClick={handleClick} className='admin__nav__link' to='/dashboard'><li><FiGrid />Dashboard</li></Link>}
+                {currentUser.Role_Name === 'Admin' || currentUser.Role_Name === 'Staff' ?
+                  (<Link onClick={handleClick} className='admin__nav__link' to='/dashboard/profile'><li><FiUsers />Profile</li></Link>
+
+                  ) : (<Link onClick={openProfile} className='admin__nav__link'><li><FiUsers />Profile</li></Link>)
+                }
+
+                <li onClick={logout}><FiLogOut />Logout</li>
+              </ul>
+            </div>
+
+          </div> : (
+            <Link className="link" to="/login">Login</Link>
           )}
 
         </div>
         <MobileNav />
       </div>
+      {showProfile &&
+        <Modal closeModal={openProfile}>
+          <Profile />
+        </Modal>
+      }
     </nav>
   );
 };

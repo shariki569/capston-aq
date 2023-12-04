@@ -1,13 +1,42 @@
 @use "../../../sass/Utilities/" as *;
-
+.profile__heading {
+    @include flexBoxRow(space-between, space-between, 0);
+    width: 100%;
+}
 .profile__container {
     padding: $base-padding-y;
-    @include flexBoxRow(flex-start, flex-start, 1rem);
-    .profile__image {
-        width: 300px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(150px, auto);
+    gap: 1rem;
 
+    .grid2{
+        .profile__btn {
+            .btn_flat{
+                width: 100%;
+                margin: $base-padding-y;
+            }
+        }
     }
-    .profile__details{
-        width: 300px;
+
+    .grid4{
+        .btn_flat{
+            width: 100%;
+        }
     }
+
+
+    // .profile__image {
+    //     width: 300px;
+    // }
+    // .profile__details {
+    //     width: 300px;
+    //     .profile__btn {
+    //         .btn {
+    //             width: 100%;
+    //         }
+
+    //         padding: $base-padding-y;
+    //     }
+    // }
 }

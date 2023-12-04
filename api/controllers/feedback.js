@@ -55,18 +55,19 @@ export const getFeedback = async (req, res) => {
 };
 
 export const getRatings = async (req, res) => {
+  const connection = await db.getConnection();
   try {
     const q = `SELECT 
     AVG(FeedBack_Rating) as TotalRating, COUNT(FeedBack_ID) as TotalFeedBack
     FROM feedback`;
-
-    const connection = await db.getConnection();
     const [rows] = await connection.query(q);
-    connection.release();
+
     return res.status(200).json(rows);
   } catch (err) {
     console.log(err);
     return res.status(500).json("Internal server error");
+  } finally {
+    connection.release();
   }
 };
 

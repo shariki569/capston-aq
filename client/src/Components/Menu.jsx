@@ -10,7 +10,7 @@ const Menu = ({cat}) => {
     const fetchData = async () => {
       try {
         const res = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/posts/?cat=${cat}`)
-        setPosts(res.data);
+        setPosts(res.data.posts);
       } catch (err) {
         console.log(err);
       }

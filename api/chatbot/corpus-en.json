@@ -825,18 +825,6 @@
       ]
     },
     {
-      "intent": "user.inquiryaccommodation",
-      "utterances": [
-        "What types of accommodations do you have?",
-        "What are your accommodations?",
-        "what type of room do you have?",
-        "what type of rooms available in your resort"
-      ],
-      "answers": [
-        "We have three types of rooms: Air-conditioned Room with a Queen Size Bed, Double Single Bed Room, and Cottages. Each accommodation is comfortable and budget-friendly, catering to different preferences and group sizes."
-      ]
-    },
-    {
       "intent": "user.inquiryamenities",
       "utterances": [
         "What kind of amenities do you have?",
@@ -1012,25 +1000,6 @@
         "Your marriage happened on Date: {{date}} at Time: {{time}}!",
         "Your marriage happened on Date: {{date}}"
       ]
-    },
-    {
-      "intent": "introduce.name",
-      "utterances": [
-        "my name is %name%",
-        "I am %name%",
-        "I will introduce to you my name. I am %name%"
-      ],
-      "answers": ["Hi, {{name}} ! how may I help you?"]
-    },
-    {
-      "intent": "introduce.age",
-      "utterances": ["I am %age% years old", "I am %age%"],
-      "answers": ["That's a young age"]
-    },
-    {
-      "intent": "introduce.summary",
-      "utterances": ["Who am I?"],
-      "answers": ["You are {{name}} and you are {{age}} years old!"]
     }
  
   ]

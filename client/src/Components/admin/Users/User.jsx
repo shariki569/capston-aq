@@ -9,6 +9,7 @@ import { FiRefreshCw } from "react-icons/fi";
 import Modal from '../../ui/Modal/Modal'
 import ModalUser from './ModalUser'
 import { AuthContext } from '../../../context/authContext'
+import { toast } from 'sonner'
 
 
 const User = () => {
@@ -33,7 +34,6 @@ const User = () => {
       try {
         const res = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/users?page=${page}`)
         setUsers(res.data.users)
-        console.log(res.data.users)
         setTotalPages(res.data.totalPages)
       } catch (err) {
         console.log(err)
@@ -70,7 +70,9 @@ const User = () => {
         {
           withCredentials: true
         })
-      setUsers(users.filter((user) => user.id !== id))
+      const res = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/users`)
+      setUsers(res.data.users)
+      toast.error('User deleted successfully')
     } catch (err) {
       console.log(err)
     }

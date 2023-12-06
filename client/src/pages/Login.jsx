@@ -46,8 +46,8 @@ const Login = () => {
       <h1>Login</h1>
       <form action="">
 
-        <TextInput required type="text" placeholder='Username' name='username' onChange={handleChange} />
-        <TextInput required type="password" placeholder='Password' name='password' onChange={handleChange} />
+        <input required type="text" placeholder='Username' name='username' onChange={handleChange} />
+        <input required type="password" placeholder='Password' name='password' onChange={handleChange} />
         <button className='btn ' onClick={handleSubmit} disabled={inputs.loading}>
           {
             inputs.loading ? <MoonLoader size={20} /> : "Login"

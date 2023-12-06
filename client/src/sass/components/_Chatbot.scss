@@ -2,10 +2,10 @@
 
 .chatbot-container {
     position: fixed;
-    right: 40px;
+    right: 25px;
     margin-left: auto;
     max-width: 25rem;
-    bottom: 40px;
+    bottom: 90px;
     z-index: 9999;
 
     border-radius: $base-border-radius;
@@ -19,7 +19,6 @@
         align-items: flex-start;
         box-shadow: $dark-box-shadow;
         height: 700px;
-        // width: 400px;
         max-height: 500px;
         background-color: $lighterGreyColor;
         border-radius: $base-border-radius;
@@ -97,10 +96,6 @@
         }
 
         @include devices(mobile) {
-            //  .chatbot-container{
-            //     max-width: none;
-            //     width: 100%;
-            //  }
             .chatbot-inbox {
                 position: fixed;
                 bottom: 0;
@@ -128,7 +123,7 @@
             background-color: $secondary;
             cursor: pointer;
             color: $lighterGreyColor;
-            transform: scale(1.1);
+            // transform: scale(1.1);
         }
     }
 
@@ -139,8 +134,8 @@
         position: fixed;
         top: 40%;
         padding: $small-padding $base-padding;
-        right: -155px;
-        border-radius: $base-border-radius 0 0 $base-border-radius;
+        left: -155px;
+        border-radius: 0 $base-border-radius $base-border-radius 0;
         width: fit-content;
         //
         opacity: 0.8;
@@ -197,9 +192,6 @@
         max-width: 90%;
         padding: $small-padding;
         border-radius: 5px;
-        overflow-wrap: break-word;
-        word-break: break-all;
-        word-wrap: break-word;
 
         span {
             padding: $base-padding;
@@ -221,6 +213,9 @@
         margin-left: auto;
         // width: 90px;
         span {
+            // overflow-wrap: break-word;
+            word-break: break-all;
+            word-wrap: break-word;
             background-color: $primary;
             color: $grey-100;
         }

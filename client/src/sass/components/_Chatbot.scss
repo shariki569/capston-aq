@@ -95,7 +95,7 @@
             }
         }
 
-        @include devices(mobile) {
+        @include devices(tablet) {
             .chatbot-inbox {
                 position: fixed;
                 bottom: 0;
@@ -141,7 +141,7 @@
         opacity: 0.8;
         transition: 0.2s ease-in;
         &:hover {
-            right: 0%;
+            left: 0%;
             background-color: $primary;
             opacity: 1;
             cursor: pointer;
@@ -150,12 +150,19 @@
 
         @include devices(tablet) {
             right: -155px;
+            z-index: -3;
         }
 
         @include devices(mobile) {
             right: -175px;
         }
     }
+    @include devices(tablet) {
+        right: 0;
+        bottom: 0;
+        width: 100%;
+    }
+    
 }
 
 .send {
@@ -232,46 +239,5 @@
             }
         }
     }
-}
-
-@include devices(tablet) {
-    .chatbot-container {
-        max-width: 25rem;
-        margin-left: auto;
-    }
-    .chatbot-inbox {
-        position: fixed;
-        bottom: 40px;
-        right: 40px;
-        transition: 3s ease-in-out;
-    }
-    .chatbot-button {
-        position: fixed;
-        bottom: 5%;
-        right: 5%;
-    }
-
-    // .feedback-button{
-
-    //     display: none;
-
-    // }
-}
-
-@include devices(mobile) {
-    //  .chatbot-container{
-    //     max-width: none;
-    //     width: 100%;
-    //  }
-    .chatbot-inbox {
-        position: fixed;
-        bottom: 0;
-        right: 0;
-        transition: 3s ease-in-out;
-    }
-    .chatbot-button {
-        position: fixed;
-        bottom: 5%;
-        right: 5%;
-    }
+    
 }

@@ -166,7 +166,7 @@ const FeedBackButton = ({ click }) => {
 
   return (
     <span className='feedback-button' onClick={click}>
-      <FiUsers /> Give us a feedback
+       Give us a feedback <FiUsers />
 
     </span>
   )

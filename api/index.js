@@ -31,6 +31,7 @@ app.use(cors({
   origin: [
     "http://localhost:5173",
     'https://aquacaintacapstone.netlify.app',
+    'https://www.facebook.com/'
     
 ],
   optionsSuccessStatus: 200,

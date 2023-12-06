@@ -141,7 +141,7 @@
         opacity: 0.8;
         transition: 0.2s ease-in;
         &:hover {
-            right: 0%;
+            left: 0%;
             background-color: $primary;
             opacity: 1;
             cursor: pointer;
@@ -241,14 +241,14 @@
     }
     .chatbot-inbox {
         position: fixed;
-        bottom: 40px;
+        bottom: 50px;
         right: 40px;
         transition: 3s ease-in-out;
     }
     .chatbot-button {
         position: fixed;
-        bottom: 5%;
-        right: 5%;
+        bottom: 90px;
+        right: 20px;
     }
 
     // .feedback-button{
@@ -269,9 +269,9 @@
         right: 0;
         transition: 3s ease-in-out;
     }
-    .chatbot-button {
-        position: fixed;
-        bottom: 5%;
-        right: 5%;
-    }
+    // .chatbot-button {
+    //     position: fixed;
+    //     bottom: 5%;
+    //     right: 5%;
+    // }
 }

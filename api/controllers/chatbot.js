@@ -1,38 +1,6 @@
 import db from "../db.js";
 
-// export const getIntents = async (req, res) => {
-//   try {
-//     const connection = await db.getConnection();
-//     const [rows] = await connection.query(`
-//     SELECT 
-//     intents.IntentID,
-//     intents.IntentName, 
-//     GROUP_CONCAT(DISTINCT utterances.UtteranceText SEPARATOR '|') AS utterances,
-//     GROUP_CONCAT(DISTINCT answers.AnswerTxt SEPARATOR '|') AS answers,
-//     COUNT(DISTINCT answers.AnswerID) AS total_answers,
-//     COUNT(DISTINCT utterances.UtteranceID) AS total_utterances
-//     FROM intents
-//     LEFT JOIN answers ON intents.IntentID = answers.ans_intentID
-//     LEFT JOIN utterances ON intents.IntentID = utterances.intentID
-//     WHERE intents.Is_Deleted = 0
-//     GROUP BY intents.IntentID
-//     ORDER BY intents.IntentName
-//     `);
 
-
-//     const result = rows.map((row) => ({
-//       ...row,
-//       utterances: row.utterances.split("|"),
-//       answers: row.answers.split("|"),
-//     }))
-
-//     connection.release();
-//     return res.status(200).json(result);
-//   } catch (err) {
-//     console.error("Database error:", err);
-//     res.status(500).json("Internal server error");
-//   }
-// };
 
 export const getIntents = async (req, res) => {
   try {

@@ -67,7 +67,7 @@ const sendEmail = async (name, number, email, message) => {
             <tr>
                 <tr>
                     <td class="logo"  style="text-align: center;">
-                      <a href="http://localhost:5173/"><img src="https://res.cloudinary.com/duxm7pc8y/image/upload/v1694751313/Cainta_Logo_ip05jw.png" alt="Aqua Cainta Logo" width="100" title="Cainta Logo"></a>
+                      <a href="http://localhost:5173/"><img src="https://res.cloudinary.com/aquacainta/image/upload/v1700979693/301617836_465290215607703_5208214587599489713_n_vdsslq.jpg" alt="Aqua Cainta Logo" width="100" title="Cainta Logo"></a>
                       <br>
                       <h1 style="font-size: 1.2rem; color: #218380";>Aqua Cainta Resort</h1>
                     </td>

@@ -41,13 +41,13 @@ export const usefetchPost = (customLimit) => {
 
 export const useDeletePost = () => {
    
-    const deletePost = async (postId, updatePost, posts) => {
+    const deletePost = async (postId) => {
         try {
             await axios.delete(`${import.meta.env.VITE_APP_BACKEND_URL}/api/posts/${postId}`,
                 {
                     withCredentials: true
                 })
-           
+   
         } catch (err) {
             console.log(err)
         }

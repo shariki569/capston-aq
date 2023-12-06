@@ -145,7 +145,7 @@ const Add_Facility = () => {
     if (unsavedChanges) {
       setShowModal(true)
     } else {
-      navigate("/dashboard/accommodations")
+      navigate("/dashboard/facilities")
     }
   }
 

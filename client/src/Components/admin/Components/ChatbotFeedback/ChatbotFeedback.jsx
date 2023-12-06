@@ -28,7 +28,7 @@ const ChatbotFeedback = () => {
         setFeedback(res.data)
         setLoading(false)
       } catch (err) {
-        console.log(err)
+
         setLoading(false)
       }
     }
@@ -50,7 +50,7 @@ const ChatbotFeedback = () => {
       setLoading(false);
     } catch (err) {
       setError(err.response.data)
-      console.log(err)
+
     } finally {
       setLoading(false)
       toast.success('Feedback updated successfully')
@@ -78,7 +78,7 @@ const ChatbotFeedback = () => {
     setStatus(selectedFeedback?.FeedBack_Status || '');
   }, [selectedFeedback]);
 
-    const handleSearch = (e) => {
+  const handleSearch = (e) => {
     setSearchTerm(e.target.value)
   }
 

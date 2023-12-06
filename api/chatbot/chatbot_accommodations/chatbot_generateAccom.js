@@ -3,7 +3,12 @@ export const generateAccommodation = async (accommDetails) => {
   let intentsAndResponses = [
     {
       intent: 'accommodation.inquiry',
-      utterances: ['Accommodation?'],
+      utterances: [
+        'Accommodations?',
+        'Tell me about your Accommodations',
+        'Tell me about Accommodation',
+        'Accommodations',
+      ],
       answers: [
         `What kind of accommodation are you looking for? 
         <strong>${accommDetails.map(accomm => accomm.Accommodation_Title).join(', ')} </strong> ?`
@@ -50,6 +55,28 @@ export const generateAccommodation = async (accommDetails) => {
           <br/>
           *note we have a corkage fee of ₱500`,
         ],
+      },
+      {
+        intent: `accommodation.inquirycapacity.${accomm.Accommodation_Id}`,
+        utterances: [`What is the capacity of ${accomm.Accommodation_Title}?`],
+        answers: [
+          `
+            The <strong>${accomm.Accommodation_Title}</strong>  can accommodate up to ${accomm.Accommodation_Cap} persons
+          `,
+        ]
+      },
+      {
+        intent: `accommodation.inquirycapacity.whatabout${accomm.Accommodation_Id}`,
+        utterances: [
+          `What about the capacity of ${accomm.Accommodation_Title}?`,
+          `Tell me about the capacity of ${accomm.Accommodation_Title}`,
+        ],
+        answers: [
+          `
+              The <strong>${accomm.Accommodation_Title}</strong>  can also accommodate up to ${accomm.Accommodation_Cap} persons
+            `,
+
+        ]
       }
     );
   });

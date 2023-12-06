@@ -8,7 +8,7 @@ import { BiDotsVerticalRounded } from 'react-icons/bi';
 import FeedbackForm from './FeedbackForm/FeedbackForm';
 import { FiUsers } from "react-icons/fi";
 import { RiMessengerLine } from "react-icons/ri";
-
+import { RiRobot2Line } from "react-icons/ri";
 const Chatbot = () => {
 
   const [input, setInput] = useState('');
@@ -157,7 +157,7 @@ export default Chatbot
 const ChatbotButton = ({ click }) => {
   return (
     <span className='chatbot-button' onClick={click}>
-      <FiMessageCircle size={30} color='white' />
+      <RiRobot2Line size={30} color='white' />
     </span>
   )
 }

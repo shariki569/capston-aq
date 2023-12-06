@@ -42,7 +42,6 @@ const ModalUser = ({ user, closeModal }) => {
             }
         };
     }, [success]);
-    console.log(success)
     return (
         <div className='user__modal'>
             <div className='user__modal__header'>

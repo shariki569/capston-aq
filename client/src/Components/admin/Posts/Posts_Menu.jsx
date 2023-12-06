@@ -28,6 +28,7 @@ const Posts_Menu = () => {
                 toast.error('Invalid post data');
             }
             setOpenDialog(false);
+            
         } catch (err) {
             console.log(err)
             toast.error('Error deleting post');

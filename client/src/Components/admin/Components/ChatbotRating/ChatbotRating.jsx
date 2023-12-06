@@ -14,8 +14,7 @@ const ChatbotRating = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/feedback/rating`)
-        setRating(res.data[0])
-        console.log(res.data)
+        setRating(res.data[0])   
         setLoading(false)
       } catch (err) {
         console.log(err)
@@ -25,8 +24,7 @@ const ChatbotRating = () => {
     }
     fetchData()
   }, [])
-  // const roundedRating = Math.round(parseFloat(rating.TotalRating));
-  // console.log(roundedRating)
+
   return (
     <>
       <Container title='Rating' data={Number(rating.TotalRating).toFixed(1)} loading={loading} />

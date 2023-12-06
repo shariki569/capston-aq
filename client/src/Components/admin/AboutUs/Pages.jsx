@@ -20,7 +20,6 @@ const Pages = () => {
             if (field === 'About_Img' && value) {
                 await handleImageUpload(sectionIndex, value);
             } else {
-                console.log('Setting field:', field, 'to value:', value);
 
                 // Directly update the properties of the section object
                 updatedSections[sectionIndex] = {

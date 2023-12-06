@@ -18,7 +18,6 @@ const TestimonialSection = () => {
         const res = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/feedback/approved`)
         setTestimonial(res.data)
         setIsLoading(false)
-        console.log(res.data)
       } catch (err) {
         console.log(err)
       }

@@ -47,7 +47,7 @@ export const useDeletePost = () => {
                 {
                     withCredentials: true
                 })
-            updatePost(posts.filter((post) => post.PostId !== postId))
+           
         } catch (err) {
             console.log(err)
         }

@@ -93,6 +93,11 @@
             color: $honeyDew;
         }
     }
+
+    @include devices(tablet){
+        padding: $small-button-size;
+        font-size: $f-medium;
+    }
 }
 
 .btn_flat{

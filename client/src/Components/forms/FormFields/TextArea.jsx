@@ -1,28 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import InlineError from '../FormValidation/InlineError';
 
-// const TextArea = ({label, value, onChange, placeholder, rows, cols}) => {
-  
-  
-  
-//   return (
-//     <div className='text-area'>
-//       {label && <label className='label'>{label}</label>}
-//       <textarea
-//         className='text-area-input'
-//         value={value}
-//         onChange={onChange}
-//         placeholder={placeholder}
-//         rows={rows}
-//         cols={cols}
-//       />
-//     </div>
-//   )
-// }
-
-// export default TextArea
-
-
 const TextArea = ({ label, value, onChange, placeholder, rows, cols, error, onKeyUp, disabled, onKeyDown, }) => {
 
   const [localValue, setLocalValue] = useState(value);

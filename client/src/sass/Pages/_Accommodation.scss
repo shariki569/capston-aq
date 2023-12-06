@@ -23,17 +23,18 @@
         color: $primaryColor;
         margin-bottom: auto;
 
-        &::after {
-            position: absolute;
-            top: 0;
-            left: 42%;
-            z-index: -1;
-            content: "";
-            width: 8px;
-            height: 45px;
-            background-color: $tertiaryColor;
-            display: block;
-        }
+        // &::after {
+        //     position: absolute;
+        //     top: 0;
+        //     left: 42%;
+        //     z-index: -1;
+        //     content: "";
+        //     width: 8px;
+        //     height: 45px;
+        //     background-color: $tertiaryColor;
+        //     display: block;
+        // }
+
     }
     .wrapper {
         margin-top: 40px;
@@ -42,7 +43,7 @@
 
         .title {
             font-size: $large;
-            font-family: $font-libre-baskerville;
+            font-family: $secondary-font;
 
             padding: $small-padding 0 $large-padding 0;
             text-decoration: none;
@@ -92,7 +93,7 @@
                 .price {
                     color: $tertiary;
                     font-size: $f-large;
-                    font-family: $font-libre-baskerville;
+                    font-family: $secondary-font;
                     // &.night {
                     //     background-color: $description
                     // }
@@ -108,7 +109,7 @@
                 .caption {
                     display: flex;
                     color: $description;
-                    font-family: $font-libre-franklin;
+                    font-family: $secondary-font;
                     overflow: hidden;
                     font-size: $large;
                     line-height: $base-line-height;
@@ -161,6 +162,8 @@
         .container {
             padding-inline: 0.4rem;
         }
+
+       
     }
 
     @include devices(tablet) {

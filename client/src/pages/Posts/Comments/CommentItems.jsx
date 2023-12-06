@@ -44,7 +44,7 @@ const CommentItems = ({ comment }) => {
     return (
         <>
             <div className="comment__items">
-                {comment.map((item) => (
+                {comment?.map((item) => (
                     <div className="comment__item" key={item.Comment_Id}>
                         <div className="comment__header">
                             <div className="comment__avatar">

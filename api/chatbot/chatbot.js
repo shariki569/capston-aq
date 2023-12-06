@@ -20,7 +20,7 @@ nlp.addCorpus("./chatbot/corpus-tl.json");
 const corpusEntries = await generateCorpusEntries();
 
 
-
+await nlp.train();
 // Add each entry to the NLP manager
 corpusEntries.forEach((entry) => {
   entry.utterances.forEach((utterance) => {

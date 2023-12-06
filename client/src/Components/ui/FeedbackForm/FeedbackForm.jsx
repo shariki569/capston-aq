@@ -125,7 +125,10 @@ const FeedbackForm = ({ handleClose }) => {
                     (
                         <button disabled className={`${feedBack.loading ? 'btn btn-loading btn-small' : 'btn btn-small'}`}><MoonLoader size={20} color='#faf7f7' />Sending</button>
                     ) : (
-                        <button onClick={onSubmit} className='btn btn-small'><FiCheck size={20} />Submit</button>
+                        <span className='feedBackForm__button'>
+                            <button onClick={onSubmit} className='btn btn-small'><FiCheck size={20} />Submit</button>
+                            <button onClick={handleClose} className='btn btn-err btn-small'><FiX size={20} />Cancel</button>
+                        </span>
                     )
                 }
             </div>

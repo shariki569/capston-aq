@@ -29,10 +29,19 @@
                 font-size: $f-normal;
             }
         }
-        button {
+      
+    }
+
+    .feedBackForm__button{
+        display: flex;
+        padding: $small-padding 0;
+        width: 100%;
+        margin-left: auto;
+        gap:  0.5rem;
+          button {
             display: flex;
             align-items: center;
-            margin-left: auto;
+            
         }
     }
 }

@@ -7,6 +7,7 @@ import { BiHappy } from "react-icons/bi";
 import { BiDotsVerticalRounded } from 'react-icons/bi';
 import FeedbackForm from './FeedbackForm/FeedbackForm';
 import { FiUsers } from "react-icons/fi";
+import { RiMessengerLine } from "react-icons/ri";
 
 const Chatbot = () => {
 
@@ -31,6 +32,7 @@ const Chatbot = () => {
 
     try {
       const response = await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/chatbotRoute`, { input });
+
       const botMessage = { text: response.data.answer, sender: 'Bot' };
       setMessages([...messages, userMessage, botMessage]);
 
@@ -60,10 +62,10 @@ const Chatbot = () => {
     }
   }
 
-  const changeValue = useCallback ((e) => {
+  const changeValue = useCallback((e) => {
     setInput(e.target.value);
   }, [])
- 
+
 
   useEffect(() => {
     if (messagePanelRef.current) {
@@ -74,16 +76,16 @@ const Chatbot = () => {
   const toggleChatbot = () => {
     setShowChatbot(!showChatbot);
 
-    if(showFeedbackForm) {
+    if (showFeedbackForm) {
       setShowFeedbackForm(false);
     }
-    
+
   }
 
 
   const handleFeedbackOpen = () => {
     toggleChatbot();
-  
+
     // Open the feedback form after a delay (adjust the delay as needed)
     setTimeout(() => {
       setShowFeedbackForm(true);
@@ -99,11 +101,12 @@ const Chatbot = () => {
             <h3>AquaBot</h3>
           </div>
           <div className="chatbot-buttons">
-            <button className='send' onClick={handleOption}><BiDotsVerticalRounded size={20} color='white' /></button>
-            <button className='send' onClick={toggleChatbot}><FiX size={20} color='white' /></button>
+            <button className='send btn-options' onClick={handleOption}><BiDotsVerticalRounded size={20} color='white' /></button>
+            <button className='send btn-options' onClick={toggleChatbot}><FiX size={20} color='white' /></button>
             {showOptions &&
               <div className='chatbot-options'>
                 <button className='send' onClick={openForm}><BiHappy size={20} />Provide Feedback</button>
+                <button className='send'> <RiMessengerLine size={20} /> Use Messenger</button>
               </div>
             }
           </div>
@@ -162,8 +165,8 @@ const ChatbotButton = ({ click }) => {
 const FeedBackButton = ({ click }) => {
 
   return (
-    <span draggable='true' className='feedback-button' onClick={click}>
-        <FiUsers /> Give us a feedback
+    <span className='feedback-button' onClick={click}>
+      <FiUsers /> Give us a feedback
 
     </span>
   )

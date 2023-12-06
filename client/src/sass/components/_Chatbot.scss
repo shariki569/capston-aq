@@ -6,8 +6,8 @@
     margin-left: auto;
     max-width: 25rem;
     bottom: 40px;
-    z-index: 999;
-   
+    z-index: 9999;
+
     border-radius: $base-border-radius;
     .chatbot-inbox {
         position: relative;
@@ -25,7 +25,6 @@
         border-radius: $base-border-radius;
 
         .chatbot-header {
-
             z-index: 999;
             color: $lighterGreyColor;
             display: flex;
@@ -35,7 +34,7 @@
             padding: $small-padding $base-padding;
             background-color: $primary;
 
-            .chatbot-title{
+            .chatbot-title {
                 margin-block: auto;
                 font-size: $f-large;
             }
@@ -44,9 +43,10 @@
             position: absolute;
             z-index: 999;
             @include cardBase($small-border-radius);
-            top: 25px;
+            top: 40px;
             @include boxShadow;
             right: 40px;
+            overflow: hidden;
             button {
                 color: $greyColor;
                 display: flex;
@@ -55,10 +55,12 @@
                 padding: $small-padding;
                 font-weight: $w-bold;
                 font-family: $secondary;
-            }
+                background-color: $grey-100;
 
-            &:hover {
-                background-color: $lighterGreyColor;
+                width: 100%;
+                &:hover {
+                    background-color: $grey-200;
+                }
             }
         }
 
@@ -66,12 +68,11 @@
             buttons {
                 color: $lighterGreyColor;
             }
-            gap: 0.5rem;
+            // gap: 0.5rem;
             display: flex;
             align-items: center;
         }
 
-      
         .feedback-form {
             position: absolute;
             width: 100%;
@@ -85,15 +86,6 @@
             display: flex;
             position: relative;
             background-color: white;
-            // input {
-            //     overflow: auto;
-            //     width: 100%;
-            //     padding: $small-padding-y;
-            //     padding-left: $small-padding;
-            //     border: 2px;
-            //     white-space: pre-wrap;
-            //     max-width: 300px;
-            // }
 
             .text-area {
                 padding: 0;
@@ -102,14 +94,6 @@
                     background-color: white;
                 }
             }
-
-            // .send {
-            //     // position: absolute;
-            //     // color: $greyColor;
-            //     // right: 15px;
-            //     // bottom: 5px;
-               
-            // }
         }
 
         @include devices(mobile) {
@@ -138,19 +122,20 @@
         border-radius: 50%;
         @include centerFlexboxColumn;
         box-shadow: $dark-box-shadow;
-        transition: 0.2s ease-in;
+        transition: 0.1s ease-in;
 
         &:hover {
             background-color: $secondary;
             cursor: pointer;
             color: $lighterGreyColor;
+            transform: scale(1.1);
         }
     }
 
     .feedback-button {
         display: flex;
         gap: 10px;
-        background-color: $tertiary;
+        background-color: $grey-100;
         position: fixed;
         top: 40%;
         padding: $small-padding $base-padding;
@@ -190,11 +175,15 @@
     &:hover {
         color: $lightGreyColor;
     }
+
+    &.btn-options {
+        padding: $small-padding;
+    }
 }
 
 .chatbot-panel {
     //    position: relative;
-    flex-direction: column;
+    // flex-direction: column;
     @include fullSize;
     overflow-y: auto;
     margin-bottom: auto;
@@ -204,13 +193,17 @@
         margin-top: $small-margin;
         padding: $small-padding;
         margin-bottom: 10px;
+        // width: 300px;
         max-width: 90%;
-        padding: 5px;
+        padding: $small-padding;
         border-radius: 5px;
+        overflow-wrap: break-word;
+        word-break: break-all;
+        word-wrap: break-word;
 
         span {
             padding: $base-padding;
-            border-radius: $small-border-radius;
+            border-radius: $base-border-radius;
         }
         strong {
             font-size: $content;
@@ -226,10 +219,10 @@
         display: flex;
         align-items: center;
         margin-left: auto;
-
+        // width: 90px;
         span {
-            background-color: $info;
-            color: $primary;
+            background-color: $primary;
+            color: $grey-100;
         }
     }
 

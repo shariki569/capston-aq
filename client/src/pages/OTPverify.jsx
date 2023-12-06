@@ -190,7 +190,7 @@ const OTPverify = () => {
                                 :
                                 <button className={`${isInputValid() ? 'btn btn-full ' : 'btn btn-full disabled'}`} onClick={handleVerify} disabled={!isInputValid()}>Verify OTP</button>
                             }
-                            <p>Didn't get the code?</p><button className='btn_flat'>Resend</button>
+                            {/* <p>Didn't get the code?</p><button className='btn_flat'>Resend</button> */}
                             {error && <p>{error}</p>}
                         </div>
                     </>

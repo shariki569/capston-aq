@@ -46,6 +46,11 @@ const Profile = () => {
   }
 
 
+  const removeSelectedImage = () => {
+    setFile(null);
+    setPreviewImage(null);
+  }
+
 
   const handleUpdate = async (e) => {
     e.preventDefault()
@@ -84,6 +89,7 @@ const Profile = () => {
             existingImage={image}
             previewImage={previewImage}
             handleImageChange={handleImageChange}
+            removeSelectedImage={removeSelectedImage}
           />
         </div>
         <div className='grid2'>

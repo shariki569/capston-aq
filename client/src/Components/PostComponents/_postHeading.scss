@@ -25,7 +25,7 @@
         // justify-content: space-between;
         width: 50%;
         height: 100%;
-        h1{
+        h1 {
             color: $tertiary;
         }
         p {
@@ -34,7 +34,6 @@
             text-transform: capitalize;
         }
     }
-
 
     .postheading__imageWrapper {
         width: 50%;
@@ -48,10 +47,24 @@
     @include devices(tablet) {
         flex-direction: column;
         height: 90dvh;
+        @include centerAndSet(700px, 2rem);
         .postheading__title {
-            font-size: $f-large;
+            font-size: $f-normalx;
             width: 100%;
             text-align: center;
+            height: 200px
+        }
+
+        .postheading__wrapper {
+            @include centerAndSet(800px, 2rem);
+            @include flexBoxColumn(space-between, center, 0);
+            // justify-content: space-between;
+            min-width: 100px;
+
+            .postheading__imageWrapper{
+                width: 200px;
+                height: 100px;
+            }
         }
     }
 }

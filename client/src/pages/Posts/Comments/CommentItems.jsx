@@ -52,19 +52,19 @@ const CommentItems = ({ comment }) => {
                             </div>
                             <div className="comment__user">
                                 <div className='flex-container flex-left'>
-                                    <h3>{item.display_name ? item.display_name : item.username}</h3>
-                                    {item.username === item.key &&
+                                    <h3>{item.display_name ? item?.display_name : item?.username}</h3>
+                                    {item?.username === item.key &&
                                         <span className='comment__author'>Author</span>
                                     }
                                 </div>
-                                <span>{moment(item.Created_At).fromNow()}</span>
+                                <span>{moment(item?.Created_At).fromNow()}</span>
                             </div>
 
-                            {currentUser.username === item.username &&
+                            {currentUser?.username === item?.username &&
                                 <div className="comment__options" onClick={() => toggleOption(item.Comment_Id)}>
                                     <FiMoreVertical />
 
-                                    {openOption === item.Comment_Id &&
+                                    {openOption === item?.Comment_Id &&
                                         <div className='comment__option' ref={optionRef}>
                                             <p onClick={() => handleDelete(item.Comment_Id)}>Delete</p>
                                         </div>

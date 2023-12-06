@@ -57,12 +57,28 @@ const ChatbotFeedback = () => {
     }
   }
 
+  const handleDelete = async (feedbackId) => {
+    try {
+      await axios.delete(`${import.meta.env.VITE_APP_BACKEND_URL}/api/feedback/${feedbackId}`, {
+        withCredentials: true,
+      })
+      setLoading(true);
+      const res = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/feedback`);
+      setFeedback(res.data); // Update the feedback state with the new data
+      setOpenOption(null)
+      setLoading(false);
+      toast.success('Feedback deleted successfully')
+    } catch (err) {
+      toast.error(err.response.data)
+    }
+  }
+
   useEffect(() => {
     // When selectedFeedback changes, update the status state
     setStatus(selectedFeedback?.FeedBack_Status || '');
   }, [selectedFeedback]);
 
-  const handleSearch = (e) => {
+    const handleSearch = (e) => {
     setSearchTerm(e.target.value)
   }
 
@@ -133,7 +149,7 @@ const ChatbotFeedback = () => {
                     {openOption === feedback.FeedBack_ID && (
                       <div className="dots-menu">
                         <li onClick={() => openModal(feedback.FeedBack_ID)}><BiEdit />View</li>
-                        <li><BiTrash />Delete</li>
+                        <li onClick={() => handleDelete(feedback.FeedBack_ID)}><BiTrash />Delete</li>
                       </div>
                     )}
                   </td>

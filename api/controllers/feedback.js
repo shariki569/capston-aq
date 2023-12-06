@@ -40,6 +40,7 @@ export const getFeedback = async (req, res) => {
     GROUP_CONCAT(FeedBack_Description) as Descriptions
     FROM feedback
     LEFT JOIN users ON feedback.approved_By = users.id
+    WHERE feedback.is_Deleted = 0
 
     GROUP BY FeedBack_ID, FeedBack_Name, FeedBack_Email
     ORDER BY MAX(FeedBack_Date) DESC `;
@@ -109,7 +110,7 @@ export const updateFeedback = async (req, res) => {
 
 export const approvedFeedback = async (req, res) => {
   try {
-    const q = `SELECT FeedBack_ID, FeedBack_Name, FeedBack_Email, FeedBack_Description, FeedBack_Rating FROM feedback WHERE FeedBack_Status = 'Approved'`;
+    const q = `SELECT FeedBack_ID, FeedBack_Name, FeedBack_Email, FeedBack_Description, FeedBack_Rating FROM feedback WHERE FeedBack_Status = 'Approved' AND is_Deleted = 0`;
     const connection = await db.getConnection();
     const [rows] = await connection.query(q);
     connection.release();
@@ -136,9 +137,12 @@ export const deleteFeedback = async (req, res) => {
     const feedbackId = req.params.id;
 
     const q = 'UPDATE feedback SET Is_Deleted = 1 WHERE FeedBack_ID = ? AND approved_By = ?';
+    
     connection.query(q, [feedbackId, userId]);
     connection.release();
+    return res.status(200).json('Feedback has been deleted');
   } catch (error) {
     console.log(error)
+    return res.status(500).json('Internal Server Error')
   }
 }

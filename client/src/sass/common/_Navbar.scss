@@ -61,7 +61,6 @@ $nav-footer: 10px 50px;
             align-items: center;
 
             .link-item {
-              
                 display: flex;
                 cursor: pointer;
                 height: 100%;
@@ -73,8 +72,6 @@ $nav-footer: 10px 50px;
                     .dropdown-menu {
                         display: block;
                     }
-
-                    
                 }
 
                 .link {
@@ -85,16 +82,14 @@ $nav-footer: 10px 50px;
                     align-items: center;
                     height: 40%;
                     // margin-block: auto;
-                    &:hover{
-                        h6{
-                            &::before{
+                    &:hover {
+                        h6 {
+                            &::before {
                                 transform: translateX(0%);
                             }
-
-                            
                         }
                     }
-                    
+
                     h6 {
                         &::before {
                             content: "";
@@ -108,8 +103,8 @@ $nav-footer: 10px 50px;
                             transition: ease-in-out 0.2s;
                         }
 
-                        &.active{
-                            &::before{
+                        &.active {
+                            &::before {
                                 transform: translateX(0%);
                             }
                         }
@@ -211,8 +206,8 @@ $nav-footer: 10px 50px;
             }
         }
         .menu-mobile {
-            position: relative;
-            background-color: rgba(14, 13, 13, 0.562);
+            // position: relative;
+
             position: fixed;
             top: 0;
             right: 0;
@@ -223,23 +218,27 @@ $nav-footer: 10px 50px;
             // transform-origin: top right;
             transition: transform 0.5s ease-out;
             // will-change: transform, border-radius;
-            transform: translateX(-100%);
+            transform: translateX(100%);
+
             .close-button {
                 position: absolute;
-                right: 10%;
+                right: 20px;
                 top: 20px;
                 cursor: pointer;
                 font-size: $subheading;
                 color: $greyColor;
+                z-index: 999999999;
             }
 
             .mobile-links {
                 @include centerFlexboxColumn;
                 gap: $base-margin;
+                position: relative;
                 height: 100%;
                 width: 70%;
                 margin-left: auto;
-
+                // position: absolute;
+                z-index: 9999999;
                 background-color: $lighterGreyColor;
                 a {
                     text-align: left;
@@ -252,19 +251,52 @@ $nav-footer: 10px 50px;
                 li {
                     list-style: none;
                 }
-                .mobile-link {
+                .mobile-user-profile {
+                    position: absolute;
+                    @include flexBoxRow(flex-start, center, 0.5rem);
                     width: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    .mobile-link-title {
-                        display: flex;
+                    top: 0;
+                    padding-left: $base-padding;
+                    margin: $base-margin-y;
+                    .mobile-user-name {
+                        p {
+                            font-weight: $w-bold;
+                        }
                     }
-                    .mobile-toggle {
-                        display: flex;
-                        cursor: pointer;
+
+                    .mobile-user-img {
+                        width: 40px;
+                        height: 40px;
+                        img {
+                            border-radius: 50%;
+                            width: 100%;
+                            height: 100%;
+                        }
                     }
-                    .mobile-sublinks {
-                        padding-left: $large-padding;
+                    // margin-top: auto;
+                }
+
+                .mobile-links-container {
+                    width: 100%;
+                    
+                    @include flexBoxColumn(center, center, 0.5rem);
+                    overflow: auto;
+                    height: 300px;
+                    margin-top: auto;
+                    .mobile-link {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        .mobile-link-title {
+                            display: flex;
+                        }
+                        .mobile-toggle {
+                            display: flex;
+                            cursor: pointer;
+                        }
+                        .mobile-sublinks {
+                            padding-left: $large-padding;
+                        }
                     }
                 }
 
@@ -275,15 +307,33 @@ $nav-footer: 10px 50px;
                     display: flex;
                     align-items: flex-start;
                     flex-direction: column;
+                    margin-bottom: auto;
 
                     .share-title {
                         padding: $base-padding-y;
+                    }
+                }
+
+                .mobile-footer {
+                    padding: $base-padding-y;
+
+                    .mobile-logout {
+                        cursor: pointer;
+                        align-items: center;
+                        gap: 0.5rem;
+                        display: flex;
+
+                        &:hover {
+                            color: $error;
+                        }
                     }
                 }
             }
         }
         .menu-mobile.animate {
             transform: translateX(0%);
+            // overflow: auto;
+            background-color: rgba(14, 13, 13, 0.562);
             // border-radius: 0%;
         }
     }

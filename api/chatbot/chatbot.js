@@ -55,7 +55,7 @@ const processInput = async (input, context) => {
 export const trainChatbot = async (req, res) => {
   const connection = await db.getConnection();
   try {
-    const [intents, fields] = await connection.execute('SELECT * FROM intents');
+    const [intents, fields] = await connection.execute('SELECT * FROM intents WHERE Is_Deleted = 0');
     for (let intent of intents) {
       const [utterances, utteranceFields] = await connection.execute('SELECT * FROM utterances WHERE intentID = ?', [intent.IntentID]);
       for (let utterance of utterances) {

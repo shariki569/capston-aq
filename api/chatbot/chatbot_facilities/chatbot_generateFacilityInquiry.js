@@ -7,8 +7,13 @@ export const generateFacilityInquiry = (facilityDetails) => {
         {
             intent: 'facility.inquiry',
             utterances: [
+                'factitielies',
+                'faciities',
+                'facilities?',
+                'Tell me about Facilities',
                 'What are your facilities?',
                 'Tell me about your facilities',
+                'What facilities do you have?',
             ],
             answers: [
                 `We have the following facilities: <strong>${facilityDetails.map(facility => facility.Fac_Title).join(', ')}</strong>

@@ -106,7 +106,7 @@ const Chatbot = () => {
             {showOptions &&
               <div className='chatbot-options'>
                 <button className='send' onClick={openForm}><BiHappy size={20} />Provide Feedback</button>
-                <button className='send'> <RiMessengerLine size={20} /> Use Messenger</button>
+                
               </div>
             }
           </div>

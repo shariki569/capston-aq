@@ -4,7 +4,7 @@ import { addIntent, deleteIntent, getIntents, updateIntent } from "../controller
 
 const router = express.Router();
 
-router.post("/train", trainChatbot)
+router.get("/train", trainChatbot)
 router.post("/", chatbotRes);
 router.get('/intents', getIntents);
 router.post('/intents', addIntent);

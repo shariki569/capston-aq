@@ -3,28 +3,6 @@
 .addIntent__userSays {
     @include flexBoxColumn(space-between, flex-start, 0.3rem);
     margin-bottom: $base-margin;
-    // .addIntent__userSaysInputContainer {
-    //     @include flexBoxRow(space-between, flex-end, 0.3rem);
-    //     width: 100%;
-    //     .addIntent__userSaysInput {
-    //         width: 100%;
-    //         @include flexBoxRow(space-around, flex-end, 0.5rem);
-    //         position: relative;
-    //         .addIntent__userSaysBtn {
-    //             position: absolute;
-    //             margin-bottom: 0.5rem;
-    //             right: 0;
-    //             border: none;
-    //             background-color: $primary;
-    //             color: $lighterGreyColor;
-    //             border-radius: 0 $small-border-radius $small-border-radius 0;
-    //             @include flexBoxRow(center, center, 0.5rem);
-    //             width: 35px;
-    //             height: 38px;
-    //             cursor: pointer;
-    //         }
-    //     }
-    // }
 
     .addIntent__userSaysTableContainer {
         width: 100%;
@@ -36,6 +14,10 @@
             .addIntent__userSaysDelete {
                 width: 1px;
                 cursor: pointer;
+
+                &:hover{
+                    background-color: $grey-300;
+                }
             }
         }
     }

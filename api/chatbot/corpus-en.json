@@ -1000,6 +1000,30 @@
         "Your marriage happened on Date: {{date}} at Time: {{time}}!",
         "Your marriage happened on Date: {{date}}"
       ]
+    },
+    {
+      "intent": "chat.insult",
+      "utterances": [
+        "Fuck you",
+        "I hate you",
+        "I don't like you",
+        "I hate you so much",
+        "I don't like you so much",
+        "I don't like you at all",
+        "You are such a stupid shit",
+        "You're an idiot",
+        "why are u such a dumbass?",
+        "why are you such a dumbass?",
+        "you are such a fucking abomintaion",
+        "fuck you! you stupid cunt",
+        "fuck you! you bitch ass motherfucker"
+      ],
+      "answers": [
+        "I'm sorry if you're having any issues or concerns. Our goal is to provide the best customer service possible. Please let us know how we can assist you or if there's something specific you'd like to inquire about. We're here to help!",
+        "I understand that you may be frustrated, but I'm here to help. Please let me know how I can assist you or if there's something specific you'd like to inquire about. Your satisfaction is our top priority.",
+        "I apologize if there has been a misunderstanding. As a customer inquiry chatbot, I'm here to assist you. Please let me know how I can help or if there's something specific you'd like to discuss. Your satisfaction is important to us.",
+        "I understand that you may be upset, and I want to help. Please provide more information about the issue you're facing so that we can investigate and provide a solution. Your satisfaction is important to us."
+      ]
     }
  
   ]

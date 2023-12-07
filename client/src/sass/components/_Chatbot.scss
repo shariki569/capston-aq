@@ -148,16 +148,12 @@
             right: -175px;
         }
     }
-    @include devices(tablet) {
-        right: 0;
-        bottom: 0;
-        width: 100%;
-    }
+  
     @include devices(tablet) {
         .chatbot-inbox {
             position: fixed;
-            bottom: 0;
-            right: 0;
+            bottom: 100px;
+            right: 20px;
             transition: 3s ease-in-out;
         }
         .chatbot-button {

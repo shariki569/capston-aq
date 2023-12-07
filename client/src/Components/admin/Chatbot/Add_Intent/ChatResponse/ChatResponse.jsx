@@ -21,7 +21,7 @@ const ChatResponse = ({ value, handleChatResponseInput, handleAddChatResponse, p
                 <table className='addIntent__userSaysTable'>
                     <tbody>
                         {preview
-                            .filter(response => response.toLowerCase().includes(searchTerm.toLowerCase()))
+                            .filter(response => response?.toLowerCase().includes(searchTerm.toLowerCase()))
                             .map((response, index) => (
                                 <tr key={index}>
                                     <td>{response}</td>

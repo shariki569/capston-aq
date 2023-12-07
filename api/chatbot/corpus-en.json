@@ -876,34 +876,8 @@
       ]
     },
   
-    {
-      "intent": "user.inquiryrooms",
-      "utterances": [
-        "How much do the rooms cost?",
-        "what are your room prices?"
-      ],
-      "answers": [
-        "Our rooms start at just Php 1,300.00 per night without breakfast and you can just add Php 300.00 for breakfast. You can also add Php 300.00 for an additional person."
-      ]
-    },
-    {
-      "intent": "user.inquiryroomqueensizedbed",
-      "utterances": [
-        "How much does it cost to stay in an Air-conditioned Room with a Queen Size Bed?"
-      ],
-      "answers": [
-        "The Air-conditioned Room with a Queen Size Bed is priced at Php 1,300.00 without breakfast and Php 1,600.00 with breakfast. You can also add Php 500.00 for an additional person."
-      ]
-    },
-    {
-      "intent": "user.inquiryroomdoublesinglebed",
-      "utterances": [
-        "How much does it cost to stay in an Air-conditioned Room with a Double Single Bed?"
-      ],
-      "answers": [
-        "The Air-conditioned Room with a Double Single Bed is priced at Php 1,300.00 without breakfast and if you want with breakfast you can just add Php 300.00 to have it. You can also add Php 300.00 for an additional person. Maximum of 3 people per room only."
-      ]
-    },
+   
+    
     {
       "intent": "user.inquirytime",
       "utterances": [

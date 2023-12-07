@@ -17,6 +17,11 @@
             .addIntent__chatResponseTrash{
                 width: 1px;
                 cursor: pointer;
+
+                &:hover{
+                    background-color: $grey-300;
+                    
+                }
             }
         }
     }

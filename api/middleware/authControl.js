@@ -61,7 +61,7 @@ export const isAuthorized = (req, res, next) => {
       // user is not an authorized
     }
 
-    
+
     req.userId = userId;
     req.userRole = userRole;
     next()

@@ -3,12 +3,7 @@
 .admin__nav__container {
     display: flex;
     padding: $small-padding $base-padding;
-    // position: fixed;
-    // top: 0;
-    // width: 100%;
-    // left: 0;
-    // position: absolute;
-    // flex-shrink: 0;
+   
 }
 .admin__nav__user {
     @include flexBoxRow(flex-start, center, 0.5rem);

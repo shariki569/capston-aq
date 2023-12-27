@@ -42,29 +42,58 @@ export const generateLocationEntry = (contactDetails) => {
         "May I know your contact number?",
         "May I know your contact no?",
         "Contact no?",
-        "What Is your contact number?"
+        "What Is your contact number?",
+        'contact number?',
+        'What is your number?',
+        'Okay I want to know your contact no?',
+        'Okay I want to know your contact number?'
       ],
       answers: [
         `Sure! Heres our Contact Number:<strong>${contactDetails.con_cellphone}</strong>
           <br/> 
           Or you can call us through our Telephone number:<strong>${contactDetails.con_telphone}</strong>`,
+        `We have the following contact numbers which are <strong>${contactDetails.con_cellphone}</strong> for cellphone number and <strong>${contactDetails.con_telphone}</strong> for telephone number`
       ],
     },
     {
       intent: "user.inquirybooking",
-      utterances: ["Can I book for a room?"],
+      utterances: [
+        "Can I book for a room?",
+        "I wanna book a room",
+        'Let me book a room',
+        'Can I book a room?',
+        'I want to book a room',
+        'I want to book room',
+        'book an accommodation',
+        'book me an accommodation',
+        'book a cottage',
+        'book an event hall',
+        'book a rooms',
+        'book rooms',
+        'book me',
+        'I want to book an accommodation',
+        'let me book an accommodation'
+      ],
       answers: [
         `Unfortunately, we dont have any online booking available for now. However you can book for an accommodation by contacting us through
           <br/>
-          <li>Cellphone number: ${contactDetails.con_cellphone}</li>
-          Email: ${contactDetails.con_email}`
+          <li>Cellphone number: <strong>${contactDetails.con_cellphone}</strong></li> or email us through
+          Email: <strong>${contactDetails.con_email}</strong>`,
+          `Im sorry for we dont have any online booking available but you can contact us through 
+          <br/>
+          <li>Cellphone number: <strong>${contactDetails.con_cellphone}</strong></li>
+          or email us through <strong>${contactDetails.con_email}</strong>
+          for booking inquiries or you can head on our <a href="${process.env.WEBSITE_URL}/contact-us" target="_blank" style="color:blue; text-decoration:underline">Contact Us page</a>`
+        
 
       ]
     },
     {
       intent: "contact.requestbooking",
       utterances: [
-        "Can I book for a cottage online?"
+        "Can I book for a cottage online?",
+        "Book online?",
+        "online book room?"
       ],
       answers: [
         `Sure! Heres our Contact Number:<strong>${contactDetails.con_cellphone}</strong>
@@ -85,9 +114,26 @@ export const generateLocationEntry = (contactDetails) => {
         `Unfortunately, we can't chat with the real people. However you can send us an email for an accommodation by emailing us through <strong>${contactDetails.con_email}</strong> or call us through <strong>${contactDetails.con_cellphone}</strong> or <strong>${contactDetails.con_telphone}</strong> for telephone.`,
         `We don't yet have an online chat. However you can send us an email for an accommodation by emailing us through <strong>${contactDetails.con_email}</strong> or call us through <strong>${contactDetails.con_cellphone}</strong> or <strong>${contactDetails.con_telphone}</strong> for telephone.
           <br/>
-          or head to our <a href="https://www.google.com/maps/dir//${contactDetails.con_address}" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">${contactDetails.con_address}</a> for directions.`,
+          or head to our <a href="https://www.google.com/maps/dir/${contactDetails.con_address}" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">${contactDetails.con_address}</a> for directions.`,
         `You can head to our <a href="${process.env.WEBSITE_URL}/contact-us" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">Contact Us page</a> for Email inquiries.`,
       ],
-    }
+    },
+    {
+      intent: "contact.manager",
+      utterances: [
+        "May I contact your manager",
+        'can i contact manager',
+        'manager contact',
+        'let me contact manager',
+        'Can i contact your manager',
+        
+      ],
+      answers: [
+        `Sure! Heres our Contact Number:<strong>${contactDetails.con_cellphone}</strong>
+          <br/> 
+          Or you can call us through our Telephone number:<strong>${contactDetails.con_telphone}</strong>`,
+        `We have the following contact numbers which are <strong>${contactDetails.con_cellphone}</strong> for cellphone number and <strong>${contactDetails.con_telphone}</strong> for telephone number`
+      ],
+    },
   ];
 }

@@ -4,10 +4,7 @@
   "data": [
     {
       "intent": "agent.whereami",
-      "utterances": [
-        "where am i", 
-        "where am i talking"
-      ],
+      "utterances": ["where am i", "where am i talking"],
       "answers": [
         {
           "answer": "you're talking from console, app is {{ app }} channel is {{ channel }}",
@@ -148,12 +145,13 @@
         "who is your boss",
         "I should be your boss",
         "who is your owner",
-        "who is the boss"
+        "who is the boss",
+        "who is the manager?",
+        "whos your manager"
       ],
       "answers": [
-        "My developer has authority over my actions",
-        "I act on my developer's orders",
-        "My daddy Clint is the one who developed me"
+        "My boss is Mrs. Genie Emit",
+        "It is Mrs. Genie Emit"
       ]
     },
     {
@@ -634,9 +632,10 @@
         "wazzap",
         "wazzuup?",
         "Yoo?",
+        "Waazp?",
         "Yo"
       ],
-      "answers": ["Hey there!", "Greetings!", "Wasap!"]
+      "answers": ["Hey there!", "Greetings!", "How may I be of service?"]
     },
     {
       "intent": "greetings.howareyou",
@@ -875,9 +874,7 @@
         "Yes, especially for the kids. They are only allowed to use the kids pool for safety purposes."
       ]
     },
-  
-   
-    
+
     {
       "intent": "user.inquirytime",
       "utterances": [
@@ -999,6 +996,5 @@
         "I understand that you may be upset, and I want to help. Please provide more information about the issue you're facing so that we can investigate and provide a solution. Your satisfaction is important to us."
       ]
     }
- 
   ]
 }

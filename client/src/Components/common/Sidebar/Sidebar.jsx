@@ -8,7 +8,7 @@ import SidebarItem from './SidebarItem'
 import { HiUserCircle } from 'react-icons/hi'
 import { sidebarLinks } from '../MenuItems'
 import axios from 'axios'
-import { FiHome } from 'react-icons/fi'
+import { FiHome, FiLogOut } from 'react-icons/fi'
 const Sidebar = () => {
 
     const { logout } = useContext(AuthContext)
@@ -39,7 +39,7 @@ const Sidebar = () => {
                     )}
                 </div>
                 <div className="bottom-section">
-                    <span className='side-links' onClick={handleLogout}>Logout</span>
+                    <span className='side-links' onClick={handleLogout}><FiLogOut size={20} />Logout</span>
                 </div>
             </div>
         </div>

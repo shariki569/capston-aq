@@ -243,10 +243,10 @@ const router = createBrowserRouter([
     path: '/forgot-password',
     element: <OTPverify />
   },
-  {
-    path: '/reset-password',
-    element: <ResetPassword />
-  },
+  // {
+  //   path: '/reset-password',
+  //   element: <ResetPassword />
+  // },
   {
     path: "/unauthorized",
     element: <Unauthorized />,

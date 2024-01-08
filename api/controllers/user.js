@@ -1,5 +1,5 @@
 import db from "../db.js";
-import jwt, { verify } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
 

@@ -1,87 +1,97 @@
-import { db } from "../db.js";
-import jwt from "jsonwebtoken";
+import Post from '../models/Post.js'; // Import the Post model
+import jwt from 'jsonwebtoken';
 
-export const getPosts = (req, res) => {
-  const q = req.query.cat
-    ? "SELECT * FROM posts WHERE PostCat=?"
-    : "SELECT * FROM posts";
-
-  db.query(q, [req.query.cat], (err, data) => {
-    if (err) return res.status(500);
-    return res.status(200).json(data);
-  });
+// Get all posts or filter by category
+export const getPosts = async (req, res) => {
+  try {
+    const { cat } = req.query;
+    const filter = cat ? { PostCat: cat } : {};
+    const posts = await Post.find(filter).populate('Post_Uid', 'username img');
+    return res.status(200).json(posts);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
 };
 
-export const getPost = (req, res) => {
-  const q =
-    "SELECT PostId, `username`, `PostTitle`, `PostDesc`, `PostImg`, u.img AS userImage, `PostCat`, `date` FROM users u JOIN posts p ON u.id = p.Post_Uid WHERE PostId = ?";
-
-  db.query(q, [req.params.id], (err, data) => {
-    if (err) return res.status(500).json;
-
-    return res.status(200).json(data[0]);
-  });
+// Get a single post by ID
+export const getPost = async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id).populate('Post_Uid', 'username img');
+    if (!post) return res.status(404).json("Post not found");
+    return res.status(200).json(post);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
 };
 
-export const addPost = (req, res) => {
+// Add a new post
+export const addPost = async (req, res) => {
   const token = req.cookies.access_token;
   if (!token) return res.status(401).json("Not authenticated");
 
-  jwt.verify(token, "jwtkey", (err, userInfo) => {
+  jwt.verify(token, "jwtkey", async (err, userInfo) => {
     if (err) return res.status(403).json("Token is not valid");
 
-    const q =
-      "INSERT INTO posts(`PostTitle`, `PostDesc`, `PostImg`, `PostCat`, `date`, `Post_Uid` ) VALUES (?)";
+    try {
+      const newPost = new Post({
+        PostTitle: req.body.title,
+        PostDesc: req.body.desc,
+        PostImg: req.body.img,
+        PostCat: req.body.cat,
+        date: req.body.date,
+        Post_Uid: userInfo.id,
+      });
 
-    const values = [
-      req.body.title,
-      req.body.desc,
-      req.body.img,
-      req.body.cat,
-      req.body.date,
-      userInfo.id,
-    ];
-
-    db.query(q, [values], (err, data) => {
-      if (err) return res.status(500).json();
-      return res.json("Post has been created");
-    });
+      await newPost.save();
+      return res.status(201).json("Post has been created");
+    } catch (err) {
+      return res.status(500).json(err);
+    }
   });
 };
 
-export const deletePost = (req, res) => {
+// Delete a post
+export const deletePost = async (req, res) => {
   const token = req.cookies.access_token;
   if (!token) return res.status(401).json("Not authenticated");
 
-  jwt.verify(token, "jwtkey", (err, userInfo) => {
+  jwt.verify(token, "jwtkey", async (err, userInfo) => {
     if (err) return res.status(403).json("Token is not valid");
 
-    const postId = req.params.id;
-    const q = "DELETE FROM posts WHERE `PostId` = ? AND `Post_Uid` = ?";
-
-    db.query(q, [postId, userInfo.id], (err, data) => {
-      if (err) return res.status(403).json("You can only delete your post!");
+    try {
+      const post = await Post.findOneAndDelete({ _id: req.params.id, Post_Uid: userInfo.id });
+      if (!post) return res.status(403).json("You can only delete your post!");
       return res.json("Post has been deleted!");
-    });
+    } catch (err) {
+      return res.status(500).json(err);
+    }
   });
 };
 
-export const updatePost = (req, res) => {
+// Update a post
+export const updatePost = async (req, res) => {
   const token = req.cookies.access_token;
   if (!token) return res.status(401).json("Not authenticated");
 
-  jwt.verify(token, "jwtkey", (err, userInfo) => {
+  jwt.verify(token, "jwtkey", async (err, userInfo) => {
     if (err) return res.status(403).json("Token is not valid");
 
-    const q =
-      "UPDATE posts SET `title`=?, `desc`=?, `img`=?, `cat` =? WHERE `id`=? AND `post_uid`=?";
+    try {
+      const updatedPost = await Post.findOneAndUpdate(
+        { _id: req.params.id, Post_Uid: userInfo.id },
+        {
+          PostTitle: req.body.title,
+          PostDesc: req.body.desc,
+          PostImg: req.body.img,
+          PostCat: req.body.cat,
+        },
+        { new: true }
+      );
 
-    const postId = req.params.id;
-    const values = [req.body.title, req.body.desc, req.body.img, req.body.cat];
-
-    db.query(q, [...values, postId, userInfo.id], (err, data) => {
-      if (err) return res.status(500).json(err);
+      if (!updatedPost) return res.status(403).json("You can only update your post!");
       return res.json("Post has been updated");
-    });
+    } catch (err) {
+      return res.status(500).json(err);
+    }
   });
 };

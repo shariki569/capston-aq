@@ -1,0 +1,101 @@
+@use "../Utilities/" as *;
+
+.input-flex {
+    display: flex;
+    flex-direction: row;
+
+    // .label {
+    //     min-width: 200px;
+    // }
+}
+
+// .start {
+//     float: left;
+// }
+
+.text-input {
+    display: flex;
+    flex-direction: column;
+    font-family: $secondary-font;
+    // margin: $base-margin;
+    font-size: $content;
+    color: $greyColor;
+    width: 100%;
+    min-width: 10%;
+    padding-bottom: $small-padding;
+
+    .label {
+        margin: $small-margin-y;
+        font-size: $large;
+        color: $primary;
+        font-weight: $w-bold;
+    }
+
+    .input {
+        // margin: $small-margin-y ;
+        width: 100%;
+        padding: $small-padding;
+        min-height: 10px;
+        border-radius: $small-border-radius;
+        border: 1px solid $lightGreyColor;
+        outline: none;
+        line-height: $base-line-height;
+        background-color: $lighterGreyColor;
+
+        &:focus {
+            border-bottom: $base-border-thickness $primaryColor;
+            border-radius: $input-border-radius;
+        }
+
+        &:hover {
+            outline: $small-border-thickness $lightGreyColor;
+        }
+    }
+
+    .errorInput {
+        border-bottom: $base-border-thickness $error;
+        outline: $small-border-thickness $error;
+    }
+}
+
+.text-area {
+    display: flex;
+    flex-direction: column;
+    font-family: $secondary-font;
+    padding-bottom: $small-padding;
+    color: $greyColor;
+    width: 100%;
+    // min-width: 500px;
+    font-size: $content;
+
+    .label {
+        margin: $small-margin-y;
+        font-size: $large;
+        color: $primary;
+        font-weight: $w-bold;
+    }
+
+    .text-area-input {
+        width: 100%;
+        resize: none;
+        padding: $small-padding;
+        border-radius: $small-border-radius;
+        border: 1px solid $lightGreyColor;
+        outline: none;
+        line-height: $base-line-height;
+        background-color: $lighterGreyColor;
+
+        &:focus {
+            border-bottom: $base-border-thickness $primaryColor;
+            border-radius: $input-border-radius;
+        }
+
+        &:hover {
+            outline: $small-border-thickness $lightGreyColor;
+        }
+    }
+    .errorInput {
+        border-bottom: $base-border-thickness $error;
+        outline: $small-border-thickness $error;
+    }
+}

@@ -1,0 +1,14 @@
+@use "../../sass/Utilities/" as *;
+
+.share-buttons {
+    @include centerFlexboxRow;
+    gap: 0.5rem;
+
+    button {
+        background-color: transparent;
+        border-radius: $medium-border-radius;
+        @include centerFlexboxRow;
+        padding: $small-padding;
+        font-style: $content;
+    }
+}

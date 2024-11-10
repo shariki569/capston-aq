@@ -1,0 +1,37 @@
+//theme color
+$primaryColor: #03335b;
+$secondaryColor: #73d2de;
+$tertiaryColor: #ffbc42;
+$ultraViolet-opacity-low: #4b4e6d54;
+$accentColor: #d81159;
+$honeyDew: #e1ebdd;
+
+//Neutralss
+$lightColor: #f8f9fa;
+$greyColor: #232422;
+$darkerGreyColor: #5c5b5b;
+$lightGreyColor: #b4b9ae;
+$lighterGreyColor: #faf7f7;
+
+$lightGreen: #b9e7e7;
+
+$error: #e93131;
+$text: #8b4513;
+$description: #333333;
+$background: #ffffff;
+$primary: #03335b;
+$info: #B0E0E6;
+$secondary: #D2B48C;
+$tertiary: 	#F4A460;
+$borders: 	#ECEFF1;
+$warning: 	#FFFF00;
+$success: 	#17df38;
+
+.bg-white{
+    background-color: white;
+}
+
+.bg-primary{
+    background-color: $primary !important;
+
+}

@@ -1,0 +1,71 @@
+@use "./../Utilities/" as *;
+
+$standard-padding: 10px 20% 10px 20%;
+$nav-footer: 10px 50px;
+
+footer {
+    margin-top: 5rem;
+    padding: $nav-footer;
+    background-color: $primary;
+
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 12px;
+    color: $lightGreyColor;
+
+    img {
+        height: 50px;
+    }
+
+    span {
+        font-family: $secondary-font;
+    }
+    .footer {
+        font-size: $content;
+        display: flex;
+        gap: 1.5rem;
+        .footer-content {
+            @include leftFlexboxColumn;
+            gap: 1rem;
+        
+            .footer-items {
+                width: 100%;
+                @include leftFlexboxColumn;
+                .footer-title {
+                    width: 100%;
+                    padding: $small-padding-y;
+                }
+                .footer-description {
+                    width: inherit;
+                    display: flex;
+                    align-items: center;
+                    
+                    text-decoration: none;
+                    .icon {
+                        padding: $small-padding-x;
+                    }
+
+                    li {
+                        list-style: none;
+                        display: flex;
+                        align-items: center;
+                    }
+                }
+                .footer-link {
+                    width: inherit;
+                    @include leftFlexboxColumn;
+                    gap: 0.8rem;
+                    .sub-link {
+                        width: inherit; 
+                        color: $lightGreyColor;
+                        gap: 1.2rem;
+                        span {
+                            list-style: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

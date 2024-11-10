@@ -1,0 +1,152 @@
+@use "./../Utilities/" as *;
+
+.container-accomodation {
+    width: 100vw;
+    overflow-x: none;
+
+    .wrapper:not(.with-title) .accommodation-title::after {
+        content: none;
+    }
+
+    .container {
+        
+        margin-inline: auto;
+        max-width: 100rem;
+        padding-inline: 5rem;
+    }
+
+    .accommodation-title {
+        position: relative;
+        font-size: $pageHeading;
+        font-family: $font-libre-franklin;
+        @include centerFlexboxColumn;
+        margin: $large-margin-y;
+        color: $primaryColor;
+        margin-bottom: auto;
+
+        &::after {
+            position: absolute;
+            top: 0;
+            left: 42%;
+            z-index: -1;
+            content: "";
+            width: 8px;
+            height: 45px;
+            background-color: $tertiaryColor;
+            display: block;
+        }
+    }
+    .wrapper {
+        margin-top: 40px;
+        display: flex;
+        flex-direction: row;
+
+        .title  {
+            font-size: $large;
+            font-family: $font-libre-baskerville;
+           
+            padding: $small-padding 0 $large-padding 0;
+            text-decoration: none;
+
+            a{
+                color: $primaryColor;
+            }
+            
+        }
+
+        .card {
+            // display: flex;
+            margin: $large-margin-y;
+            // margin-left: auto;
+            // margin-right: auto;
+            // max-height: 5rem;
+            aspect-ratio: 0.5 / 0.7;
+            @include cardBase($base-border-radius);
+
+            .content {
+                width: 100%;
+
+                // .image-container{
+                //     margin: 0px;
+                .img {
+                    border-radius: 10px 10px 0 0;
+                    object-fit: cover;
+                    aspect-ratio: 1.5 / 1;
+                    // margin-right: auto;
+                    width: 100%;
+                }
+            }
+
+            .description {
+                display: flex;
+                flex-direction: column;
+                padding: $base-padding;
+                width: 100%;
+                
+                
+
+                .price {
+                    color: $tertiary;
+                    font-size: $heading;
+                    font-family: $font-libre-baskerville;
+
+                    &::after {
+                        content: "";
+                        width: 70px;
+                        height: 2px;
+                        background-color: $tertiary;
+                        display: block;
+                        margin: $small-margin-y;
+                    }
+                }
+                .caption {
+                    display: flex;
+                    color: $description;
+                    font-family: $font-libre-franklin;
+
+                    font-size: $large;
+                    line-height: $base-line-height;
+                    min-height: 8rem;
+
+
+                    p {
+                        display: -webkit-box;
+                        -webkit-line-clamp: 3;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;
+                        margin: $small-margin 0 auto 0 ;
+                    }
+                }
+
+                .accomodation-details {
+                    display: flex;
+                    margin-bottom: auto;
+                    padding: $small-padding-y;
+
+                    .accomodation-detail {
+                        display: flex;
+                        align-items: center;
+                        .icon {
+                            color: $primaryColor;
+                            margin-right: $base-margin;
+                        }
+                        label {
+                            font-family: $font-libre-franklin;
+                            font-weight: $w-semi-bold;
+                            color: $lightGreyColor;
+                            margin-right: $base-margin;
+                            font-size: $content;
+
+                            span {
+                                font-family: $font-libre-franklin;
+                                font-weight: $w-mediun;
+                                color: $greyColor;
+                                margin-left: $small-margin;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

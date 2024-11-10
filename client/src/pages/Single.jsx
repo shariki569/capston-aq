@@ -66,7 +66,7 @@ const Single = () => {
               <p>Posted {moment(post.date).fromNow()}</p>
             </div>
             {currentUser?.username === post?.username && (<div className="edit">
-              <Link to={`/write?edit=${postId}`} state={post}>
+              <Link to={`/dashboard/posts/write?edit=${postId}`} state={post}>
                   <AiFillEdit className='icon icon-edit'/>
               </Link>
               <Link>

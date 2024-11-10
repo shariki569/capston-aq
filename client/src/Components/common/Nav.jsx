@@ -1,80 +1,110 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import {Link} from 'react-router-dom'
-import logo from "../../img/sepalon-icon.svg"
-import { AuthContext } from '../../context/authContext';
-import Dropdown from '../ui/Dropdown';
-import { FaPenNib } from "react-icons/fa6";
-
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import logo from "../../img/Cainta Logo.png";
+import { AuthContext } from "../../context/authContext";
+import { accommType, catLinks } from "../common/MenuItems";
+import Dropdown from "../ui/Dropdown";
+import { FaPenNib, FaS } from "react-icons/fa6";
 
 const Nav = () => {
+  const [scrolled, setScrolled] = useState(false);
+  const { currentUser, logout } = useContext(AuthContext);
+  const [showDropdown, setShowDropdown] = useState(false);
 
-  const {currentUser, logout } = useContext(AuthContext);
-  const catLinks = [
-    {
-      name: "Art",
-      path: "/?cat=art"
-    },
-    {
-      name: "Science",
-      path: "/?cat=science"
-    },
-    {
-      name: "Technology",
-      path: "/?cat=technology"
-    },
-    {
-      name: "Cinema",
-      path: "/?cat=cinema"
-    },
-    {
-      name: "Design",
-      path: "/?cat=design"
-    },
-    {
-      name: "Foods",
-      path: "/?cat=foods"
-    },
-  ]
+  // const toggleDropdown = () => {
+  //   setShowDropdown(!showDropdown);
+  // };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 0;
+      setScrolled(isScrolled);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
-    <div className='navbar'>
+    <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
       <div className="container">
         <div className="logo">
-          <Link to="/">
+          <Link className="link" to="/">
             <img src={logo} alt="" />
           </Link>
         </div>
-        <div className='main-link'>
-          {/* main links */}
-          
-          <Link className="link"to="/about-us">
-            <h6>About Us</h6>
-          </Link>
+        <ul className="main-link">
+          <li className="link-item">
+            <Link className="link" to="/">
+              <h6>Home</h6>
+            </Link>
+          </li>
+          <li className="link-item">
+            <Link className="link" to="/about-us">
+              <h6>About Us</h6>
+            </Link>
+          </li>
+          <li className="link-item">
+            <Link className="link" to="/facilities">
+              <h6>Facilities</h6>
+            </Link>
+          </li>
+          <li className="link-item">
+            <Link className="link" to="/accommodations">
+              <h6>Accommodation</h6>
+            </Link>
 
-          <Dropdown  label="Posts">
-            {catLinks.map((link, index) => (
-              <Link className='link' key={index} to={link.path}>
-                  <h6>{link.name}</h6>
-              </Link>
-            ))}
-          </Dropdown>
+            <Dropdown>
+              {accommType.map((items) => (
+                <Link key={items.id} className="sub-link" to={items.path}>
+                  <li >
+                    {items.name}
+                  </li>
+                </Link>
+              ))}
+            </Dropdown>
+          </li>
+                
+          <li className="link-item">
+            <Link className="link" to="/posts">
+              <h6>Posts</h6>
+            </Link>
+
+
+            <Dropdown>
+              {catLinks.map((items) => (
+                <Link key={items.id} className="sub-link" to={items.path}>
+                  <li >
+                    {items.name}
+                  </li>
+                </Link>
+              ))}
+            </Dropdown>
+          </li>
           
-        </div>
-  
-        <div className='user-link'>
-          <Link className='link' to="/dashboard">
-            <span>
-              {currentUser?.username}
-            </span>
+          <li className="link-item">
+            <Link className="link" to="/contact-us">
+              <h6>Contact Us</h6>
+            </Link>
+          </li>
+
+        </ul>
+
+
+
+        <div className="user-link">
+          <Link className="main-link-item " to="/dashboard/admin">
+            <span>{currentUser?.username}</span>
           </Link>
           {currentUser ? (
-            <span onClick={logout}>
-            Logout
-            </span>
+            <span onClick={logout}>Logout</span>
           ) : (
-          <Link className="link" to="/login">
-            Login
-          </Link>
+            <Link className="link" to="/login">
+              Login
+            </Link>
           )}
           {/* { currentUser && (<span className='write'>
             <Link 
@@ -85,8 +115,8 @@ const Nav = () => {
           </span>)} */}
         </div>
       </div>
-    </div>
-  )
-}
+    </nav>
+  );
+};
 
-export default Nav
+export default Nav;

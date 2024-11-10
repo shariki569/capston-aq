@@ -1,0 +1,77 @@
+@use "../Utilities/Variables" as *;
+@use "../Utilities/ColorPallet" as *;
+@use "../Utilities/fonts/Fonts" as *;
+
+@mixin fullSize {
+    height: 100%;
+    width: 100%;
+}
+
+@mixin centerFlexboxColumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+@mixin leftFlexboxColumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+@mixin centerFlexboxRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin leftFlexboxRow{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+@mixin cardBase($borderRadius) {
+    box-shadow: $base-box-shadow;
+    background-color: #ffffff;
+    border-radius: $borderRadius;
+}
+
+@mixin gridView($minMaxValue, $gapValue) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(#{$minMaxValue}, 1fr));
+    gap: $gapValue;
+}
+
+@mixin solidBorder($borderValue, $borderRadius, $colorValue) {
+    border: $borderValue $colorValue;
+    border-radius: $borderRadius;
+
+}
+
+@mixin centeredHeading {
+    font-family: $secondary-font;
+    padding: $base-padding-y;
+    text-align: center;
+}
+
+@mixin imageDefault($width, $height, $objectFit) {
+    height: $height;
+    width: $width;
+    aspect-ratio: 1/1;
+    object-fit: $objectFit;
+}
+
+@mixin containerStyle($maxWidth, $paddingInline){
+    margin-inline: auto;
+    max-width: $maxWidth;
+    padding-inline: $paddingInline;
+}
+
+
+@mixin justifyIndent{
+    text-align: justify;
+    text-indent: 1rem;
+  
+}

@@ -1,0 +1,50 @@
+@use "../../sass/Utilities/" as *;
+
+.header.small{
+    min-height: 50vh;
+    h1{
+        font-size: $heading;
+    }
+}
+
+.text-normal {
+    color: $background;
+    font-size: $pageHeading;
+}
+
+.text-small{
+    color: $background;
+    font-size: $heading;
+}
+
+.header {
+    position: relative;
+    min-height: 70vh;
+    min-width: 100%;
+    overflow: hidden;
+    font-family: $primary-font;
+    
+ 
+
+    .header-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        background-color: $primaryColor;
+        filter: brightness(0.6);
+    }
+
+    .header-title {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 99;
+
+       
+    }
+}

@@ -1,0 +1,129 @@
+@use "./../Utilities/" as *;
+
+$standard-padding: 10px 20% 10px 20%;
+$nav-footer: 10px 50px;
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999999999;
+    padding: $nav-footer;
+    background-color: transparent;
+    font-family: $secondary-font;
+    font-weight: $w-bold;
+
+    &.scrolled {
+        transition: $base-transition;
+        background-color: $primaryColor;
+    }
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+
+        h6 {
+            font-size: $content;
+            font-weight: 300;
+            
+            text-decoration: none;
+            text-transform: uppercase;
+            color: $honeyDew;
+        }
+
+        .logo {
+            img {
+                width: 80px;
+            }
+        }
+
+        .submenu {
+            text-decoration: none;
+           
+
+            h2 {
+                padding: $small-padding;
+                color: $greyColor;
+                font-family: $secondary-font;
+                font-size: $content;
+                font-weight: $w-mediun;
+                text-transform: uppercase;
+            }
+        }
+
+        .main-link {
+            position: relative;
+            gap: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            list-style: none;
+            align-items: center;
+
+            .link-item {
+                display: flex;
+                cursor: pointer;
+                height: 100%;
+                align-items: center;
+                transition: ease-in-out 0.9s;
+
+                &:hover {
+                    .dropdown-menu {
+                        display: block;
+                    }
+                }
+            }
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 50px;
+            margin-top: 15px;
+            min-width: 150px;
+            background-color: $lightColor;
+            box-shadow: $base-box-shadow;
+            border-radius: 5px;
+            display: none;
+            overflow: hidden;
+            .dropdown-items {
+                list-style: none;
+                box-shadow: $base-box-shadow;
+                li {
+                    cursor: pointer;
+                    padding: $small-padding-y;
+                    padding-left: $small-padding;
+                    padding-right: $large-padding;
+                    list-style: none;
+
+                    &:hover {
+                        background-color: $primaryColor;
+                        color: $lightColor;
+                        // border-radius: 3px;
+                    }
+                }
+
+                .sub-link {
+                    text-decoration: none;
+                    color: $greyColor;
+                    font-size: $content;
+                    font-family: $secondary-font;
+                }
+            }
+        }
+
+    }
+
+    .user-link {
+        display: flex;
+        justify-content: space-around;
+        flex-direction: row;
+        align-items: center;
+        width: 200px;
+
+        span {
+            color: $honeyDew;
+            cursor: pointer;
+            font-family: $font-libre-franklin;
+        }
+    }
+}

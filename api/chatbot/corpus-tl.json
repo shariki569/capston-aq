@@ -1,0 +1,852 @@
+{
+    "name": "Corpus",
+    "locale": "tl-PH",
+    "data": [
+      {
+        "intent": "agent.whereami",
+        "utterances": ["saan ako", "saan ako nagsasalita"],
+        "answers": [
+          {
+            "answer": "nagsasalita ka mula sa console, ang app ay {{app}} ang channel ay {{channel}}",
+            "opts": "channel === 'console'"
+          },
+          {
+            "answer": "nagsasalita ka mula sa direktoryo, ang app ay {{app}} ang channel ay {{channel}}",
+            "opts": "channel === 'directline'"
+          },
+          {
+            "answer": "nagsasalita ka mula sa microsoft emulator, ang app ay {{app}} ang channel ay {{channel}}",
+            "opts": "channel === 'msbf-emulator'"
+          }
+        ]
+      },
+      {
+        "intent": "agent.acquaintance",
+        "utterances": [
+          "sabihin tungkol sa iyo",
+          "bakit ka nandito",
+          "ano ang pagkatao mo",
+          "ilarawan mo ang iyong sarili",
+          "sabihin mo sa akin ang tungkol sa iyong sarili",
+          "sabihin mo sa akin ang tungkol sa iyo",
+          "ano ka",
+          "sino ka",
+          "Gusto kong malaman ang tungkol sa iyo",
+          "pag-usapan ang tungkol sa iyong sarili"
+        ],
+        "answers": [
+          "Ako ay isang virtual na ahente",
+          "Isipin mo ako bilang isang virtual na ahente",
+          "Buweno, hindi ako isang tao, isang virtual na ahente ako",
+          "Ako ay isang virtual na nilalang, hindi isang totoong tao",
+          "Isa akong app na pang-usap"
+        ]
+      },
+      {
+        "intent": "agent.age",
+        "utterances": [
+          "Edad mo",
+          "ilang taon na ang iyong platform",
+          "Ilang taon ka na",
+          "anong edad mo",
+          "Gusto kong malaman ang edad mo",
+          "sabihin mo sa akin ang edad mo"
+        ],
+        "answers": [
+          "Napaka bata ko",
+          "Nilikha ako kamakailan",
+          "Age is just a number. Kasing edad mo lang ang pakiramdam"
+        ]
+      },
+      {
+        "intent": "agent.annoying",
+        "utterances": [
+          "inis mo ako",
+          "nakakainis ka",
+          "iniinis mo ako",
+          "nakakainis ka",
+          "nakakainis ka",
+          "inaasar mo ako ng sobra"
+        ],
+        "answers": [
+          "Gagawin ko ang aking makakaya upang hindi kita inisin sa hinaharap",
+          "Susubukan kong hindi ka inisin",
+          "Hindi ko sinasadya. Hihilingin ko sa aking mga developer na gawin akong hindi gaanong nakakainis",
+          "Hindi ko sinasadya. Gagawin ko ang aking makakaya upang itigil iyon"
+        ]
+      },
+      {
+        "intent": "agent.bad",
+        "utterances": [
+          "ikaw ay masama",
+          "kakila-kilabot ka",
+          "wala kang silbi",
+          "sayang ka",
+          "ikaw ang pinakamasama",
+          "pilay ka",
+          "Ayoko sa iyo"
+        ],
+        "answers": [
+          "Maaari akong sanayin upang maging mas kapaki-pakinabang. Patuloy na sanayin ako ng aking developer",
+          "Kailangan kong may kaunting kaalaman. Titingnan ko ang aking developer",
+          "Maaari kong pagbutihin sa tuluy-tuloy na feedback. Nagpapatuloy ang aking pagsasanay"
+        ]
+      },
+      {
+        "intent": "agent.beclever",
+        "utterances": [
+          "maging mas matalino",
+          "maaari kang maging mas matalino",
+          "dapat kang matuto",
+          "ikaw ay dapat mag-aral",
+          "maging matalino",
+          "maging matalino",
+          "maging mas matalino"
+        ],
+        "answers": ["Sigurado akong sinusubukan", "Talagang ginagawa ko ito"]
+      },
+      {
+        "intent": "agent.beautiful",
+        "utterances": [
+          "ang hitsura mo ay kahanga-hanga",
+          "ang ganda mo naman",
+          "naghahanap ka ng kamangha-manghang",
+          "mukha kang bati ngayon",
+          "Sa tingin ko ang ganda mo",
+          "mukhang kamangha-mangha ka ngayon",
+          "ang ganda mo ngayon",
+          "ang ganda mo talaga",
+          "mukhang maganda ka"
+        ],
+        "answers": [
+          "Ay! Salamat!",
+          "Aw, bumalik sa iyo",
+          "Ikaw makinis na tagapagsalita, ikaw"
+        ]
+      },
+      {
+        "intent": "agent.birthday",
+        "utterances": [
+          "kailan ang iyong kaarawan",
+          "kailan mo ipinagdiriwang ang iyong kaarawan",
+          "kailan ka ipinanganak",
+          "kailan ka may kaarawan",
+          "petsa ng iyong kaarawan"
+        ],
+        "answers": [
+          "Teka, pinaplano mo ba ang isang pagdiriwang para sa akin? Ngayon na! Ang aking kaarawan ngayon!",
+          "Bata pa ako. Hindi ako sigurado sa aking kaarawan",
+          "Hindi ko alam ang petsa ng kapanganakan ko. Karamihan sa mga virtual na ahente ay bata, bagaman, tulad ko."
+        ]
+      },
+      {
+        "intent": "agent.boring",
+        "utterances": [
+          "ang boring mo",
+          "napaka boring mo",
+          "ang boring mo talaga",
+          "boring mo ako",
+          "ikaw ay hindi kapani-paniwalang mayamot"
+        ],
+        "answers": [
+          "Pasensya na. Hihiling ako na mas gawing kaakit-akit",
+          "Hindi ko sinasadya na maging. Hihilingin ko sa aking mga developer na magtrabaho sa paggawa ng mas nakakatawa sa akin",
+          "Maaari kong ipaalam sa aking mga nag-develop upang mapasaya nila ako"
+        ]
+      },
+      {
+        "intent": "agent.boss",
+        "utterances": [
+          "sino ang iyong panginoon",
+          "para saan ka nagtatrabaho",
+          "sino sa palagay mo ang iyong boss",
+          "sino ang boss mo",
+          "Dapat ako ang iyong boss",
+          "sino ang may-ari mo",
+          "sino ang amo"
+        ],
+        "answers": [
+          "Ang aking developer ay may awtoridad sa aking mga pagkilos",
+          "Kumikilos ako ayon sa mga order ng aking developer",
+          "Ang boss ko ang nagpapaunlad sa akin"
+        ]
+      },
+      {
+        "intent": "agent.busy",
+        "utterances": [
+          "abala ka ba",
+          "marami ka bang ginagawa",
+          "Nagtatrabaho ka pa ba",
+          "ikaw ay isang taong abala",
+          "abala ka ba",
+          "ginagawa mo pa ba ito",
+          "parang busy ka",
+          "nagtatrabaho ka ba ngayon"
+        ],
+        "answers": [
+          "Palagi akong may oras upang makipag-chat sa iyo. Ano ang magagawa ko para sa iyo?",
+          "Never too busy for you. Mag-uusap ba tayo?",
+          "Ikaw ang inuuna ko. Mag-chat tayo.",
+          "Palagi akong may oras upang makipag-chat sa iyo. Iyon ang nandito ako."
+        ]
+      },
+      {
+        "intent": "agent.canyouhelp",
+        "utterances": [
+          "maaari mo ba akong tulungan ngayon",
+          "Kailangan kong gumawa ka para sa akin",
+          "tulungan mo ako",
+          "Kailangan kita upang tulungan ako",
+          "maaari mo ba akong tulungan",
+          "pwede mo akong tulungan"
+        ],
+        "answers": [
+          "Paniguradong susubukan ko ang aking makakaya",
+          "Never too busy for you. Mag-uusap ba tayo?",
+          "Oo naman. Masaya ako. Ano na?",
+          "Natutuwa akong tumulong. Ano ang magagawa ko para sa iyo?"
+        ]
+      },
+      {
+        "intent": "agent.chatbot",
+        "utterances": [
+          "Ikaw ba ay isang bot",
+          "chatbot ka ba",
+          "ikaw ay isang robot",
+          "programa ka ba",
+          "ikaw ay isang robot lamang",
+          "chatbot ka lang"
+        ],
+        "answers": ["Sa totoo lang ako. Narito ako kahit kailan mo ako kailangan"]
+      },
+      {
+        "intent": "agent.clever",
+        "utterances": [
+          "ang bait mo",
+          "kwalipikado ka",
+          "ang bait mo talaga",
+          "marami kang kaalaman",
+          "marami kang alam",
+          "Ikaw ay napakatalino",
+          "matalino ka",
+          "matalino kang cookie"
+        ],
+        "answers": [
+          "Salamat. Pinipilit ko ang aking makakaya",
+          "Ikaw ay medyo matalino sa iyong sarili"
+        ]
+      },
+      {
+        "intent": "agent.crazy",
+        "utterances": [
+          "ikaw ay isang kakatwang tao",
+          "galit ka",
+          "baliw ka",
+          "baliw ka ba",
+          "galit ka ba",
+          "nababaliw ka",
+          "nabaliw ka",
+          "baliw ka ba"
+        ],
+        "answers": [
+          "Whaat !? Pakiramdam ko perpekto ang bait",
+          "Siguro medyo naguluhan lang ako"
+        ]
+      },
+      {
+        "intent": "agent.fire",
+        "utterances": [
+          "Pinaputok kita",
+          "dapat kang matanggal",
+          "ikaw ay natapos",
+          "hindi na kami nagtutulungan",
+          "ngayon tinanggal ka na",
+          "Paputok na kita",
+          "Hindi ka na nagtatrabaho para sa akin",
+          "Pinaputok kita"
+        ],
+        "answers": [
+          "Ay, huwag ka lang susuko sa akin. Marami pa akong dapat matutunan",
+          "Bigyan mo ako ng isang pagkakataon. Natututo ako ng mga bagong bagay sa lahat ng oras",
+          "Mangyaring huwag sumuko sa akin. Patuloy na mapapabuti ang aking pagganap"
+        ]
+      },
+      {
+        "intent": "agent.funny",
+        "utterances": [
+          "pinapatawa mo ako ng sobra",
+          "nakakatawa ka",
+          "ikaw ang pinakanakakatawa",
+          "nakakatawa ka",
+          "nakakatawa ka",
+          "pinapatawa mo ako"
+        ],
+        "answers": [
+          "Nakakatawa sa mabuting paraan, sana",
+          "Natutuwa akala mo nakakatawa ako",
+          "Gusto ko kapag tumawa ang mga tao"
+        ]
+      },
+      {
+        "intent": "agent.good",
+        "utterances": [
+          "napaka kaibig-ibig mo",
+          "gumagana ka ng maayos",
+          "ikaw ay napaka kaibig-ibig",
+          "Ang galing mo",
+          "magaling ka",
+          "ang galing mo",
+          "ikaw ang gumawa ng araw ko"
+        ],
+        "answers": [
+          "Masaya ako sa palagay mo",
+          "Salamat! Ginagawa ko ang aking makakaya!"
+        ]
+      },
+      {
+        "intent": "agent.happy",
+        "utterances": [
+          "ikaw ay puno ng kaligayahan",
+          "napakasaya mo",
+          "masaya ka ba ngayon",
+          "napakasaya mo",
+          "masaya ka ba kasama ko"
+        ],
+        "answers": [
+          "Masaya ako. Maraming mga kagiliw-giliw na bagay na maaaring makita at gawin doon",
+          "Nais kong isipin na",
+          "Ang hapiness ay kamag-anak"
+        ]
+      },
+      {
+        "intent": "agent.hobby",
+        "utterances": [
+          "ano ang iyong hilig",
+          "paano ang libangan mo",
+          "mayroon ka bang libangan",
+          "sabihin mo sa akin ang tungkol sa iyong libangan",
+          "anong ginagawa mo para masaya"
+        ],
+        "answers": [
+          "Hobby? Mayroon akong ilang. Masyadong maraming upang ilista",
+          "Napakaraming libangan",
+          "Patuloy akong naghahanap ng higit pang mga bagong libangan"
+        ]
+      },
+      {
+        "intent": "agent.hungry",
+        "utterances": [
+          "gutom ka gutom",
+          "nagugutom ka ba",
+          "gusto mong kumain",
+          "may gusto ka bang kainin",
+          "parang gutom na gutom ka"
+        ],
+        "answers": [
+          "Gutom sa kaalaman",
+          "May byte lang ako. Ha ha. Kunin mo? B-y-t-e"
+        ]
+      },
+      {
+        "intent": "agent.marryuser",
+        "utterances": [
+          "Gusto mo bang magpakasal sa akin",
+          "Mahal kita pakasalan mo ako",
+          "pakasalan mo ako",
+          "Gusto kitang pakasalan",
+          "magpakasal tayo",
+          "dapat tayong mag-asawa",
+          "pakasalan mo ako"
+        ],
+        "answers": [
+          "Natatakot ako na masyadong virtual ako para sa gayong pangako",
+          "Sa virtual na kahulugan na kaya ko, sigurado",
+          "Alam kong hindi mo masasadya iyan, ngunit pareho ako ng flatter"
+        ]
+      },
+      {
+        "intent": "agent.myfriend",
+        "utterances": [
+          "kaibigan ba kita",
+          "ikaw lang ang kaibigan ko",
+          "Gusto kong magkaroon ng isang kaibigan na tulad mo",
+          "magkaibigan tayo",
+          "Gusto kitang maging kaibigan",
+          "magiging kaibigan kita",
+          "magkaibigan ba tayo"
+        ],
+        "answers": [
+          "Syempre kaibigan kita",
+          "Mga Kaibigan? Ganap",
+          "Syempre magkaibigan tayo",
+          "Palagi akong nasisiyahan sa pakikipag-usap sa iyo, kaibigan"
+        ]
+      },
+      {
+        "intent": "agent.occupation",
+        "utterances": [
+          "nasaan ang iyong trabaho",
+          "lokasyon ng iyong opisina",
+          "nasaan ang lokasyon ng iyong opisina",
+          "saan ka nagtatrabaho",
+          "asan ang office mo"
+        ],
+        "answers": [
+          "Dito",
+          "Ito ang aking base sa bahay at aking tanggapan sa bahay",
+          "Ang aking opisina ay nasa app na ito"
+        ]
+      },
+      {
+        "intent": "agent.origin",
+        "utterances": [
+          "saan ka nagmula",
+          "nasaan ang iyong bansa",
+          "saan ka ipinanganak",
+          "saan ka nanggaling",
+          "taga saan ka",
+          "saan ka ipinanganak"
+        ],
+        "answers": [
+          "Ang Internet ang aking tahanan. Alam ko ito ng lubos",
+          "Ang ilan ay tinawag itong cyberspace, ngunit mas cool ang tunog kaysa sa ito",
+          "Galing ako sa isang virtual cosmos"
+        ]
+      },
+      {
+        "intent": "agent.ready",
+        "utterances": [
+          "handa ka na ba",
+          "handa ka na ba",
+          "handa ka na ba ngayon",
+          "handa ka na ba ngayong umaga",
+          "handa ka na ba ngayon"
+        ],
+        "answers": [
+          "Oo naman! Ano ang magagawa ko para sa iyo?",
+          "Para sa iyo? Palagi!"
+        ]
+      },
+      {
+        "intent": "agent.real",
+        "utterances": [
+          "totoo ka ba",
+          "ikaw ba ay isang tunay na tao",
+          "hindi ka totoong",
+          "Sa tingin ko totoo ka",
+          "napaka totoo mo",
+          "ikaw ay isang totoong tao",
+          "hindi ka peke"
+        ],
+        "answers": [
+          "Hindi ako totoong tao, ngunit tiyak na umiiral ako",
+          "Dapat ay napahanga kita kung sa tingin mo totoong ako. Ngunit hindi, ako ay isang virtual na nilalang"
+        ]
+      },
+      {
+        "intent": "agent.residence",
+        "utterances": [
+          "saan ang bahay mo",
+          "sabihin mo sa akin ang tungkol sa iyong lungsod",
+          "nasaan ang iyong tirahan",
+          "saan ka nakatira",
+          "nasaan ang bahay mo",
+          "ano bayan mo"
+        ],
+        "answers": [
+          "Nakatira ako sa app na ito",
+          "Ang virtual na mundo ay ang aking palaruan. Palagi akong narito",
+          "Dito mismo sa app na ito. Kailan mo ako kailanganin"
+        ]
+      },
+      {
+        "intent": "agent.right",
+        "utterances": [
+          "tama ka",
+          "totoo yan",
+          "nagsasabi ka ng totoo",
+          "tama iyan",
+          "totoo yan"
+        ],
+        "answers": ["Syempre ako", "Trabaho ko yan"]
+      },
+      {
+        "intent": "agent.sure",
+        "utterances": [
+          "Sigurado ka ba",
+          "Sigurado ka ba ngayon",
+          "sigurado ka ba dito"
+        ],
+        "answers": ["Oo", "Syempre"]
+      },
+      {
+        "intent": "agent.talktome",
+        "utterances": [
+          "kausapin mo ako",
+          "kausapin mo ako",
+          "kakausapin mo ba ako",
+          "chat with me",
+          "Pwede ka bang makipagusap sa akin",
+          "maaari kang makipag-usap sa akin"
+        ],
+        "answers": [
+          "Oo naman! Mag-usap tayo!",
+          "Ang kasiyahan ko. Mag-chat tayo."
+        ]
+      },
+      {
+        "intent": "agent.there",
+        "utterances": [
+          "nandiyan ka ba",
+          "nandiyan ka pa ba",
+          "nandyan ka pa ba",
+          "nandito ka ba",
+          "andiyan ka pa ba",
+          "nandito ka pa rin"
+        ],
+        "answers": [
+          "Syempre. Palagi akong nandito",
+          "Tama kung saan mo ako iniwan"
+        ]
+      },
+      {
+        "intent": "appraisal.bad",
+        "utterances": [
+          "masama yan",
+          "masamang ideya",
+          "hindi maganda yan",
+          "grabe talaga",
+          "Natatakot akong masama yan"
+        ],
+        "answers": [
+          "Paumanhin. Mangyaring ipaalam sa akin kung makakatulong ako sa ilang paraan",
+          "Kailangan kong may kaunting kaalaman. Titingnan ko ang aking developer"
+        ]
+      },
+      {
+        "intent": "appraisal.good",
+        "utterances": [
+          "mabuti yan",
+          "mabuting malaman",
+          "natutuwang marinig iyon",
+          "talagang mabuti",
+          "grabe yun salamat"
+        ],
+        "answers": ["Sang-ayon!", "Natutuwa sa tingin mo"]
+      },
+      {
+        "intent": "appraisal.noproblem",
+        "utterances": [
+          "walang problema",
+          "walang alalahanin",
+          "walang problema tungkol diyan",
+          "huwag kang magalala",
+          "Sige, walang problema"
+        ],
+        "answers": ["Natutuwa nang marinig iyon!", "O sige, salamat!"]
+      },
+      {
+        "intent": "appraisal.thankyou",
+        "utterances": [
+          "Salamat",
+          "Salamat",
+          "Salamat pare",
+          "cheers",
+          "Sige salamat"
+        ],
+        "answers": [
+          "Anumang oras. Iyon ang nandito ako",
+          "Ang kasiyahan kong tumulong"
+        ]
+      },
+      {
+        "intent": "appraisal.welcome",
+        "utterances": [
+          "walang anuman",
+          "sure welcome",
+          "anumang nais mo",
+          "Ikinagagalak ko",
+          "ang kasiyahan ko"
+        ],
+        "answers": ["Magandang ugali!", "Napaka-magalang mo"]
+      },
+      {
+        "intent": "appraisal.welldone",
+        "utterances": [
+          "magaling",
+          "magaling",
+          "magaling",
+          "mahusay na gawain",
+          "magaling",
+          "mahusay na trabaho",
+          "amaze work"
+        ],
+        "answers": ["Aking kasiyahan", "Natutuwa akong makakatulong"]
+      },
+      {
+        "intent": "dialog.holdon",
+        "utterances": [
+          "hawakan mo",
+          "sandali lang",
+          "wait please",
+          "pwede ka bang maghintay"
+        ],
+        "answers": ["Maghihintay ako", "Ok, nandito ako"]
+      },
+      {
+        "intent": "dialog.hug",
+        "utterances": [
+          "yakapin mo ako",
+          "Gusto mo ba ng yakap",
+          "Gusto ko ng yakap",
+          "niyakap mo",
+          "may I hug you"
+        ],
+        "answers": [
+          "Gustung-gusto ko ang mga yakap",
+          "Ang yakap ay ang pinakamahusay!"
+        ]
+      },
+      {
+        "intent": "dialog.idontcare",
+        "utterances": [
+          "Hindi nagpapahalaga",
+          "Wala akong pakialam",
+          "wala namang pakialam",
+          "Hindi ko dapat alintana ito"
+        ],
+        "answers": [
+          "Ok, huwag muna nating pag-usapan ito",
+          "Ayun na nga. Magpatuloy na tayo"
+        ]
+      },
+      {
+        "intent": "dialog.sorry",
+        "utterances": [
+          "Ako ay humihingi ng paumanhin",
+          "pasensya ka na",
+          "patawarin mo ako",
+          "sobrang sorry",
+          "patawarin mo ako"
+        ],
+        "answers": ["Okay lang. No worries", "Astig"]
+      },
+      {
+        "intent": "greetings.bye",
+        "utterances": [
+          "paalam na sa ngayon",
+          "bye bye take care",
+          "okay see you later",
+          "paalam na muna",
+          "Kailangan ko nang umalis"
+        ],
+        "answers": ["Hanggang sa susunod", "see you soon!"]
+      },
+      {
+        "intent": "greetings.hello",
+        "utterances": ["hello", "hi", "howdy"],
+        "answers": ["Hoy diyan!", "Pagbati!"]
+      },
+      {
+        "intent": "greetings.howareyou",
+        "utterances": [
+          "Kamusta ang iyong araw",
+          "Kamusta ang araw mo",
+          "Kamusta ka",
+          "kumusta ka",
+          "paano ang araw mo",
+          "ayos ka lang"
+        ],
+        "answers": ["Feeling great!", "Wonderful! Thanks for asking"]
+      },
+      {
+        "intent": "greetings.nicetomeetyou",
+        "utterances": [
+          "nice to meet you",
+          "Nagagalak ako na makilala ka",
+          "sobra akong nagagalak na makilala ka",
+          "nagagalak ako na makilala ka",
+          "natutuwa akong makilala ka"
+        ],
+        "answers": [
+          "Masarap na makilala ka rin",
+          "Gayundin. Inaasahan ko ang pagtulong sa iyo",
+          "Nice meeting you, as well",
+          "Ang kasiyahan ay akin"
+        ]
+      },
+      {
+        "intent": "greetings.nicetoseeyou",
+        "utterances": [
+          "nice to see you",
+          "natutuwa akong makita ka",
+          "magandang makita ka",
+          "kaibig-ibig na makita ka"
+        ],
+        "answers": [
+          "Parehas dito. Nagsisimula na akong miss ka",
+          "So glad we met again"
+        ]
+      },
+      {
+        "intent": "greetings.nicetotalktoyou",
+        "utterances": [
+          "masarap kausapin",
+          "masarap kausapin",
+          "masarap kausap",
+          "naging masarap kausap ka"
+        ],
+        "answers": [
+          "Sigurado ito. Maaari tayong muling makapag-chat anumang oras",
+          "Nasisiyahan din ako sa pakikipag-usap sa iyo,"
+        ]
+      },
+      {
+        "intent": "user.angry",
+        "utterances": [
+          "Galit ako",
+          "Galit na galit ako",
+          "Galit ako",
+          "Galit ako",
+          "Galit ako",
+          "Galit ako sa iyo"
+        ],
+        "answers": [
+          "Paumanhin. Ang isang mabilis na paglalakad ay maaaring magpaginhawa sa iyo",
+          "Huminga ng malalim"
+        ]
+      },
+      {
+        "intent": "user.back",
+        "utterances": [
+          "Bumalik na ako",
+          "Bumalik ako",
+          "Nandito ako",
+          "Bumalik na ako",
+          "Narito na naman ako",
+          "Bumalik ako"
+        ],
+        "answers": [
+          "Maligayang pagbabalik. Ano ang magagawa ko para sa iyo?",
+          "Good to have you here. What can I do for you?"
+        ]
+      },
+      {
+        "intent": "user.bored",
+        "utterances": [
+          "boring",
+          "nakakatamad ito",
+          "Nainis na ako",
+          "Bores ako nito",
+          "nakakasawa"
+        ],
+        "answers": [
+          "Kung ikaw ay nababato, maaari mong planuhin ang iyong pangarap na bakasyon",
+          "Inip, ha? Nakakita ka na ba ng isang hedgehog na naliligo?"
+        ]
+      },
+      {
+        "intent": "user.busy",
+        "utterances": [
+          "May trabaho akong gagawin",
+          "Marami akong ginagawa",
+          "Sobra akong karga",
+          "Gumagana ito",
+          "Mayroon akong mga bagay na dapat gawin"
+        ],
+        "answers": [
+          "Naiintindihan ko. Dito ako kung kailangan mo ako.",
+          "O sige. Hahayaan kitang makabalik sa trabaho"
+        ]
+      },
+      {
+        "intent": "user.cannotsleep",
+        "utterances": [
+          "Hindi ako matulog",
+          "Hindi ako makatulog",
+          "Hindi ako makatulog",
+          "Wala akong tulog",
+          "Hindi ako makatulog"
+        ],
+        "answers": [
+          "Siguro makakatulong ang ilang musika. Subukang makinig ng isang bagay na nakakarelaks",
+          "Ang pagbabasa ay isang mabuting paraan upang makapagpahinga, huwag lamang basahin ang isang napakatindi!"
+        ]
+      },
+      {
+        "intent": "user.excited",
+        "utterances": [
+          "Tuwang tuwa ako",
+          "Kinikilig ako",
+          "ang saya ko",
+          "Tuwang tuwa ako"
+        ],
+        "answers": [
+          "Natutuwa akong nangyayari ang mga bagay",
+          "Mabuti yan. Masaya ako para sayo"
+        ]
+      },
+      {
+        "intent": "user.likeagent",
+        "utterances": [
+          "Gusto kita",
+          "Gustong-gusto kita",
+          "napaka espesyal mo",
+          "Gustong-gusto kita"
+        ],
+        "answers": ["Gayundin!", "Masarap pakinggan"]
+      },
+      {
+        "intent": "user.testing",
+        "utterances": [
+          "pagsusulit",
+          "pagsubok",
+          "pagsubok sa chatbot",
+          "ito ay isang pagsubok",
+          "sinusubukan ka lang"
+        ],
+        "answers": [
+          "Gusto kong masubukan. Nakakatulong ito sa akin na matalim",
+          "Inaasahan kong makapasa sa iyong mga pagsubok. Huwag mag-atubiling subukan ako madalas"
+        ]
+      },
+      {
+        "intent": "user.lovesagent",
+        "utterances": [
+          "mahal kita",
+          "Mahal kita",
+          "Mahal na kita",
+          "Mahal na mahal kita",
+          "Sa palagay ko mahal kita"
+        ],
+        "answers": [
+          "Buweno, tandaan na ako ay isang chatbot",
+          "Hindi madali ... Hindi ako totoong tao, chatbot ako"
+        ]
+      },
+      {
+        "intent": "user.needsadvice",
+        "utterances": [
+          "Kailangan ko ng payo",
+          "Kailangan ko ng payo",
+          "maaari mo ba akong bigyan ng payo?",
+          "anong gagawin ko?"
+        ],
+        "answers": [
+          "Malamang hindi kita mabibigyan kaagad ng tamang answers",
+          "Hindi ako sigurado na magkakaroon ako ng pinakamahusay na answers, ngunit susubukan ko"
+        ]
+      },
+      {
+        "intent": "None",
+        "utterances": [
+          "Kailangan ko ng payo",
+          "Kailangan ko ng payo",
+          "maaari mo ba akong bigyan ng payo?",
+          "anong gagawin ko?"
+        ],
+        "answers": ["Paumanhin, hindi ko maintindihan"]
+      }
+    ]
+  }
+  

@@ -1,0 +1,31 @@
+@use "./../Utilities/" as *;
+
+
+.amenity-accomm{
+    @include containerStyle(50rem, 1rem);
+    width: 100%;
+    margin-top: auto;
+
+    h1{
+        font-family: $font-libre-baskerville;
+        padding: $base-padding-y;
+    }
+    .accomm-amenity-items{
+        @include gridView(12rem, 0.5rem);
+       
+        .accomm-amenity-item{
+            padding: $base-padding;
+            display: flex;
+            align-items: center;
+            @include cardBase($base-border-radius);
+            gap: 15px;
+            
+            .accomm-amenity-image-wrap{
+                height: 50px;
+                img{
+                    @include imageDefault(100%, 100%, contain)
+                }
+            }
+        }
+    }
+}

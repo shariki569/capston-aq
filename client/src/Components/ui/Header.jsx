@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom';
 import { AiFillEdit } from 'react-icons/ai';
 // import EditableText from '../util/EditableText'
 
-const Header = ({imageUrl, title, pageSlug, state}) => {
+const Header = ({imageUrl, title, pageSlug, state, small}) => {
     const {currentUser} = useContext(AuthContext)
+    const customContainerClass = `header ${small ? 'small' : ''}`
+    const textSizeClass = small ? 'text-small' : 'text-normal';
 
  return (
-    <div className='header'>
+    <div className={customContainerClass}>
         
         <picture>
             <source srcSet={`${imageUrl}`} />
@@ -16,10 +18,10 @@ const Header = ({imageUrl, title, pageSlug, state}) => {
         </picture>
     
         <div className='header-title'>
-            <h1>{title}</h1>
+            <h1 className={textSizeClass}>{title}</h1>
             {currentUser && (
                 <div className="edit">
-                    <Link to={`/pages?edit=${pageSlug}`} state={state}>
+                    <Link to={`/dashboard/pages?edit=${pageSlug}`} state={state}>
                         <AiFillEdit className='icon icon-edit'/>
                     </Link>
                 </div>

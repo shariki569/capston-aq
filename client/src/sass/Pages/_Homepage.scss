@@ -1,0 +1,110 @@
+@use "../Utilities/" as *;
+
+.home {
+
+
+    .grid-view {
+        @include gridView(4rem, 0.5rem);
+    }
+
+    z-index: -99999;
+    .home-header-wrapper {
+        position: relative;
+
+        .home-header {
+            object-fit: cover;
+            height: 100vh;
+            width: 100vw;
+            filter: brightness(0.5);
+        }
+
+        .home-title-wrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            @include centerFlexboxColumn;
+            text-align: center;
+
+            .home-title {
+                padding: 0px;
+                margin: 0px;
+                color: white;
+                h1 {
+                    font-family: $primary-font;
+                    font-size: $pageHeading;
+                    font-weight: $w-light;
+                    margin-bottom: 0.5rem;
+                    letter-spacing: 2px;
+                }
+                p {
+                    font-family: $secondary-font;
+                    font-size: $subheading;
+                    font-weight: 200;
+                }
+            }
+
+            .home-cta {
+                margin-top: 2rem;
+                background-color: $accentColor;
+                width: fit-content;
+                padding: 10px 20px;
+                border-radius: 10px;
+
+                .cta {
+                    color: aliceblue;
+                    text-decoration: none;
+                    font-family: $secondary-font;
+                    font-weight: $w-normal;
+                    font-size: $content;
+                }
+            }
+        }
+    }
+
+    .row{
+        .row-title{
+            @include centerFlexboxColumn;
+            h2{
+              
+                margin: $base-margin-y;
+                // margin-inline: auto;
+                color: $tertiary;
+            }
+            p{
+                
+                max-width: 70%;
+                text-align: center;
+                color: $darkerGreyColor;
+            }
+           
+        }
+    }
+
+   
+}
+
+h4.subheading:contains('Ammenities'){
+    color: $lighterGreyColor;
+}
+
+.amenity-items{
+    @include gridView(15rem, 0.5rem);
+    @include containerStyle(70rem, 1rem);
+    .amenity-item{
+        padding: $large-padding;
+        @include cardBase($base-border-radius);
+        @include centerFlexboxColumn;
+        img{
+            @include imageDefault(50%, 50%, contain);
+            
+        }
+        .title{
+            text-align: center;
+            margin: $base-margin-y;
+            font-family: $font-libre-baskerville;
+            color: $greyColor;
+        }
+    }
+  
+}

@@ -1,0 +1,11 @@
+@use "./../Utilities/" as *;
+
+.error {
+    display: flex;
+    color: $error;
+    font-family: $secondary-font;
+    font-size: $content;
+    text-align: start;
+    margin: 0.6rem  0 0;
+    width: 100%;
+}

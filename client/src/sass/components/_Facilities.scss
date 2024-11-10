@@ -1,0 +1,111 @@
+@use "../Utilities/" as *;
+
+#facilities {
+    background: linear-gradient(rgba($primary, 0.9), rgba(8, 8, 8, 0.8)),
+        url("./upload/1696560451248GRILL\ \(1\)\ \(1\).webp") center/cover no-repeat fixed;
+}
+.facilities {
+    display: flex;
+    min-height: 30rem;
+
+    .facility-items {
+       @include gridView(12rem, 0.5rem);
+        .facility-item {
+           
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+            cursor: pointer;
+            &:hover {
+                .title {
+                    margin-top: -45%;
+                    
+                }
+            }
+        }
+        .image-wrap-facility {
+            height: 100%;
+            max-height: 400px;
+            width: 100%;
+            aspect-ratio: 1/2;
+            z-index: 4;
+            img {
+                @include imageDefault(100%, 100%, cover);
+                position: relative;
+            }
+        }
+
+        .title {
+            z-index: 9;
+            margin-top: -50%;
+            max-width: 95%;
+            @include cardBase($small-border-radius);
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            font-family: $primary-font;
+            padding: $base-padding;
+            transition: all 0.3s ease-in-out;
+            h2 {
+                padding: $small-margin-y;
+            }
+            span {
+                font-family: $secondary-font;
+            }
+        }
+
+        .subtitle {
+            @include justifyIndent;
+            min-height: 9rem;
+            //                 background-color: $greyColor;
+            //                 position: absolute;
+            //                 left: 100%;
+            //                 bottom: 0%;
+            font-family: $secondary-font;
+            //                 color: $lighterGreyColor;
+            //                 z-index: 2;
+            padding: $small-padding;
+            //                 font-size: $content;
+            //                 transform: translateY(100%);
+        }
+        //         }
+    }
+}
+
+.facility {
+    img {
+        // height: 30px;
+        // width: 30px;
+        @include imageDefault(100px, 100px, cover);
+    }
+    #facility-gallery-section {
+        &:nth-child(2n+1) {
+            flex-direction: row-reverse;
+        }
+
+        .image-wrapper{
+            position: relative;
+            .see-more-button{
+                position: absolute;
+                top: 5%;
+                right: 3%;
+                background-color: $tertiary;
+                color: $lighterGreyColor;
+                border: none;
+                padding: $small-padding;
+                cursor: pointer;
+                border-radius: $small-border-radius;
+              
+
+                &:hover{
+                    background-color: $secondary;
+                }
+            }
+
+
+        }
+    }
+   
+}

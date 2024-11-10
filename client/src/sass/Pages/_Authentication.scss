@@ -1,0 +1,57 @@
+@use "./../Utilities/" as *;
+
+.auth {
+    @include centerFlexboxColumn;
+    height: 100vh;
+    width: 100%;
+    background-color: $secondaryColor;
+
+    h1 {
+        font-size: 20px;
+        color: $honeyDew;
+        margin-bottom: 20px;
+        font-family: $font-libre-franklin;
+        font-size: $subheading;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        padding: 50px;
+        background-color: $lightColor;
+        width: 200;
+        gap: 20px;
+        border-radius: 15px;
+
+        input {
+            padding: 10px;
+            border: none;
+            border-bottom: 1px solid gray;
+            font-family: $font-libre-baskerville;
+            font-size: $content;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            background-color: $accentColor;
+            color: white;
+            cursor: pointer;
+            font-family: $font-libre-baskerville;
+            font-size: $content;
+        }
+
+        p {
+            font-size: $mini;
+            color: red;
+            text-align: center;
+            font-family: $font-libre-franklin;
+        }
+
+        span {
+            font-size: 12px;
+            text-align: center;
+            font-family: $font-libre-baskerville;
+        }
+    }
+}

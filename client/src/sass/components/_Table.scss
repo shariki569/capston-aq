@@ -1,0 +1,93 @@
+@use "../../sass/Utilities/" as *;
+
+table {
+    border-collapse: collapse;
+    font-family: $secondary-font;
+    font-size: $content;
+    border-collapse: collapse;
+    border-radius: $base-border-radius;
+    overflow: hidden;
+    tr {
+        height: 50px;
+        &:nth-child(even){
+            background-color: $lighterGreyColor;
+        }
+
+        th {
+            border: 1px solid $primary;
+            color: $lighterGreyColor;
+            font-weight: $w-bold;
+            // border: 2px solid $honeyDew;
+            background-color: $primaryColor;
+        }
+
+        td.center{
+            text-align: center;
+        }
+
+        .nowrap{
+            white-space: nowrap;
+        }
+
+        td.description{
+            max-width: 250px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding: $small-padding;
+        }
+        td {
+            // border: 1px solid $borders;
+            padding-inline: $small-padding;
+            min-width: 5rem;
+            
+
+            
+            img{
+                object-fit: cover;
+                max-width: 5rem;
+                aspect-ratio: 1/1;
+                
+            }
+
+            .crud-btn{
+                display: flex;
+                flex-wrap: nowrap;
+                gap: 5px;
+                justify-content: center;
+
+                
+
+                button{
+                    border: none;
+                    background-color: transparent;
+                    cursor: pointer;
+                    color: $background;
+                    background-color: $primary;
+                    padding: $small-padding;
+                    border-radius: 10px;
+                    text-decoration: none;
+                    transition: ease-in 0.2s;
+                    a{
+
+                        text-decoration: none;
+                        color: $background;
+                    }
+
+                    &:hover{
+                        background-color: $tertiary;
+                    }
+
+                    &:nth-child(3){
+                        background-color: $error;
+                        padding: $small-padding;
+                        border-radius: 10px;
+                        color: $background
+                        
+                    }
+                 
+                }
+            }
+        }
+    }
+}

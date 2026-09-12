@@ -48,6 +48,7 @@ app.use("/api/images", imageRoutes);
 app.use("/api/facilities", facilityRoutes);
 
 
-app.listen(8800, () => {
-  console.log("Connected oy amaw!");
+const port = process.env.PORT || 8800;
+app.listen(port, "0.0.0.0", () => {
+  console.log(`API listening on ${port}`);
 });

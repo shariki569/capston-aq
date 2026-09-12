@@ -1,32 +1,46 @@
 import mysql from "mysql2/promise";
 import dotenv from "dotenv";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 
-<<<<<<< HEAD
-dotenv.config({path: './env/.env'});
-=======
-dotenv.config({ path: "./env/acc.env" });
->>>>>>> pages-ver-3.3.3-chatbot-implementation
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const localEnv = path.join(__dirname, "env", ".env");
+
+if (fs.existsSync(localEnv)) {
+  dotenv.config({ path: localEnv });
+} else {
+  dotenv.config();
+}
+
+const host = process.env.MYSQLHOST || process.env.DB_HOST;
+const user = process.env.MYSQLUSER || process.env.DB_USER;
+const password = process.env.MYSQLPASSWORD || process.env.DB_PASSWORD;
+const database = process.env.MYSQLDATABASE || process.env.DB_DATABASE;
+const port = Number(process.env.MYSQLPORT || process.env.DB_PORT || 3306);
+
+const sslFlag = String(process.env.DB_SSL || process.env.MYSQL_SSL || "").toLowerCase();
+const useSsl =
+  sslFlag === "true" ||
+  (sslFlag !== "false" && host && host.includes("aivencloud.com"));
 
 export const db = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,
+  host,
+  port,
+  user,
+  password,
+  database,
   waitForConnections: true,
   connectionLimit: 10,
-  maxIdle: 10, // max idle connections, the default value is the same as `connectionLimit`
-  idleTimeout: 60000, // idle connections timeout, in milliseconds, the default value 60000
+  maxIdle: 10,
+  idleTimeout: 60000,
   queueLimit: 0,
   enableKeepAlive: true,
-  keepAliveInitialDelay: 0
+  keepAliveInitialDelay: 0,
+  ssl: useSsl ? { rejectUnauthorized: false } : undefined,
 });
-console.log('Database pool created successfully');
+
+console.log(
+  `Database pool ready → ${host}:${port}/${database} (ssl=${Boolean(useSsl)})`
+);
 export default db;
-
-<<<<<<< HEAD
-export default db;
-
-
-
-=======
->>>>>>> pages-ver-3.3.3-chatbot-implementation
